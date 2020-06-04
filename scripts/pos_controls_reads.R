@@ -419,21 +419,14 @@ mock <- read.csv("mock_communities_merged_abundance_table_species.txt",
 mock <- mock %>% filter(rowSums(mock[,-1]) < 0.1)
 
 df <- mock
-df$ID
-df
 
 colRename <- function(x) {
   setNames(x, paste0("R", seq_len(ncol(x))))
 }
 
 df <- colRename(df[,-1])
-
-df <- cbind(mock[,1], df)
 colnames(df)[1] <- "taxa_assigned"
 
-colSums(df[,-1])
-
-df
 
 df2 <- df %>%
   pivot_longer(
@@ -444,24 +437,18 @@ df2 <- df %>%
     values_drop_na = TRUE
   )
 
-# plot without numbers 
-ggplot(data = df2, aes(x=sample, y=taxa_assigned, fill=value)) + 
-  geom_tile() +
-  scale_fill_distiller(palette = "Spectral")
-
 df2 <- df 
-df2$taxa_assigned
-
 so <- as.matrix(df2[,2:9])
 names(so) <- df$taxa_assigned
-so
+
+contam_mock <- pheatmap(so, display_numbers = T,
+         main="Mock community contamination",angle=0,
+         cluster_rows = F, cluster_cols = F, fontsize_number = 11,
+         labels_row=as.character(df$taxa_assigned))
 
 # heat map with numbers 
 pdf("contam_mock.pdf")
-pheatmap(so, display_numbers = T,
-         main="Mock community contamination", angle=0,
-         cluster_rows = F, cluster_cols = F, fontsize_number = 11,
-         labels_row=as.character(df$taxa_assigned))
+contam_mock
 dev.off()
 
 #####################################
@@ -471,16 +458,12 @@ protexin <- read.csv("protexin_merged_abundance_table_species.txt",
                      "\t", header = TRUE, stringsAsFactors=FALSE)
 
 df <- protexin
-df$ID
-df
-protexin$ID
 
 colRename <- function(x) {
   setNames(x, paste0("R", seq_len(ncol(x))))
 }
 
 df <- colRename(df[,-1])
-
 df <- cbind(protexin[,1], df)
 colnames(df)[1] <- "taxa_assigned"
 
@@ -504,24 +487,17 @@ df2 <- df %>%
     values_drop_na = TRUE
   )
 
-# heatmap without numbers
-ggplot(data = df2, aes(x=sample, y=taxa_assigned, fill=value)) + 
-  geom_tile() +
-  scale_fill_distiller(palette = "Spectral")
-
 df2 <- df 
-df2$ID
-
 so <- as.matrix(df2[,2:9])
 names(so) <- df$taxa_assigned
-so
 
+contam_dscour <- pheatmap(so, display_numbers = T,
+                          main="D-Scour contamination",angle=0,
+                          cluster_rows = F, cluster_cols = F, fontsize_number = 11,
+                          labels_row=as.character(df$taxa_assigned))
 # heatmap with numbers  
 pdf("contam_dscour.pdf")
-pheatmap(so, display_numbers = T,
-         main="D-Scour contamination",angle=0,
-         cluster_rows = F, cluster_cols = F, fontsize_number = 11,
-         labels_row=as.character(df$taxa_assigned))
+contam_dscour
 dev.off()
 
 #####################################
@@ -532,26 +508,18 @@ coliguard <- read.csv("coli_guard_merged_abundance_table_species.txt",
                       "\t", header = TRUE, stringsAsFactors=FALSE)
 
 df <- coliguard
-df$ID
-df
-coliguard$ID
 
 colRename <- function(x) {
   setNames(x, paste0("R", seq_len(ncol(x))))
 }
 
 df <- colRename(df[,-1])
-
 df <- cbind(coliguard[,1], df)
 colnames(df)[1] <- "taxa_assigned"
-
-colSums(df[,-1])
-
 
 # removing the two species of the probiotic (what's left now is contamination)
 df <- df[!grepl("Lactobacillus_plantarum", df$taxa_assigned),]
 df <- df[!grepl("Lactobacillus_salivarius", df$taxa_assigned),]
-
 
 df2 <- df %>%
   pivot_longer(
@@ -562,14 +530,8 @@ df2 <- df %>%
     values_drop_na = TRUE
   )
 
-# heatmap without numbers
-ggplot(data = df2, aes(x=sample, y=taxa_assigned, fill=value)) + 
-  geom_tile() +
-  scale_fill_distiller(palette = "Spectral")
 
-# heatmap 
 df2 <- df
-
 sum(df2$R5)
 sum(df2$R7)
 
@@ -577,12 +539,14 @@ so <- as.matrix(df2[,2:9])
 names(so) <- df$taxa_assigned
 so
 
-
-pdf("contam_coliguard.pdf")
-pheatmap(so, display_numbers = T,
+contam_colig_plot <- pheatmap(so, display_numbers = T,
          main="ColiGuard contamination", angle=0,
          cluster_rows = F, cluster_cols = F, fontsize_number = 11,
          labels_row=as.character(df$taxa_assigned))
+
+
+pdf("contam_coliguard.pdf")
+contam_colig_plot
 dev.off()
 
 

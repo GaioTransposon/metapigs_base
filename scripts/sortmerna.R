@@ -16,6 +16,8 @@ library(EnvStats)
 library(corrplot)
 library(grid)
 library(cowplot)
+library(factoextra)
+library(broom)
 
 
 
@@ -377,7 +379,6 @@ head(z)
 NROW(z)
 
 
-
 # Spearman: 
 
 # correlation weight with species abundance: stats:
@@ -424,12 +425,21 @@ myfun_findcorr <- function(df,timepoint) {
 
 
 # rbind all the results 
-all_corr <- rbind(t4_out <- myfun_findcorr(z,"t0"),
-                  t4_out <- myfun_findcorr(z,"t2"),
-                  t4_out <- myfun_findcorr(z,"t4"),
-                  t4_out <- myfun_findcorr(z,"t6"),
-                  t4_out <- myfun_findcorr(z,"t8"),
-                  t4_out <- myfun_findcorr(z,"t10"))
+all_corr <- rbind(myfun_findcorr(z,"t0"),
+                  myfun_findcorr(z,"t2"),
+                  myfun_findcorr(z,"t4"),
+                  myfun_findcorr(z,"t6"),
+                  myfun_findcorr(z,"t8"),
+                  myfun_findcorr(z,"t10"))
+
+View(all_corr)
+#####
+# save the results
+all_corr$taxa_origin <- "SortMeRNA"
+
+addWorksheet(wb, "weight_taxa")
+writeData(wb, sheet = "weight_taxa", all_corr, rowNames = FALSE)
+#####
 
 
 # create lists of species that at each time point are correlating with weight
@@ -452,13 +462,14 @@ make_plot <- function(df,species_list,date) {
   toplot$weight_group <- cut(toplot$weight, 4)   # bins : equal size groups by weight
   print(ggplot(toplot,aes(x=weight_group,y=log(last_count),fill=weight_group))+
           geom_boxplot()+
-          theme(legend.position="none",
+          labs(y="log (norm. abundance)")+
+          theme(legend.position="top",
                 axis.text.x=element_blank(),
                 strip.text.x = element_text(size = 8, colour = "black", angle = 90))+
           stat_n_text(size = 3,angle=90,hjust=0)+
-          facet_grid(cols = vars(species)))
+          facet_grid(cols = vars(species))+
+          ggtitle(timepoint))
 }
-
 
 
 

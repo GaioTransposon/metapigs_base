@@ -25,6 +25,8 @@ mdat$`*collection_date` <- as.character(mdat$`*collection_date`)
 colnames(mdat)[colnames(mdat) == '*collection_date'] <- 'collection_date'
 colnames(mdat)[colnames(mdat) == '*sample_name'] <- 'sample_name'
 
+mdat$Cohort <- gsub("D-scour","D-Scour", mdat$Cohort)
+
 mdat <- mdat %>%
   dplyr::select(isolation_source,collection_date,Cohort,DNA_plate,DNA_well,PigPen,sample_name)
 head(mdat)
@@ -49,7 +51,7 @@ df <- df %>%
 
 # number of unique taxa identified in whole dataset from (guppy fat) reads placements onto tree
 x <- df %>%
-  filter(Cohort=="MockCommunity"|Cohort=="PosControl_D-scour"|Cohort=="PosControl_ColiGuard")%>%
+  filter(Cohort=="MockCommunity"|Cohort=="PosControl_D-Scour"|Cohort=="PosControl_ColiGuard")%>%
   group_by(sample_name) %>%
   top_n(n = 15, wt = branch_width) %>% # sensible number to not overcrowd heatmap
   select(name,sample_name)
@@ -71,11 +73,14 @@ x_m <- as.matrix(x)
 #x_m <- as.matrix(x_m[rowSums(x_m)>1,])
 x_m <- normalize.rows(x_m, method = "euclidean", 
                         tol = 1e-6, inplace = TRUE)
-pdf("guppyfat_positive_controls.pdf")
-pheatmap(x_m, display_numbers = T,
+
+guppyfat_pos_controls_plot <- pheatmap(x_m, display_numbers = T,
          #main="Mock community contamination",
          cluster_rows = F, cluster_cols = F, fontsize_number = 3,
          fontsize_row = 3)
+
+pdf("guppyfat_positive_controls.pdf")
+guppyfat_pos_controls_plot
 dev.off()
 
 
@@ -88,16 +93,16 @@ dev.off()
 x <- df %>%
   filter(collection_date=="2017-01-31"|collection_date=="2017-02-07"|collection_date=="2017-02-14"|
            collection_date=="2017-02-21"|collection_date=="2017-02-28"|collection_date=="2017-03-03") %>%
-  filter(Cohort=="Control"|Cohort=="D-scour"|Cohort=="ColiGuard"|
-           Cohort=="Neomycin"|Cohort=="Neomycin+D-scour"|Cohort=="Neomycin+ColiGuard") 
+  filter(Cohort=="Control"|Cohort=="D-Scour"|Cohort=="ColiGuard"|
+           Cohort=="Neomycin"|Cohort=="Neomycin+D-Scour"|Cohort=="Neomycin+ColiGuard") 
 
 # re-order
 x$Cohort <- factor(x$Cohort, 
                        levels=c("Control", 
-                                "D-scour", 
+                                "D-Scour", 
                                 "ColiGuard",
                                 "Neomycin",
-                                "Neomycin+D-scour",
+                                "Neomycin+D-Scour",
                                 "Neomycin+ColiGuard"))
 
 # define the number top n of species to visualize (top n by branch width per time points)
@@ -153,10 +158,12 @@ x_m <- as.matrix(x5)
 # optional: remove rows with few counts
 x_m<- x_m[which(rowSums(x_m) > 0.01),]
 
-pdf("guppyfat_time.pdf")
-pheatmap(x_m, display_numbers = T,angle_col = 0,
+guppyfat_time_plot <- pheatmap(x_m, display_numbers = T,angle_col = 0,
          cluster_rows = T, cluster_cols = F, fontsize_number = 6,
          fontsize_row = 6)
+
+pdf("guppyfat_time.pdf")
+guppyfat_time_plot
 dev.off()
 
 
@@ -176,7 +183,7 @@ for (coho in cohorts) {
     group_by(collection_date) %>%
     mutate(Sum_branch_width=Sum_branch_width/sum(Sum_branch_width))
   
-  # 3. take top 30 taxa highest in abundance per collection date 
+  # 3. take top 10 taxa highest in abundance per collection date 
   x3 <- x2 %>%
     group_by(collection_date) %>%
     top_n(10) 
@@ -204,9 +211,9 @@ for (coho in cohorts) {
   # optional: remove rows with few counts
   x_m<- x_m[which(rowSums(x_m) > 0.02),]
   
-  pheatmap(x_m, display_numbers = T,
+  print(pheatmap(x_m, display_numbers = T,
            cluster_rows = F, cluster_cols = F, fontsize_number = 5,
-           fontsize_row = 5, main = paste0(coho))
+           fontsize_row = 5, main = paste0(coho)))
 }
 dev.off()
 

@@ -18,6 +18,7 @@ library(grid)
 library(cowplot)
 library(factoextra)
 library(broom)
+library(openxlsx)
 
 
 
@@ -49,6 +50,9 @@ mdat <- read_excel(paste0(basedir,"Metagenome.environmental_20190308_2.xlsx"),
 
 mdat$`*collection_date` <- as.character(mdat$`*collection_date`)
 mdat$Cohort <- gsub("Sows","Sows",mdat$Cohort)
+mdat$Cohort <- gsub("D-scour","D-Scour", mdat$Cohort)
+
+
 colnames(mdat)
 
 colnames(mdat)[colnames(mdat) == '*collection_date'] <- 'collection_date'
@@ -432,13 +436,13 @@ all_corr <- rbind(myfun_findcorr(z,"t0"),
                   myfun_findcorr(z,"t8"),
                   myfun_findcorr(z,"t10"))
 
-View(all_corr)
 #####
 # save the results
 all_corr$taxa_origin <- "SortMeRNA"
 
 addWorksheet(wb, "weight_taxa")
 writeData(wb, sheet = "weight_taxa", all_corr, rowNames = FALSE)
+
 #####
 
 
@@ -598,7 +602,8 @@ together <- fviz_pca_biplot(mtcars.pca2,
   scale_color_manual(name="dates",
                      values=rainbow(n = 11))+
   ggtitle("")+
-  theme(legend.position="none")
+  theme(legend.position="none",
+        panel.border = element_rect(colour = "black", fill=NA, size=1))
 
 pdf("sortmerna_20.pdf")
 together

@@ -42,6 +42,9 @@ mdat <- mdat %>%
   dplyr::select(isolation_source, Cohort) %>%
   distinct()
 
+mdat$Cohort <- gsub("D-scour","D-Scour", mdat$Cohort)
+
+
 # load details (breed, line, bday, mothers)
 details <- read_excel(paste0(basedir, "pigTrial_GrowthWtsGE.hlsx.xlsx"),
                       "Piglet details")
@@ -164,10 +167,10 @@ df$diff = ((df$value.y-df$value.x)/df$value.y)*100
 # reorder
 df$Cohort.x <- factor(df$Cohort.x, 
                       levels=c("Control", 
-                               "D-scour", 
+                               "D-Scour", 
                                "ColiGuard",
                                "Neomycin",
-                               "Neomycin+D-scour",
+                               "Neomycin+D-Scour",
                                "Neomycin+ColiGuard"))
 
 res1 <- aov(diff ~ Cohort.x, data=df)
@@ -201,10 +204,10 @@ df$diff = ((df$value.y-df$value.x)/df$value.y)*100
 # reorder
 df$Cohort.x <- factor(df$Cohort.x, 
                       levels=c("Control", 
-                               "D-scour", 
+                               "D-Scour", 
                                "ColiGuard",
                                "Neomycin",
-                               "Neomycin+D-scour",
+                               "Neomycin+D-Scour",
                                "Neomycin+ColiGuard"))
 
 res1 <- aov(diff ~ Cohort.x, data=df)
@@ -238,10 +241,10 @@ df$diff = ((df$value.y-df$value.x)/df$value.y)*100
 # reorder
 df$Cohort.x <- factor(df$Cohort.x, 
                       levels=c("Control", 
-                               "D-scour", 
+                               "D-Scour", 
                                "ColiGuard",
                                "Neomycin",
-                               "Neomycin+D-scour",
+                               "Neomycin+D-Scour",
                                "Neomycin+ColiGuard"))
 
 res1 <- aov(diff ~ Cohort.x, data=df)
@@ -276,10 +279,10 @@ df$diff = ((df$value.y-df$value.x)/df$value.y)*100
 # reorder
 df$Cohort.x <- factor(df$Cohort.x, 
                       levels=c("Control", 
-                               "D-scour", 
+                               "D-Scour", 
                                "ColiGuard",
                                "Neomycin",
-                               "Neomycin+D-scour",
+                               "Neomycin+D-Scour",
                                "Neomycin+ColiGuard"))
 
 res1 <- aov(diff ~ Cohort.x, data=df)
@@ -312,10 +315,10 @@ df$diff = ((df$value.y-df$value.x)/df$value.y)*100
 # reorder
 df$Cohort.x <- factor(df$Cohort.x, 
                       levels=c("Control", 
-                               "D-scour", 
+                               "D-Scour", 
                                "ColiGuard",
                                "Neomycin",
-                               "Neomycin+D-scour",
+                               "Neomycin+D-Scour",
                                "Neomycin+ColiGuard"))
 
 res1 <- aov(diff ~ Cohort.x, data=df)
@@ -348,10 +351,10 @@ df$diff = ((df$value.y-df$value.x)/df$value.y)*100
 # reorder
 df$Cohort.x <- factor(df$Cohort.x, 
                       levels=c("Control", 
-                               "D-scour", 
+                               "D-Scour", 
                                "ColiGuard",
                                "Neomycin",
-                               "Neomycin+D-scour",
+                               "Neomycin+D-Scour",
                                "Neomycin+ColiGuard"))
 
 res1 <- aov(diff ~ Cohort.x, data=df)
@@ -384,10 +387,10 @@ df$diff = ((df$value.y-df$value.x)/df$value.y)*100
 # reorder
 df$Cohort.x <- factor(df$Cohort.x, 
                       levels=c("Control", 
-                               "D-scour", 
+                               "D-Scour", 
                                "ColiGuard",
                                "Neomycin",
-                               "Neomycin+D-scour",
+                               "Neomycin+D-Scour",
                                "Neomycin+ColiGuard"))
 
 res1 <- aov(diff ~ Cohort.x, data=df)
@@ -416,7 +419,7 @@ plot_A_E
 for_legend_only <- ggboxplot(df, x = "Cohort.x", y = "diff", fill = "Cohort.x", 
                              legend = "right")+
   scale_color_manual(labels = c("Control", 
-                                "D-scour",
+                                "D-Scour",
                                 "ColiGuard",
                                 "Neo",
                                 "Neo+D",

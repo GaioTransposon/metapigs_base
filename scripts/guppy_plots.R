@@ -82,6 +82,8 @@ mdat$`*collection_date` <- as.character(mdat$`*collection_date`)
 colnames(mdat)[colnames(mdat) == '*collection_date'] <- 'collection_date'
 colnames(mdat)[colnames(mdat) == '*sample_name'] <- 'sample_name'
 
+mdat$Cohort <- gsub("D-scour","D-Scour", mdat$Cohort)
+
 
 # load breed and bday data 
 details <- read_excel(paste0(basedir, "pigTrial_GrowthWtsGE.hlsx.xlsx"),
@@ -598,7 +600,7 @@ groupG <- rbind(
 
 DF_positive_controls$Cohort <- factor(DF_positive_controls$Cohort, 
                        levels=c("MockCommunity",
-                                "PosControl_D-scour",
+                                "PosControl_D-Scour",
                                 "PosControl_ColiGuard"))
 
 xmldata <- simplified %>%
@@ -715,8 +717,8 @@ rbow <- rainbow(40, end=0.7, alpha=0.7)
 legvec <- c(0,10,20,30,40)
 
 color_legend <- function(x, y, xlen, ylen, main, tiks, colors){
-  text(x, y+.6, main, adj=c(0,0), cex=1.3)
-  color.legend(x, y, x+xlen, y+ylen/4, legend=tiks, rect.col=colors, cex=0.8)
+  text(x, y+.6, main, adj=c(0,0), cex=1.1)
+  color.legend(x, y, x+xlen, y+ylen/4, legend=tiks, rect.col=colors, cex=0.7)
 }
 
 pdf("time_beta.pdf")
@@ -728,14 +730,13 @@ plot(DF_piggies$PC1,DF_piggies$PC2,
      ylab=paste0("PC2  (",get_var(find_PC2(xmldata)),"%)"),
      type="p",cex=0.8,cex.axis=0.6,cex.lab=0.6,
      col=rbow[as.Date(DF_piggies$collection_date)-as.Date("2017-01-29 00:00:00")])
-color_legend(min(DF_piggies$PC1), max(DF_piggies$PC2)-0.6, 
+color_legend(min(DF_piggies$PC1), max(DF_piggies$PC2)-0.7,
              3.5, 0.9, "trial days:", legvec, rbow)
-mtext(paste0(PC_down(find_PC1(xmldata))), side=1, line=2, adj=0.0, cex=0.5, col="black", outer=TRUE)  # PC1 low
-mtext(paste0(PC_up(find_PC1(xmldata))), side=1, line=2, adj=1.0, cex=0.5, col="black", outer=TRUE)  # PC1 high
-mtext(paste0(PC_down(find_PC2(xmldata))), side=2, line=1, adj=0.0, cex=0.5, col="black", outer=TRUE)   # PC2 low 
-mtext(paste0(PC_up(find_PC2(xmldata))), side=2, line=1, adj=1.0, cex=0.5, col="black", outer=TRUE)   # PC2 high
+mtext(paste0(PC_down(find_PC1(xmldata))), side=1, line=2, adj=0.15, cex=0.6, col="black", outer=TRUE)  # PC1 low
+mtext(paste0(PC_up(find_PC1(xmldata))), side=1, line=2, adj=1.0, cex=0.6, col="black", outer=TRUE)  # PC1 high
+mtext(paste0(PC_down(find_PC2(xmldata))), side=2, line=0, adj=0.15, cex=0.6, col="black", outer=TRUE)   # PC2 low 
+mtext(paste0(PC_up(find_PC2(xmldata))), side=2, line=0, adj=1.0, cex=0.6, col="black", outer=TRUE)   # PC2 high
 dev.off()
-
 # plot(DF_piggies$PC3,DF_piggies$PC4,
 #      xlab=paste0("PC3  (",get_var(find_PC3(xmldata)),"%)"),
 #      ylab=paste0("PC4  (",get_var(find_PC4(xmldata)),"%)"),
@@ -765,7 +766,7 @@ dev.off()
 pdf("time_beta_cohorts_PC1PC2.pdf")
 #################### Cohorts separately
 par(oma=c(0,0,0,0)) # resetting the outer margins to default for the next plots
-# control groups (Control, D-scour, ColiGuard)
+# control groups (Control, D-Scour, ColiGuard)
 par(mfrow=c(3,2), mai = c(0.4, 0.4, 0.4, 0.4))
 plot(DF_piggies$PC1[DF_piggies$Cohort=="Control"],
      DF_piggies$PC2[DF_piggies$Cohort=="Control"],
@@ -778,15 +779,15 @@ plot(DF_piggies$PC1[DF_piggies$Cohort=="Control"],
                                [DF_piggies$Cohort=="Control"])-as.Date("2017-01-30 00:00:00")])
 color_legend(min(DF_piggies$PC1), max(DF_piggies$PC2)-0.6, 
              3.5, 0.9, "", legvec, rbow)
-plot(DF_piggies$PC1[DF_piggies$Cohort=="D-scour"],
-     DF_piggies$PC2[DF_piggies$Cohort=="D-scour"],
-     main="PC1 PC2 D-scour",
+plot(DF_piggies$PC1[DF_piggies$Cohort=="D-Scour"],
+     DF_piggies$PC2[DF_piggies$Cohort=="D-Scour"],
+     main="PC1 PC2 D-Scour",
      xlab="",ylab="",
      xlim=c(-3.5,3),
      ylim=c(0.8,4.7),
      cex.axis=0.8,
      type="p",col=rbow[as.Date(DF_piggies$collection_date
-                               [DF_piggies$Cohort=="D-scour"])-as.Date("2017-01-30 00:00:00")])
+                               [DF_piggies$Cohort=="D-Scour"])-as.Date("2017-01-30 00:00:00")])
 plot(DF_piggies$PC1[DF_piggies$Cohort=="ColiGuard"],
      DF_piggies$PC2[DF_piggies$Cohort=="ColiGuard"],
      main="PC1 PC2 ColiGuard",
@@ -806,15 +807,15 @@ plot(DF_piggies$PC1[DF_piggies$Cohort=="Neomycin"],
      cex.axis=0.8,
      type="p",col=rbow[as.Date(DF_piggies$collection_date
                                [DF_piggies$Cohort=="Neomycin"])-as.Date("2017-01-30 00:00:00")])
-plot(DF_piggies$PC1[DF_piggies$Cohort=="Neomycin+D-scour"],
-     DF_piggies$PC2[DF_piggies$Cohort=="Neomycin+D-scour"],
-     main="PC1 PC2 Neomycin+D-scour",
+plot(DF_piggies$PC1[DF_piggies$Cohort=="Neomycin+D-Scour"],
+     DF_piggies$PC2[DF_piggies$Cohort=="Neomycin+D-Scour"],
+     main="PC1 PC2 Neomycin+D-Scour",
      xlab="",ylab="",
      xlim=c(-3.5,3),
      ylim=c(0.8,4.7),
      cex.axis=0.8,
      type="p",col=rbow[as.Date(DF_piggies$collection_date
-                               [DF_piggies$Cohort=="Neomycin+D-scour"])-as.Date("2017-01-30 00:00:00")])
+                               [DF_piggies$Cohort=="Neomycin+D-Scour"])-as.Date("2017-01-30 00:00:00")])
 plot(DF_piggies$PC1[DF_piggies$Cohort=="Neomycin+ColiGuard"],
      DF_piggies$PC2[DF_piggies$Cohort=="Neomycin+ColiGuard"],
      main="PC1 PC2 Neomycin+ColiGuard",
@@ -826,66 +827,9 @@ plot(DF_piggies$PC1[DF_piggies$Cohort=="Neomycin+ColiGuard"],
                                [DF_piggies$Cohort=="Neomycin+ColiGuard"])-as.Date("2017-01-30 00:00:00")])
 dev.off()
 
-# pdf("time_beta_cohorts_PC3PC4.pdf")
-# #################### Cohorts separately
-# par(oma=c(0,0,0,0)) # resetting the outer margins to default for the next plots
-# # control groups (Control, D-scour, ColiGuard)
-# par(mfrow=c(3,2), mai = c(0.4, 0.4, 0.4, 0.4))
-# plot(DF_piggies$PC3[DF_piggies$Cohort=="Control"],
-#      DF_piggies$PC4[DF_piggies$Cohort=="Control"],
-#      main="PC3 PC4 Control",
-#      xlab="",ylab="",
-#      xlim=c(-1,1.75),
-#      ylim=c(-1.3,0.8),
-#      cex.axis=0.8,
-#      type="p",col=rbow[as.Date(DF_piggies$collection_date
-#                                [DF_piggies$Cohort=="Control"])-as.Date("2017-01-30 00:00:00")])
-# plot(DF_piggies$PC3[DF_piggies$Cohort=="D-scour"],
-#      DF_piggies$PC4[DF_piggies$Cohort=="D-scour"],
-#      main="PC3 PC4 D-scour",
-#      xlab="",ylab="",
-#      xlim=c(-1,1.75),
-#      ylim=c(-1.3,0.8),
-#      cex.axis=0.8,
-#      type="p",col=rbow[as.Date(DF_piggies$collection_date
-#                                [DF_piggies$Cohort=="D-scour"])-as.Date("2017-01-30 00:00:00")])
-# plot(DF_piggies$PC3[DF_piggies$Cohort=="ColiGuard"],
-#      DF_piggies$PC4[DF_piggies$Cohort=="ColiGuard"],
-#      main="PC3 PC4 ColiGuard",
-#      xlab="",ylab="",
-#      xlim=c(-1,1.75),
-#      ylim=c(-1.3,0.8),
-#      cex.axis=0.8,
-#      type="p",col=rbow[as.Date(DF_piggies$collection_date
-#                                [DF_piggies$Cohort=="ColiGuard"])-as.Date("2017-01-30 00:00:00")])
-# plot(DF_piggies$PC3[DF_piggies$Cohort=="Neomycin"],
-#      DF_piggies$PC4[DF_piggies$Cohort=="Neomycin"],
-#      main="PC3 PC4 Neomycin",
-#      xlab="",ylab="",
-#      xlim=c(-1,1.75),
-#      ylim=c(-1.3,0.8),
-#      cex.axis=0.8,
-#      type="p",col=rbow[as.Date(DF_piggies$collection_date
-#                                [DF_piggies$Cohort=="Neomycin"])-as.Date("2017-01-30 00:00:00")])
-# plot(DF_piggies$PC3[DF_piggies$Cohort=="Neomycin+D-scour"],
-#      DF_piggies$PC4[DF_piggies$Cohort=="Neomycin+D-scour"],
-#      main="PC3 PC4 Neomycin+D-scour",
-#      xlab="",ylab="",
-#      xlim=c(-1,1.75),
-#      ylim=c(-1.3,0.8),
-#      cex.axis=0.8,
-#      type="p",col=rbow[as.Date(DF_piggies$collection_date
-#                                [DF_piggies$Cohort=="Neomycin+D-scour"])-as.Date("2017-01-30 00:00:00")])
-# plot(DF_piggies$PC3[DF_piggies$Cohort=="Neomycin+ColiGuard"],
-#      DF_piggies$PC4[DF_piggies$Cohort=="Neomycin+ColiGuard"],
-#      main="PC3 PC4 Neomycin+ColiGuard",
-#      xlab="",ylab="",
-#      xlim=c(-1,1.75),
-#      ylim=c(-1.3,0.8),
-#      cex.axis=0.8,
-#      type="p",col=rbow[as.Date(DF_piggies$collection_date
-#                                [DF_piggies$Cohort=="Neomycin+ColiGuard"])-as.Date("2017-01-30 00:00:00")])
-# dev.off()
+
+
+
 
 
 
@@ -1031,10 +975,10 @@ a <- "piggies" # setting for xml data extraction (only sample_type necessary)
 # re-order cohort 
 df$Cohort <- factor(df$Cohort, 
                        levels=c("Control", 
-                                "D-scour", 
+                                "D-Scour", 
                                 "ColiGuard",
                                 "Neomycin",
-                                "Neomycin+D-scour",
+                                "Neomycin+D-Scour",
                                 "Neomycin+ColiGuard"
                        ))
 
@@ -1372,10 +1316,10 @@ a <- "groupA" # setting for xml data extraction (only sample_type necessary)
 # re-order cohort 
 df$Cohort <- factor(df$Cohort, 
                     levels=c("Control", 
-                             "D-scour", 
+                             "D-Scour", 
                              "ColiGuard",
                              "Neomycin",
-                             "Neomycin+D-scour",
+                             "Neomycin+D-Scour",
                              "Neomycin+ColiGuard"
                     ))
 
@@ -1715,10 +1659,10 @@ a <- "groupB" # setting for xml data extraction (only sample_type necessary)
 # re-order cohort 
 df$Cohort <- factor(df$Cohort, 
                     levels=c("Control", 
-                             "D-scour", 
+                             "D-Scour", 
                              "ColiGuard",
                              "Neomycin",
-                             "Neomycin+D-scour",
+                             "Neomycin+D-Scour",
                              "Neomycin+ColiGuard"
                     ))
 
@@ -2055,10 +1999,10 @@ a <- "groupC" # setting for xml data extraction (only sample_type necessary)
 # re-order cohort 
 df$Cohort <- factor(df$Cohort, 
                     levels=c("Control", 
-                             "D-scour", 
+                             "D-Scour", 
                              "ColiGuard",
                              "Neomycin",
-                             "Neomycin+D-scour",
+                             "Neomycin+D-Scour",
                              "Neomycin+ColiGuard"
                     ))
 
@@ -2098,27 +2042,28 @@ par(mar=c(4,4,0.01,0.01))
 par(oma=c(6,6,6,6))
 ###############################
 Ja31 <- PC1PC2_plots$plots[[1]]
-xmldata <- simplified %>%
-  filter(sample_type==a) %>%
-  filter(guppied_date=="Ja31") %>%
-  group_split(component)
-Ja31 +
-  xlab(paste0("PC1 (",get_var(find_PC1(xmldata)),"%)"))+
-  ylab(paste0("PC2 (",get_var(find_PC2(xmldata)),"%)"))
-# PC1
-grid.text(PC_down(find_PC1(xmldata)), x = unit(0.3, "npc"),
-          y = unit(0.1, "npc"),
-          gp = gpar(fontsize = 5))
-grid.text(PC_up(find_PC1(xmldata)), x = unit(0.85, "npc"),
-          y = unit(0.1, "npc"),
-          gp = gpar(fontsize = 5))
-# PC2
-grid.text(PC_down(find_PC2(xmldata)), x = unit(0.1, "npc"),
-          y = unit(0.25, "npc"),
-          gp = gpar(fontsize = 5))
-grid.text(PC_up(find_PC2(xmldata)), x = unit(0.1, "npc"),
-          y = unit(0.8, "npc"),
-          gp = gpar(fontsize = 5))
+# # empty
+# xmldata <- simplified %>%
+#   filter(sample_type==a) %>%
+#   filter(guppied_date=="Ja31") %>%
+#   group_split(component)
+# Ja31 +
+#   xlab(paste0("PC1 (",get_var(find_PC1(xmldata)),"%)"))+
+#   ylab(paste0("PC2 (",get_var(find_PC2(xmldata)),"%)"))
+# # PC1
+# grid.text(PC_down(find_PC1(xmldata)), x = unit(0.3, "npc"),
+#           y = unit(0.1, "npc"),
+#           gp = gpar(fontsize = 5))
+# grid.text(PC_up(find_PC1(xmldata)), x = unit(0.85, "npc"),
+#           y = unit(0.1, "npc"),
+#           gp = gpar(fontsize = 5))
+# # PC2
+# grid.text(PC_down(find_PC2(xmldata)), x = unit(0.1, "npc"),
+#           y = unit(0.25, "npc"),
+#           gp = gpar(fontsize = 5))
+# grid.text(PC_up(find_PC2(xmldata)), x = unit(0.1, "npc"),
+#           y = unit(0.8, "npc"),
+#           gp = gpar(fontsize = 5))
 ###############################
 Fe7 <- PC1PC2_plots$plots[[2]] 
 xmldata <- simplified %>%
@@ -2239,27 +2184,28 @@ grid.text(PC_up(find_PC2(xmldata)), x = unit(0.1, "npc"),
 ##############################
 ###############################
 Ja31 <- PC3PC4_plots$plots[[1]]
-xmldata <- simplified %>%
-  filter(sample_type==a) %>%
-  filter(guppied_date=="Ja31") %>%
-  group_split(component)
-Ja31 +
-  xlab(paste0("PC3 (",get_var(find_PC3(xmldata)),"%)"))+
-  ylab(paste0("PC4 (",get_var(find_PC4(xmldata)),"%)"))
-# PC3
-grid.text(PC_down(find_PC3(xmldata)), x = unit(0.3, "npc"),
-          y = unit(0.1, "npc"),
-          gp = gpar(fontsize = 5))
-grid.text(PC_up(find_PC3(xmldata)), x = unit(0.85, "npc"),
-          y = unit(0.1, "npc"),
-          gp = gpar(fontsize = 5))
-# PC4
-grid.text(PC_down(find_PC4(xmldata)), x = unit(0.1, "npc"),
-          y = unit(0.25, "npc"),
-          gp = gpar(fontsize = 5))
-grid.text(PC_up(find_PC4(xmldata)), x = unit(0.1, "npc"),
-          y = unit(0.8, "npc"),
-          gp = gpar(fontsize = 5))
+# # this one is empty
+# xmldata <- simplified %>%
+#   filter(sample_type==a) %>%
+#   filter(guppied_date=="Ja31") %>%
+#   group_split(component)
+# Ja31 +
+#   xlab(paste0("PC3 (",get_var(find_PC3(xmldata)),"%)"))+
+#   ylab(paste0("PC4 (",get_var(find_PC4(xmldata)),"%)"))
+# # PC3
+# grid.text(PC_down(find_PC3(xmldata)), x = unit(0.3, "npc"),
+#           y = unit(0.1, "npc"),
+#           gp = gpar(fontsize = 5))
+# grid.text(PC_up(find_PC3(xmldata)), x = unit(0.85, "npc"),
+#           y = unit(0.1, "npc"),
+#           gp = gpar(fontsize = 5))
+# # PC4
+# grid.text(PC_down(find_PC4(xmldata)), x = unit(0.1, "npc"),
+#           y = unit(0.25, "npc"),
+#           gp = gpar(fontsize = 5))
+# grid.text(PC_up(find_PC4(xmldata)), x = unit(0.1, "npc"),
+#           y = unit(0.8, "npc"),
+#           gp = gpar(fontsize = 5))
 ###############################
 Fe7 <- PC3PC4_plots$plots[[2]] 
 xmldata <- simplified %>%
@@ -2395,10 +2341,10 @@ a <- "groupD" # setting for xml data extraction (only sample_type necessary)
 # re-order cohort 
 df$Cohort <- factor(df$Cohort, 
                     levels=c("Control", 
-                             "D-scour", 
+                             "D-Scour", 
                              "ColiGuard",
                              "Neomycin",
-                             "Neomycin+D-scour",
+                             "Neomycin+D-Scour",
                              "Neomycin+ColiGuard"
                     ))
 
@@ -2735,10 +2681,10 @@ a <- "groupE" # setting for xml data extraction (only sample_type necessary)
 # re-order cohort 
 df$Cohort <- factor(df$Cohort, 
                     levels=c("Control", 
-                             "D-scour", 
+                             "D-Scour", 
                              "ColiGuard",
                              "Neomycin",
-                             "Neomycin+D-scour",
+                             "Neomycin+D-Scour",
                              "Neomycin+ColiGuard"
                     ))
 
@@ -3076,10 +3022,10 @@ a <- "groupF" # setting for xml data extraction (only sample_type necessary)
 # re-order cohort 
 df$Cohort <- factor(df$Cohort, 
                     levels=c("Control", 
-                             "D-scour", 
+                             "D-Scour", 
                              "ColiGuard",
                              "Neomycin",
-                             "Neomycin+D-scour",
+                             "Neomycin+D-Scour",
                              "Neomycin+ColiGuard"
                     ))
 
@@ -3419,10 +3365,10 @@ a <- "groupG" # setting for xml data extraction (only sample_type necessary)
 # re-order cohort 
 df$Cohort <- factor(df$Cohort, 
                     levels=c("Control", 
-                             "D-scour", 
+                             "D-Scour", 
                              "ColiGuard",
                              "Neomycin",
-                             "Neomycin+D-scour",
+                             "Neomycin+D-Scour",
                              "Neomycin+ColiGuard"
                     ))
 
@@ -3856,9 +3802,9 @@ myfun_pvalues_filtering <- function(df_pval) {
   # filtering to keep only meaningful comparisons 
   # to be kept: 
   meaningfulcomparisons <- c("Control_vs_ColiGuard", "ColiGuard_vs_Control",
-                             "Control_vs_D-scour", "D-scour_vs_Control",
+                             "Control_vs_D-Scour", "D-Scour_vs_Control",
                              "Control_vs_Neomycin", "Neomycin_vs_Control",
-                             "Neomycin_vs_Neomycin+D-scour", "Neomycin+D-scour_vs_Neomycin",
+                             "Neomycin_vs_Neomycin+D-Scour", "Neomycin+D-Scour_vs_Neomycin",
                              "Neomycin_vs_Neomycin+ColiGuard", "Neomycin+ColiGuard_vs_Neomycin")
   
   # eliminate useless comparisons
@@ -4035,10 +3981,10 @@ for (A in rownames(df)) {
   
   pp$Cohort <- factor(pp$Cohort, 
                       levels=c("Control", 
-                               "D-scour", 
+                               "D-Scour", 
                                "ColiGuard",
                                "Neomycin",
-                               "Neomycin+D-scour",
+                               "Neomycin+D-Scour",
                                "Neomycin+ColiGuard"))
   
   # save some parameters to report on plot
@@ -4081,10 +4027,10 @@ dev.off()
 # re-order 
 DF_piggies$Cohort <- factor(DF_piggies$Cohort, 
                        levels=c("Control", 
-                                "D-scour", 
+                                "D-Scour", 
                                 "ColiGuard",
                                 "Neomycin",
-                                "Neomycin+D-scour",
+                                "Neomycin+D-Scour",
                                 "Neomycin+ColiGuard"))
 
 # for legend only 
@@ -4230,10 +4176,12 @@ out_m <- as.matrix(out5)
 # remove cells with low rowSums
 out_m <- as.matrix(out_m[rowSums(out_m)>0.01,])
 
-pdf("time_beta_heatmap.pdf")
-pheatmap(out_m, display_numbers = T, angle_col = 0,
+time_beta_plot <- pheatmap(out_m, display_numbers = T, angle_col = 0,
          cluster_rows = T, cluster_cols = F, fontsize_number = 8,
          fontsize_row = 8)
+
+pdf("time_beta_heatmap.pdf")
+time_beta_plot
 dev.off()
 
 

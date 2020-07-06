@@ -1,3 +1,6 @@
+
+
+
 library(ggplot2)
 library(wordspace)
 library(pheatmap)
@@ -6,13 +9,18 @@ library(readxl)
 library(dplyr)
 library(readr)
 
-setwd("/Users/12705859/Desktop/metapigs_base/phylosift/guppy")
-basedir = "/Users/12705859/Desktop/metapigs_base/phylosift/input_files/"
+source_data = "/Users/12705859/metapigs_base/source_data/" # git 
+middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
+out_dir_git = "/Users/12705859/metapigs_base/out/" # git 
+#guppyout_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/guppy_output" # local 
+out_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/" # local 
+
+###########################################################################################
 
 # visualizing guppy fat output 
 
 # load metadata 
-mdat <- read_excel(paste0(basedir,"Metagenome.environmental_20190308_2.xlsx"),
+mdat <- read_excel(paste0(source_data,"Metagenome.environmental_20190308_2.xlsx"),
                    col_types = c("text", "numeric", "numeric", "text", "text",
                                  "text", "date", "text","text", "text", "numeric",
                                  "numeric", "numeric", "numeric", "numeric", "numeric",
@@ -33,7 +41,7 @@ head(mdat)
 
 # load guppy fat output df
 
-guppyfat_simplified <- read_csv("guppyfat_simplified",col_names = TRUE)
+guppyfat_simplified <- read_csv(paste0(middle_dir,"guppyfat_simplified"),col_names = TRUE)
 
 
 # merge guppy fat output df with metadata 
@@ -79,7 +87,7 @@ guppyfat_pos_controls_plot <- pheatmap(x_m, display_numbers = T,
          cluster_rows = F, cluster_cols = F, fontsize_number = 3,
          fontsize_row = 3)
 
-pdf("guppyfat_positive_controls.pdf")
+pdf(paste0(out_dir,"guppyfat_positive_controls.pdf"))
 guppyfat_pos_controls_plot
 dev.off()
 
@@ -91,9 +99,9 @@ dev.off()
 
 # number of unique taxa identified in whole dataset from (guppy fat) reads placements onto tree
 x <- df %>%
-  filter(collection_date=="2017-01-31"|collection_date=="2017-02-07"|collection_date=="2017-02-14"|
+  dplyr::filter(collection_date=="2017-01-31"|collection_date=="2017-02-07"|collection_date=="2017-02-14"|
            collection_date=="2017-02-21"|collection_date=="2017-02-28"|collection_date=="2017-03-03") %>%
-  filter(Cohort=="Control"|Cohort=="D-Scour"|Cohort=="ColiGuard"|
+  dplyr::filter(Cohort=="Control"|Cohort=="D-Scour"|Cohort=="ColiGuard"|
            Cohort=="Neomycin"|Cohort=="Neomycin+D-Scour"|Cohort=="Neomycin+ColiGuard") 
 
 # re-order
@@ -119,12 +127,12 @@ head(x)
 x1 <- x %>%
   group_by(name,collection_date) %>%
   dplyr::summarise(Sum_branch_width = sum(branch_width)) %>%
-  filter(!name==".")
+  dplyr::filter(!name==".")
 
 # 2. normalize by collection date
 x2 <- x1 %>%
   group_by(collection_date) %>%
-  mutate(Sum_branch_width=Sum_branch_width/sum(Sum_branch_width))
+  dplyr::mutate(Sum_branch_width=Sum_branch_width/sum(Sum_branch_width))
 
 # 3. take top 30 taxa highest in abundance per collection date 
 x3 <- x2 %>%
@@ -133,7 +141,7 @@ x3 <- x2 %>%
 
 # 4. filter out these matches (not taxa)
 x4 <- x3 %>%
-  filter(!grepl("METAGENOME",name)) 
+  dplyr::filter(!grepl("METAGENOME",name)) 
 
 # 5. long to wide format; NA to zeros 
 x5 <- x4  %>%
@@ -142,7 +150,7 @@ x5 <- x4  %>%
 
 # set order of columns by date
 x5 <- x5 %>%
-  select(name,`2017-01-31`,`2017-02-07`,`2017-02-14`,
+  dplyr::select(name,`2017-01-31`,`2017-02-07`,`2017-02-14`,
          `2017-02-21`,`2017-02-28`,`2017-03-03`)
 
 # to matrix conversion
@@ -162,13 +170,13 @@ guppyfat_time_plot <- pheatmap(x_m, display_numbers = T,angle_col = 0,
          cluster_rows = T, cluster_cols = F, fontsize_number = 6,
          fontsize_row = 6)
 
-pdf("guppyfat_time.pdf")
+pdf(paste0(out_dir,"guppyfat_time.pdf"))
 guppyfat_time_plot
 dev.off()
 
 
 # PIGGIES TIME  - BY COHORT
-pdf("guppyfat_time_cohorts.pdf")
+pdf(paste0(out_dir,"guppyfat_time_cohorts.pdf"))
 cohorts <- unique(x$Cohort)
 for (coho in cohorts) {
   # 1. sum the branch widths that fall within the same taxon name and collection date 

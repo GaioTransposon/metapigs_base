@@ -7,7 +7,7 @@ library(splitstackshape)
 library(cowplot)
 
 
-runinfo <- read_csv("Desktop/metapigs_base/runinfo", 
+runinfo <- read_csv("~/Desktop/metapigs_base/runinfo", 
                     col_types = cols(LoadDate = col_character(), 
                                      size_MB = col_number(),
                                      avgLength = col_number(),
@@ -48,14 +48,10 @@ hist(runinfo$size_MB, breaks=100)
 sum(runinfo$size_MB) # 2556811 Mb == 2,556811 Tb
 summary(runinfo$spots_with_mates)
 sum(runinfo$spots_with_mates)    # 27233308608 == 27.2 Billion reads 
-getwd()
 
-
+summary(runinfo$spots_with_mate)
 
 sum(runinfo$size_MB)
-
-
-
 
 
 

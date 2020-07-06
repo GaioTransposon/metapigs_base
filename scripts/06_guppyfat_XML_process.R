@@ -36,12 +36,13 @@ library(tidyr)
 
 ######################################################################################################
 
+middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
+guppyout_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/guppy_output" # local 
 
-basedir = "/Users/12705859/Desktop/metapigs_base/phylosift/input_files/"
-my.basedir <- "~/Desktop/metapigs_base/phylosift/guppy/guppy_output"
+######################################################################################################
 
 
-my.files = list.files(my.basedir,pattern=".gz.xml.txt")
+my.files = list.files(guppyout_dir,pattern=".gz.xml.txt")
 
 # construct an empty dataframe to build on 
 complete.df <- data.frame(
@@ -57,7 +58,7 @@ complete.df <- data.frame(
 for (textfile in my.files) {
   
   # read in file 
-  my.df <- read_csv(file.path(my.basedir,textfile), col_names = FALSE)
+  my.df <- read_csv(file.path(guppyout_dir,textfile), col_names = FALSE)
   
   # extract file name 
   myfilename <- basename(textfile)
@@ -136,7 +137,7 @@ complete.df$DNA_plate <- paste0(complete.df$file_1,"_",complete.df$file_2)
 complete.df$DNA_well <- complete.df$file_3
 
 complete.df <- complete.df %>%
-  select(name,branch_length,branch_width,DNA_plate,DNA_well)
+  dplyr::select(name,branch_length,branch_width,DNA_plate,DNA_well)
 
 
 simplified.df <- complete.df
@@ -154,8 +155,8 @@ simplified.df$name <- simplified.df$name %>%
 simplified.df$name[simplified.df$name==""] <- NA
 simplified.df <- na.omit(simplified.df)
 
-fwrite(x = simplified.df, file = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/guppyfat_simplified")
-fwrite(x = complete.df, file = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/guppyfat_complete")
+fwrite(x = simplified.df, file = paste0(middle_dir,"guppyfat_simplified"))
+fwrite(x = complete.df, file = paste0(middle_dir,"guppyfat_complete"))
 
 
 unique(simplified.df$name)

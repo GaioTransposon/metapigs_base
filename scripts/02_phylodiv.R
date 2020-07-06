@@ -1,4 +1,17 @@
 
+# CONTENT WARNING
+
+# This is the longest chunk of code I have ever written
+# re-factoring it now would take too much time. 
+# Anticipated apologies to those who will attempt reading it 
+
+######################################################
+#                                                    #
+#       "Abandon all hope, ye who enter here."       #
+#                                                    #
+######################################################
+
+#################################
 #  R version 3.6.1 (2019-07-05)
 
 # 0   # loading input data
@@ -14,7 +27,7 @@
 # 7   # plot BETA diversity (at pig trial start) 
 # 8   # plot distribution of cross_breeds and bdays among cohorts + cohorts distr plates 
 # 9   # p-values
-# 10 # plot p-values (starting factors)
+# 10 # plot p-values (starting/individual factors)
 # 11  # prepare input files for guppy (select by time interval) and plot output 
 
 ###########################################################################################
@@ -63,29 +76,23 @@ library(openxlsx)
 #library(compareGroups)
 library(splitstackshape)
 library(pheatmap) # used in pos_controls_reads.R
+library(magrittr)
 
 
-# from local 
-setwd("/Users/12705859/Desktop/metapigs_base/phylosift")
-basedir = "/Users/12705859/Desktop/metapigs_base/phylosift/input_files/"
-
-# from HPC
-#setwd("/shared/homes/s1/pig_microbiome/metapigs_base")
-#basedir = "/shared/homes/s1/pig_microbiome/metapigs_base/input_files/"
+source_data = "/Users/12705859/metapigs_base/source_data/" # git 
+middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
+out_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/out/" # local 
 
 ###########################################################################################
 
 # 0   # loading input data
 
 # tiffs (timelines)
-timeline_deltas <- image_read(paste0(basedir,"Slide10.tiff"))
-timeline_deltas_unroo <- image_read(paste0(basedir,"Slide11.tiff"))
-timeline_deltas_bw <- image_read(paste0(basedir,"Slide12.tiff"))
-timeline_deltas_weight <- image_read(paste0(basedir,"Slide13.tiff"))
-timeline_deltas_guppy <- image_read(paste0(basedir,"Slide14.tiff"))
+timeline_deltas_unroo <- image_read(paste0(out_dir,"Slide11.tiff"))
+timeline_deltas_bw <- image_read(paste0(out_dir,"Slide12.tiff"))
 
 # load metadata 
-mdat <- read_excel(paste0(basedir,"Metagenome.environmental_20190308_2.xlsx"),
+mdat <- read_excel(paste0(source_data,"Metagenome.environmental_20190308_2.xlsx"),
                    col_types = c("text", "numeric", "numeric", "text", "text",
                                  "text", "date", "text","text", "text", "numeric",
                                  "numeric", "numeric", "numeric", "numeric", "numeric",
@@ -98,7 +105,7 @@ mdat$Cohort <- gsub("D-scour","D-Scour", mdat$Cohort)
 
 
 # load details (cross_breed, line, bday, Sows)
-details <- read_excel(paste0(basedir, "pigTrial_GrowthWtsGE.hlsx.xlsx"),
+details <- read_excel(paste0(source_data, "pigTrial_GrowthWtsGE.hlsx.xlsx"),
                       "Piglet details")
 
 # format details
@@ -123,9 +130,9 @@ mdat <- mdat %>%
   dplyr::select(isolation_source,collection_date,Cohort,DNA_plate,DNA_well,PigPen)
 
 # load alpha pd
-fpddat<-read.table(paste0(basedir,"fpdalpha_div.tsv"),header=T,stringsAsFactors=F)
+fpddat<-read.table(paste0(middle_dir,"fpdalpha_div.tsv"),header=T,stringsAsFactors=F)
 # load beta div
-pcadat<-read_csv(paste0(basedir,"piggies_sel.txt.proj"),col_names = FALSE)
+pcadat<-read_csv(paste0(middle_dir,"piggies_sel.txt.proj"),col_names = FALSE)
 
 pcadat <- cSplit(pcadat, "X1","_")
 
@@ -161,7 +168,7 @@ pcadat$DNA_plate <- factor(pcadat$DNA_plate,
 
 palette <- c("black","red","green3","blue","cyan","magenta","yellow","gray","orange","brown")
 
-pdf("out/batch_pca.pdf")
+pdf(paste0(out_dir,"batch_pca.pdf"))
 par(mfrow=c(3,2), mai = c(0.3, 0.3, 0.3, 0.3))
 plot(pcadat$pc1,pcadat$pc2,main="PC1 PC2",xlab="",ylab="",pch=NA,type="p")
 DNA_plates=unique(sort(pcadat$DNA_plate))
@@ -287,7 +294,7 @@ figure <- grid.arrange(
   batch_unroo, batch_bw, batch_pc1, batch_pc2, batch_pc3, batch_pc4, batch_pc5, leg, nrow = 4, ncol = 2
 )
 
-pdf("out/batch_alpha_beta.pdf")
+pdf(paste0(out_dir,"batch_alpha_beta.pdf"))
 annotate_figure(figure,
                 top = text_grob("Batch effect by alpha and beta diversity", color = "black", size = 14)
 )
@@ -392,8 +399,8 @@ colnames(fpddat)[colnames(fpddat)=="PD_well"] <- "DNA_well"
 
 
 # save new un-batched data 
-fwrite(x = pcadat, file = "out/pcadat_clean")
-fwrite(x = fpddat, file = "out/fpddat_clean")
+fwrite(x = pcadat, file = paste0(middle_dir,"pcadat_clean"))
+fwrite(x = fpddat, file = paste0(middle_dir,"fpddat_clean"))
 
 
 ######### Plot batch effect after removal of batch effect: 
@@ -422,7 +429,7 @@ batch_unroo <- ggboxplot(fpddat, x = "DNA_plate", y = "unrooted_pd",
   geom_text(data = cw_summary,
             aes(DNA_plate, Inf, label = n), vjust="inward", size = your_font_size) +
   stat_compare_means(method = "anova", label.x=2, label.y=1, size = your_font_size) 
-batch_unroo
+
 batch_bw <- ggboxplot(fpddat, x = "DNA_plate", y = "bwpd",
                       color = "DNA_plate", palette = "jco")+
   My_Theme+
@@ -430,7 +437,7 @@ batch_bw <- ggboxplot(fpddat, x = "DNA_plate", y = "bwpd",
   geom_text(data = cw_summary,
             aes(DNA_plate, Inf, label = n), vjust="inward", size = your_font_size) +
   stat_compare_means(method = "anova", label.x=2, label.y=1, size = your_font_size) 
-batch_bw
+
 
 cw_summary <- pcadat %>% 
   group_by(DNA_plate) %>% 
@@ -443,7 +450,7 @@ batch_pc1 <- ggboxplot(pcadat, x = "DNA_plate", y = "pc1",
   geom_text(data = cw_summary,
             aes(DNA_plate, Inf, label = n), vjust="inward", size = your_font_size) +
   stat_compare_means(method = "anova", label.x=2, label.y=-2.5, size = your_font_size) 
-batch_pc1
+
 batch_pc2 <- ggboxplot(pcadat, x = "DNA_plate", y = "pc2",
                        color = "DNA_plate", palette = "jco")+
   My_Theme+
@@ -451,7 +458,7 @@ batch_pc2 <- ggboxplot(pcadat, x = "DNA_plate", y = "pc2",
   geom_text(data = cw_summary,
             aes(DNA_plate, Inf, label = n), vjust="inward", size = your_font_size) +
   stat_compare_means(method = "anova", label.x=2, label.y=0, size = your_font_size) 
-batch_pc2
+
 batch_pc3 <- ggboxplot(pcadat, x = "DNA_plate", y = "pc3",
                        color = "DNA_plate", palette = "jco")+
   My_Theme+
@@ -459,7 +466,7 @@ batch_pc3 <- ggboxplot(pcadat, x = "DNA_plate", y = "pc3",
   geom_text(data = cw_summary,
             aes(DNA_plate, Inf, label = n), vjust="inward", size = your_font_size) +
   stat_compare_means(method = "anova", label.x=2, label.y=-1.8, size = your_font_size) 
-batch_pc3
+
 batch_pc4 <- ggboxplot(pcadat, x = "DNA_plate", y = "pc4",
                        color = "DNA_plate", palette = "jco")+
   My_Theme+
@@ -467,7 +474,7 @@ batch_pc4 <- ggboxplot(pcadat, x = "DNA_plate", y = "pc4",
   geom_text(data = cw_summary,
             aes(DNA_plate, Inf, label = n), vjust="inward", size = your_font_size) +
   stat_compare_means(method = "anova", label.x=2, label.y=-1.5, size = your_font_size) 
-batch_pc4
+
 batch_pc5 <- ggboxplot(pcadat, x = "DNA_plate", y = "pc5",
                        color = "DNA_plate", palette = "jco")+
   My_Theme+
@@ -476,7 +483,7 @@ batch_pc5 <- ggboxplot(pcadat, x = "DNA_plate", y = "pc5",
             aes(DNA_plate, Inf, label = n), vjust="inward", size = your_font_size) +
   stat_compare_means(method = "anova", label.x=2, label.y=4, size = your_font_size)+
   ylim(4,7)
-batch_pc5
+
 
 # Extract the legend. Returns a gtable
 for_legend_only <- ggboxplot(pcadat, x = "DNA_plate", y = "pc5",
@@ -485,7 +492,7 @@ for_legend_only <- ggboxplot(pcadat, x = "DNA_plate", y = "pc5",
   theme(legend.position=c(0.5,0.5),  
         plot.margin=unit(c(1,1,7,1),"lines")) +
   labs(fill="") 
-for_legend_only
+
 leg <- get_legend(for_legend_only)
 
 figure <- grid.arrange(
@@ -557,7 +564,7 @@ all$padj_method <- "TukeyHSD"
 addWorksheet(wb, "batch_post_process")
 writeData(wb, sheet = "batch_post_process", all, rowNames = FALSE)
 
-pdf("out/NO_batch_alpha_beta.pdf")
+pdf(paste0(out_dir,"NO_batch_alpha_beta.pdf"))
 annotate_figure(figure,
                 top = text_grob("Batch effect after batch effect removal", color = "black", size = 14)
 )
@@ -645,15 +652,42 @@ p2 <- ggplot(df1, aes(fill=DNA_plate, y=Freq, x=collection_date)) +
         axis.text.x=element_text(angle=45, hjust=1),
         legend.title=element_text(),
         axis.title.y=element_text())
-p2
 
-pdf("out/distribution_cohorts_DNA_plate_time.pdf")
+
+pdf(paste0(out_dir,"distribution_cohorts_DNA_plate_time.pdf"))
 ggarrange(
   p1,p2,nrow=2, labels=c("A","B")
 )
 dev.off()
 
 
+
+###############
+
+# distribution of subjects across cohorts, birth days, and breeds
+mdat_small <- mdat %>%
+  dplyr::select(isolation_source,Cohort) %>%
+  distinct()
+colnames(details) <- c("isolation_source","BIRTH_DAY","LINE","cross_breed","maternal_sow","nurse_sow")
+df <- left_join(mdat_small, details)
+
+df1 <- df %>% 
+  dplyr::select(isolation_source,Cohort,BIRTH_DAY,cross_breed) 
+df2 <- as.data.frame(na.omit(df1)) # removing mothers 
+
+df3 <- df2 %>% group_by(Cohort,cross_breed,BIRTH_DAY) %>% tally()
+df3 <- as.data.frame(df3)
+
+pdf(paste0(out_dir,"distribution_subjects.pdf"))
+ggplot(df3, aes(x=Cohort,y=n,fill=BIRTH_DAY)) +
+  geom_bar(stat="identity")+
+  facet_wrap(~cross_breed)+
+  theme_bw()+
+  labs(y="number of subjects") +
+  theme(axis.text.x=element_text(angle=90,hjust=1,vjust=0.5,size=7))
+dev.off()
+
+###############
 
 ######################################################################################################
 
@@ -728,84 +762,84 @@ coggo$Cohort <- factor(coggo$Cohort,
 
 # filtering out piglets that had dysentery
 boggo1 <- boggo %>%
-  filter(!isolation_source=="29665"|isolation_source=="29865"|isolation_source=="29702")
+  dplyr::filter(!isolation_source=="29665"|isolation_source=="29865"|isolation_source=="29702")
 
 pigs_1 <- boggo1 %>%
-  filter(collection_date == "2017-01-31"|collection_date == "2017-02-01") %>%
+  dplyr::filter(collection_date == "2017-01-31"|collection_date == "2017-02-01") %>%
   dplyr::select(isolation_source,Cohort,collection_date,unrooted_pd,bwpd)
 NROW(pigs_1)
 
-hist(pigs_1$unrooted_pd,breaks=100)
-hist(pigs_1$bwpd,breaks=100)
+#hist(pigs_1$unrooted_pd,breaks=100)
+#hist(pigs_1$bwpd,breaks=100)
 
 # unrooted_pd has low values indicative of spurious sample. 
 # remove those rows
 pigs_1 <- pigs_1 %>%
-  filter(!unrooted_pd < 50) %>%
-  filter(!bwpd >2.6) %>%
-  filter(!bwpd <1.6)
+  dplyr::filter(!unrooted_pd < 50) %>%
+  dplyr::filter(!bwpd >2.6) %>%
+  dplyr::filter(!bwpd <1.6)
 
 ###########################
 
 pigs_2 <- boggo1 %>%
-  filter(collection_date == "2017-02-06"|collection_date == "2017-02-07") %>%
+  dplyr::filter(collection_date == "2017-02-06"|collection_date == "2017-02-07") %>%
   dplyr::select(isolation_source,Cohort,collection_date,unrooted_pd,bwpd)
 NROW(pigs_2)
 
-hist(pigs_2$unrooted_pd,breaks=100)
-hist(pigs_2$bwpd,breaks=100)
+#hist(pigs_2$unrooted_pd,breaks=100)
+#hist(pigs_2$bwpd,breaks=100)
 
 # unrooted_pd has low values indicative of spurious sample. 
 # remove those rows
 pigs_2 <- pigs_2 %>%
-  filter(!unrooted_pd < 50) %>%
-  filter(!bwpd >2.5) 
+  dplyr::filter(!unrooted_pd < 50) %>%
+  dplyr::filter(!bwpd >2.5) 
 
 ###########################
 
 pigs_3 <- boggo1 %>%
-  filter(collection_date == "2017-02-14") %>%
+  dplyr::filter(collection_date == "2017-02-14") %>%
   dplyr::select(isolation_source,Cohort,collection_date,unrooted_pd,bwpd)
 NROW(pigs_3)
 
-hist(pigs_3$unrooted_pd)
-hist(pigs_3$bwpd)
+#hist(pigs_3$unrooted_pd)
+#hist(pigs_3$bwpd)
 
 ###########################
 
 pigs_4 <- boggo1 %>%
-  filter(collection_date == "2017-02-21") %>%
+  dplyr::filter(collection_date == "2017-02-21") %>%
   dplyr::select(isolation_source,Cohort,collection_date,unrooted_pd,bwpd)
 NROW(pigs_4)
 
-hist(pigs_4$unrooted_pd,breaks=100)
-hist(pigs_4$bwpd,100)
+#hist(pigs_4$unrooted_pd,breaks=100)
+#hist(pigs_4$bwpd,100)
 
 # unrooted_pd has low values indicative of spurious sample. 
 # remove those rows
 pigs_4 <- pigs_4 %>%
-  filter(!unrooted_pd < 50) %>%
-  filter(!bwpd < 1.6)
+  dplyr::filter(!unrooted_pd < 50) %>%
+  dplyr::filter(!bwpd < 1.6)
 
 ###########################
 
 pigs_5 <- boggo1 %>%
-  filter(collection_date == "2017-02-28") %>%
+  dplyr::filter(collection_date == "2017-02-28") %>%
   dplyr::select(isolation_source,Cohort,collection_date,unrooted_pd,bwpd)
 NROW(pigs_5)
 
-hist(pigs_5$unrooted_pd)
-hist(pigs_5$bwpd)
+#hist(pigs_5$unrooted_pd)
+#hist(pigs_5$bwpd)
 
 ###########################
 
 pigs_6 <- boggo1 %>%
-  filter(collection_date == "2017-03-03") %>%
+  dplyr::filter(collection_date == "2017-03-03") %>%
   dplyr::select(isolation_source,Cohort,collection_date,unrooted_pd,bwpd)
 NROW(pigs_6)
 
-hist(pigs_6$unrooted_pd)
-hist(pigs_6$bwpd)
+#hist(pigs_6$unrooted_pd)
+#hist(pigs_6$bwpd)
 
 ##############################################################################
 
@@ -837,7 +871,7 @@ NROW(df1)
 df1 <- df1 %>%
   dplyr::select(isolation_source,Cohort.x,unrooted_pd.x,unrooted_pd.y,bwpd.x,bwpd.y) %>% 
   group_by(isolation_source) %>% slice(1) %>%
-  arrange(Cohort.x, isolation_source)
+  dplyr::arrange(Cohort.x, isolation_source)
 
 # does it look right? proof 1: 
 test <- setDT(df1)[, .(Freq = .N), by = .(Cohort.x)]
@@ -903,7 +937,7 @@ A_B_adj <- rbind(res1,res2)
 
 #####################
 
-new_df <- merge(df1,details, by.x="isolation_source",by.y="pig")
+new_df <- merge(df1,details)
 new_df$BIRTH_DAY <- as.character(new_df$BIRTH_DAY)
 aov.out1 = aov(diff_unroo ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
 aov.out2 = aov(diff_bw ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
@@ -997,7 +1031,7 @@ B_C_adj <- rbind(res1,res2)
 
 #####################
 
-new_df <- merge(df1,details, by.x="isolation_source",by.y="pig")
+new_df <- merge(df1,details)
 new_df$BIRTH_DAY <- as.character(new_df$BIRTH_DAY)
 aov.out1 = aov(diff_unroo ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
 aov.out2 = aov(diff_bw ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
@@ -1092,7 +1126,7 @@ C_D_adj <- rbind(res1,res2)
 
 #####################
 
-new_df <- merge(df1,details, by.x="isolation_source",by.y="pig")
+new_df <- merge(df1,details)
 new_df$BIRTH_DAY <- as.character(new_df$BIRTH_DAY)
 aov.out1 = aov(diff_unroo ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
 aov.out2 = aov(diff_bw ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
@@ -1185,7 +1219,7 @@ D_E_adj <- rbind(res1,res2)
 
 #####################
 
-new_df <- merge(df1,details, by.x="isolation_source",by.y="pig")
+new_df <- merge(df1,details)
 new_df$BIRTH_DAY <- as.character(new_df$BIRTH_DAY)
 aov.out1 = aov(diff_unroo ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
 aov.out2 = aov(diff_bw ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
@@ -1278,7 +1312,7 @@ E_F_adj <- rbind(res1,res2)
 
 #####################
 
-new_df <- merge(df1,details, by.x="isolation_source",by.y="pig")
+new_df <- merge(df1,details)
 new_df$BIRTH_DAY <- as.character(new_df$BIRTH_DAY)
 aov.out1 = aov(diff_unroo ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
 aov.out2 = aov(diff_bw ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
@@ -1371,7 +1405,7 @@ A_C_adj <- rbind(res1,res2)
 
 #####################
 
-new_df <- merge(df1,details, by.x="isolation_source",by.y="pig")
+new_df <- merge(df1,details)
 new_df$BIRTH_DAY <- as.character(new_df$BIRTH_DAY)
 aov.out1 = aov(diff_unroo ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
 aov.out2 = aov(diff_bw ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
@@ -1466,7 +1500,7 @@ B_D_adj <- rbind(res1,res2)
 
 #####################
 
-new_df <- merge(df1,details, by.x="isolation_source",by.y="pig")
+new_df <- merge(df1,details)
 new_df$BIRTH_DAY <- as.character(new_df$BIRTH_DAY)
 aov.out1 = aov(diff_unroo ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
 aov.out2 = aov(diff_bw ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
@@ -1560,7 +1594,7 @@ C_E_adj <- rbind(res1,res2)
 
 #####################
 
-new_df <- merge(df1,details, by.x="isolation_source",by.y="pig")
+new_df <- merge(df1,details)
 new_df$BIRTH_DAY <- as.character(new_df$BIRTH_DAY)
 aov.out1 = aov(diff_unroo ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
 aov.out2 = aov(diff_bw ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
@@ -1655,7 +1689,7 @@ D_F_adj <- rbind(res1,res2)
 
 #####################
 
-new_df <- merge(df1,details, by.x="isolation_source",by.y="pig")
+new_df <- merge(df1,details)
 new_df$BIRTH_DAY <- as.character(new_df$BIRTH_DAY)
 aov.out1 = aov(diff_unroo ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
 aov.out2 = aov(diff_bw ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
@@ -1825,7 +1859,7 @@ C_F_adj <- rbind(res1,res2)
 
 #####################
 
-new_df <- merge(df1,details, by.x="isolation_source",by.y="pig")
+new_df <- merge(df1,details)
 new_df$BIRTH_DAY <- as.character(new_df$BIRTH_DAY)
 aov.out1 = aov(diff_unroo ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
 aov.out2 = aov(diff_bw ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
@@ -1919,7 +1953,7 @@ A_F_adj <- rbind(res1,res2)
 
 #####################
 
-new_df <- merge(df1,details, by.x="isolation_source",by.y="pig")
+new_df <- merge(df1,details)
 new_df$BIRTH_DAY <- as.character(new_df$BIRTH_DAY)
 aov.out1 = aov(diff_unroo ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
 aov.out2 = aov(diff_bw ~ Cohort.x + cross_breed + BIRTH_DAY, data=new_df)   
@@ -1994,8 +2028,8 @@ deltas_stats <- cSplit(deltas_stats, "rn"," ")
 
 deltas_stats <- deltas_stats %>%
   # join the two groups for which the p-value has been computed
-  mutate(comparison=paste0(rn_1,"_vs_",rn_2)) %>%
-  select(test,type,time_delta,comparison,pvalues,pvalues_adj,method)
+  dplyr::mutate(comparison=paste0(rn_1,"_vs_",rn_2)) %>%
+  dplyr::select(test,type,time_delta,comparison,pvalues,pvalues_adj,method)
 
 # remove useless digits in strings "comparison"
 deltas_stats$comparison <- deltas_stats$comparison %<>%
@@ -2201,7 +2235,6 @@ df_b_d$interval <- "Fe7-Fe21"
 
 all <- rbind(df_a_b,df_b_c, df_c_d, df_d_e,
              df_a_c, df_b_d)
-head(all)
 
 
 all[5] <- lapply(
@@ -2259,12 +2292,12 @@ new_df <- all
 new_df = new_df %>% 
   ungroup() %>%
   arrange(interval,Cohort.x,diff_unroo) %>%
-  mutate(.r = row_number()) 
+  dplyr::mutate(.r = row_number()) 
 
 palette <- c("#F8766D","#B79F00","#00BA38","#00BFC4")
 
 new_df = new_df %>% 
-  filter(Cohort.x=="Control"|Cohort.x=="D-Scour"|Cohort.x=="ColiGuard"|Cohort.x=="Neomycin")
+  dplyr::filter(Cohort.x=="Control"|Cohort.x=="D-Scour"|Cohort.x=="ColiGuard"|Cohort.x=="Neomycin")
 
 CTRL_unroo_deltas_facets <- ggplot(data = new_df,
                                    mapping = aes(x = .r, y = diff_unroo, fill = Cohort.x))+
@@ -2282,10 +2315,10 @@ new_df <- all
 new_df = new_df %>% 
   ungroup() %>%
   arrange(interval,Cohort.x,diff_bw) %>%
-  mutate(.r = row_number()) # Add a row number variable
+  dplyr::mutate(.r = row_number()) # Add a row number variable
 
 new_df = new_df %>% 
-  filter(Cohort.x=="Control"|Cohort.x=="D-Scour"|Cohort.x=="ColiGuard"|Cohort.x=="Neomycin")
+  dplyr::filter(Cohort.x=="Control"|Cohort.x=="D-Scour"|Cohort.x=="ColiGuard"|Cohort.x=="Neomycin")
 
 CTRL_bw_deltas_facets <- ggplot(data = new_df,
                                 mapping = aes(x = .r, y = diff_bw, fill = Cohort.x))+
@@ -2307,12 +2340,12 @@ new_df <- all
 new_df = new_df %>% 
   ungroup() %>%
   arrange(interval,Cohort.x,diff_unroo) %>%
-  mutate(.r = row_number()) 
+  dplyr::mutate(.r = row_number()) 
 
 palette_neo <- c("#00BFC4","#619CFF","#F564E3")
 
 new_df = new_df %>% 
-  filter(Cohort.x=="Neomycin"|Cohort.x=="Neomycin+D-Scour"|Cohort.x=="Neomycin+ColiGuard")
+  dplyr::filter(Cohort.x=="Neomycin"|Cohort.x=="Neomycin+D-Scour"|Cohort.x=="Neomycin+ColiGuard")
 
 NEO_unroo_deltas_facets <- ggplot(data = new_df,
                                   mapping = aes(x = .r, y = diff_unroo, fill = Cohort.x))+
@@ -2330,10 +2363,10 @@ new_df <- all
 new_df = new_df %>% 
   ungroup() %>%
   arrange(interval,Cohort.x,diff_bw) %>%
-  mutate(.r = row_number()) # Add a row number variable
+  dplyr::mutate(.r = row_number()) # Add a row number variable
 
 new_df = new_df %>% 
-  filter(Cohort.x=="Neomycin"|Cohort.x=="Neomycin+D-Scour"|Cohort.x=="Neomycin+ColiGuard")
+  dplyr::filter(Cohort.x=="Neomycin"|Cohort.x=="Neomycin+D-Scour"|Cohort.x=="Neomycin+ColiGuard")
 
 NEO_bw_deltas_facets <- ggplot(data = new_df,
                                mapping = aes(x = .r, y = diff_bw, fill = Cohort.x))+
@@ -2362,7 +2395,7 @@ all_plots <- plot_grid(empty_space,
                        nrow=2,
                        rel_heights=c(0.25,0.5))
 
-pdf("out/cohorts_deltas_bwpd.pdf")
+pdf(paste0(out_dir,"cohorts_deltas_bwpd.pdf"))
 ggdraw() +
   draw_image(timeline_deltas_bw, x = 0.01, y = 0.13) +
   draw_plot(all_plots)
@@ -2382,7 +2415,7 @@ all_plots <- plot_grid(empty_space,
                        nrow=2,
                        rel_heights=c(0.25,0.5))
 
-pdf("out/cohorts_deltas_unroo.pdf")
+pdf(paste0(out_dir,"cohorts_deltas_unroo.pdf"))
 ggdraw() +
   draw_image(timeline_deltas_unroo, x = 0.01, y = 0.13) +
   draw_plot(all_plots)
@@ -2518,7 +2551,7 @@ writeData(wb, sheet = "deltas_percent_change", deltas_percent_change, rowNames =
 # ALPHA diversity overall (includes pos controls):
 
 boggo1 <- boggo %>%
-  filter(!isolation_source == "NegativeControl")
+  dplyr::filter(!isolation_source == "NegativeControl")
 
 # reordering
 boggo1$Cohort <- factor(boggo1$Cohort, 
@@ -2555,11 +2588,11 @@ p3 <- ggplot(boggo2, aes(x=Cohort, y=unrooted_pd)) +
   coord_flip()
 
 
-pdf("out/alpha_BWPD_unrooted.pdf")
+pdf(paste0(out_dir,"alpha_BWPD_unrooted.pdf"))
 plot_grid(p2,p3,nrow=2, labels = c("A","B"))
 dev.off()
 
-pdf("out/alpha_all.pdf")
+pdf(paste0(out_dir,"alpha_all.pdf"))
 plot_grid(p1,p2,p3,nrow=3)
 dev.off()
 
@@ -2681,7 +2714,7 @@ means$collection_date = "all"
 doggo <- boggo
 doggo$collection_date <- as.character(doggo$collection_date)
 
-doggo <- doggo %>% filter(collection_date == "2017-01-31" |
+doggo <- doggo %>% dplyr::filter(collection_date == "2017-01-31" |
                             collection_date == "2017-02-07" |
                             collection_date == "2017-02-14" |
                             collection_date == "2017-02-21" |
@@ -2691,14 +2724,14 @@ doggo <- doggo %>% filter(collection_date == "2017-01-31" |
 # filter out heavy outliers
 
 doggo <- doggo %>% 
-  filter(!unrooted_pd < 25)
+  dplyr::filter(!unrooted_pd < 25)
 
 doggo <- doggo %>% 
-  filter(!bwpd > 2.7)
+  dplyr::filter(!bwpd > 2.7)
 
 # check
-hist(doggo$unrooted_pd)
-hist(doggo$bwpd)
+#hist(doggo$unrooted_pd)
+#hist(doggo$bwpd)
 
 # (no need to filter out pos, neg controls and Sows 
 # as filtering by date is already doing it )
@@ -2751,7 +2784,7 @@ gen_unrooted <- ggplot(summs_unroo, aes(x=collection_date, y=mean, group=Cohort,
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   labs(x = "collection date",
        y = "unrooted PD - mean")
-gen_unrooted
+
 
 # general time change - unrooted
 summs_bw <- doggo %>% group_by(collection_date,Cohort) %>% 
@@ -2775,12 +2808,12 @@ gen_bwpd <- ggplot(summs_bw, aes(x=collection_date, y=mean, group=Cohort, color=
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
   labs(x = "collection date",
        y = "BWPD - mean")
-gen_bwpd
+
 
 
 tosave <- ggarrange(gen_unrooted, gen_bwpd, ncol = 2, labels=c("A","B"), common.legend = TRUE)
 
-pdf("out/time_alpha.pdf",width = 9,height=6)
+pdf(paste0(out_dir,"time_alpha.pdf",width = 9,height=6))
 tosave
 dev.off()
 
@@ -2856,7 +2889,7 @@ writeData(wb, sheet = "alpha_means", both, rowNames = FALSE)
 # alpha diversity change during time in cohorts, with unrooted PD & BWPD in the same plot:
 
 x <- doggo %>%
-  select(isolation_source,Cohort,collection_date,unrooted_pd,bwpd) %>%
+  dplyr::select(isolation_source,Cohort,collection_date,unrooted_pd,bwpd) %>%
   droplevels()
 
 summs <- x %>% group_by(Cohort,collection_date) %>% 
@@ -2867,7 +2900,7 @@ summs <- x %>% group_by(Cohort,collection_date) %>%
 
 summs <- as.data.frame(summs)
 
-pdf("out/time_alpha_cohorts_unroo_BW.pdf")
+pdf(paste0(out_dir,"time_alpha_cohorts_unroo_BW.pdf"))
 ggplot(summs, aes(x=collection_date, y=meanUnroo,group=Cohort,color=Cohort)) +
   geom_errorbar(aes(ymin=meanUnroo-sdUnroo, ymax=meanUnroo+sdUnroo), 
                 width=0.1,
@@ -2912,21 +2945,21 @@ dev.off()
 doggo <- boggo
 doggo$collection_date <- as.character(doggo$collection_date)
 
-doggo <- doggo %>% filter(collection_date == "2017-01-31" |
+doggo <- doggo %>% dplyr::filter(collection_date == "2017-01-31" |
                             collection_date == "2017-02-07" |
                             collection_date == "2017-02-14" |
                             collection_date == "2017-02-21" ) 
 
 
-doggo[3] <- lapply(
-  doggo[3], 
+doggo[,3] <- lapply(
+  doggo[,3], 
   gsub, 
   pattern = "Neomycin+D-Scour", 
   replacement = "Neo+D-Scour", 
   fixed = TRUE)
 
-doggo[3] <- lapply(
-  doggo[3], 
+doggo[,3] <- lapply(
+  doggo[,3], 
   gsub, 
   pattern = "Neomycin+ColiGuard", 
   replacement = "Neo+ColiGuard", 
@@ -2935,14 +2968,14 @@ doggo[3] <- lapply(
 # filter out heavy outliers
 
 doggo <- doggo %>% 
-  filter(!unrooted_pd < 25)
+  dplyr::filter(!unrooted_pd < 25)
 
 doggo <- doggo %>% 
-  filter(!bwpd > 2.7)
+  dplyr::filter(!bwpd > 2.7)
 
 # check
-hist(doggo$unrooted_pd)
-hist(doggo$bwpd)
+#hist(doggo$unrooted_pd)
+#hist(doggo$bwpd)
 
 # (no need to filter out pos, neg controls and Sows 
 # as filtering by date is already doing it )
@@ -2971,7 +3004,7 @@ stat.test_unroo <- doggo %>%
   group_by(Cohort) %>%
   t_test(unrooted_pd ~ collection_date) %>%
   adjust_pvalue(method="bonferroni") %>%
-  dplyr::mutate(y.position=rep(seq(150,220,length.out=6),6)) %>%
+  dplyr::mutate(y.position=rep(seq(150,220,length.out=6),5)) %>%
   dplyr::mutate_if(is.numeric, round, digits = 4)
 
 unroo <- ggboxplot(doggo, x = "collection_date", y = "unrooted_pd",
@@ -2993,7 +3026,7 @@ stat.test_bwpd <- doggo %>%
   group_by(Cohort) %>%
   t_test(bwpd ~ collection_date) %>%
   adjust_pvalue(method="bonferroni") %>%
-  mutate(y.position=rep(seq(2.3,2.65,length.out=6),6)) %>%
+  mutate(y.position=rep(seq(2.3,2.65,length.out=6),5)) %>%
   mutate_if(is.numeric, round, digits = 4)
 
 bw <- ggboxplot(doggo, x = "collection_date", y = "bwpd",
@@ -3008,11 +3041,11 @@ bw <- ggboxplot(doggo, x = "collection_date", y = "bwpd",
                      hide.ns=TRUE,
                      bracket.size = 0.3,
                      size = 2)
-bw
+
 
 tosave <- ggarrange(unroo,bw,nrow=2,ncol=1,labels=c("A","B"),common.legend = TRUE)
 
-pdf("out/time_alpha_cohorts.pdf")
+pdf(paste0(out_dir,"time_alpha_cohorts.pdf"))
 tosave
 dev.off()
 
@@ -3023,7 +3056,6 @@ both$padj_method <- "bonferroni"
 
 addWorksheet(wb, "alpha_cohorts")
 writeData(wb, sheet = "alpha_cohorts", both, rowNames = FALSE)
-
 
 
 #######################
@@ -3076,7 +3108,7 @@ length(unique(startDF$isolation_source))
 
 #########################
 
-startDF1 <- merge(startDF,details, by.x="isolation_source",by.y="pig")
+startDF1 <- merge(startDF,details, by="isolation_source")
 
 startDF1 <- startDF1 %>%
   dplyr::select(phylo_entropy,unrooted_pd,bwpd,isolation_source,nurse_sow,maternal_sow,
@@ -3140,22 +3172,19 @@ d <- ggplot(startDF1, aes(x=maternal_sow, y=unrooted_pd, group=maternal_sow)) +
 ##################
 
 # nurse_sows and maternal sows on the same plot, dividing BWPD from unrooted
-pdf("out/nursesow_maternalsow_BWPD.pdf")
+pdf(paste0(out_dir,"nursesow_maternalsow_BWPD.pdf"))
 ggarrange(c, a, 
           labels = c("A", "B"),
           ncol = 1, nrow = 2)
 dev.off()
 
-pdf("out/nursesow_maternalsow_unrooted.pdf")
+pdf(paste0(out_dir,"nursesow_maternalsow_unrooted.pdf"))
 ggarrange(d, b, 
           labels = c("A", "B"),
           ncol = 1, nrow = 2)
 dev.off()
 
 ##############################################
-
-
-
 
 
 # do piglets at arrival cluster by unrooted and bwpd
@@ -3205,7 +3234,7 @@ cross_breed_bwpd_plot <- ggboxplot(startDF1, x = "cross_breed", y = "bwpd",
   stat_compare_means(method = "kruskal.test", label.y=1.5) 
 
 tosave <- ggarrange(cross_breed_unrooted_plot, cross_breed_bwpd_plot, nrow = 2, labels=c("A","B"))
-ggsave(file = "out/breed_alpha.pdf", tosave)
+ggsave(file = paste0(out_dir,"breed_alpha.pdf"), tosave)
 
 
 # by birth day
@@ -3241,11 +3270,9 @@ bday_bwpd_plot <- ggboxplot(startDF1, x = "BIRTH_DAY", y = "bwpd",
 
 tosave <- ggarrange(bday_unrooted_plot, bday_bwpd_plot, nrow = 2, labels=c("A","B"))
 
-pdf("out/bday_alpha.pdf")
+pdf(paste0(out_dir,"bday_alpha.pdf"))
 tosave
 dev.off()
-
-
 
 
 # by line
@@ -3281,7 +3308,7 @@ LINE_bwpd_plot <- ggboxplot(startDF1, x = "LINE", y = "bwpd",
 
 tosave <- ggarrange(LINE_unrooted_plot, LINE_bwpd_plot, nrow = 2, labels=c("A","B"))
 
-pdf("out/line_alpha.pdf")
+pdf(paste0(out_dir,"line_alpha.pdf"))
 tosave
 dev.off()
 
@@ -3298,9 +3325,9 @@ my_comparisons <- list(  c("2017-01-07", "2017-01-09"),
                          c("2017-01-10", "2017-01-11") )
 
 startDF1_sub <- startDF1 %>%
-  filter(!cross_breed=="Landrace x Cross bred (LW x D)")
+  dplyr::filter(!cross_breed=="Landrace x Cross bred (LW x D)")
 startDF1_sub <- startDF1_sub %>%
-  filter(!cross_breed=="Large white x Duroc")
+  dplyr::filter(!cross_breed=="Large white x Duroc")
 
 
 p1 <- ggboxplot(startDF1_sub, x = "BIRTH_DAY", y = "unrooted_pd",
@@ -3324,7 +3351,7 @@ p2 <- ggboxplot(startDF1_sub, x = "BIRTH_DAY", y = "bwpd",
 
 tosave <- ggarrange(p1,p2, nrow = 2, labels=c("A","B"))
 
-pdf("out/bday_bybreed_alpha.pdf")
+pdf(paste0(out_dir,"bday_bybreed_alpha.pdf"))
 tosave
 dev.off()
 
@@ -3344,7 +3371,7 @@ startDF <- coggo %>% filter(
     collection_date == "2017-02-01")  %>%
   dplyr::select(pc1,pc2,pc3,pc4,pc5,isolation_source)
 
-startDF1 <- merge(startDF,details, by.x="isolation_source",by.y="pig")
+startDF1 <- merge(startDF,details, by="isolation_source")
 
 startDF1 <- startDF1 %>%
   dplyr::select(pc1,pc2,pc3,pc4,pc5,isolation_source,nurse_sow,maternal_sow)
@@ -3410,9 +3437,9 @@ p16<-ggplot(startDF16,aes(x=pc1,y=pc2,color=nurse_sow ))+
   theme+
   stat_ellipse(inherit.aes = TRUE, 
                level = 0.80)
-p16
 
-pdf("out/nursesow_PC1PC2.pdf")
+
+pdf(paste0(out_dir,"nursesow_PC1PC2.pdf"))
 grid.arrange(p11,p12,p13,p14,p15,p16, nrow=3,ncol=2)
 dev.off()
 
@@ -3463,13 +3490,11 @@ p16<-ggplot(startDF16,aes(x=pc1,y=pc2,color=maternal_sow ))+
   theme+
   stat_ellipse(inherit.aes = TRUE, 
                level = 0.80)
-p16
 
-pdf("out/maternalsow_PC1PC2.pdf")
+
+pdf(paste0(out_dir,"maternalsow_PC1PC2.pdf"))
 grid.arrange(p11,p12,p13,p14,p15,p16, nrow=3,ncol=2)
 dev.off()
-
-
 
 
 ##############################################
@@ -3477,7 +3502,7 @@ dev.off()
 # do piglets at arrival cluster by PCA
 # based on cross_breed/line/birth day? 
 
-startDF2 <- merge(startDF,details, by.x="isolation_source",by.y="pig")
+startDF2 <- merge(startDF,details, by="isolation_source")
 
 startDF2$BIRTH_DAY <- as.character(startDF2$BIRTH_DAY)
 startDF2$BIRTH_DAY <- factor(startDF2$BIRTH_DAY, 
@@ -3508,7 +3533,7 @@ cross_breed_PC1_plot <- ggboxplot(startDF2, x = "cross_breed", y = "pc1",
   geom_text(data = cw_summary,
             aes(cross_breed, Inf, label = n), vjust="inward") +
   stat_compare_means(method = "kruskal.test", label.x=1, label.y=0.5)  # Add pairwise comparisons p-value
-cross_breed_PC1_plot
+
 cross_breed_PC2_plot <- ggboxplot(startDF2, x = "cross_breed", y = "pc2",
                                   color = "cross_breed", palette = "jco",
                                   add = "jitter")+
@@ -3517,7 +3542,7 @@ cross_breed_PC2_plot <- ggboxplot(startDF2, x = "cross_breed", y = "pc2",
   geom_text(data = cw_summary,
             aes(cross_breed, Inf, label = n), vjust="inward") +
   stat_compare_means(method = "kruskal.test", label.x=1, label.y=1)  # Add pairwise comparisons p-value
-cross_breed_PC2_plot
+
 cross_breed_PC3_plot <- ggboxplot(startDF2, x = "cross_breed", y = "pc3",
                                   color = "cross_breed", palette = "jco",
                                   add = "jitter")+
@@ -3526,7 +3551,7 @@ cross_breed_PC3_plot <- ggboxplot(startDF2, x = "cross_breed", y = "pc3",
   geom_text(data = cw_summary,
             aes(cross_breed, Inf, label = n), vjust="inward") +
   stat_compare_means(method = "kruskal.test", label.x=1, label.y=-1.5)  # Add pairwise comparisons p-value
-cross_breed_PC3_plot
+
 cross_breed_PC4_plot <- ggboxplot(startDF2, x = "cross_breed", y = "pc4",
                                   color = "cross_breed", palette = "jco",
                                   add = "jitter")+
@@ -3535,7 +3560,7 @@ cross_breed_PC4_plot <- ggboxplot(startDF2, x = "cross_breed", y = "pc4",
   geom_text(data = cw_summary,
             aes(cross_breed, Inf, label = n), vjust="inward") +
   stat_compare_means(method = "kruskal.test", label.x=1, label.y=-1.2)  # Add pairwise comparisons p-value
-cross_breed_PC4_plot
+
 cross_breed_PC5_plot <- ggboxplot(startDF2, x = "cross_breed", y = "pc5",
                                   color = "cross_breed", palette = "jco",
                                   add = "jitter")+
@@ -3545,7 +3570,7 @@ cross_breed_PC5_plot <- ggboxplot(startDF2, x = "cross_breed", y = "pc5",
             aes(cross_breed, Inf, label = n), vjust="inward") +
   ylim(4.5,6.3)+
   stat_compare_means(method = "kruskal.test", label.x=1, label.y=4.5)  # Add pairwise comparisons p-value
-cross_breed_PC5_plot
+
 
 
 #tosave <- ggarrange(cross_breed_PC1_plot, cross_breed_PC2_plot, cross_breed_PC3_plot, cross_breed_PC4_plot, 
@@ -3570,7 +3595,7 @@ bday_PC1_plot <- ggboxplot(startDF2, x = "BIRTH_DAY", y = "pc1",
   geom_text(data = cw_summary,
             aes(BIRTH_DAY, Inf, label = n), vjust="inward") +
   stat_compare_means(method = "kruskal.test", label.x=1, label.y=0.2)  # Add pairwise comparisons p-value
-bday_PC1_plot
+
 bday_PC2_plot <- ggboxplot(startDF2, x = "BIRTH_DAY", y = "pc2",
                            color = "BIRTH_DAY", palette = "jco",
                            add = "jitter")+
@@ -3579,7 +3604,7 @@ bday_PC2_plot <- ggboxplot(startDF2, x = "BIRTH_DAY", y = "pc2",
   geom_text(data = cw_summary,
             aes(BIRTH_DAY, Inf, label = n), vjust="inward") +
   stat_compare_means(method = "kruskal.test", label.x=1, label.y=1)  # Add pairwise comparisons p-value
-bday_PC2_plot
+
 bday_PC3_plot <- ggboxplot(startDF2, x = "BIRTH_DAY", y = "pc3",
                            color = "BIRTH_DAY", palette = "jco",
                            add = "jitter")+
@@ -3588,7 +3613,7 @@ bday_PC3_plot <- ggboxplot(startDF2, x = "BIRTH_DAY", y = "pc3",
   geom_text(data = cw_summary,
             aes(BIRTH_DAY, Inf, label = n), vjust="inward") +
   stat_compare_means(method = "kruskal.test", label.x=1, label.y=-1.5)  # Add pairwise comparisons p-value
-bday_PC3_plot
+
 bday_PC4_plot <- ggboxplot(startDF2, x = "BIRTH_DAY", y = "pc4",
                            color = "BIRTH_DAY", palette = "jco",
                            add = "jitter")+
@@ -3597,7 +3622,7 @@ bday_PC4_plot <- ggboxplot(startDF2, x = "BIRTH_DAY", y = "pc4",
   geom_text(data = cw_summary,
             aes(BIRTH_DAY, Inf, label = n), vjust="inward") +
   stat_compare_means(method = "kruskal.test", label.x=1, label.y=-1)  # Add pairwise comparisons p-value
-bday_PC4_plot
+
 bday_PC5_plot <- ggboxplot(startDF2, x = "BIRTH_DAY", y = "pc5",
                            color = "BIRTH_DAY", palette = "jco",
                            add = "jitter")+
@@ -3607,14 +3632,14 @@ bday_PC5_plot <- ggboxplot(startDF2, x = "BIRTH_DAY", y = "pc5",
             aes(BIRTH_DAY, Inf, label = n), vjust="inward") +
   ylim(4.5,6.3)+
   stat_compare_means(method = "kruskal.test", label.x=1, label.y=4.5)  # Add pairwise comparisons p-value
-bday_PC5_plot
+
 
 
 tosave <- ggarrange(bday_PC1_plot, bday_PC2_plot, bday_PC3_plot, bday_PC4_plot, 
                     bday_PC5_plot, nrow = 3, ncol=2, labels = c("A","B","C","D","E"),
                     common.legend = TRUE)
 
-pdf("out/bday_beta.pdf")
+pdf(paste0(out_dir,"bday_beta.pdf"))
 tosave
 dev.off()
 
@@ -3637,7 +3662,7 @@ line_PC1_plot <- ggboxplot(startDF2, x = "LINE", y = "pc1",
   geom_text(data = cw_summary,
             aes(LINE, Inf, label = n), vjust="inward") +
   stat_compare_means(method = "kruskal.test", label.x=1, label.y=0.2)  # Add pairwise comparisons p-value
-line_PC1_plot
+
 line_PC2_plot <- ggboxplot(startDF2, x = "LINE", y = "pc2",
                            color = "LINE", palette = "jco",
                            add = "jitter")+
@@ -3646,7 +3671,7 @@ line_PC2_plot <- ggboxplot(startDF2, x = "LINE", y = "pc2",
   geom_text(data = cw_summary,
             aes(LINE, Inf, label = n), vjust="inward") +
   stat_compare_means(method = "kruskal.test", label.x=1, label.y=.2)  # Add pairwise comparisons p-value
-line_PC2_plot
+
 line_PC3_plot <- ggboxplot(startDF2, x = "LINE", y = "pc3",
                            color = "LINE", palette = "jco",
                            add = "jitter")+
@@ -3655,7 +3680,7 @@ line_PC3_plot <- ggboxplot(startDF2, x = "LINE", y = "pc3",
   geom_text(data = cw_summary,
             aes(LINE, Inf, label = n), vjust="inward") +
   stat_compare_means(method = "kruskal.test", label.x=1, label.y=-1.4)  # Add pairwise comparisons p-value
-line_PC3_plot
+
 line_PC4_plot <- ggboxplot(startDF2, x = "LINE", y = "pc4",
                            color = "LINE", palette = "jco",
                            add = "jitter")+
@@ -3664,7 +3689,7 @@ line_PC4_plot <- ggboxplot(startDF2, x = "LINE", y = "pc4",
   geom_text(data = cw_summary,
             aes(LINE, Inf, label = n), vjust="inward") +
   stat_compare_means(method = "kruskal.test", label.x=1, label.y=-1)  # Add pairwise comparisons p-value
-line_PC4_plot
+
 line_PC5_plot <- ggboxplot(startDF2, x = "LINE", y = "pc5",
                            color = "LINE", palette = "jco",
                            add = "jitter")+
@@ -3674,7 +3699,7 @@ line_PC5_plot <- ggboxplot(startDF2, x = "LINE", y = "pc5",
             aes(LINE, Inf, label = n), vjust="inward") +
   ylim(4.5,6.3)+
   stat_compare_means(method = "kruskal.test", label.x=1, label.y=4.5)  # Add pairwise comparisons p-value
-line_PC5_plot
+
 
 
 # tosave <- ggarrange(line_PC1_plot, line_PC2_plot, line_PC3_plot, line_PC4_plot, 
@@ -3741,7 +3766,7 @@ p5 <- ggboxplot(startDF2_sub, x = "BIRTH_DAY", y = "pc5",
   theme(axis.text.x=element_blank(), legend.position = 'right')+
   stat_compare_means(comparisons = my_comparisons)
 
-pdf("out/bday_bybreed_beta.pdf")
+pdf(paste0(out_dir,"bday_bybreed_beta.pdf"))
 grid.arrange(
   p1,p2, nrow = 2, ncol = 1
 )
@@ -3763,7 +3788,7 @@ dev.off()
 finalDF <- inner_join(boggo,coggo)
 NROW(finalDF)
 
-df <- merge(finalDF,details, by.x="isolation_source",by.y="pig")
+df <- merge(finalDF,details, by="isolation_source")
 head(df)
 
 # distribution of cross_breeds and bdays across cohorts
@@ -3774,7 +3799,7 @@ p1 <- ggplot(df1, aes(fill=BIRTH_DAY, y=Freq, x=Cohort)) +
   geom_bar(position="stack", stat="identity")+
   theme(legend.position="none")+
   facet_wrap(.~cross_breed,scales="free")
-p1
+
 
 # distribution of Cohorts across bdays
 df1 <- setDT(df)[, .(Freq = .N), by = .(Cohort,BIRTH_DAY)]
@@ -3790,9 +3815,9 @@ p2 <- ggplot(df1, aes(fill=sort(BIRTH_DAY), y=Freq, x=Cohort)) +
         axis.text.x=element_text(angle=45, hjust=1),
         legend.title=element_text(),
         axis.title.y=element_text())
-p2
 
-pdf("out/distribution_breeds&bday_cohorts.pdf")
+
+pdf(paste0(out_dir,"distribution_breeds&bday_cohorts.pdf"))
 ggarrange(p1,p2,nrow=2,labels=c("A","B"))
 dev.off()
 
@@ -3808,150 +3833,150 @@ dev.off()
 
 # merge alpha&beta div (finalDF) to details and details metadata
 
-df <- merge(finalDF,details, by.x="isolation_source",by.y="pig")
+df <- merge(finalDF,details, by="isolation_source")
 head(df)
 class(df$collection_date)
 
 unique(df$collection_date)
 # rename collection dates to time intervals 
 # iM <- "2017-01-30"
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-01-30", 
   replacement = "iM", 
   fixed = TRUE)
 # i0 <- "2017-01-31" "2017-02-01" 
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-01-31", 
   replacement = "i1", 
   fixed = TRUE)
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-02-01", 
   replacement = "i1", 
   fixed = TRUE)
 
 # i1 <- "2017-02-03" 
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-02-03", 
   replacement = "i2.1", 
   fixed = TRUE)
 
 # i2 <- "2017-02-06" "2017-02-07" "2017-02-08"
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-02-06", 
   replacement = "i2.2", 
   fixed = TRUE)
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-02-07", 
   replacement = "i2.2", 
   fixed = TRUE)
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-02-08", 
   replacement = "i2.2", 
   fixed = TRUE)
 
 # i3 <- "2017-02-10" 
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-02-10", 
   replacement = "i3.1", 
   fixed = TRUE)
 
 # i4 <- "2017-02-14"
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-02-14", 
   replacement = "i3.2", 
   fixed = TRUE)
 
 # i4 <- "2017-02-16" "2017-02-17" 
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-02-16", 
   replacement = "i4.1", 
   fixed = TRUE)
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-02-17", 
   replacement = "i4.1", 
   fixed = TRUE)
 
 # i6 <- "2017-02-21" 
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-02-21", 
   replacement = "i4.2", 
   fixed = TRUE)
 
 # i7 <- "2017-02-24" 
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-02-24", 
   replacement = "i5", 
   fixed = TRUE)
 
 # i8 <- "2017-02-28" 
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-02-28", 
   replacement = "i5", 
   fixed = TRUE)
 
 # i9 <- "2017-03-03" 
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-03-03", 
   replacement = "i6", 
   fixed = TRUE)
 
 # i10 <- "2017-03-06" "2017-03-07" "2017-03-08" "2017-03-09" "2017-03-10"
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-03-06", 
   replacement = "i6", 
   fixed = TRUE)
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-03-07", 
   replacement = "i6", 
   fixed = TRUE)
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-03-08", 
   replacement = "i6", 
   fixed = TRUE)
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-03-09", 
   replacement = "i6", 
   fixed = TRUE)
-df[2] <- lapply(
-  df[2], 
+df[,2] <- lapply(
+  df[,2], 
   gsub, 
   pattern = "2017-03-10", 
   replacement = "i6",  
@@ -3976,6 +4001,7 @@ cols <- 1:7
 df1 <- setDT(df1)[, lapply(.SD, mean), by=c(names(df1)[8:15]), .SDcols=cols]
 NROW(df1)
 
+
 df_cross_breed <- df1 %>%
   group_by(collection_date) %>%
   do({
@@ -3991,7 +4017,6 @@ df_cross_breed <- df1 %>%
       grouping=paste0("cross_breed"),
       stringsAsFactors=FALSE)
   })
-df_cross_breed
 
 df_cross_breed_all <- df1 %>%
   do({
@@ -4008,7 +4033,6 @@ df_cross_breed_all <- df1 %>%
       grouping=paste0("cross_breed"),
       stringsAsFactors=FALSE)
   }) 
-df_cross_breed_all
 
 df_line <- df1 %>%
   group_by(collection_date) %>%
@@ -4025,7 +4049,6 @@ df_line <- df1 %>%
       grouping=paste0("line"),
       stringsAsFactors=FALSE)
   })
-df_line
 
 df_line_all <- df1 %>%
   do({
@@ -4042,7 +4065,6 @@ df_line_all <- df1 %>%
       grouping=paste0("line"),
       stringsAsFactors=FALSE)
   }) 
-df_line_all
 
 df_bday <- df1 %>%
   group_by(collection_date) %>%
@@ -4059,7 +4081,7 @@ df_bday <- df1 %>%
       grouping=paste0("birth day"),
       stringsAsFactors=FALSE)
   })
-df_bday
+
 
 # cross_breeds
 "Landrace x Cross bred (LW x D)"
@@ -4082,7 +4104,6 @@ df_bday_DurocxLandrace <- df1[df1$cross_breed=="Duroc x Landrace",] %>%
       grouping=paste0("birth day - Duroc x Landrace"),
       stringsAsFactors=FALSE)
   })
-df_bday_DurocxLandrace
 
 df_bday_DurocxLw <- df1[df1$cross_breed=="Duroc x Large white",] %>%
   group_by(collection_date) %>%
@@ -4099,7 +4120,6 @@ df_bday_DurocxLw <- df1[df1$cross_breed=="Duroc x Large white",] %>%
       grouping=paste0("birth day - Duroc x Large white"),
       stringsAsFactors=FALSE)
   })
-df_bday_DurocxLw
 
 df_bday_all <- df1 %>%
   do({
@@ -4116,7 +4136,6 @@ df_bday_all <- df1 %>%
       grouping=paste0("birth day"),
       stringsAsFactors=FALSE)
   }) 
-df_bday_all
 
 df_maternal_sow <- df1 %>%
   group_by(collection_date) %>%
@@ -4133,7 +4152,6 @@ df_maternal_sow <- df1 %>%
       grouping=paste0("maternal_sow"),
       stringsAsFactors=FALSE)
   }) 
-df_maternal_sow
 
 df_maternal_sow_all <- df1 %>%
   do({
@@ -4150,7 +4168,6 @@ df_maternal_sow_all <- df1 %>%
       grouping=paste0("maternal_sow"),
       stringsAsFactors=FALSE)
   }) 
-df_maternal_sow_all
 
 df_nurse_sow <- df1 %>%
   group_by(collection_date) %>%
@@ -4167,7 +4184,6 @@ df_nurse_sow <- df1 %>%
       grouping=paste0("nurse_sow"),
       stringsAsFactors=FALSE)
   })
-df_nurse_sow
 
 df_nurse_sow_all <- df1 %>%
   do({
@@ -4184,7 +4200,6 @@ df_nurse_sow_all <- df1 %>%
       grouping=paste0("nurse_sow"),
       stringsAsFactors=FALSE)
   })
-df_nurse_sow_all
 
 df_Cohort <- df1 %>%
   group_by(collection_date) %>%
@@ -4201,7 +4216,6 @@ df_Cohort <- df1 %>%
       grouping=paste0("cohorts"),
       stringsAsFactors=FALSE)
   })
-df_Cohort
 
 df_Cohort_all <- df1 %>%
   do({
@@ -4218,7 +4232,6 @@ df_Cohort_all <- df1 %>%
       grouping=paste0("cohorts"),
       stringsAsFactors=FALSE)
   })
-df_Cohort_all
 
 df_cross_breed_all <- as.data.frame(df_cross_breed_all)
 df_cross_breed <- as.data.frame(df_cross_breed)
@@ -4251,25 +4264,25 @@ writeData(wb, sheet = "all_pvalues", all_pvalues, rowNames = FALSE)
 padj_function <- function(x, na.rm = FALSE) (p.adjust(x,method="hommel"))
 
 df_cross_breed <- df_cross_breed %>%
-  mutate_at(c("unrooted_pd","bwpd","pc1","pc2","pc3","pc4","pc5"),padj_function) 
+  dplyr::mutate_at(c("unrooted_pd","bwpd","pc1","pc2","pc3","pc4","pc5"),padj_function) 
 
 df_line <- df_line %>%
-  mutate_at(c("unrooted_pd","bwpd","pc1","pc2","pc3","pc4","pc5"),padj_function) 
+  dplyr::mutate_at(c("unrooted_pd","bwpd","pc1","pc2","pc3","pc4","pc5"),padj_function) 
 
 df_bday <- df_bday %>%
-  mutate_at(c("unrooted_pd","bwpd","pc1","pc2","pc3","pc4","pc5"),padj_function) 
+  dplyr::mutate_at(c("unrooted_pd","bwpd","pc1","pc2","pc3","pc4","pc5"),padj_function) 
 
 df_bday_DurocxLandrace <- df_bday_DurocxLandrace %>%
-  mutate_at(c("unrooted_pd","bwpd","pc1","pc2","pc3","pc4","pc5"),padj_function) 
+  dplyr::mutate_at(c("unrooted_pd","bwpd","pc1","pc2","pc3","pc4","pc5"),padj_function) 
 
 df_bday_DurocxLw <- df_bday_DurocxLw %>%
-  mutate_at(c("unrooted_pd","bwpd","pc1","pc2","pc3","pc4","pc5"),padj_function) 
+  dplyr::mutate_at(c("unrooted_pd","bwpd","pc1","pc2","pc3","pc4","pc5"),padj_function) 
 
 df_nurse_sow <- df_nurse_sow %>%
-  mutate_at(c("unrooted_pd","bwpd","pc1","pc2","pc3","pc4","pc5"),padj_function) 
+  dplyr::mutate_at(c("unrooted_pd","bwpd","pc1","pc2","pc3","pc4","pc5"),padj_function) 
 
 df_maternal_sow <- df_maternal_sow %>%
-  mutate_at(c("unrooted_pd","bwpd","pc1","pc2","pc3","pc4","pc5"),padj_function) 
+  dplyr::mutate_at(c("unrooted_pd","bwpd","pc1","pc2","pc3","pc4","pc5"),padj_function) 
 
 
 all_padj_Hommel <- rbind(df_cross_breed,
@@ -5425,14 +5438,14 @@ alpha_plot <- ggplot(df, aes(x=collection_date,y=value)) +
   ylim(0,0.06)+
   labs(y="alpha diversity - p-value",
        x="")+
+  theme_bw()+
   geom_point(data=df2,aes(shape=parameter), color="red", size=2)+
   geom_point(aes(shape=parameter), color="black", size=2)+
-  theme(axis.text.x=element_text(size=7),
+  theme(axis.text.x=element_text(size=6),
         axis.title.x=element_text(),
         axis.title.y=element_text(),
         legend.position="right")+
   facet_wrap(~grouping)+
-  theme_bw()+
   geom_hline(yintercept=0.05, linetype="dashed", 
              color = "black", size=0.5)
 # beta 
@@ -5446,13 +5459,13 @@ beta_plot <- ggplot(df, aes(x=collection_date,y=value)) +
   ylim(0,0.06)+
   labs(y="beta diversity - p-value",
        x="")+
+  theme_bw()+
   geom_point(data=df2,aes(shape=parameter), color="red", size=2)+
   geom_point(aes(shape=parameter), color="black", size=2)+
-  theme(axis.text.x=element_text(size=7),
+  theme(axis.text.x=element_text(size=6),
         axis.title.x=element_text(),
         axis.title.y=element_text(),
         legend.position="right")+
-  theme_bw()+
   facet_wrap(~grouping)+
   geom_hline(yintercept=0.05, linetype="dashed", 
              color = "black", size=0.5)
@@ -5461,7 +5474,7 @@ start_factors_pvalues_plot <- ggarrange(
   alpha_plot, beta_plot,ncol=1,nrow=2, labels = c("A","B")
 )
 
-pdf("out/start_factors_pvalues.pdf")
+pdf(paste0(out_dir,"start_factors_pvalues.pdf"))
 start_factors_pvalues_plot
 dev.off()
 
@@ -5479,10 +5492,11 @@ saveWorkbook(wb, "/Users/12705859/Desktop/metapigs_base/phylosift/out/stats.xlsx
 
 # cite packages 
 
-sink("/Users/12705859/Desktop/metapigs_base/metapigs_base_packages_citations.bib")
+sink(paste0(out_dir,"metapigs_base_packages_citations.bib"))
 out <- sapply(names(sessionInfo()$otherPkgs), 
               function(x) print(citation(x), style = "Bibtex"))
+sink()
 
-closeAllConnections()
+
 
 

@@ -1,10 +1,18 @@
 
 # new weight measurements
 
-setwd("/Users/12705859/Desktop/metapigs_base")
-basedir = "/Users/12705859/Desktop/metapigs_base/phylosift/input_files/"
 
-weights_final <- read_csv("~/Desktop/metapigs_base/weights_final.csv", 
+source_data = "/Users/12705859/metapigs_base/source_data/" # git 
+middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
+out_dir = "/Users/12705859/Desktop/metapigs_base/" # local 
+
+###########################################################################################
+
+# tiffs (timelines)
+timeline_deltas_weight <- image_read(paste0(out_dir,"Slide13.tiff"))
+
+
+weights_final <- read_csv(paste0(source_data,"weights_final.csv"), 
                           col_types = cols(Pig = col_character(), 
                                            Room = col_character()))
 
@@ -12,7 +20,7 @@ weights_final <- pivot_wider(weights_final, id_cols=Pig,values_from=euth_wt,name
 # get rid of rows after row 60 as they miss the value (no weights available for March 10th)
 weights_final <- weights_final[1:60,]
 
-weights <- read_csv("~/Desktop/metapigs_base/weights.csv", 
+weights <- read_csv(paste0(source_data,"weights.csv"), 
                     col_types = cols(Pig = col_character(), 
                                      Room = col_character()))
 
@@ -30,7 +38,7 @@ all_weights <- all_weights %>%
                values_drop_na = TRUE)
 
 # load metadata 
-mdat <- read_excel(paste0(basedir,"Metagenome.environmental_20190308_2.xlsx"),
+mdat <- read_excel(paste0(source_data,"Metagenome.environmental_20190308_2.xlsx"),
                    col_types = c("text", "numeric", "numeric", "text", "text",
                                  "text", "date", "text","text", "text", "numeric",
                                  "numeric", "numeric", "numeric", "numeric", "numeric",
@@ -46,7 +54,7 @@ mdat$Cohort <- gsub("D-scour","D-Scour", mdat$Cohort)
 
 
 # load details (breed, line, bday, mothers)
-details <- read_excel(paste0(basedir, "pigTrial_GrowthWtsGE.hlsx.xlsx"),
+details <- read_excel(paste0(source_data, "pigTrial_GrowthWtsGE.hlsx.xlsx"),
                       "Piglet details")
 
 # format details
@@ -86,19 +94,19 @@ tidy(a)
 
 all_timepoints_cohorts_plot <- ggboxplot(df, x="date", y="value", fill = "Cohort", 
                                          ylab="weight (kg)")
-all_timepoints_cohorts_plot
+
 
 all_timepoints_breed_plot <- ggboxplot(df, x="date", y="value", fill = "breed", 
                                        ylab="weight (kg)")
-all_timepoints_breed_plot
+
 
 all_timepoints_bday_plot <- ggboxplot(df, x="date", y="value", fill = "BIRTH_DAY", 
                                       ylab="weight (kg)")
-all_timepoints_bday_plot
+
 
 all_timepoints_line_plot <- ggboxplot(df, x="date", y="value", fill = "LINE", 
                                       ylab="weight (kg)")
-all_timepoints_line_plot
+
 
 ######################################################################################################
 
@@ -107,17 +115,17 @@ all_timepoints_line_plot
 
 # filtering out piglets that had dysentery
 df1 <- df %>%
-  filter(!isolation_source=="29665"|isolation_source=="29865"|isolation_source=="29702")
+  dplyr::filter(!isolation_source=="29665"|isolation_source=="29865"|isolation_source=="29702")
 
 pigs_1 <- df1 %>%
-  filter(date == "31-Jan") %>%
+  dplyr::filter(date == "31-Jan") %>%
   dplyr::select(isolation_source,Cohort,value,breed,BIRTH_DAY)
 NROW(pigs_1)
 
 ###########################
 
 pigs_2 <- df1 %>%
-  filter(date == "7-Feb") %>%
+  dplyr::filter(date == "7-Feb") %>%
   dplyr::select(isolation_source,Cohort,value,breed,BIRTH_DAY)
 NROW(pigs_2)
 
@@ -125,7 +133,7 @@ NROW(pigs_2)
 
 
 pigs_3 <- df1 %>%
-  filter(date == "14-Feb") %>%
+  dplyr::filter(date == "14-Feb") %>%
   dplyr::select(isolation_source,Cohort,value,breed,BIRTH_DAY)
 NROW(pigs_3)
 
@@ -133,14 +141,14 @@ NROW(pigs_3)
 
 
 pigs_4 <- df1 %>%
-  filter(date == "21-Feb") %>%
+  dplyr::filter(date == "21-Feb") %>%
   dplyr::select(isolation_source,Cohort,value,breed,BIRTH_DAY)
 NROW(pigs_4)
 
 ###########################
 
 pigs_5 <- df1 %>%
-  filter(date == "28-Feb") %>%
+  dplyr::filter(date == "28-Feb") %>%
   dplyr::select(isolation_source,Cohort,value,breed,BIRTH_DAY)
 NROW(pigs_5)
 
@@ -193,9 +201,6 @@ plot_A_B <- ggboxplot(df, x="Cohort.x", y="diff", fill = "Cohort.x",
             aes(Cohort.x, Inf, label = n), vjust="inward", size = your_font_size)+
   stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
 
-plot_A_B
-
-
 ############
 
 df <- merge(pigs_2,pigs_3, by=c("isolation_source"))
@@ -230,9 +235,6 @@ plot_B_C <- ggboxplot(df, x="Cohort.x", y="diff", fill = "Cohort.x",
             aes(Cohort.x, Inf, label = n), vjust="inward", size = your_font_size)+
   stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
 
-plot_B_C
-
-
 ############
 
 df <- merge(pigs_3,pigs_4, by=c("isolation_source"))
@@ -256,7 +258,6 @@ aov.out$test <- "anova"
 aov.out$padj_method <- "TukeyHSD"
 cohort_stats <- rbind(cohort_stats,aov.out)
 
-
 cw_summary <- df %>% 
   group_by(Cohort.x) %>% 
   tally()
@@ -267,9 +268,6 @@ plot_C_D <- ggboxplot(df, x="Cohort.x", y="diff", fill = "Cohort.x",
   geom_text(data = cw_summary,
             aes(Cohort.x, Inf, label = n), vjust="inward", size = your_font_size)+
   stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-plot_C_D
-
 
 ############
 
@@ -305,8 +303,6 @@ plot_D_E <- ggboxplot(df, x="Cohort.x", y="diff", fill = "Cohort.x",
             aes(Cohort.x, Inf, label = n), vjust="inward", size = your_font_size)+
   stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
 
-plot_D_E
-
 ############
 
 df <- merge(pigs_2,pigs_4, by=c("isolation_source"))
@@ -340,8 +336,6 @@ plot_B_D <- ggboxplot(df, x="Cohort.x", y="diff", fill = "Cohort.x",
   geom_text(data = cw_summary,
             aes(Cohort.x, Inf, label = n), vjust="inward", size = your_font_size)+
   stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-plot_B_D
 
 ############
 
@@ -377,8 +371,6 @@ plot_C_E <- ggboxplot(df, x="Cohort.x", y="diff", fill = "Cohort.x",
             aes(Cohort.x, Inf, label = n), vjust="inward", size = your_font_size)+
   stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
 
-plot_C_E
-
 ############
 
 df <- merge(pigs_1,pigs_5, by=c("isolation_source"))
@@ -413,8 +405,6 @@ plot_A_E <- ggboxplot(df, x="Cohort.x", y="diff", fill = "Cohort.x",
             aes(Cohort.x, Inf, label = n), vjust="inward", size = your_font_size)+
   stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
 
-plot_A_E
-
 # this is for extracting the legend 
 for_legend_only <- ggboxplot(df, x = "Cohort.x", y = "diff", fill = "Cohort.x", 
                              legend = "right")+
@@ -448,7 +438,7 @@ all_plots <- plot_grid(empty_space,
                        bottom_row,
                        nrow=3)
 
-pdf("weight_deltas_by_cohort.pdf")
+pdf(paste0(out_dir,"weight_deltas_by_cohort.pdf"))
 ggdraw() +
   draw_image(timeline_deltas_weight, x = 0, y = 0.16) +
   draw_plot(all_plots)
@@ -1005,9 +995,61 @@ addWorksheet(wb, "weight_delta_bday")
 writeData(wb, sheet = "weight_delta_bday", weight_delta_bday, rowNames = FALSE)
 
 
+
+##################################################################################
+##################################################################################
+
+
 # save stats in existing workbook
-saveWorkbook(wb, "/Users/12705859/Desktop/metapigs_base/phylosift/out/stats.xlsx", overwrite=TRUE)
+saveWorkbook(wb, paste0(out_dir_git,"stats.xlsx"), overwrite=TRUE)
 
 
+##################################################################################
+##################################################################################
 
+# let's look at weight changing over time
+head(all_weights)
+
+# reorder
+all_weights$date <- factor(all_weights$date, 
+                           levels=c("31-Jan", 
+                                    "7-Feb", 
+                                    "14-Feb",
+                                    "21-Feb",
+                                    "28-Feb",
+                                    "6-Mar",
+                                    "7-Mar",
+                                    "8-Mar",
+                                    "9-Mar",
+                                    "10-Mar"))
+
+
+# weight percentage change 
+z <- all_weights %>%
+  filter(date=="31-Jan"|date=="7-Feb"|date=="14-Feb"|date=="21-Feb"|date=="28-Feb") %>%
+  group_by(isolation_source) %>% 
+  dplyr::arrange(date, .by_group = TRUE) %>%
+  dplyr::mutate(value = (value/lag(value) - 1) * 100)
+
+
+pdf(paste0(out_dir,"weight_percentage_change.pdf"))
+ggplot(all_weights, aes(x=date,y=log(value)))+
+  geom_point()+
+  geom_smooth(method = "loess", se=TRUE, aes(group=1))+
+  ggtitle("weight measurements across time")
+ggplot(z, aes(x=date,y=log(value)))+
+  geom_point()+
+  geom_smooth(method = "loess", se=TRUE, aes(group=1))+
+  ggtitle("weight percentage change")
+dev.off()
+
+sink(paste0(out_dir,"weight_percentage_change.txt"))
+z %>%
+  group_by(date) %>%
+  dplyr::summarise()
+tapply(z$value, z$date, summary)
+sink()
+
+##################################################################################
+##################################################################################
 

@@ -1,8 +1,14 @@
 
+
+# time trend with sortmerna data
+# type of sample (library size) normalization: median sequencing depth
+# figures not used for paper (metapigs_base)
+
 library(readr)
 library(dplyr)
 library(splitstackshape)
 library(phyloseq)
+library(readxl)
 
 
 setwd("~/Desktop/metapigs_base/sortmerna/")
@@ -87,7 +93,7 @@ dfs_joined$DNA_well <- dfs_joined$sample_3
 
 dfs_joined <- dfs_joined %>%
   dplyr::select(DNA_plate,DNA_well, S16S, count, accession, full_tax) %>%
-  mutate(sample=paste0(DNA_plate,"_",DNA_well))
+  dplyr::mutate(sample=paste0(DNA_plate,"_",DNA_well))
 NROW(dfs_joined)
 
 mdat <- mdat %>% mutate(sample=paste0(DNA_plate,"_",DNA_well))
@@ -287,7 +293,7 @@ z[9] <- lapply(
   replacement = "no-t-pos", 
   fixed = TRUE)
 
-colnames(z) <- c("DNA_plate","DN_well","pig","S16S","count","accession","full_tax","date","cohort","sample")
+colnames(z) <- c("DNA_plate","DNA_well","pig","S16S","count","accession","full_tax","date","cohort","sample")
 
 ######################################################################
 

@@ -21,17 +21,17 @@ library(broom)
 library(openxlsx)
 
 
+source_data = "/Users/12705859/metapigs_base/source_data/" # git 
+middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
+out_dir_git = "/Users/12705859/metapigs_base/out/" # git 
+out_dir = "/Users/12705859/Desktop/metapigs_base/sortmerna/" # local 
 
-setwd("/Users/12705859/Desktop/metapigs_base/sortmerna")
-basedir = "/Users/12705859/Desktop/metapigs_base/phylosift/input_files/"
+###########################################################################################
 
-
-
-######################################################################
 
 # upload sortmerna output (from the original output we retained columns:plate_well, 16Sgene ID, e-value)
 # and we filtered out all the 16S rRNA genes below e-30 threshold 
-so <- read_table2("sortmeall_evaluefiltered.tsv", col_names = FALSE)
+so <- read_table2(paste0(out_dir,"sortmeall_evaluefiltered.tsv"), col_names = FALSE)
 so$X1 <- gsub("_S","", so$X1)
 so <- so[,1:2]
 
@@ -40,7 +40,7 @@ so_work <- so
 ######################################################################
 
 # load metadata 
-mdat <- read_excel(paste0(basedir,"Metagenome.environmental_20190308_2.xlsx"),
+mdat <- read_excel(paste0(source_data,"Metagenome.environmental_20190308_2.xlsx"),
                    col_types = c("text", "numeric", "numeric", "text", "text",
                                  "text", "date", "text","text", "text", "numeric",
                                  "numeric", "numeric", "numeric", "numeric", "numeric",
@@ -64,7 +64,7 @@ mdat <- mdat %>%
 
 # upload 16S names 
 
-silva <- read_table2("silva_ids_acc_tax/silva-bac-16s-id90_accession_taxonomy.txt", 
+silva <- read_table2(paste0(source_data,"silva-bac-16s-id90_accession_taxonomy.txt"), 
                                                      col_names = FALSE)
 
 
@@ -73,14 +73,13 @@ silva <- read_table2("silva_ids_acc_tax/silva-bac-16s-id90_accession_taxonomy.tx
 
 # upload weight info 
 
-basedir = "~/Desktop/metapigs_dry/"
-weights <- read_csv(paste0(basedir,"weights.csv"), 
+weights <- read_csv(paste0(source_data,"weights.csv"), 
                     col_types = cols(Pig = col_character(), 
                                      Room = col_character()))
 colnames(weights) <- c("room","pen","pig","t0","t2","t4","t6","t8")
 
 
-weights_final <- read_csv(paste0(basedir,"weights_final.csv"), 
+weights_final <- read_csv(paste0(source_data,"weights_final.csv"), 
                           col_types = cols(Pig = col_character(), 
                                            Room = col_character()))
 colnames(weights_final) <- c("room","pen","pig","date","weight")
@@ -137,161 +136,161 @@ NROW(so_done_temp)
 NROW(mdat)
 
 df <- left_join(so_done_temp,mdat)
-NROW(df)
 
+NROW(df)
 head(df)
 
 
 # tM <- "2017-01-30"
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-01-30",
   replacement = "tM",
   fixed = TRUE)
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-01-31",
   replacement = "t0",
   fixed = TRUE)
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-02-01",
   replacement = "t0",
   fixed = TRUE)
 
 # t1 <- "2017-02-03"
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-02-03",
   replacement = "t1",
   fixed = TRUE)
 
 # t2 <- "2017-02-06" "2017-02-07" "2017-02-08"
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-02-06",
   replacement = "t2",
   fixed = TRUE)
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-02-07",
   replacement = "t2",
   fixed = TRUE)
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-02-08",
   replacement = "t2",
   fixed = TRUE)
 
 # t3 <- "2017-02-10"
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-02-10",
   replacement = "t3",
   fixed = TRUE)
 
 # t4 <- "2017-02-14"
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-02-14",
   replacement = "t4",
   fixed = TRUE)
 
 # t4 <- "2017-02-16" "2017-02-17"
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-02-16",
   replacement = "t5",
   fixed = TRUE)
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-02-17",
   replacement = "t5",
   fixed = TRUE)
 
 # t6 <- "2017-02-21"
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-02-21",
   replacement = "t6",
   fixed = TRUE)
 
 # t7 <- "2017-02-24"
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-02-24",
   replacement = "t7",
   fixed = TRUE)
 
 # t8 <- "2017-02-28"
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-02-28",
   replacement = "t8",
   fixed = TRUE)
 
 # t9 <- "2017-03-03"
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-03-03",
   replacement = "t9",
   fixed = TRUE)
 
 # t10 <- "2017-03-06" "2017-03-07" "2017-03-08" "2017-03-09" "2017-03-10"
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-03-06",
   replacement = "t10",
   fixed = TRUE)
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-03-07",
   replacement = "t10",
   fixed = TRUE)
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-03-08",
   replacement = "t10",
   fixed = TRUE)
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-03-09",
   replacement = "t10",
   fixed = TRUE)
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-03-10",
   replacement = "t10",
   fixed = TRUE)
 
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2017-08-14",
   replacement = "no-t-pos",
   fixed = TRUE)
-df[6] <- lapply(
-  df[6],
+df[,6] <- lapply(
+  df[,6],
   gsub,
   pattern = "2018-01-24",
   replacement = "no-t-pos",
@@ -299,7 +298,7 @@ df[6] <- lapply(
 
 # no-t-neg for negative control
 df <- df %>%
-  mutate(collection_date = if_else(is.na(collection_date), "no-t-neg", collection_date))
+  dplyr::mutate(collection_date = if_else(is.na(collection_date), "no-t-neg", collection_date))
 
 unique(df$collection_date)
 
@@ -326,7 +325,6 @@ silva_edit_rightmost <- as.matrix(silva_edit)[cbind(1:nrow(silva_edit),
                                           max.col(!is.na(silva_edit), "last"))] 
 silva_new <- cbind(silva_edit,silva_edit_rightmost)
 #
-#
 
 silva_new <- silva_new %>% dplyr::select(rRNA16S,Species)
 
@@ -352,10 +350,6 @@ df2 <- df1 %>%
   dplyr::group_by(sample,rRNA16S_full) %>%
   dplyr::summarise(last_count = sum(norm_count))
 head(df2)
-
-
-
-
 
 # compute correlation of weight with 16S species abundance at specific time points 
 
@@ -447,12 +441,12 @@ writeData(wb, sheet = "weight_taxa", all_corr, rowNames = FALSE)
 
 
 # create lists of species that at each time point are correlating with weight
-mylist_t0 <- all_corr %>% filter(date=="t0") %>% dplyr::select(species)
-mylist_t2 <- all_corr %>% filter(date=="t2") %>% dplyr::select(species)
-mylist_t4 <- all_corr %>% filter(date=="t4") %>% dplyr::select(species)
-mylist_t6 <- all_corr %>% filter(date=="t6") %>% dplyr::select(species)
-mylist_t8 <- all_corr %>% filter(date=="t8") %>% dplyr::select(species)
-mylist_t10 <- all_corr %>% filter(date=="t10") %>% dplyr::select(species)
+mylist_t0 <- all_corr %>% dplyr::filter(date=="t0") %>% dplyr::select(species)
+mylist_t2 <- all_corr %>% dplyr::filter(date=="t2") %>% dplyr::select(species)
+mylist_t4 <- all_corr %>% dplyr::filter(date=="t4") %>% dplyr::select(species)
+mylist_t6 <- all_corr %>% dplyr::filter(date=="t6") %>% dplyr::select(species)
+mylist_t8 <- all_corr %>% dplyr::filter(date=="t8") %>% dplyr::select(species)
+mylist_t10 <- all_corr %>% dplyr::filter(date=="t10") %>% dplyr::select(species)
 
 
 
@@ -461,7 +455,7 @@ make_plot <- function(df,species_list,date) {
   
   timepoint <- as.character(date)
   # now plot as whisker plots only species that appeared to be correlatd with weight group
-  toplot <-inner_join(df,species_list) %>% filter(date==timepoint)
+  toplot <-inner_join(df,species_list) %>% dplyr::filter(date==timepoint)
   # add weight groups to dataframe 
   toplot$weight_group <- cut(toplot$weight, 4)   # bins : equal size groups by weight
   print(ggplot(toplot,aes(x=weight_group,y=log(last_count),fill=weight_group))+
@@ -509,7 +503,7 @@ plot_t8 <- make_plot(z,mylist_t8,"t8")
 plot_t10 <- make_plot(z,mylist_t10,"t10")
 
 
-pdf("sortmerna_weight.pdf")
+pdf(paste0(out_dir,"sortmerna_weight.pdf"))
 plot_t0
 plot_t2
 plot_t4
@@ -525,8 +519,8 @@ dev.off()
 
 # filter out pos and neg controls (they add unwanted variance and we want to look at just piglet samples)
 df2_5 <- df2 %>%
-  filter(., !grepl("no-t",sample))  %>%
-  filter(., !grepl("tM",sample)) 
+  dplyr::filter(., !grepl("no-t",sample))  %>%
+  dplyr::filter(., !grepl("tM",sample)) 
 
 df2_5 <- as.data.frame(df2_5)
 
@@ -602,9 +596,23 @@ together <- fviz_pca_biplot(mtcars.pca2,
   scale_color_manual(name="dates",
                      values=rainbow(n = 11))+
   ggtitle("")+
-  theme(legend.position="none",
+  theme(legend.position="right",
         panel.border = element_rect(colour = "black", fill=NA, size=1))
 
-pdf("sortmerna_20.pdf")
+pdf(paste0(out_dir,"sortmerna_20.pdf"))
 together
 dev.off()
+
+
+
+# this is how many taxa correlated with weight 
+
+head(all_corr)
+
+z <- all_corr %>% 
+  filter(p.value<=0.05) 
+
+n_occur <- data.frame(table(z$species))
+n_occur[n_occur$Freq > 1,] # tells you which ids occurred more than once.
+these <- z[z$species %in% n_occur$Var1[n_occur$Freq > 1],]
+these %>% arrange(species)

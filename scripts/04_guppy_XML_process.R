@@ -32,7 +32,6 @@
 
 # 0 # set working directory & load libs
 
-setwd("/Users/12705859/Desktop/metapigs_base/phylosift/guppy")
 
 library(readr)
 library(dplyr)
@@ -41,9 +40,13 @@ library(splitstackshape)
 library(grid)
 library(data.table)
 
-###########################################################################################
 
-my.basedir <- "~/Desktop/metapigs_base/phylosift/guppy/guppy_output"
+source_data = "/Users/12705859/metapigs_base/source_data/" # git 
+middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
+guppyout_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/guppy_output" # local 
+out_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/" # local 
+
+###########################################################################################
 
 # construct an empty dataframe to build on 
 complete.df <- data.frame(
@@ -59,14 +62,14 @@ complete.df <- data.frame(
   file = character()
   )
 
-my.files = list.files(my.basedir,pattern=".txt.xml.txt")
+my.files = list.files(guppyout_dir,pattern=".txt.xml.txt")
 my.files <- my.files[-17] # removing problematic file (won't parse - it's Ja31 anyway)
 my.files <- my.files[-26] # removing problematic file (won't parse - it's Ja31 anyway)
 
 for (textfile in my.files) {
   
   # read in file 
-  my.df <- read_csv(file.path(my.basedir,textfile), col_names = FALSE)
+  my.df <- read_csv(file.path(guppyout_dir,textfile), col_names = FALSE)
   
   # extract file name 
   myfilename <- basename(textfile)
@@ -148,7 +151,7 @@ for (textfile in my.files) {
 
 complete <- complete.df
 
-unique(jplace_df$file)
+#unique(jplace_df$file)
 unique(complete$file)
 
 # clean file name & parse file name 
@@ -196,8 +199,8 @@ simplified <- complete %>%
   distinct()
 
 # save both complete and simplified dataframes 
-fwrite(x = complete, file = "guppy_xml_complete.df")
-fwrite(x = simplified, file = "guppy_xml_simplified.df")
+fwrite(x = complete, file = paste0(middle_dir,"guppy_xml_complete.df"))
+fwrite(x = simplified, file = paste0(middle_dir,"guppy_xml_simplified.df"))
 
 
 

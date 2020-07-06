@@ -20,8 +20,9 @@ library(gridExtra)
 library(pheatmap)
 library(cowplot)
 
-setwd("/Users/12705859/Desktop/metapigs_base/pos.controls_reads_metaphlan/")
-
+source_data = "/Users/12705859/metapigs_base/source_data/" # git 
+middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
+out_dir = "/Users/12705859/Desktop/metapigs_base/pos.controls_reads_metaphlan/" # local 
 
 My_Theme = theme(
   axis.text.x = element_text(size=11),
@@ -30,7 +31,7 @@ My_Theme = theme(
   axis.title.y = element_text(size = 11)) 
 
 
-mock <- read.csv("mock_communities_merged_abundance_table_species.txt",
+mock <- read.csv(paste0(middle_dir,"mock_communities_merged_abundance_table_species.txt"),
                                                               "\t", header = TRUE, stringsAsFactors=FALSE)
 
 # filter out rowsums less than 
@@ -68,7 +69,6 @@ mock_community_plot <- ggplot(data=df2, aes(x=sample, y=value, fill=taxa_assigne
   ylab("read abundance (%)") +
   My_Theme+
   labs(fill = "assigned taxa")
-mock_community_plot
 
 # eliminate failed sample 
 df <- df[,-8] 
@@ -86,7 +86,7 @@ capture.output(
   paste0("mock community mean read abundance of 7/8 replicates"),
   df,
   append=FALSE,
-  file="pos_controls_numbers.txt"
+  file=paste0(out_dir,"pos_controls_numbers.txt")
 )
 
 
@@ -133,18 +133,18 @@ df
 mock_data <- data.frame(taxa, CFU, read_count, genome_size, gram)
 
 mock_data <- mock_data %>%
-  mutate(norm_CFU=CFU*genome_size)
+  dplyr::mutate(norm_CFU=CFU*genome_size)
 
 mock_data <- mock_data %>%
-  mutate(ratio_CFU=norm_CFU/(sum(norm_CFU)))
+  dplyr::mutate(ratio_CFU=norm_CFU/(sum(norm_CFU)))
 
 mock_data <- mock_data %>%
-  mutate(ratio_read_count=read_count/(sum(read_count)))
+  dplyr::mutate(ratio_read_count=read_count/(sum(read_count)))
 
 sum(mock_data$ratio_read_count)
 
 mock_data2 <- mock_data %>%
-  select(taxa, ratio_CFU, ratio_read_count) 
+  dplyr::select(taxa, ratio_CFU, ratio_read_count) 
 
 mock_data2 <- mock_data2 %>%
   pivot_longer(
@@ -179,9 +179,8 @@ q <- ggplot(data=mock_data2, aes(x=count, y=rank, fill=taxa_assigned)) +
         axis.title.x=element_blank(),
         axis.text.x=element_text(size=14),
         axis.title.y=element_text(size=14))
-q
 
-ggsave("mock_exp_vs_obs.pdf",q, 
+ggsave(paste0(out_dir,"mock_exp_vs_obs.pdf"),q, 
        width=3, height=3, units="in", scale=3)
 
 capture.output(
@@ -191,17 +190,17 @@ capture.output(
         Observed relative abundance is derived by reads mapping with MetaPhlAn2 normalized by genome size. 
         A higher ratio of gram negative observed than expected compared to gram positives "),
   append=TRUE,
-  file="pos_controls_numbers.txt"
+  file=paste0(out_dir,"pos_controls_numbers.txt")
 )
 
 #####################################################
 
 
-protexin <- read.csv("protexin_merged_abundance_table_species.txt",
+protexin <- read.csv(paste0(middle_dir,"protexin_merged_abundance_table_species.txt"),
                  "\t", header = TRUE, stringsAsFactors=FALSE)
 
 # filter out rowsums less than 
-protexin <- protexin %>% filter(rowSums(protexin[,-1]) > 0.1)
+protexin <- protexin %>% dplyr::filter(rowSums(protexin[,-1]) > 0.1)
 
 df <- protexin
 df$ID
@@ -233,7 +232,6 @@ Protexin_plot <- ggplot(data=df2, aes(x=sample, y=value, fill=taxa_assigned)) +
   ylab("read abundance (%)") +
   My_Theme+
   labs(fill = "assigned taxa")
-Protexin_plot
 
 summary(df)
 
@@ -252,16 +250,16 @@ capture.output(
   paste0("D-scour mean read abundance"),
   df,
   append=TRUE,
-  file="pos_controls_numbers.txt"
+  file=paste0(out_dir,"pos_controls_numbers.txt")
 )
 
 #####################################################
 
-coliguard <- read.csv("coli_guard_merged_abundance_table_species.txt",
+coliguard <- read.csv(paste0(middle_dir,"coli_guard_merged_abundance_table_species.txt"),
                      "\t", header = TRUE, stringsAsFactors=FALSE)
 
 # filter out rowsums less than 
-coliguard <- coliguard %>% filter(rowSums(coliguard[,-1]) > 0.05)
+coliguard <- coliguard %>% dplyr::filter(rowSums(coliguard[,-1]) > 0.05)
 
 df <- coliguard
 
@@ -285,9 +283,9 @@ df2 <- df %>%
     values_drop_na = TRUE
   )
 
-# heatmap 
-ggplot(data = df2, aes(x=sample, y=taxa_assigned, fill=value)) + 
-  geom_tile()
+# # heatmap 
+# ggplot(data = df2, aes(x=sample, y=taxa_assigned, fill=value)) + 
+#   geom_tile()
 
 # nice barplot 
 coliguard_plot <- ggplot(data=df2, aes(x=sample, y=value, fill=taxa_assigned)) +
@@ -296,7 +294,6 @@ coliguard_plot <- ggplot(data=df2, aes(x=sample, y=value, fill=taxa_assigned)) +
   ggtitle("ColiGuard") +
   ylab("read abundance (%)") +
   labs(fill = "assigned taxa")
-coliguard_plot
 
 summary(df)
 
@@ -314,13 +311,13 @@ capture.output(
   paste0("ColiGuard mean read abundance"),
   df,
   append=TRUE,
-  file="pos_controls_numbers.txt"
+  file=paste0(out_dir,"pos_controls_numbers.txt")
 )
 
 
 #####################################################
 
-pdf("pos_controls_plots.pdf", onefile = TRUE)
+pdf(paste0(out_dir,"pos_controls_plots.pdf"), onefile = TRUE)
 mock_community_plot
 Protexin_plot
 coliguard_plot
@@ -330,7 +327,7 @@ all <- plot_grid(mock_community_plot, Protexin_plot, coliguard_plot,
           nrow=3, 
           labels=c("A", "B", "C"))
 
-ggsave("pos_controls_plots_all.pdf",all, 
+ggsave(paste0(out_dir,"pos_controls_plots_all.pdf"),all, 
        width=3, height=3, units="in", scale=3)
 
 
@@ -344,13 +341,13 @@ a. In-house made mock community;
 b. commercially available livestock probiotic D-scour; 
          c. DPI-developed probiotic ColiGuard"),
   append=TRUE,
-  file="pos_controls_numbers.txt"
+  file=paste0(out_dir,"pos_controls_numbers.txt")
 )
 
 
 #####################################################
 
-pigs <- read.csv("merged_abundance_table_species.txt",
+pigs <- read.csv(paste0(middle_dir,"merged_abundance_table_species.txt"),
                       "\t", header = TRUE, stringsAsFactors=FALSE)
 
 # filter out rowsums less than 1 
@@ -360,7 +357,7 @@ colSums(pigs[,-1])
 pigs$plate_3_F10_S270_R1_001_profile <- NULL
 pigs$plate_6_F3_S502_R1_001_profile <- NULL
 
-pigs <- pigs %>% filter(rowSums(pigs[,-1]) > 1)
+pigs <- pigs %>% dplyr::filter(rowSums(pigs[,-1]) > 1)
 
 df <- pigs
 
@@ -381,9 +378,9 @@ so <- as.matrix(df[,2:4])
 names(so) <- df$taxa_assigned
 so
 
-pheatmap(so, display_numbers = T,
-         cluster_rows = F, cluster_cols = F, fontsize_number = 15,
-         labels_row=as.character(df2$taxa_assigned))
+# pheatmap(so, display_numbers = T,
+#          cluster_rows = F, cluster_cols = F, fontsize_number = 15,
+#          labels_row=as.character(df2$taxa_assigned))
 
 df2 <- df %>%
   pivot_longer(
@@ -400,10 +397,10 @@ pigs_plot <- ggplot(data=df2, aes(x=sample, y=value, fill=taxa_assigned)) +
   ggtitle("pigs") +
   ylab("read abundance (%)") +
   labs(fill = "taxa_assigned")
-pigs_plot
+
 # a possibility would be to get the genus level by using sep="_"
 # and barplot 
-pdf("three_pigs_plots.pdf", onefile = TRUE)
+pdf(paste0(out_dir,"three_pigs_plots.pdf"), onefile = TRUE)
 pigs_plot
 dev.off()
 
@@ -411,12 +408,12 @@ dev.off()
 #####################################
 
 # contamination of mock community  
-mock <- read.csv("mock_communities_merged_abundance_table_species.txt",
+mock <- read.csv(paste0(middle_dir,"mock_communities_merged_abundance_table_species.txt"),
                  "\t", header = TRUE, stringsAsFactors=FALSE)
 
 
 # removing the species of the mock comm (what's left now is contamination)
-mock <- mock %>% filter(rowSums(mock[,-1]) < 0.1)
+mock <- mock %>% dplyr::filter(rowSums(mock[,-1]) < 0.1)
 
 df <- mock
 
@@ -447,14 +444,14 @@ contam_mock <- pheatmap(so, display_numbers = T,
          labels_row=as.character(df$taxa_assigned))
 
 # heat map with numbers 
-pdf("contam_mock.pdf")
+pdf(paste0(out_dir,"contam_mock.pdf"))
 contam_mock
 dev.off()
 
 #####################################
 
 # contamination of protexin? 
-protexin <- read.csv("protexin_merged_abundance_table_species.txt",
+protexin <- read.csv(paste0(middle_dir,"protexin_merged_abundance_table_species.txt"),
                      "\t", header = TRUE, stringsAsFactors=FALSE)
 
 df <- protexin
@@ -496,7 +493,7 @@ contam_dscour <- pheatmap(so, display_numbers = T,
                           cluster_rows = F, cluster_cols = F, fontsize_number = 11,
                           labels_row=as.character(df$taxa_assigned))
 # heatmap with numbers  
-pdf("contam_dscour.pdf")
+pdf(paste0(out_dir,"contam_dscour.pdf"))
 contam_dscour
 dev.off()
 
@@ -504,7 +501,7 @@ dev.off()
 
 # ColiGuard REAL contamination check: 
 
-coliguard <- read.csv("coli_guard_merged_abundance_table_species.txt",
+coliguard <- read.csv(paste0(middle_dir,"coli_guard_merged_abundance_table_species.txt"),
                       "\t", header = TRUE, stringsAsFactors=FALSE)
 
 df <- coliguard
@@ -545,7 +542,7 @@ contam_colig_plot <- pheatmap(so, display_numbers = T,
          labels_row=as.character(df$taxa_assigned))
 
 
-pdf("contam_coliguard.pdf")
+pdf(paste0(out_dir,"contam_coliguard.pdf"))
 contam_colig_plot
 dev.off()
 
@@ -565,5 +562,5 @@ Contaminants were present majorly in three technical replicates (R3, R7, R8) and
          of which 16 and 4 were identified at the species and at genus level, respectively. 
          Contaminants were present majorly in two technical replicates (R5, R7)."),
   append=TRUE,
-  file="pos_controls_numbers.txt"
+  file=paste0(out_dir,"pos_controls_numbers.txt")
   )

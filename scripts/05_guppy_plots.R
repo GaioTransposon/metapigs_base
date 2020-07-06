@@ -37,8 +37,6 @@
 ######################################################################################################
 
 
-setwd("/Users/12705859/Desktop/metapigs_base/phylosift/guppy")
-
 
 library(vcd)
 library(summarytools)
@@ -58,17 +56,24 @@ library(pheatmap)
 library(taxize)
 library(ggplot2)
 library(plotrix)
+
+
+source_data = "/Users/12705859/metapigs_base/source_data/" # git 
+middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
+out_dir_git = "/Users/12705859/metapigs_base/out/" # git 
+guppyout_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/guppy_output" # local 
+out_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/" # local 
+
+###########################################################################################
+
 # manual settings 
-
 removebatcheffect_allowed <- "yes"     # if yes, it removes the batch effect only where detected
-
 
 ######################################################################################################
 
 
 # load metadata 
-basedir = "/Users/12705859/Desktop/metapigs_base/phylosift/input_files/"
-mdat <- read_excel(paste0(basedir,"Metagenome.environmental_20190308_2.xlsx"),
+mdat <- read_excel(paste0(source_data,"Metagenome.environmental_20190308_2.xlsx"),
                    col_types = c("text", "numeric", "numeric", "text", "text",
                                  "text", "date", "text","text", "text", "numeric",
                                  "numeric", "numeric", "numeric", "numeric", "numeric",
@@ -86,7 +91,7 @@ mdat$Cohort <- gsub("D-scour","D-Scour", mdat$Cohort)
 
 
 # load breed and bday data 
-details <- read_excel(paste0(basedir, "pigTrial_GrowthWtsGE.hlsx.xlsx"),
+details <- read_excel(paste0(source_data, "pigTrial_GrowthWtsGE.hlsx.xlsx"),
                       "Piglet details")
 
 
@@ -101,13 +106,16 @@ details$isolation_source <- gsub("T","",details$isolation_source)
 details <- details %>%
   dplyr::select(isolation_source,BIRTH_DAY,breed,stig,nurse)
 
+###########################################################################################
+
+# load XML data
+simplified <- read_csv(paste0(middle_dir,"guppy_xml_simplified.df"))
+simplified <- as.data.frame(simplified)
 
 ###########################################################################################
 
 
-my.basedir <-"~/Desktop/metapigs_base/phylosift/guppy/guppy_output"
-
-jplace_files = list.files(my.basedir,pattern=".proj")
+jplace_files = list.files(guppyout_dir,pattern=".proj")
 
 # construct an empty dataframe to build on 
 jplace_df <- data.frame(
@@ -125,7 +133,7 @@ jplace_df <- data.frame(
 for (jplace_file in jplace_files) {
   
   # read in file 
-  pcadat <- read_csv(file.path(my.basedir,jplace_file), col_names = FALSE)
+  pcadat <- read_csv(file.path(guppyout_dir,jplace_file), col_names = FALSE)
 
   pcadat <- cSplit(pcadat, "X1","_")
   
@@ -636,7 +644,7 @@ PC1PC5_pos_controls <- DF_positive_controls %>%
   theme(plot.margin=unit(c(0.2,0.2,2.9,2.9) ,"cm"))
 
 
-pdf("guppy_pos_controls.pdf")
+pdf(paste0(out_dir,"guppy_pos_controls.pdf"))
 ### plot PC3PC4 
 PC1PC2_pos_controls
 # PC1
@@ -708,21 +716,19 @@ xmldata <- simplified %>%
   filter(guppied_date=="all") %>%
   group_split(component)
 
-# legend 
-color_legend <- function(x, y, xlen, ylen, main, tiks, colors){
-  text(x, y+.55, main, adj=c(0,0), cex=1.8)
-  color.legend(x, y, x+xlen, y+ylen/4, legend=tiks, rect.col=colors, cex=0.7)
-}
-rbow <- rainbow(40, end=0.7, alpha=0.7)
-legvec <- c(0,10,20,30,40)
 
+rbow <- rainbow(41,end=1, alpha=0.7)
+legvec <- c(0,10,20,30,40)
+# legend
 color_legend <- function(x, y, xlen, ylen, main, tiks, colors){
   text(x, y+.6, main, adj=c(0,0), cex=1.1)
   color.legend(x, y, x+xlen, y+ylen/4, legend=tiks, rect.col=colors, cex=0.7)
 }
 
-pdf("time_beta.pdf")
-# PC1PC2
+DF_piggies$collection_date = strptime(DF_piggies$collection_date, format = "%Y-%m-%d") # convert to datetime objects
+DF_piggies$BIRTH_DAY = strptime(DF_piggies$BIRTH_DAY, format = "%Y-%m-%d") # convert to datetime objects
+
+pdf(paste0(out_dir,"time_beta.pdf"))
 par(oma=c(6,6,6,6)) # all sides have 4 lines of space
 par(mar=c(4,4,0.01,0.01))
 plot(DF_piggies$PC1,DF_piggies$PC2,
@@ -730,24 +736,12 @@ plot(DF_piggies$PC1,DF_piggies$PC2,
      ylab=paste0("PC2  (",get_var(find_PC2(xmldata)),"%)"),
      type="p",cex=0.8,cex.axis=0.6,cex.lab=0.6,
      col=rbow[as.Date(DF_piggies$collection_date)-as.Date("2017-01-29 00:00:00")])
-color_legend(min(DF_piggies$PC1), max(DF_piggies$PC2)-0.7,
-             3.5, 0.9, "trial days:", legvec, rbow)
-mtext(paste0(PC_down(find_PC1(xmldata))), side=1, line=2, adj=0.15, cex=0.6, col="black", outer=TRUE)  # PC1 low
-mtext(paste0(PC_up(find_PC1(xmldata))), side=1, line=2, adj=1.0, cex=0.6, col="black", outer=TRUE)  # PC1 high
-mtext(paste0(PC_down(find_PC2(xmldata))), side=2, line=0, adj=0.15, cex=0.6, col="black", outer=TRUE)   # PC2 low 
-mtext(paste0(PC_up(find_PC2(xmldata))), side=2, line=0, adj=1.0, cex=0.6, col="black", outer=TRUE)   # PC2 high
-dev.off()
-# plot(DF_piggies$PC3,DF_piggies$PC4,
-#      xlab=paste0("PC3  (",get_var(find_PC3(xmldata)),"%)"),
-#      ylab=paste0("PC4  (",get_var(find_PC4(xmldata)),"%)"),
-#      type="p",cex=0.8,cex.axis=0.6,cex.lab=0.6,
-#      col=rbow[as.Date(DF_piggies$collection_date)-as.Date("2017-01-29 00:00:00")])
-# color_legend(min(DF_piggies$PC3), max(DF_piggies$PC4)-0.25, 
-#              1.8, 0.5, "trial days:", legvec, rbow)
-# mtext(paste0(PC_down(find_PC3(xmldata))), side=1, line=2, adj=0.0, cex=0.5, col="blue", outer=TRUE)
-# mtext(paste0(PC_up(find_PC3(xmldata))), side=1, line=2, adj=1.0, cex=0.5, col="purple", outer=TRUE)  
-# mtext(paste0(PC_down(find_PC4(xmldata))), side=2, line=1, adj=0.0, cex=0.5, col="red", outer=TRUE)    
-# mtext(paste0(PC_up(find_PC4(xmldata))), side=2, line=1, adj=1.0, cex=0.5, col="orange", outer=TRUE)   
+color_legend(min(DF_piggies$PC1), max(DF_piggies$PC2)-0.25,
+             1.8, 0.5, "trial days:", legvec, rbow)
+mtext(paste0(PC_down(find_PC1(xmldata))), side=1, line=2, adj=0.0, cex=0.5, col="black", outer=TRUE)
+mtext(paste0(PC_up(find_PC1(xmldata))), side=1, line=2, adj=1.0, cex=0.5, col="black", outer=TRUE)
+mtext(paste0(PC_down(find_PC2(xmldata))), side=2, line=1, adj=0.0, cex=0.5, col="black", outer=TRUE)
+mtext(paste0(PC_up(find_PC2(xmldata))), side=2, line=1, adj=1.0, cex=0.5, col="black", outer=TRUE)
 # PC1PC5
 # par(oma=c(6,6,6,6)) # all sides have 4 lines of space
 # par(mar=c(4,4,0.01,0.01))
@@ -756,14 +750,17 @@ dev.off()
 #      ylab=paste0("PC5  (",get_var(find_PC5(xmldata)),"%)"),
 #      type="p",cex=0.8,cex.axis=0.6,cex.lab=0.6,
 #      col=rbow[as.Date(DF_piggies$collection_date)-as.Date("2017-01-29 00:00:00")])
-# color_legend(min(DF_piggies$PC1), max(DF_piggies$PC5)-0.15, 
+# color_legend(min(DF_piggies$PC1), max(DF_piggies$PC5)-0.15,
 #              2.7, 0.35, "trial days:", legvec, rbow)
-# mtext(paste0(PC_down(find_PC1(xmldata))), side=1, line=2, adj=0.0, cex=0.5, col="blue", outer=TRUE)  
-# mtext(paste0(PC_up(find_PC1(xmldata))), side=1, line=2, adj=1.0, cex=0.5, col="purple", outer=TRUE)  
-# mtext(paste0(PC_down(find_PC5(xmldata))), side=2, line=1, adj=0.0, cex=0.5, col="red", outer=TRUE)    
-# mtext(paste0(PC_up(find_PC5(xmldata))), side=2, line=1, adj=1.0, cex=0.5, col="orange", outer=TRUE)  
+# mtext(paste0(PC_down(find_PC1(xmldata))), side=1, line=2, adj=0.0, cex=0.5, col="blue", outer=TRUE)
+# mtext(paste0(PC_up(find_PC1(xmldata))), side=1, line=2, adj=1.0, cex=0.5, col="purple", outer=TRUE)
+# mtext(paste0(PC_down(find_PC5(xmldata))), side=2, line=1, adj=0.0, cex=0.5, col="red", outer=TRUE)
+# mtext(paste0(PC_up(find_PC5(xmldata))), side=2, line=1, adj=1.0, cex=0.5, col="orange", outer=TRUE)
+dev.off()
 
-pdf("time_beta_cohorts_PC1PC2.pdf")
+
+
+pdf(paste0(out_dir,"time_beta_cohorts_PC1PC2.pdf"))
 #################### Cohorts separately
 par(oma=c(0,0,0,0)) # resetting the outer margins to default for the next plots
 # control groups (Control, D-Scour, ColiGuard)
@@ -828,11 +825,6 @@ plot(DF_piggies$PC1[DF_piggies$Cohort=="Neomycin+ColiGuard"],
 dev.off()
 
 
-
-
-
-
-
 # TIME BETA DENSITIES 
 
 mytheme <- theme(legend.position="none",
@@ -848,7 +840,7 @@ p1 <- DF_piggies %>%
            collection_date=="2017-02-21"|
            collection_date=="2017-02-28"|
            collection_date=="2017-03-03") %>%
-  ggplot(., aes(x = PC1, fill = collection_date)) + 
+  ggplot(., aes(x = PC1, fill = as.character(collection_date))) + 
   geom_density(alpha = 0.5) +
   xlim(min(DF_piggies$PC1),max(DF_piggies$PC1))  +
   theme_bw()+
@@ -864,7 +856,7 @@ p2 <- DF_piggies %>%
            collection_date=="2017-02-21"|
            collection_date=="2017-02-28"|
            collection_date=="2017-03-03") %>%
-  ggplot(., aes(x = PC2, fill = collection_date)) + 
+  ggplot(., aes(x = PC2, fill = as.character(collection_date))) + 
   geom_density(alpha = 0.5) +
   xlim(min(DF_piggies$PC2),max(DF_piggies$PC2))  +
   theme_bw()+
@@ -880,7 +872,7 @@ p3 <- DF_piggies %>%
            collection_date=="2017-02-21"|
            collection_date=="2017-02-28"|
            collection_date=="2017-03-03") %>%
-  ggplot(., aes(x = PC3, fill = collection_date)) + 
+  ggplot(., aes(x = PC3, fill = as.character(collection_date))) + 
   geom_density(alpha = 0.5) +
   xlim(min(DF_piggies$PC3),max(DF_piggies$PC3))  +
   theme_bw()+
@@ -896,7 +888,7 @@ p4 <- DF_piggies %>%
            collection_date=="2017-02-21"|
            collection_date=="2017-02-28"|
            collection_date=="2017-03-03") %>%
-  ggplot(., aes(x = PC4, fill = collection_date)) + 
+  ggplot(., aes(x = PC4, fill = as.character(collection_date))) + 
   geom_density(alpha = 0.5) +
   xlim(min(DF_piggies$PC4),max(DF_piggies$PC4))  +
   theme_bw()+
@@ -912,7 +904,7 @@ p5 <- DF_piggies %>%
            collection_date=="2017-02-21"|
            collection_date=="2017-02-28"|
            collection_date=="2017-03-03") %>%
-  ggplot(., aes(x = PC5, fill = collection_date)) + 
+  ggplot(., aes(x = PC5, fill = as.character(collection_date))) + 
   geom_density(alpha = 0.5) +
   xlim(min(DF_piggies$PC5),max(DF_piggies$PC5)) +
   theme_bw()+
@@ -922,7 +914,6 @@ g5.1 <- text_grob(paste0(PC_down(find_PC5(xmldata))),size=4,lineheight = 1)
 g5.2 <- text_grob(paste0(PC_up(find_PC5(xmldata))),size=4,lineheight = 1)
 
 
-
 for_legend_only <- DF_piggies %>%
   filter(collection_date=="2017-01-31"|
            collection_date=="2017-02-07"|
@@ -930,7 +921,7 @@ for_legend_only <- DF_piggies %>%
            collection_date=="2017-02-21"|
            collection_date=="2017-02-28"|
            collection_date=="2017-03-03") %>%
-  ggplot(., aes(x = PC5, fill = collection_date)) + 
+  ggplot(., aes(x = PC5, fill = as.character(collection_date))) + 
   geom_density(alpha = 0.5) +
   xlim(min(DF_piggies$PC5),max(DF_piggies$PC5)) +
   theme(legend.position="right",
@@ -947,8 +938,8 @@ lay <- rbind(c(1,1,1,1,2,2,2,2),
              c(5,5,5,5,16,16,16,16),
              c(5,5,5,5,16,16,16,16),
              c(14,14,15,15,16,16,16,16))
-getwd()
-pdf("time_beta_densities.pdf", width=7,height=5)
+
+pdf(paste0(out_dir,"time_beta_densities.pdf"), width=7,height=5)
 grid.arrange(p1,p2,p3,p4,p5,
              g1.1,g1.2,
              g2.1,g2.2,
@@ -1013,7 +1004,7 @@ PC1PC5_plots <- df %>%
        stat_ellipse(inherit.aes = TRUE, level = 0.80))
 
 
-pdf("piggies_guppied_by_time.pdf")
+pdf(paste0(out_dir,"piggies_guppied_by_time.pdf"))
 par(mar=c(4,4,0.01,0.01))
 par(oma=c(6,6,6,6))
 ###############################
@@ -1354,7 +1345,7 @@ PC1PC5_plots <- df %>%
        stat_ellipse(inherit.aes = TRUE, level = 0.80))
 
 
-pdf(paste0(a,"_guppied_by_time.pdf"))
+pdf(paste0(out_dir,a,"_guppied_by_time.pdf"))
 par(mar=c(4,4,0.01,0.01))
 par(oma=c(6,6,6,6))
 ###############################
@@ -1696,8 +1687,7 @@ PC1PC5_plots <- df %>%
        ggtitle(unique(.$guppied_date))+
        stat_ellipse(inherit.aes = TRUE, level = 0.80))
 
-
-pdf(paste0(a,"_guppied_by_time.pdf"))
+pdf(paste0(out_dir,a,"_guppied_by_time.pdf"))
 par(mar=c(4,4,0.01,0.01))
 par(oma=c(6,6,6,6))
 ###############################
@@ -2037,7 +2027,7 @@ PC1PC5_plots <- df %>%
        stat_ellipse(inherit.aes = TRUE, level = 0.80))
 
 
-pdf(paste0(a,"_guppied_by_time.pdf"))
+pdf(paste0(out_dir,a,"_guppied_by_time.pdf"))
 par(mar=c(4,4,0.01,0.01))
 par(oma=c(6,6,6,6))
 ###############################
@@ -2379,7 +2369,7 @@ PC1PC5_plots <- df %>%
        stat_ellipse(inherit.aes = TRUE, level = 0.80))
 
 
-pdf(paste0(a,"_guppied_by_time.pdf"))
+pdf(paste0(out_dir,a,"_guppied_by_time.pdf"))
 par(mar=c(4,4,0.01,0.01))
 par(oma=c(6,6,6,6))
 ###############################
@@ -2719,7 +2709,7 @@ PC1PC5_plots <- df %>%
        stat_ellipse(inherit.aes = TRUE, level = 0.80))
 
 
-pdf(paste0(a,"_guppied_by_time.pdf"))
+pdf(paste0(out_dir,a,"_guppied_by_time.pdf"))
 par(mar=c(4,4,0.01,0.01))
 par(oma=c(6,6,6,6))
 ###############################
@@ -3060,7 +3050,7 @@ PC1PC5_plots <- df %>%
        stat_ellipse(inherit.aes = TRUE, level = 0.80))
 
 
-pdf(paste0(a,"_guppied_by_time.pdf"))
+pdf(paste0(out_dir,a,"_guppied_by_time.pdf"))
 par(mar=c(4,4,0.01,0.01))
 par(oma=c(6,6,6,6))
 ###############################
@@ -3403,7 +3393,7 @@ PC1PC5_plots <- df %>%
        stat_ellipse(inherit.aes = TRUE, level = 0.80))
 
 
-pdf(paste0(a,"_guppied_by_time.pdf"))
+pdf(paste0(out_dir,a,"_guppied_by_time.pdf"))
 par(mar=c(4,4,0.01,0.01))
 par(oma=c(6,6,6,6))
 ###############################
@@ -3884,11 +3874,12 @@ for (singl_DF in multi_DFs) {
 ###################################
 ###################################
 
+significant$test <- "pairwise.t.test"
 # save stats
 addWorksheet(wb, "guppy_pvalues")
 writeData(wb, sheet = "guppy_pvalues", significant, rowNames = FALSE)
 
-
+significant$test <- NULL
 ###################################
 ###################################
 
@@ -3905,11 +3896,14 @@ final
 ###################################
 ###################################
 
+
+final$padj_method <- "Bonferroni"
+
 # save stats
 addWorksheet(wb, "guppy_padj")
 writeData(wb, sheet = "guppy_padj", final, rowNames = FALSE)
 
-
+final$padj_method <- NULL
 ###################################
 ###################################
 
@@ -3962,7 +3956,7 @@ mytheme <- theme(legend.position = "none",
 # reporting xml data and dataframe (guppy run) it comes from
 
 mygrobs <- vector('list', nrow(df))
-pdf("guppy_sign_cohorts.pdf", onefile = TRUE)
+pdf(paste0(out_dir,"guppy_sign_cohorts.pdf"), onefile = TRUE)
 for (A in rownames(df)) {
   A <- as.numeric(A) # dataframes rownames must be taken as numeric
   
@@ -4045,7 +4039,7 @@ pp <- ggplot(DF_piggies, aes(x=PC1, fill=Cohort)) +
 leg <- get_legend(pp)
 
 # a selection of plots from the figure generated above 
-pdf("guppy_sign_cohorts_selection.pdf")
+pdf(paste0(out_dir,"guppy_sign_cohorts_selection.pdf"))
 lay <- rbind(c(1,2),
              c(3,4),
              c(5,6),
@@ -4084,7 +4078,7 @@ simplified2$sample_type <- gsub("piggies","DF_piggies_time",simplified2$sample_t
 
 # branch_width * var_explained = importance
 simplified2 <- simplified2 %>%
-  mutate(importance = as.numeric(branch_width)*var_explained) %>%
+  dplyr::mutate(importance = as.numeric(branch_width)*var_explained) %>%
   filter(sample_type=="DF_piggies_time"|sample_type=="groupA"|sample_type=="groupB") %>% # eventual selection of only one guppy run 
   select(guppied_date,taxa_simple,importance) 
 
@@ -4097,14 +4091,14 @@ unique(both$taxa_simple) # 61 taxa
 # normalize by date: 
 both <- both %>%
   group_by(guppied_date) %>%
-  mutate(Sum_importance=Sum_importance/sum(Sum_importance))
+  dplyr::mutate(Sum_importance=Sum_importance/sum(Sum_importance))
 
 tail(both)
 
 both_wide <- both %>%
   pivot_wider(names_from = guppied_date, values_from = Sum_importance) %>%
   select(taxa_simple,Ja31,Fe7,Fe14,Fe21,Fe28,Ma3) %>%
-  mutate_all(~replace(., is.na(.), 0))
+  dplyr::mutate_all(~replace(., is.na(.), 0))
 
 both_wide <- as.data.frame(both_wide)
 
@@ -4180,7 +4174,7 @@ time_beta_plot <- pheatmap(out_m, display_numbers = T, angle_col = 0,
          cluster_rows = T, cluster_cols = F, fontsize_number = 8,
          fontsize_row = 8)
 
-pdf("time_beta_heatmap.pdf")
+pdf(paste0(out_dir,"time_beta_heatmap.pdf"))
 time_beta_plot
 dev.off()
 
@@ -4190,9 +4184,5 @@ dev.off()
 ##########################################################################################
 ##########################################################################################
 
-
-# save stats in workbook
-#saveWorkbook(wb, "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/stats_guppy.xlsx", overwrite=TRUE)
-
 #save stats in workbook
-saveWorkbook(wb, "/Users/12705859/Desktop/metapigs_base/phylosift/out/stats.xlsx", overwrite=TRUE)
+saveWorkbook(wb, paste0(out_dir_git,"stats.xlsx"), overwrite=TRUE)

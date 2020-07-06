@@ -16,15 +16,15 @@ reads$X1_2 <- NULL
 reads$X1_3 <- NULL
 reads$X1_4 <- NULL
 
+head(reads)
 
-
-summary(readcounts_samples)
-sum(readcounts_samples$X3)
+summary(reads)
+sum(reads$X3)
 
 # 15999031919
 # nearly 16 billion reads! 
 
-lowreads_samples <- hist(readcounts_samples$X3[
+lowreads_samples <- hist(head(reads$X3)[
   readcounts_samples$X3<=40000], 
   breaks=20, 
   xlim=c(0,40000),

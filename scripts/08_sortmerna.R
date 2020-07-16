@@ -64,9 +64,13 @@ mdat <- mdat %>%
 
 # upload 16S names 
 
-silva <- read_table2(paste0(source_data,"silva-bac-16s-id90_accession_taxonomy.txt"), 
-                                                     col_names = FALSE)
+# 1. unzips the file (otherwise too large for github) and places it in out_dir
+zipF<- paste0(source_data,"silva-bac-16s-id90_accession_taxonomy.txt.zip")
+unzip(zipF,exdir=out_dir)
 
+# 2. now it reads it from out_dir
+silva <- read_table2(paste0(out_dir,"silva-bac-16s-id90_accession_taxonomy.txt"), 
+                     col_names = FALSE)
 
 
 ######################################################################

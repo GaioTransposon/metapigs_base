@@ -81,6 +81,7 @@ library(magrittr)
 
 source_data = "/Users/12705859/metapigs_base/source_data/" # git 
 middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
+out_dir_git = "/Users/12705859/metapigs_base/out_dir/" # git 
 out_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/out/" # local 
 
 ###########################################################################################
@@ -5485,7 +5486,7 @@ dev.off()
 
 
 # save stats in workbook
-saveWorkbook(wb, "/Users/12705859/Desktop/metapigs_base/phylosift/out/stats.xlsx", overwrite=TRUE)
+saveWorkbook(wb, paste0(out_dir_git,"stats.xlsx"), overwrite=TRUE)
 
 
 ###########################################################################################

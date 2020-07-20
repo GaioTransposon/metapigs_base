@@ -736,8 +736,8 @@ plot(DF_piggies$PC1,DF_piggies$PC2,
      ylab=paste0("PC2  (",get_var(find_PC2(xmldata)),"%)"),
      type="p",cex=0.8,cex.axis=0.6,cex.lab=0.6,
      col=rbow[as.Date(DF_piggies$collection_date)-as.Date("2017-01-29 00:00:00")])
-color_legend(min(DF_piggies$PC1), max(DF_piggies$PC2)-0.25,
-             1.8, 0.5, "trial days:", legvec, rbow)
+color_legend(min(DF_piggies$PC1), max(DF_piggies$PC2)-1,
+             1.8, 0.5, "days into trial:", legvec, rbow)
 mtext(paste0(PC_down(find_PC1(xmldata))), side=1, line=2, adj=0.0, cex=0.5, col="black", outer=TRUE)
 mtext(paste0(PC_up(find_PC1(xmldata))), side=1, line=2, adj=1.0, cex=0.5, col="black", outer=TRUE)
 mtext(paste0(PC_down(find_PC2(xmldata))), side=2, line=1, adj=0.0, cex=0.5, col="black", outer=TRUE)

@@ -572,7 +572,7 @@ my20 <- fviz_pca_ind(mtcars.pca2,
                      #palette = c("#00AFBB", "#E7B800", "#FC4E07"),
                      addEllipses = FALSE, # Concentration ellipses
                      title="")+
-  scale_color_manual(name="dates", 
+  scale_color_manual(name="time point", 
                      values=rainbow(n = 11))+
   theme(legend.position="none")+
   guides(color = guide_legend(nrow = 1))
@@ -596,7 +596,7 @@ together <- fviz_pca_biplot(mtcars.pca2,
                 habillage = dates,
                 alpha.var ="contrib",
                 repel = TRUE,labelsize=4) +
-  scale_color_manual(name="dates",
+  scale_color_manual(name="time point",
                      values=rainbow(n = 11))+
   ggtitle("")+
   theme(legend.position="right",

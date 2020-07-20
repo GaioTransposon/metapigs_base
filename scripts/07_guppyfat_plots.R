@@ -11,8 +11,6 @@ library(readr)
 
 source_data = "/Users/12705859/metapigs_base/source_data/" # git 
 middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
-out_dir_git = "/Users/12705859/metapigs_base/out/" # git 
-#guppyout_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/guppy_output" # local 
 out_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/" # local 
 
 ###########################################################################################

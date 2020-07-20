@@ -1002,7 +1002,7 @@ writeData(wb, sheet = "weight_delta_bday", weight_delta_bday, rowNames = FALSE)
 
 
 # save stats in existing workbook
-saveWorkbook(wb, paste0(out_dir_git,"stats.xlsx"), overwrite=TRUE)
+saveWorkbook(wb, paste0(out_dir_git,"Supplementary_File_5.xlsx"), overwrite=TRUE)
 
 
 ##################################################################################

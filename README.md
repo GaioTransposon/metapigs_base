@@ -1,7 +1,6 @@
 
-## data analysis "metapigs_base"
-## Manuscript: 
-## Community composition and development of the post-weaning piglet gut microbiome
+## Data analysis: "metapigs_base"
+## Manuscript: Community composition and development of the post-weaning piglet gut microbiome
 
 #####################
 ## R version info: 
@@ -32,59 +31,9 @@
 # 07_guppyfat_plots.R
 # 08_sortmerna.R
 # 09_weight_gain.R
-#####################
 
 #####################
 ## List of packages:
-#   
-# library(readr)
-# library(readxl)
-# library(data.table)
-# library(tibble) # tibble_2.1.3 
-# library(openxlsx)
-# 
-# library(splitstackshape)
-# 
-# library(tidyr)
-# library(tidyverse)
-# library(dplyr)
-# library(plyr) # plyr_1.8.5 
-# library(forcats) # forcats_0.4.0 
-# library(wordspace)
-# 
-# library(ggplot2)
-# library(pheatmap)
-# library(ggbiplot)
-# library(factoextra)
-# library(plotrix) # plotrix_3.7-7
-# 
-# library(gridExtra)
-# library(grid)
-# library(cowplot)
-# library(magrittr)
-# library(broom)
-# library(purrr) # purrr_0.3.3
-# library(ggpubr)
-# library(grDevices)
-# library(colorRamps)
-# library(magick)
-# library(tiff)
-# library(colorRamps)
-# 
-# library(robCompositions)
-# library(EnvStats)
-# library(corrplot)
-# library(rstatix)
-# library(sva)   # this has got Combat , careful not to install “COMBAT” instead
-# library(dunn.test) # dunn.test_1.3.5 
-# library(varhandle) # varhandle_2.0.4
-# library(vcd)
-# library(summarytools)
-# library(corrplot)
-# 
-# library(taxize)
+readr , readxl , data.table , tibble (v2.1.3) , openxlsx ,  splitstackshape ,  tidyr , tidyverse , dplyr , plyr (v1.8.5) , forcats (v0.4.0) , wordspace ,  ggplot2 , pheatmap , ggbiplot , factoextra , plotrix (v3.7-7) ,  gridExtra , grid , cowplot , magrittr , broom , purrr (v0.3.3) , ggpubr , grDevices , colorRamps , magick , tiff , colorRamps ,  robCompositions , EnvStats , corrplot , rstatix , sva (this has got Combat, careful not to install “COMBAT” instead) , dunn.test (v1.3.5) , varhandle (v2.0.4) , vcd , summarytools , corrplot ,  taxize 
 #####################
-
-
-
 

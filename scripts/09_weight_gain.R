@@ -1030,18 +1030,18 @@ z <- all_weights %>%
   filter(date=="31-Jan"|date=="7-Feb"|date=="14-Feb"|date=="21-Feb"|date=="28-Feb") %>%
   group_by(isolation_source) %>% 
   dplyr::arrange(date, .by_group = TRUE) %>%
-  dplyr::mutate(value = (value/lag(value) - 1) * 100)
-
+  dplyr::mutate(value = (value/lag(value) - 1) * 100) # I checked this formula and it's right https://www.nafwa.org/percentchange.php
+View(z)
 
 pdf(paste0(out_dir,"weight_percentage_change.pdf"))
-ggplot(all_weights, aes(x=date,y=log(value)))+
+ggplot(all_weights, aes(x=date,y=value))+
   geom_point()+
   geom_smooth(method = "loess", se=TRUE, aes(group=1))+
-  ggtitle("weight measurements across time")
-ggplot(z, aes(x=date,y=log(value)))+
+  labs(y="weight measurements across time")
+ggplot(z, aes(x=date,y=value))+
   geom_point()+
-  geom_smooth(method = "loess", se=TRUE, aes(group=1))+
-  ggtitle("weight percentage change")
+  labs(y="weight percentage change")+
+  geom_smooth(method = "loess", se=TRUE, aes(group=1))
 dev.off()
 
 sink(paste0(out_dir,"weight_percentage_change.txt"))

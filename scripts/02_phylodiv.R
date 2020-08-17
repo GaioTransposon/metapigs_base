@@ -3001,11 +3001,12 @@ my_comparisons = list( c("2017-01-31", "2017-02-07"),
                        c("2017-02-07", "2017-02-14"), 
                        c("2017-02-14", "2017-02-21"))
 
+
 stat.test_unroo <- doggo %>%
   group_by(Cohort) %>%
   t_test(unrooted_pd ~ collection_date) %>%
   adjust_pvalue(method="bonferroni") %>%
-  dplyr::mutate(y.position=rep(seq(150,220,length.out=6),5)) %>%
+  dplyr::mutate(y.position=rep(seq(150,220,length.out=6),6)) %>%
   dplyr::mutate_if(is.numeric, round, digits = 4)
 
 unroo <- ggboxplot(doggo, x = "collection_date", y = "unrooted_pd",
@@ -3027,7 +3028,7 @@ stat.test_bwpd <- doggo %>%
   group_by(Cohort) %>%
   t_test(bwpd ~ collection_date) %>%
   adjust_pvalue(method="bonferroni") %>%
-  mutate(y.position=rep(seq(2.3,2.65,length.out=6),5)) %>%
+  mutate(y.position=rep(seq(2.3,2.65,length.out=6),6)) %>%
   mutate_if(is.numeric, round, digits = 4)
 
 bw <- ggboxplot(doggo, x = "collection_date", y = "bwpd",

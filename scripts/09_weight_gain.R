@@ -1031,7 +1031,6 @@ z <- all_weights %>%
   group_by(isolation_source) %>% 
   dplyr::arrange(date, .by_group = TRUE) %>%
   dplyr::mutate(value = (value/lag(value) - 1) * 100) # I checked this formula and it's right https://www.nafwa.org/percentchange.php
-View(z)
 
 pdf(paste0(out_dir,"weight_percentage_change.pdf"))
 ggplot(all_weights, aes(x=date,y=value))+

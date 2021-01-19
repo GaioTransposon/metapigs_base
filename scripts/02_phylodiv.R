@@ -3416,29 +3416,28 @@ startDF16 <- startDF1_unique[99:122,]
 
 p11<-ggplot(startDF11,aes(x=pc1,y=pc2,color=nurse_sow ))+
   geom_point()+
-  theme+
-  stat_ellipse(inherit.aes = TRUE, level = 0.80)
+  theme #+
+  #stat_ellipse(inherit.aes = TRUE, level = 0.80)
 p12<-ggplot(startDF12,aes(x=pc1,y=pc2,color=nurse_sow ))+
   geom_point()+
-  theme+
-  stat_ellipse(inherit.aes = TRUE, level = 0.80)
+  theme#+
+  #stat_ellipse(inherit.aes = TRUE, level = 0.80)
 p13<-ggplot(startDF13,aes(x=pc1,y=pc2,color=nurse_sow ))+
   geom_point()+
-  theme+
-  stat_ellipse(inherit.aes = TRUE, level = 0.80)
+  theme #+
+  #stat_ellipse(inherit.aes = TRUE, level = 0.80)
 p14<-ggplot(startDF14,aes(x=pc1,y=pc2,color=nurse_sow ))+
   geom_point()+
-  theme+
-  stat_ellipse(inherit.aes = TRUE, level = 0.80)
+  theme#+
+  #stat_ellipse(inherit.aes = TRUE, level = 0.80)
 p15<-ggplot(startDF15,aes(x=pc1,y=pc2,color=nurse_sow ))+
   geom_point()+
-  theme+
-  stat_ellipse(inherit.aes = TRUE, level = 0.80)
+  theme#+
+  #stat_ellipse(inherit.aes = TRUE, level = 0.80)
 p16<-ggplot(startDF16,aes(x=pc1,y=pc2,color=nurse_sow ))+
   geom_point()+
-  theme+
-  stat_ellipse(inherit.aes = TRUE, 
-               level = 0.80)
+  theme#+
+  #stat_ellipse(inherit.aes = TRUE, level = 0.80)
 
 
 pdf(paste0(out_dir,"nursesow_PC1PC2.pdf"))
@@ -3469,29 +3468,28 @@ startDF16 <- startDF1_unique[109:123,]
 
 p11<-ggplot(startDF11,aes(x=pc1,y=pc2,color=maternal_sow ))+
   geom_point()+
-  theme+
-  stat_ellipse(inherit.aes = TRUE, level = 0.80)
+  theme#+
+  #stat_ellipse(inherit.aes = TRUE, level = 0.80)
 p12<-ggplot(startDF12,aes(x=pc1,y=pc2,color=maternal_sow ))+
   geom_point()+
-  theme+
-  stat_ellipse(inherit.aes = TRUE, level = 0.80)
+  theme#+
+  #stat_ellipse(inherit.aes = TRUE, level = 0.80)
 p13<-ggplot(startDF13,aes(x=pc1,y=pc2,color=maternal_sow ))+
   geom_point()+
-  theme+
-  stat_ellipse(inherit.aes = TRUE, level = 0.80)
+  theme#+
+  #stat_ellipse(inherit.aes = TRUE, level = 0.80)
 p14<-ggplot(startDF14,aes(x=pc1,y=pc2,color=maternal_sow ))+
   geom_point()+
-  theme+
-  stat_ellipse(inherit.aes = TRUE, level = 0.80)
+  theme#+
+  #stat_ellipse(inherit.aes = TRUE, level = 0.80)
 p15<-ggplot(startDF15,aes(x=pc1,y=pc2,color=maternal_sow ))+
   geom_point()+
-  theme+
-  stat_ellipse(inherit.aes = TRUE, level = 0.80)
+  theme#+
+  #stat_ellipse(inherit.aes = TRUE, level = 0.80)
 p16<-ggplot(startDF16,aes(x=pc1,y=pc2,color=maternal_sow ))+
   geom_point()+
-  theme+
-  stat_ellipse(inherit.aes = TRUE, 
-               level = 0.80)
+  theme#+
+  #stat_ellipse(inherit.aes = TRUE, level = 0.80)
 
 
 pdf(paste0(out_dir,"maternalsow_PC1PC2.pdf"))

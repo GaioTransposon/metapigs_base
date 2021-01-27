@@ -77,7 +77,7 @@ library(openxlsx)
 library(splitstackshape)
 library(pheatmap) # used in pos_controls_reads.R
 library(magrittr)
-
+library(EnvStats)
 
 source_data = "/Users/12705859/metapigs_base/source_data/" # git 
 middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
@@ -5434,6 +5434,10 @@ colnames(df)[colnames(df)=="name"] <- "parameter"
 df2 <- piglets_factors2 %>%
   pivot_longer(cols=c('unrooted_pd','bwpd'))
 colnames(df2)[colnames(df2)=="name"] <- "parameter"
+df$grouping <- gsub(" - ","\n",df$grouping)
+df2$grouping <- gsub(" - ","\n",df2$grouping)
+df$grouping <- gsub("_","\n",df$grouping)
+df2$grouping <- gsub("_","\n",df2$grouping)
 alpha_plot <- ggplot(df, aes(x=collection_date,y=value)) + 
   ylim(0,0.06)+
   labs(y="alpha diversity - p-value",
@@ -5441,11 +5445,14 @@ alpha_plot <- ggplot(df, aes(x=collection_date,y=value)) +
   theme_bw()+
   geom_point(data=df2,aes(shape=parameter), color="red", size=2)+
   geom_point(aes(shape=parameter), color="black", size=2)+
-  theme(axis.text.x=element_text(size=6),
-        axis.title.x=element_text(),
-        axis.title.y=element_text(),
-        legend.position="right")+
-  facet_wrap(~grouping)+
+  theme(axis.text.x=element_text(size=3),
+        axis.text.y=element_text(size=6),
+        axis.title.x=element_text(size=8),
+        axis.title.y=element_text(size=8),
+        legend.position="right",
+        legend.title = element_text(size = 10),
+        legend.text = element_text(size = 9))+
+  facet_grid(~grouping)+
   geom_hline(yintercept=0.05, linetype="dashed", 
              color = "black", size=0.5)
 # beta 
@@ -5455,6 +5462,10 @@ colnames(df)[colnames(df)=="name"] <- "parameter"
 df2 <- piglets_factors2 %>%
   pivot_longer(cols=c(contains('pc')))
 colnames(df2)[colnames(df2)=="name"] <- "parameter"
+df$grouping <- gsub(" - ","\n",df$grouping)
+df2$grouping <- gsub(" - ","\n",df2$grouping)
+df$grouping <- gsub("_","\n",df$grouping)
+df2$grouping <- gsub("_","\n",df2$grouping)
 beta_plot <- ggplot(df, aes(x=collection_date,y=value)) + 
   ylim(0,0.06)+
   labs(y="beta diversity - p-value",
@@ -5462,11 +5473,14 @@ beta_plot <- ggplot(df, aes(x=collection_date,y=value)) +
   theme_bw()+
   geom_point(data=df2,aes(shape=parameter), color="red", size=2)+
   geom_point(aes(shape=parameter), color="black", size=2)+
-  theme(axis.text.x=element_text(size=6),
-        axis.title.x=element_text(),
-        axis.title.y=element_text(),
-        legend.position="right")+
-  facet_wrap(~grouping)+
+  theme(axis.text.x=element_text(size=3),
+        axis.text.y=element_text(size=6),
+        axis.title.x=element_text(size=8),
+        axis.title.y=element_text(size=8),
+        legend.position="right",
+        legend.title = element_text(size = 10),
+        legend.text = element_text(size = 9))+
+  facet_grid(~grouping)+
   geom_hline(yintercept=0.05, linetype="dashed", 
              color = "black", size=0.5)
 
@@ -5477,6 +5491,188 @@ start_factors_pvalues_plot <- ggarrange(
 pdf(paste0(out_dir,"start_factors_pvalues.pdf"))
 start_factors_pvalues_plot
 dev.off()
+
+
+
+###########################################################################################
+
+# cite packages 
+
+sink(paste0(out_dir,"metapigs_base_packages_citations.bib"))
+out <- sapply(names(sessionInfo()$otherPkgs), 
+              function(x) print(citation(x), style = "Bibtex"))
+sink()
+
+
+###########################################################################################
+###########################################################################################
+###########################################################################################
+
+# comment Examiner 3: 
+# p95 A plot where only p-values are shown. 
+# Plotting estimates of the diversity indices 
+# (or the difference in diversity indices) 
+# along with confidence intervals is vastly preferable.
+
+# EXTRA : as asked by Examiner 3: 
+
+head(all_padj_Hommel)
+out <- all_padj_Hommel %>%
+  pivot_longer(cols=3:9) %>%
+  dplyr::filter(value <= 0.05) %>%
+  dplyr::filter(!grouping=="birth day - Duroc x Landrace")
+head(out)
+
+out$grouping <- gsub(pattern = "line","LINE", out$grouping)
+out$grouping <- gsub(pattern = "line","LINE", out$grouping)
+
+
+head(df1)
+df1$BIRTH_DAY <- as.character(df1$BIRTH_DAY)
+df_final <- data.frame()
+for (row in 1:nrow(out)) {
+  
+  var_to_sel <- out[row,6]
+  coll_date <- out[row,1]
+  group_sel <- as.data.frame(out[row,3])
+  
+  test <- df1[df1$collection_date %in% coll_date,]
+  
+  test <- test %>%
+    dplyr::select(group_sel$grouping,isolation_source,collection_date,var_to_sel$name)
+  test <- as.data.frame(test)
+  
+  test$id <- paste0("set_",row)
+  test$grouping <- paste0(as.character(group_sel$grouping))
+  test$variable=paste0(var_to_sel)
+  
+  colnames(test) <- c("spec","isolation_source","collection_date","variable_values","id","grouping","variable")
+  
+  df_final <- rbind(df_final,test)
+  
+}
+
+
+# splitting into multiple dataframes (by set)
+multi_df <- split( df_final , f = df_final$id )
+
+
+
+plot_me <- function(split_df) {
+  
+  # df as dataframe
+  df0 <- as.data.frame(split_df)
+  
+  # plot
+  return(print(df0 %>% 
+                 ggplot(., aes(x=spec,y=variable_values))+
+                 geom_boxplot(lwd=0.2, outlier.size = 0.5)+
+                 stat_n_text(size = 1.5)+
+                 coord_flip()+
+                 ylab(paste0(df0$variable))+
+                 xlab(paste0(df0$grouping))+
+                 theme(axis.text.y=element_text(size=4, vjust = 0, angle=68),
+                       axis.text.x=element_text(size=4),
+                       axis.title.x=element_text(size=8),
+                       axis.title.y=element_text(size=8))+
+                 facet_grid(~collection_date, scale="free")))
+}
+
+
+
+p1<-plot_me(df_final %>% dplyr::filter(id=="set_1"))
+p2<-plot_me(df_final %>% dplyr::filter(id=="set_2"))
+p3<-plot_me(df_final %>% dplyr::filter(id=="set_3"))
+p4<-plot_me(df_final %>% dplyr::filter(id=="set_4"))
+p5<-plot_me(df_final %>% dplyr::filter(id=="set_5"))
+p6<-plot_me(df_final %>% dplyr::filter(id=="set_6"))
+p7<-plot_me(df_final %>% dplyr::filter(id=="set_7"))
+#plot_me(df_final %>% dplyr::filter(id=="set_8"))  # this one is already plotted in a suppl. figure
+#plot_me(df_final %>% dplyr::filter(id=="set_9"))  # this one is already plotted in a suppl. figure
+#plot_me(df_final %>% dplyr::filter(id=="set_10"))  # this one is already plotted in a suppl. figure
+
+
+# extra plot: 
+
+out2 <- all_padj_Hommel %>%
+  pivot_longer(cols=3:9) %>%
+  dplyr::filter(value <= 0.05) %>%
+  dplyr::filter(grouping=="birth day - Duroc x Landrace")
+head(out2)
+head(sel)
+
+p8<-df1 %>%
+  dplyr::filter(cross_breed=="Duroc x Landrace") %>%
+  dplyr::filter(collection_date=="i2.2") %>%
+  dplyr::select(isolation_source,pc2,BIRTH_DAY,collection_date,cross_breed) %>%
+  ggplot(., aes(x=BIRTH_DAY,y=pc2))+
+  geom_boxplot(lwd=0.2, outlier.size = 0.5)+
+  stat_n_text(size = 1.5)+
+  coord_flip()+
+  theme(axis.text.y=element_text(size=4, vjust = 0, angle=68),
+        axis.text.x=element_text(size=4),
+        axis.title.x=element_text(size=8),
+        axis.title.y=element_text(size=8))+
+  facet_grid(~collection_date, scale="free")
+
+
+
+# put them together:
+
+sign_plots <- ggarrange(p1,p2,p3,p4,
+                        p5,p6,p7,p8,
+                        ncol = 4, nrow=2)
+
+pdf(paste0(out_dir,"start_factors_pvalues_boxplots.pdf"))
+sign_plots
+dev.off()
+
+
+
+merged_sign_plots <- ggarrange(start_factors_pvalues_plot,
+                               sign_plots, labels = c("","C"),
+                        ncol = 1, nrow=2)
+
+pdf(paste0(out_dir,"start_factors_pvalues_merged.pdf"))
+merged_sign_plots
+dev.off()
+
+
+
+
+
+CI_me <- function(split_df) {
+  
+  # df as dataframe
+  df0 <- as.data.frame(split_df)
+  
+  # plot
+  return(df0 %>%
+           group_by(id,collection_date,grouping,variable,spec) %>%
+           dplyr::summarise(mean.variable_values = mean(variable_values, na.rm = TRUE),
+                            sd.variable_values = sd(variable_values, na.rm = TRUE),
+                            n.variable_values = n()) %>%
+           dplyr::mutate(se.variable_values = sd.variable_values / sqrt(n.variable_values),
+                         lower.ci.variable_values = mean.variable_values - qt(1 - (0.05 / 2), n.variable_values - 1) * se.variable_values,
+                         upper.ci.variable_values = mean.variable_values + qt(1 - (0.05 / 2), n.variable_values - 1) * se.variable_values)
+  )
+}
+
+CIs <- rbind(as.data.frame(CI_me(df_final %>% dplyr::filter(id=="set_1"))),
+      as.data.frame(CI_me(df_final %>% dplyr::filter(id=="set_2"))),
+      as.data.frame(CI_me(df_final %>% dplyr::filter(id=="set_3"))),
+      as.data.frame(CI_me(df_final %>% dplyr::filter(id=="set_4"))),
+      as.data.frame(CI_me(df_final %>% dplyr::filter(id=="set_5"))),
+      as.data.frame(CI_me(df_final %>% dplyr::filter(id=="set_6"))),
+      as.data.frame(CI_me(df_final %>% dplyr::filter(id=="set_7"))),
+      as.data.frame(CI_me(df_final %>% dplyr::filter(id=="set_8"))),
+      as.data.frame(CI_me(df_final %>% dplyr::filter(id=="set_9"))),
+      as.data.frame(CI_me(df_final %>% dplyr::filter(id=="set_10"))))
+      
+
+# write out in workbook
+addWorksheet(wb, "confidence_intervals")
+writeData(wb, sheet = "confidence_intervals", CIs, rowNames = FALSE)
 
 
 ######################################################################################################
@@ -5490,13 +5686,4 @@ saveWorkbook(wb, paste0(out_dir_git,"stats.xlsx"), overwrite=TRUE)
 
 ###########################################################################################
 
-# cite packages 
-
-sink(paste0(out_dir,"metapigs_base_packages_citations.bib"))
-out <- sapply(names(sessionInfo()$otherPkgs), 
-              function(x) print(citation(x), style = "Bibtex"))
-sink()
-
-
-
-
+                      

@@ -9,7 +9,7 @@ out <- all_padj_Hommel %>%
 head(out)
 
 out$grouping <- gsub(pattern = "line","LINE", out$grouping)
-out$grouping <- gsub(pattern = "line","LINE", out$grouping)
+out$grouping <- gsub(pattern = "birth day","BIRTH_DAY", out$grouping)
 
 
 head(df1)
@@ -84,7 +84,7 @@ out2 <- all_padj_Hommel %>%
   dplyr::filter(value <= 0.05) %>%
   dplyr::filter(grouping=="birth day - Duroc x Landrace")
 head(out2)
-head(sel)
+
 
 p8<-df1 %>%
   dplyr::filter(cross_breed=="Duroc x Landrace") %>%

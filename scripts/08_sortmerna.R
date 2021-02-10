@@ -34,6 +34,11 @@ so <- read_table2(paste0(out_dir,"sortmeall_evaluefiltered.tsv"), col_names = FA
 so$X1 <- gsub("_S","", so$X1)
 so <- so[,1:2]
 
+#number of unique 16S rRNA genes in dataset (filtered with e-value < e-30)
+NROW(unique(so$X2))
+
+NROW(so)
+
 so_work <- so
 
 ######################################################################
@@ -619,3 +624,35 @@ n_occur <- data.frame(table(z$species))
 n_occur[n_occur$Freq > 1,] # tells you which ids occurred more than once.
 these <- z[z$species %in% n_occur$Var1[n_occur$Freq > 1],]
 these %>% arrange(species)
+
+
+
+##########################
+
+head(df)
+
+NROW(unique(df$rRNA16S))
+
+df$sample <- paste0(df$DNA_plate,"_",df$DNA_well)
+
+moms <- df %>% dplyr::filter(Cohort=="Mothers") 
+  
+piggies <- df %>% dplyr::filter(Cohort=="Control"|
+                       Cohort=="D-Scour"|
+                       Cohort=="ColiGuard"|
+                       Cohort=="Neomycin"|
+                       Cohort=="Neomycin+D-Scour"|
+                       Cohort=="Neomycin+ColiGuard") 
+
+NROW(unique(moms$rRNA16S))
+NROW(unique(piggies$rRNA16S))
+
+moms <- moms %>% dplyr::select(sample) %>% distinct()
+piggies <- piggies %>% dplyr::select(sample) %>% distinct()
+
+# save without heading
+write_csv(x=moms,file=paste0(middle_dir,"moms_list.txt"), col_names = FALSE)
+write_csv(x=piggies,file=paste0(middle_dir,"piggies_list.txt"), col_names = FALSE)
+
+NROW(moms)
+NROW(piggies)

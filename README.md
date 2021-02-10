@@ -1,6 +1,10 @@
 # Data analysis: "metapigs_base"
 # Manuscript: Community composition and development of the post-weaning piglet gut microbiome
 
+### how to preview the html files (krona plots): 
+### 1) copy link to html file
+### 2) [click here](https://htmlpreview.github.io/?https://github.com/GaioTransposon/metapigs_base/blob/master/out/moms.html)
+
 
 ## R version info: 
 ### platform:       x86_64-apple-darwin15.6.0                          

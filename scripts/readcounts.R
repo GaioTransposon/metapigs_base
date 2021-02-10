@@ -36,7 +36,7 @@ lowreads_samples
 
 pdf("/Users/12705859/Desktop/metapigs_base/readcounts_distribution.pdf", onefile = TRUE)
 histogram <- hist(readcounts_samples$X3, breaks = 200,
-     main = "Read counts distribution across samples",
+     main = "Read count distribution across samples",
      xlab = "read counts",
      ylab = "Frequency")
 histogram
@@ -44,8 +44,8 @@ dev.off()
 
 pdf("/Users/12705859/Desktop/metapigs_base/readcounts_distribution_all_and_low.pdf", onefile = TRUE)
 par(mfrow=c(1,1))
-hist(readcounts_samples$X3, breaks = 200,
-     main = "Read counts distribution across samples",
+hist(readcounts_samples$X3, breaks = 200, cex.axis=1,cex.lab=1.5, cex.main=2,
+     main = "Read count distribution across samples",
      xlab = "read counts",
      ylab = "Frequency")
 par(fig=c(0.45, 0.99, 0.2, 1), new = T) 

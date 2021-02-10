@@ -25,10 +25,10 @@ middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git
 out_dir = "/Users/12705859/Desktop/metapigs_base/pos.controls_reads_metaphlan/" # local 
 
 My_Theme = theme(
-  axis.text.x = element_text(size=11),
-  axis.title.x = element_text(size=9), 
-  axis.text.y = element_text(size = 9), 
-  axis.title.y = element_text(size = 11)) 
+  axis.text.x = element_text(size=13),
+  axis.title.x = element_text(size=15), 
+  axis.text.y = element_text(size = 13), 
+  axis.title.y = element_text(size = 15)) 
 
 
 mock <- read.csv(paste0(middle_dir,"mock_communities_merged_abundance_table_species.txt"),
@@ -177,8 +177,10 @@ q <- ggplot(data=mock_data2, aes(x=count, y=rank, fill=taxa_assigned)) +
   My_Theme+
   theme(legend.position="right",
         axis.title.x=element_blank(),
-        axis.text.x=element_text(size=14),
-        axis.title.y=element_text(size=14))
+        axis.text.x=element_text(size=16),
+        axis.title.y=element_text(size=18),
+        legend.title = element_text(size = 14),
+        legend.text = element_text(size = 12))
 
 ggsave(paste0(out_dir,"mock_exp_vs_obs.pdf"),q, 
        width=3, height=3, units="in", scale=3)
@@ -439,7 +441,7 @@ so <- as.matrix(df2[,2:9])
 names(so) <- df$taxa_assigned
 
 contam_mock <- pheatmap(so, display_numbers = T,
-         main="Mock community contamination",angle=0,
+         main="Mock community contamination",angle=0,fontsize_row = 13,fontsize_col = 13,
          cluster_rows = F, cluster_cols = F, fontsize_number = 11,
          labels_row=as.character(df$taxa_assigned))
 
@@ -489,7 +491,7 @@ so <- as.matrix(df2[,2:9])
 names(so) <- df$taxa_assigned
 
 contam_dscour <- pheatmap(so, display_numbers = T,
-                          main="D-Scour contamination",angle=0,
+                          main="D-Scour contamination",angle=0,fontsize_row = 13,fontsize_col = 13,
                           cluster_rows = F, cluster_cols = F, fontsize_number = 11,
                           labels_row=as.character(df$taxa_assigned))
 # heatmap with numbers  
@@ -537,7 +539,7 @@ names(so) <- df$taxa_assigned
 so
 
 contam_colig_plot <- pheatmap(so, display_numbers = T,
-         main="ColiGuard contamination", angle=0,
+         main="ColiGuard contamination", angle=0,fontsize_row = 13,fontsize_col = 13,
          cluster_rows = F, cluster_cols = F, fontsize_number = 11,
          labels_row=as.character(df$taxa_assigned))
 
@@ -564,3 +566,139 @@ Contaminants were present majorly in three technical replicates (R3, R7, R8) and
   append=TRUE,
   file=paste0(out_dir,"pos_controls_numbers.txt")
   )
+
+
+
+
+
+#### contam : all in same heatmap: 
+
+
+# contamination of mock community  
+mock <- read.csv(paste0(middle_dir,"mock_communities_merged_abundance_table_species.txt"),
+                 "\t", header = TRUE, stringsAsFactors=FALSE)
+
+
+# removing the species of the mock comm (what's left now is contamination)
+mock <- mock %>% dplyr::filter(rowSums(mock[,-1]) < 0.1)
+
+df <- mock
+
+colRename <- function(x) {
+  setNames(x, paste0("R", seq_len(ncol(x))))
+}
+
+df <- colRename(df[,-1])
+df <- cbind(mock[,1], df)
+colnames(df)[1] <- "taxa_assigned"
+
+
+df2 <- df %>%
+  pivot_longer(
+    cols = starts_with("R"),
+    names_to = "sample",
+    #names_prefix = "s",
+    values_to = "value",
+    values_drop_na = TRUE
+  )
+
+contam_mock <- df2
+
+#####################################
+
+# contamination of protexin? 
+protexin <- read.csv(paste0(middle_dir,"protexin_merged_abundance_table_species.txt"),
+                     "\t", header = TRUE, stringsAsFactors=FALSE)
+
+df <- protexin
+
+colRename <- function(x) {
+  setNames(x, paste0("R", seq_len(ncol(x))))
+}
+
+df <- colRename(df[,-1])
+df <- cbind(protexin[,1], df)
+colnames(df)[1] <- "taxa_assigned"
+
+# removing the species of the probiotic (what's left now is contamination)
+df <- df[!grepl("Bifidobacterium_bifidum", df$taxa_assigned),]
+df <- df[!grepl("Enterococcus_faecium", df$taxa_assigned),]
+df <- df[!grepl("Lactobacillus_helveticus", df$taxa_assigned),]
+df <- df[!grepl("Lactobacillus_delbrueckii", df$taxa_assigned),]
+df <- df[!grepl("Lactobacillus_plantarum", df$taxa_assigned),]
+df <- df[!grepl("Lactobacillus_rhamnosus", df$taxa_assigned),]
+df <- df[!grepl("Streptococcus_thermophilus", df$taxa_assigned),]
+
+colSums(df[,-1])
+
+df2 <- df %>%
+  pivot_longer(
+    cols = starts_with("R"),
+    names_to = "sample",
+    #names_prefix = "s",
+    values_to = "value",
+    values_drop_na = TRUE
+  )
+
+contam_dscour <- df2
+
+#####################################
+
+# ColiGuard REAL contamination check: 
+
+coliguard <- read.csv(paste0(middle_dir,"coli_guard_merged_abundance_table_species.txt"),
+                      "\t", header = TRUE, stringsAsFactors=FALSE)
+
+df <- coliguard
+
+colRename <- function(x) {
+  setNames(x, paste0("R", seq_len(ncol(x))))
+}
+
+df <- colRename(df[,-1])
+df <- cbind(coliguard[,1], df)
+colnames(df)[1] <- "taxa_assigned"
+
+# removing the two species of the probiotic (what's left now is contamination)
+df <- df[!grepl("Lactobacillus_plantarum", df$taxa_assigned),]
+df <- df[!grepl("Lactobacillus_salivarius", df$taxa_assigned),]
+
+df2 <- df %>%
+  pivot_longer(
+    cols = starts_with("R"),
+    names_to = "sample",
+    #names_prefix = "s",
+    values_to = "value",
+    values_drop_na = TRUE
+  )
+
+contam_colig <- df2
+
+contam_mock$type="Mock Community"
+contam_dscour$type="D-Scour"
+contam_colig$type="ColiGuard"
+
+contam <- rbind(contam_mock,
+                contam_dscour,
+                contam_colig)
+
+contam$sample <- paste0(contam$sample,"__",contam$type)
+
+contam <- as.data.frame(contam[,1:3]) %>%
+  pivot_wider(names_from=sample)
+
+
+df2 <- contam[,2:ncol(contam)]
+so <- as.matrix(df2)
+names(so) <- contam$taxa_assigned
+
+contam_all <- pheatmap(so, display_numbers = T,
+                       main="Contamination of positive controls",
+                       angle=90,number_format = "%.6f",
+                       fontsize_row = 9,fontsize_col = 9,na_col = "grey",
+                       cluster_rows = F, cluster_cols = F, fontsize_number = 2,
+                       labels_row=as.character(contam$taxa_assigned))
+
+pdf(paste0(out_dir,"contam_all.pdf"))
+contam_all
+dev.off()

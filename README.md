@@ -1,39 +1,28 @@
-# Data analysis: "metapigs_base"
-# Manuscript: Community composition and development of the post-weaning piglet gut microbiome
-
-
+# Manuscript: A large-scale metagenomic survey dataset from the post-weaning piglet gut
+## For library normalization - robot programming:  
+##### CSV_pooling_V1.py
+##### add_extraction_plates_data.py
+## For sample processing: 
+##### initial.nf
+## For the production of plots:
+##### 01_pos_controls_reads.R
+##### readcounts.R
 ### For Krona plot of mothers [click here](https://htmlpreview.github.io/?https://github.com/GaioTransposon/metapigs_base/blob/master/out/moms_krona.html)
 ### For Krona plot of piglets [click here](https://htmlpreview.github.io/?https://github.com/GaioTransposon/metapigs_base/blob/master/out/piggies_krona.html)
 
 
-
-## R version info: 
-### platform:       x86_64-apple-darwin15.6.0                          
-### status:                                     
-#### major:          3                           
-#### minor:          6.1                         
-#### year:           2019                        
-#### month:          07                          
-#### day:            05                          
-#### svn rev:        76782                       
-### language:       R                           
-### version.string: R version 3.6.1 (2019-07-05)
-### nickname:       Action of the Toes 
-
-
+# Manuscript: Community composition and development of the post-weaning piglet $
 ## Scripts for the production of all figures and stats, in order: 
-### 01_pos_controls_reads.R
-### 02_phylodiv.R
-### 03_guppy_groups.R
-### 04_guppy_XML_process.R
-### 05_guppy_plots.R
-### 06_guppyfat_XML_process.R
-### 07_guppyfat_plots.R
-### 08_sortmerna.R
-### 09_weight_gain.R
+##### 01_pos_controls_reads.R
+##### 02_phylodiv.R
+##### 03_guppy_groups.R
+##### 04_guppy_XML_process.R
+##### 05_guppy_plots.R
+##### 06_guppyfat_XML_process.R
+##### 07_guppyfat_plots.R
+##### 08_sortmerna.R
+##### 09_weight_gain.R
 
-
-## List of packages:
-readr , readxl , data.table , tibble (v2.1.3) , openxlsx ,  splitstackshape ,  tidyr , tidyverse , dplyr , plyr (v1.8.5) , forcats (v0.4.0) , wordspace ,  ggplot2 , pheatmap , ggbiplot , factoextra , plotrix (v3.7-7) ,  gridExtra , grid , cowplot , magrittr , broom , purrr (v0.3.3) , ggpubr , grDevices , colorRamps , magick , tiff , colorRamps ,  robCompositions , EnvStats , corrplot , rstatix , sva (this has got Combat, careful not to install “COMBAT” instead) , dunn.test (v1.3.5) , varhandle (v2.0.4) , vcd , summarytools , corrplot ,  taxize 
+ 
 
 

@@ -1,0 +1,2880 @@
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_A10_S937.rrna.fq.gz
+    Total reads passing E-value threshold = 89771 (99.95)
+    Total reads failing E-value threshold = 47 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_A11_S945.rrna.fq.gz
+    Total reads passing E-value threshold = 69 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_A12_S953.rrna.fq.gz
+    Total reads passing E-value threshold = 50 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_A1_S865.rrna.fq.gz
+    Total reads passing E-value threshold = 87344 (99.98)
+    Total reads failing E-value threshold = 19 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_A2_S873.rrna.fq.gz
+    Total reads passing E-value threshold = 90870 (99.92)
+    Total reads failing E-value threshold = 69 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_A3_S881.rrna.fq.gz
+    Total reads passing E-value threshold = 57604 (99.94)
+    Total reads failing E-value threshold = 34 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_A4_S889.rrna.fq.gz
+    Total reads passing E-value threshold = 40465 (99.82)
+    Total reads failing E-value threshold = 72 (0.18)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_A5_S897.rrna.fq.gz
+    Total reads passing E-value threshold = 144052 (99.96)
+    Total reads failing E-value threshold = 52 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_A6_S905.rrna.fq.gz
+    Total reads passing E-value threshold = 124997 (99.98)
+    Total reads failing E-value threshold = 21 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_A7_S913.rrna.fq.gz
+    Total reads passing E-value threshold = 113663 (99.99)
+    Total reads failing E-value threshold = 14 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_A8_S921.rrna.fq.gz
+    Total reads passing E-value threshold = 36933 (99.82)
+    Total reads failing E-value threshold = 65 (0.18)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_A9_S929.rrna.fq.gz
+    Total reads passing E-value threshold = 31351 (99.89)
+    Total reads failing E-value threshold = 34 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_B10_S938.rrna.fq.gz
+    Total reads passing E-value threshold = 30035 (99.98)
+    Total reads failing E-value threshold = 5 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_B11_S946.rrna.fq.gz
+    Total reads passing E-value threshold = 17 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_B12_S954.rrna.fq.gz
+    Total reads passing E-value threshold = 33 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_B1_S866.rrna.fq.gz
+    Total reads passing E-value threshold = 55902 (99.96)
+    Total reads failing E-value threshold = 21 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_B2_S874.rrna.fq.gz
+    Total reads passing E-value threshold = 70103 (99.76)
+    Total reads failing E-value threshold = 169 (0.24)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_B3_S882.rrna.fq.gz
+    Total reads passing E-value threshold = 97812 (99.94)
+    Total reads failing E-value threshold = 58 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_B4_S890.rrna.fq.gz
+    Total reads passing E-value threshold = 78042 (99.89)
+    Total reads failing E-value threshold = 89 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_B5_S898.rrna.fq.gz
+    Total reads passing E-value threshold = 31060 (99.97)
+    Total reads failing E-value threshold = 9 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_B6_S906.rrna.fq.gz
+    Total reads passing E-value threshold = 97975 (99.95)
+    Total reads failing E-value threshold = 46 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_B7_S914.rrna.fq.gz
+    Total reads passing E-value threshold = 55952 (99.94)
+    Total reads failing E-value threshold = 36 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_B8_S922.rrna.fq.gz
+    Total reads passing E-value threshold = 55331 (99.86)
+    Total reads failing E-value threshold = 79 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_B9_S930.rrna.fq.gz
+    Total reads passing E-value threshold = 59189 (99.93)
+    Total reads failing E-value threshold = 41 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_C10_S939.rrna.fq.gz
+    Total reads passing E-value threshold = 45318 (99.94)
+    Total reads failing E-value threshold = 26 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_C11_S947.rrna.fq.gz
+    Total reads passing E-value threshold = 56 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_C12_S955.rrna.fq.gz
+    Total reads passing E-value threshold = 18 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_C1_S867.rrna.fq.gz
+    Total reads passing E-value threshold = 47635 (99.89)
+    Total reads failing E-value threshold = 52 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_C2_S875.rrna.fq.gz
+    Total reads passing E-value threshold = 49464 (99.98)
+    Total reads failing E-value threshold = 12 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_C3_S883.rrna.fq.gz
+    Total reads passing E-value threshold = 51340 (99.94)
+    Total reads failing E-value threshold = 32 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_C4_S891.rrna.fq.gz
+    Total reads passing E-value threshold = 77820 (99.97)
+    Total reads failing E-value threshold = 26 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_C5_S899.rrna.fq.gz
+    Total reads passing E-value threshold = 120892 (99.90)
+    Total reads failing E-value threshold = 124 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_C6_S907.rrna.fq.gz
+    Total reads passing E-value threshold = 55649 (99.97)
+    Total reads failing E-value threshold = 16 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_C7_S915.rrna.fq.gz
+    Total reads passing E-value threshold = 88928 (99.96)
+    Total reads failing E-value threshold = 39 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_C8_S923.rrna.fq.gz
+    Total reads passing E-value threshold = 104673 (99.93)
+    Total reads failing E-value threshold = 76 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_C9_S931.rrna.fq.gz
+    Total reads passing E-value threshold = 15458 (99.83)
+    Total reads failing E-value threshold = 26 (0.17)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_D10_S940.rrna.fq.gz
+    Total reads passing E-value threshold = 43187 (99.88)
+    Total reads failing E-value threshold = 54 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_D11_S948.rrna.fq.gz
+    Total reads passing E-value threshold = 44 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_D12_S956.rrna.fq.gz
+    Total reads passing E-value threshold = 22 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_D1_S868.rrna.fq.gz
+    Total reads passing E-value threshold = 34211 (99.96)
+    Total reads failing E-value threshold = 12 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_D2_S876.rrna.fq.gz
+    Total reads passing E-value threshold = 74714 (99.93)
+    Total reads failing E-value threshold = 49 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_D3_S884.rrna.fq.gz
+    Total reads passing E-value threshold = 131513 (99.89)
+    Total reads failing E-value threshold = 149 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_D4_S892.rrna.fq.gz
+    Total reads passing E-value threshold = 104882 (99.98)
+    Total reads failing E-value threshold = 25 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_D5_S900.rrna.fq.gz
+    Total reads passing E-value threshold = 98598 (99.94)
+    Total reads failing E-value threshold = 63 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_D6_S908.rrna.fq.gz
+    Total reads passing E-value threshold = 64034 (99.96)
+    Total reads failing E-value threshold = 25 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_D7_S916.rrna.fq.gz
+    Total reads passing E-value threshold = 87309 (99.99)
+    Total reads failing E-value threshold = 8 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_D8_S924.rrna.fq.gz
+    Total reads passing E-value threshold = 106954 (99.66)
+    Total reads failing E-value threshold = 367 (0.34)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_D9_S932.rrna.fq.gz
+    Total reads passing E-value threshold = 41472 (99.85)
+    Total reads failing E-value threshold = 63 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_E10_S941.rrna.fq.gz
+    Total reads passing E-value threshold = 116876 (99.78)
+    Total reads failing E-value threshold = 260 (0.22)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_E11_S949.rrna.fq.gz
+    Total reads passing E-value threshold = 26 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_E12_S957.rrna.fq.gz
+    Total reads passing E-value threshold = 52 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_E1_S869.rrna.fq.gz
+    Total reads passing E-value threshold = 246173 (99.98)
+    Total reads failing E-value threshold = 44 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_E2_S877.rrna.fq.gz
+    Total reads passing E-value threshold = 79397 (99.65)
+    Total reads failing E-value threshold = 277 (0.35)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_E3_S885.rrna.fq.gz
+    Total reads passing E-value threshold = 57298 (99.63)
+    Total reads failing E-value threshold = 212 (0.37)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_E4_S893.rrna.fq.gz
+    Total reads passing E-value threshold = 49002 (99.80)
+    Total reads failing E-value threshold = 100 (0.20)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_E5_S901.rrna.fq.gz
+    Total reads passing E-value threshold = 103431 (99.94)
+    Total reads failing E-value threshold = 57 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_E6_S909.rrna.fq.gz
+    Total reads passing E-value threshold = 58672 (99.87)
+    Total reads failing E-value threshold = 75 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_E7_S917.rrna.fq.gz
+    Total reads passing E-value threshold = 95080 (99.99)
+    Total reads failing E-value threshold = 11 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_E8_S925.rrna.fq.gz
+    Total reads passing E-value threshold = 117015 (99.95)
+    Total reads failing E-value threshold = 58 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_E9_S933.rrna.fq.gz
+    Total reads passing E-value threshold = 55091 (99.98)
+    Total reads failing E-value threshold = 9 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_F10_S942.rrna.fq.gz
+    Total reads passing E-value threshold = 82122 (99.99)
+    Total reads failing E-value threshold = 10 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_F11_S950.rrna.fq.gz
+    Total reads passing E-value threshold = 33 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_F12_S958.rrna.fq.gz
+    Total reads passing E-value threshold = 30 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_F1_S870.rrna.fq.gz
+    Total reads passing E-value threshold = 96612 (99.96)
+    Total reads failing E-value threshold = 34 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_F2_S878.rrna.fq.gz
+    Total reads passing E-value threshold = 89418 (99.94)
+    Total reads failing E-value threshold = 55 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_F3_S886.rrna.fq.gz
+    Total reads passing E-value threshold = 102685 (99.97)
+    Total reads failing E-value threshold = 29 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_F4_S894.rrna.fq.gz
+    Total reads passing E-value threshold = 57665 (99.94)
+    Total reads failing E-value threshold = 35 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_F5_S902.rrna.fq.gz
+    Total reads passing E-value threshold = 33093 (99.86)
+    Total reads failing E-value threshold = 45 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_F6_S910.rrna.fq.gz
+    Total reads passing E-value threshold = 34961 (99.96)
+    Total reads failing E-value threshold = 15 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_F7_S918.rrna.fq.gz
+    Total reads passing E-value threshold = 69304 (100.00)
+    Total reads failing E-value threshold = 2 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_F8_S926.rrna.fq.gz
+    Total reads passing E-value threshold = 93843 (99.93)
+    Total reads failing E-value threshold = 63 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_F9_S934.rrna.fq.gz
+    Total reads passing E-value threshold = 146360 (99.94)
+    Total reads failing E-value threshold = 93 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_G10_S943.rrna.fq.gz
+    Total reads passing E-value threshold = 83484 (99.97)
+    Total reads failing E-value threshold = 27 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_G11_S951.rrna.fq.gz
+    Total reads passing E-value threshold = 56 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_G12_S959.rrna.fq.gz
+    Total reads passing E-value threshold = 32 (96.97)
+    Total reads failing E-value threshold = 1 (3.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_G1_S871.rrna.fq.gz
+    Total reads passing E-value threshold = 152498 (99.98)
+    Total reads failing E-value threshold = 36 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_G2_S879.rrna.fq.gz
+    Total reads passing E-value threshold = 32854 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_G3_S887.rrna.fq.gz
+    Total reads passing E-value threshold = 122275 (99.95)
+    Total reads failing E-value threshold = 63 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_G4_S895.rrna.fq.gz
+    Total reads passing E-value threshold = 81175 (99.96)
+    Total reads failing E-value threshold = 36 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_G5_S903.rrna.fq.gz
+    Total reads passing E-value threshold = 71352 (99.85)
+    Total reads failing E-value threshold = 107 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_G6_S911.rrna.fq.gz
+    Total reads passing E-value threshold = 80468 (99.97)
+    Total reads failing E-value threshold = 21 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_G7_S919.rrna.fq.gz
+    Total reads passing E-value threshold = 131737 (99.85)
+    Total reads failing E-value threshold = 192 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_G8_S927.rrna.fq.gz
+    Total reads passing E-value threshold = 83592 (99.97)
+    Total reads failing E-value threshold = 28 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_G9_S935.rrna.fq.gz
+    Total reads passing E-value threshold = 134104 (99.95)
+    Total reads failing E-value threshold = 65 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_H10_S944.rrna.fq.gz
+    Total reads passing E-value threshold = 83721 (99.98)
+    Total reads failing E-value threshold = 13 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_H11_S952.rrna.fq.gz
+    Total reads passing E-value threshold = 78 (98.73)
+    Total reads failing E-value threshold = 1 (1.27)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_H12_S960.rrna.fq.gz
+    Total reads passing E-value threshold = 36 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_H1_S872.rrna.fq.gz
+    Total reads passing E-value threshold = 100133 (99.96)
+    Total reads failing E-value threshold = 44 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_H2_S880.rrna.fq.gz
+    Total reads passing E-value threshold = 76405 (99.97)
+    Total reads failing E-value threshold = 25 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_H3_S888.rrna.fq.gz
+    Total reads passing E-value threshold = 81610 (99.97)
+    Total reads failing E-value threshold = 26 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_H4_S896.rrna.fq.gz
+    Total reads passing E-value threshold = 56167 (99.96)
+    Total reads failing E-value threshold = 21 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_H5_S904.rrna.fq.gz
+    Total reads passing E-value threshold = 68426 (99.93)
+    Total reads failing E-value threshold = 47 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_H6_S912.rrna.fq.gz
+    Total reads passing E-value threshold = 64910 (99.97)
+    Total reads failing E-value threshold = 20 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_H7_S920.rrna.fq.gz
+    Total reads passing E-value threshold = 55300 (99.92)
+    Total reads failing E-value threshold = 42 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_H8_S928.rrna.fq.gz
+    Total reads passing E-value threshold = 92565 (99.95)
+    Total reads failing E-value threshold = 44 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_10_H9_S936.rrna.fq.gz
+    Total reads passing E-value threshold = 84453 (99.98)
+    Total reads failing E-value threshold = 18 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_A10_S73.rrna.fq.gz
+    Total reads passing E-value threshold = 152134 (99.91)
+    Total reads failing E-value threshold = 139 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_A11_S81.rrna.fq.gz
+    Total reads passing E-value threshold = 84509 (99.88)
+    Total reads failing E-value threshold = 100 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_A12_S89.rrna.fq.gz
+    Total reads passing E-value threshold = 60447 (99.97)
+    Total reads failing E-value threshold = 19 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_A1_S1.rrna.fq.gz
+    Total reads passing E-value threshold = 28 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_A2_S9.rrna.fq.gz
+    Total reads passing E-value threshold = 79313 (99.86)
+    Total reads failing E-value threshold = 109 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_A3_S17.rrna.fq.gz
+    Total reads passing E-value threshold = 88939 (99.96)
+    Total reads failing E-value threshold = 40 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_A4_S25.rrna.fq.gz
+    Total reads passing E-value threshold = 142476 (99.89)
+    Total reads failing E-value threshold = 160 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_A5_S33.rrna.fq.gz
+    Total reads passing E-value threshold = 129289 (99.91)
+    Total reads failing E-value threshold = 111 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_A6_S41.rrna.fq.gz
+    Total reads passing E-value threshold = 78561 (99.84)
+    Total reads failing E-value threshold = 122 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_A7_S49.rrna.fq.gz
+    Total reads passing E-value threshold = 84607 (99.91)
+    Total reads failing E-value threshold = 76 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_A8_S57.rrna.fq.gz
+    Total reads passing E-value threshold = 83200 (99.89)
+    Total reads failing E-value threshold = 95 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_A9_S65.rrna.fq.gz
+    Total reads passing E-value threshold = 96606 (99.90)
+    Total reads failing E-value threshold = 96 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_B10_S74.rrna.fq.gz
+    Total reads passing E-value threshold = 28410 (99.94)
+    Total reads failing E-value threshold = 17 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_B11_S82.rrna.fq.gz
+    Total reads passing E-value threshold = 77109 (99.90)
+    Total reads failing E-value threshold = 74 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_B12_S90.rrna.fq.gz
+    Total reads passing E-value threshold = 116749 (99.93)
+    Total reads failing E-value threshold = 82 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_B1_S2.rrna.fq.gz
+    Total reads passing E-value threshold = 72241 (99.95)
+    Total reads failing E-value threshold = 36 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_B2_S10.rrna.fq.gz
+    Total reads passing E-value threshold = 82760 (99.96)
+    Total reads failing E-value threshold = 35 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_B3_S18.rrna.fq.gz
+    Total reads passing E-value threshold = 164931 (99.91)
+    Total reads failing E-value threshold = 151 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_B4_S26.rrna.fq.gz
+    Total reads passing E-value threshold = 101777 (99.95)
+    Total reads failing E-value threshold = 47 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_B5_S34.rrna.fq.gz
+    Total reads passing E-value threshold = 96690 (99.92)
+    Total reads failing E-value threshold = 78 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_B6_S42.rrna.fq.gz
+    Total reads passing E-value threshold = 3617 (99.89)
+    Total reads failing E-value threshold = 4 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_B7_S50.rrna.fq.gz
+    Total reads passing E-value threshold = 48192 (99.92)
+    Total reads failing E-value threshold = 40 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_B8_S58.rrna.fq.gz
+    Total reads passing E-value threshold = 67626 (99.98)
+    Total reads failing E-value threshold = 14 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_B9_S66.rrna.fq.gz
+    Total reads passing E-value threshold = 109331 (99.98)
+    Total reads failing E-value threshold = 25 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_C10_S75.rrna.fq.gz
+    Total reads passing E-value threshold = 138653 (99.84)
+    Total reads failing E-value threshold = 228 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_C11_S83.rrna.fq.gz
+    Total reads passing E-value threshold = 78648 (99.88)
+    Total reads failing E-value threshold = 92 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_C12_S91.rrna.fq.gz
+    Total reads passing E-value threshold = 150344 (99.84)
+    Total reads failing E-value threshold = 248 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_C1_S3.rrna.fq.gz
+    Total reads passing E-value threshold = 106403 (99.72)
+    Total reads failing E-value threshold = 301 (0.28)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_C2_S11.rrna.fq.gz
+    Total reads passing E-value threshold = 57464 (99.87)
+    Total reads failing E-value threshold = 76 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_C3_S19.rrna.fq.gz
+    Total reads passing E-value threshold = 99352 (99.96)
+    Total reads failing E-value threshold = 38 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_C4_S27.rrna.fq.gz
+    Total reads passing E-value threshold = 85533 (99.96)
+    Total reads failing E-value threshold = 34 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_C5_S35.rrna.fq.gz
+    Total reads passing E-value threshold = 95488 (99.93)
+    Total reads failing E-value threshold = 67 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_C6_S43.rrna.fq.gz
+    Total reads passing E-value threshold = 102014 (99.87)
+    Total reads failing E-value threshold = 129 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_C7_S51.rrna.fq.gz
+    Total reads passing E-value threshold = 90643 (99.95)
+    Total reads failing E-value threshold = 44 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_C8_S59.rrna.fq.gz
+    Total reads passing E-value threshold = 168636 (99.87)
+    Total reads failing E-value threshold = 212 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_C9_S67.rrna.fq.gz
+    Total reads passing E-value threshold = 76313 (99.95)
+    Total reads failing E-value threshold = 36 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_D10_S76.rrna.fq.gz
+    Total reads passing E-value threshold = 87556 (99.85)
+    Total reads failing E-value threshold = 134 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_D11_S84.rrna.fq.gz
+    Total reads passing E-value threshold = 111311 (99.89)
+    Total reads failing E-value threshold = 128 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_D12_S92.rrna.fq.gz
+    Total reads passing E-value threshold = 68962 (99.94)
+    Total reads failing E-value threshold = 39 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_D1_S4.rrna.fq.gz
+    Total reads passing E-value threshold = 70469 (99.91)
+    Total reads failing E-value threshold = 64 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_D2_S12.rrna.fq.gz
+    Total reads passing E-value threshold = 110834 (99.92)
+    Total reads failing E-value threshold = 92 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_D3_S20.rrna.fq.gz
+    Total reads passing E-value threshold = 106255 (99.90)
+    Total reads failing E-value threshold = 109 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_D4_S28.rrna.fq.gz
+    Total reads passing E-value threshold = 142435 (99.89)
+    Total reads failing E-value threshold = 162 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_D5_S36.rrna.fq.gz
+    Total reads passing E-value threshold = 104204 (99.88)
+    Total reads failing E-value threshold = 122 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_D6_S44.rrna.fq.gz
+    Total reads passing E-value threshold = 125405 (99.94)
+    Total reads failing E-value threshold = 77 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_D7_S52.rrna.fq.gz
+    Total reads passing E-value threshold = 86076 (99.92)
+    Total reads failing E-value threshold = 68 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_D8_S60.rrna.fq.gz
+    Total reads passing E-value threshold = 181558 (99.95)
+    Total reads failing E-value threshold = 83 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_D9_S68.rrna.fq.gz
+    Total reads passing E-value threshold = 90677 (99.88)
+    Total reads failing E-value threshold = 111 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_E10_S77.rrna.fq.gz
+    Total reads passing E-value threshold = 87502 (99.94)
+    Total reads failing E-value threshold = 53 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_E11_S85.rrna.fq.gz
+    Total reads passing E-value threshold = 139081 (99.91)
+    Total reads failing E-value threshold = 132 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_E12_S93.rrna.fq.gz
+    Total reads passing E-value threshold = 95423 (99.89)
+    Total reads failing E-value threshold = 104 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_E1_S5.rrna.fq.gz
+    Total reads passing E-value threshold = 221459 (99.95)
+    Total reads failing E-value threshold = 104 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_E2_S13.rrna.fq.gz
+    Total reads passing E-value threshold = 101485 (99.94)
+    Total reads failing E-value threshold = 59 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_E3_S21.rrna.fq.gz
+    Total reads passing E-value threshold = 217917 (99.96)
+    Total reads failing E-value threshold = 88 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_E4_S29.rrna.fq.gz
+    Total reads passing E-value threshold = 96727 (99.89)
+    Total reads failing E-value threshold = 111 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_E5_S37.rrna.fq.gz
+    Total reads passing E-value threshold = 107634 (99.95)
+    Total reads failing E-value threshold = 58 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_E6_S45.rrna.fq.gz
+    Total reads passing E-value threshold = 110729 (99.92)
+    Total reads failing E-value threshold = 88 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_E7_S53.rrna.fq.gz
+    Total reads passing E-value threshold = 249 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_E8_S61.rrna.fq.gz
+    Total reads passing E-value threshold = 109173 (99.94)
+    Total reads failing E-value threshold = 71 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_E9_S69.rrna.fq.gz
+    Total reads passing E-value threshold = 72530 (99.94)
+    Total reads failing E-value threshold = 45 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_F10_S78.rrna.fq.gz
+    Total reads passing E-value threshold = 81985 (99.82)
+    Total reads failing E-value threshold = 144 (0.18)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_F11_S86.rrna.fq.gz
+    Total reads passing E-value threshold = 103064 (99.92)
+    Total reads failing E-value threshold = 78 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_F12_S94.rrna.fq.gz
+    Total reads passing E-value threshold = 142696 (99.93)
+    Total reads failing E-value threshold = 103 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_F1_S6.rrna.fq.gz
+    Total reads passing E-value threshold = 92422 (99.90)
+    Total reads failing E-value threshold = 96 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_F2_S14.rrna.fq.gz
+    Total reads passing E-value threshold = 118731 (99.88)
+    Total reads failing E-value threshold = 141 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_F3_S22.rrna.fq.gz
+    Total reads passing E-value threshold = 85787 (99.92)
+    Total reads failing E-value threshold = 65 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_F4_S30.rrna.fq.gz
+    Total reads passing E-value threshold = 60413 (99.74)
+    Total reads failing E-value threshold = 159 (0.26)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_F5_S38.rrna.fq.gz
+    Total reads passing E-value threshold = 58788 (99.95)
+    Total reads failing E-value threshold = 30 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_F6_S46.rrna.fq.gz
+    Total reads passing E-value threshold = 90806 (99.91)
+    Total reads failing E-value threshold = 80 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_F7_S54.rrna.fq.gz
+    Total reads passing E-value threshold = 78114 (99.94)
+    Total reads failing E-value threshold = 49 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_F8_S62.rrna.fq.gz
+    Total reads passing E-value threshold = 135861 (99.52)
+    Total reads failing E-value threshold = 649 (0.48)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_F9_S70.rrna.fq.gz
+    Total reads passing E-value threshold = 141834 (99.94)
+    Total reads failing E-value threshold = 80 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_G10_S79.rrna.fq.gz
+    Total reads passing E-value threshold = 224445 (99.94)
+    Total reads failing E-value threshold = 125 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_G11_S87.rrna.fq.gz
+    Total reads passing E-value threshold = 143512 (99.92)
+    Total reads failing E-value threshold = 112 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_G12_S95.rrna.fq.gz
+    Total reads passing E-value threshold = 241046 (99.90)
+    Total reads failing E-value threshold = 250 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_G1_S7.rrna.fq.gz
+    Total reads passing E-value threshold = 253099 (99.96)
+    Total reads failing E-value threshold = 93 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_G2_S15.rrna.fq.gz
+    Total reads passing E-value threshold = 103582 (99.85)
+    Total reads failing E-value threshold = 159 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_G3_S23.rrna.fq.gz
+    Total reads passing E-value threshold = 94580 (99.92)
+    Total reads failing E-value threshold = 77 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_G4_S31.rrna.fq.gz
+    Total reads passing E-value threshold = 91123 (99.94)
+    Total reads failing E-value threshold = 53 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_G5_S39.rrna.fq.gz
+    Total reads passing E-value threshold = 115060 (99.96)
+    Total reads failing E-value threshold = 50 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_G6_S47.rrna.fq.gz
+    Total reads passing E-value threshold = 165219 (99.94)
+    Total reads failing E-value threshold = 101 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_G7_S55.rrna.fq.gz
+    Total reads passing E-value threshold = 126375 (99.93)
+    Total reads failing E-value threshold = 92 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_G8_S63.rrna.fq.gz
+    Total reads passing E-value threshold = 82622 (99.88)
+    Total reads failing E-value threshold = 100 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_G9_S71.rrna.fq.gz
+    Total reads passing E-value threshold = 211510 (99.96)
+    Total reads failing E-value threshold = 75 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_H10_S80.rrna.fq.gz
+    Total reads passing E-value threshold = 193942 (99.81)
+    Total reads failing E-value threshold = 362 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_H11_S88.rrna.fq.gz
+    Total reads passing E-value threshold = 167632 (99.86)
+    Total reads failing E-value threshold = 227 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_H12_S96.rrna.fq.gz
+    Total reads passing E-value threshold = 164021 (99.86)
+    Total reads failing E-value threshold = 238 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_H1_S8.rrna.fq.gz
+    Total reads passing E-value threshold = 103957 (99.93)
+    Total reads failing E-value threshold = 71 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_H2_S16.rrna.fq.gz
+    Total reads passing E-value threshold = 99449 (99.92)
+    Total reads failing E-value threshold = 82 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_H3_S24.rrna.fq.gz
+    Total reads passing E-value threshold = 143024 (99.94)
+    Total reads failing E-value threshold = 79 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_H4_S32.rrna.fq.gz
+    Total reads passing E-value threshold = 82446 (99.97)
+    Total reads failing E-value threshold = 28 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_H5_S40.rrna.fq.gz
+    Total reads passing E-value threshold = 80901 (99.97)
+    Total reads failing E-value threshold = 28 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_H6_S48.rrna.fq.gz
+    Total reads passing E-value threshold = 74565 (99.86)
+    Total reads failing E-value threshold = 104 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_H7_S56.rrna.fq.gz
+    Total reads passing E-value threshold = 90636 (99.86)
+    Total reads failing E-value threshold = 131 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_H8_S64.rrna.fq.gz
+    Total reads passing E-value threshold = 111459 (99.94)
+    Total reads failing E-value threshold = 66 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_1_H9_S72.rrna.fq.gz
+    Total reads passing E-value threshold = 141540 (99.92)
+    Total reads failing E-value threshold = 108 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_A10_S169.rrna.fq.gz
+    Total reads passing E-value threshold = 95280 (99.85)
+    Total reads failing E-value threshold = 141 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_A11_S177.rrna.fq.gz
+    Total reads passing E-value threshold = 86361 (99.97)
+    Total reads failing E-value threshold = 29 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_A12_S185.rrna.fq.gz
+    Total reads passing E-value threshold = 30155 (99.86)
+    Total reads failing E-value threshold = 42 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_A1_S97.rrna.fq.gz
+    Total reads passing E-value threshold = 6754 (99.88)
+    Total reads failing E-value threshold = 8 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_A2_S105.rrna.fq.gz
+    Total reads passing E-value threshold = 76361 (99.89)
+    Total reads failing E-value threshold = 82 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_A3_S113.rrna.fq.gz
+    Total reads passing E-value threshold = 71327 (99.88)
+    Total reads failing E-value threshold = 89 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_A4_S121.rrna.fq.gz
+    Total reads passing E-value threshold = 43238 (99.88)
+    Total reads failing E-value threshold = 54 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_A5_S129.rrna.fq.gz
+    Total reads passing E-value threshold = 67651 (99.83)
+    Total reads failing E-value threshold = 115 (0.17)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_A6_S137.rrna.fq.gz
+    Total reads passing E-value threshold = 92372 (99.84)
+    Total reads failing E-value threshold = 145 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_A7_S145.rrna.fq.gz
+    Total reads passing E-value threshold = 73032 (99.85)
+    Total reads failing E-value threshold = 109 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_A8_S153.rrna.fq.gz
+    Total reads passing E-value threshold = 50813 (99.71)
+    Total reads failing E-value threshold = 146 (0.29)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_A9_S161.rrna.fq.gz
+    Total reads passing E-value threshold = 32430 (99.88)
+    Total reads failing E-value threshold = 40 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_B10_S170.rrna.fq.gz
+    Total reads passing E-value threshold = 32156 (99.83)
+    Total reads failing E-value threshold = 55 (0.17)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_B11_S178.rrna.fq.gz
+    Total reads passing E-value threshold = 21403 (99.83)
+    Total reads failing E-value threshold = 37 (0.17)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_B12_S186.rrna.fq.gz
+    Total reads passing E-value threshold = 96446 (99.96)
+    Total reads failing E-value threshold = 34 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_B1_S98.rrna.fq.gz
+    Total reads passing E-value threshold = 6058 (99.88)
+    Total reads failing E-value threshold = 7 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_B2_S106.rrna.fq.gz
+    Total reads passing E-value threshold = 95988 (99.93)
+    Total reads failing E-value threshold = 64 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_B3_S114.rrna.fq.gz
+    Total reads passing E-value threshold = 93004 (99.91)
+    Total reads failing E-value threshold = 81 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_B4_S122.rrna.fq.gz
+    Total reads passing E-value threshold = 85420 (99.87)
+    Total reads failing E-value threshold = 111 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_B5_S130.rrna.fq.gz
+    Total reads passing E-value threshold = 181 (98.91)
+    Total reads failing E-value threshold = 2 (1.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_B6_S138.rrna.fq.gz
+    Total reads passing E-value threshold = 77641 (99.80)
+    Total reads failing E-value threshold = 153 (0.20)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_B7_S146.rrna.fq.gz
+    Total reads passing E-value threshold = 31862 (99.84)
+    Total reads failing E-value threshold = 52 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_B8_S154.rrna.fq.gz
+    Total reads passing E-value threshold = 53641 (99.93)
+    Total reads failing E-value threshold = 39 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_B9_S162.rrna.fq.gz
+    Total reads passing E-value threshold = 42275 (99.69)
+    Total reads failing E-value threshold = 132 (0.31)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_C10_S171.rrna.fq.gz
+    Total reads passing E-value threshold = 96031 (99.90)
+    Total reads failing E-value threshold = 93 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_C11_S179.rrna.fq.gz
+    Total reads passing E-value threshold = 37347 (99.75)
+    Total reads failing E-value threshold = 95 (0.25)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_C12_S187.rrna.fq.gz
+    Total reads passing E-value threshold = 53273 (99.89)
+    Total reads failing E-value threshold = 59 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_C1_S99.rrna.fq.gz
+    Total reads passing E-value threshold = 4458 (99.84)
+    Total reads failing E-value threshold = 7 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_C2_S107.rrna.fq.gz
+    Total reads passing E-value threshold = 49514 (99.93)
+    Total reads failing E-value threshold = 34 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_C3_S115.rrna.fq.gz
+    Total reads passing E-value threshold = 56717 (99.85)
+    Total reads failing E-value threshold = 83 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_C4_S123.rrna.fq.gz
+    Total reads passing E-value threshold = 78655 (99.92)
+    Total reads failing E-value threshold = 64 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_C5_S131.rrna.fq.gz
+    Total reads passing E-value threshold = 54467 (99.88)
+    Total reads failing E-value threshold = 66 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_C6_S139.rrna.fq.gz
+    Total reads passing E-value threshold = 37938 (99.90)
+    Total reads failing E-value threshold = 38 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_C7_S147.rrna.fq.gz
+    Total reads passing E-value threshold = 76003 (99.89)
+    Total reads failing E-value threshold = 80 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_C8_S155.rrna.fq.gz
+    Total reads passing E-value threshold = 78570 (99.94)
+    Total reads failing E-value threshold = 44 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_C9_S163.rrna.fq.gz
+    Total reads passing E-value threshold = 14850 (99.50)
+    Total reads failing E-value threshold = 75 (0.50)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_D10_S172.rrna.fq.gz
+    Total reads passing E-value threshold = 41 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_D11_S180.rrna.fq.gz
+    Total reads passing E-value threshold = 48 (97.96)
+    Total reads failing E-value threshold = 1 (2.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_D12_S188.rrna.fq.gz
+    Total reads passing E-value threshold = 25 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_D1_S100.rrna.fq.gz
+    Total reads passing E-value threshold = 19 (95.00)
+    Total reads failing E-value threshold = 1 (5.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_D2_S108.rrna.fq.gz
+    Total reads passing E-value threshold = 66 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_D3_S116.rrna.fq.gz
+    Total reads passing E-value threshold = 52 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_D4_S124.rrna.fq.gz
+    Total reads passing E-value threshold = 41 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_D5_S132.rrna.fq.gz
+    Total reads passing E-value threshold = 57 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_D6_S140.rrna.fq.gz
+    Total reads passing E-value threshold = 30 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_D7_S148.rrna.fq.gz
+    Total reads passing E-value threshold = 35 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_D8_S156.rrna.fq.gz
+    Total reads passing E-value threshold = 43 (95.56)
+    Total reads failing E-value threshold = 2 (4.44)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_D9_S164.rrna.fq.gz
+    Total reads passing E-value threshold = 69 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_E10_S173.rrna.fq.gz
+    Total reads passing E-value threshold = 51336 (99.91)
+    Total reads failing E-value threshold = 46 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_E11_S181.rrna.fq.gz
+    Total reads passing E-value threshold = 62506 (99.72)
+    Total reads failing E-value threshold = 176 (0.28)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_E12_S189.rrna.fq.gz
+    Total reads passing E-value threshold = 72543 (99.91)
+    Total reads failing E-value threshold = 67 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_E1_S101.rrna.fq.gz
+    Total reads passing E-value threshold = 204239 (99.90)
+    Total reads failing E-value threshold = 209 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_E2_S109.rrna.fq.gz
+    Total reads passing E-value threshold = 92693 (99.92)
+    Total reads failing E-value threshold = 70 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_E3_S117.rrna.fq.gz
+    Total reads passing E-value threshold = 85923 (99.85)
+    Total reads failing E-value threshold = 127 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_E4_S125.rrna.fq.gz
+    Total reads passing E-value threshold = 81563 (99.86)
+    Total reads failing E-value threshold = 117 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_E5_S133.rrna.fq.gz
+    Total reads passing E-value threshold = 79776 (99.87)
+    Total reads failing E-value threshold = 100 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_E6_S141.rrna.fq.gz
+    Total reads passing E-value threshold = 46597 (99.76)
+    Total reads failing E-value threshold = 113 (0.24)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_E7_S149.rrna.fq.gz
+    Total reads passing E-value threshold = 94587 (99.94)
+    Total reads failing E-value threshold = 53 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_E8_S157.rrna.fq.gz
+    Total reads passing E-value threshold = 55181 (99.94)
+    Total reads failing E-value threshold = 31 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_E9_S165.rrna.fq.gz
+    Total reads passing E-value threshold = 53221 (99.84)
+    Total reads failing E-value threshold = 84 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_F10_S174.rrna.fq.gz
+    Total reads passing E-value threshold = 48241 (99.89)
+    Total reads failing E-value threshold = 55 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_F11_S182.rrna.fq.gz
+    Total reads passing E-value threshold = 44531 (99.91)
+    Total reads failing E-value threshold = 41 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_F12_S190.rrna.fq.gz
+    Total reads passing E-value threshold = 61364 (99.77)
+    Total reads failing E-value threshold = 142 (0.23)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_F1_S102.rrna.fq.gz
+    Total reads passing E-value threshold = 106054 (99.89)
+    Total reads failing E-value threshold = 122 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_F2_S110.rrna.fq.gz
+    Total reads passing E-value threshold = 93013 (99.90)
+    Total reads failing E-value threshold = 94 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_F3_S118.rrna.fq.gz
+    Total reads passing E-value threshold = 77063 (99.87)
+    Total reads failing E-value threshold = 98 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_F4_S126.rrna.fq.gz
+    Total reads passing E-value threshold = 11114 (99.86)
+    Total reads failing E-value threshold = 16 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_F5_S134.rrna.fq.gz
+    Total reads passing E-value threshold = 24517 (99.92)
+    Total reads failing E-value threshold = 20 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_F6_S142.rrna.fq.gz
+    Total reads passing E-value threshold = 29117 (99.88)
+    Total reads failing E-value threshold = 36 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_F7_S150.rrna.fq.gz
+    Total reads passing E-value threshold = 34927 (99.86)
+    Total reads failing E-value threshold = 48 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_F8_S158.rrna.fq.gz
+    Total reads passing E-value threshold = 90384 (99.83)
+    Total reads failing E-value threshold = 150 (0.17)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_F9_S166.rrna.fq.gz
+    Total reads passing E-value threshold = 67853 (99.87)
+    Total reads failing E-value threshold = 91 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_G10_S175.rrna.fq.gz
+    Total reads passing E-value threshold = 84153 (99.97)
+    Total reads failing E-value threshold = 22 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_G11_S183.rrna.fq.gz
+    Total reads passing E-value threshold = 59454 (99.94)
+    Total reads failing E-value threshold = 37 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_G12_S191.rrna.fq.gz
+    Total reads passing E-value threshold = 111683 (99.81)
+    Total reads failing E-value threshold = 214 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_G1_S103.rrna.fq.gz
+    Total reads passing E-value threshold = 258341 (99.87)
+    Total reads failing E-value threshold = 328 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_G2_S111.rrna.fq.gz
+    Total reads passing E-value threshold = 60037 (99.94)
+    Total reads failing E-value threshold = 38 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_G3_S119.rrna.fq.gz
+    Total reads passing E-value threshold = 101338 (99.73)
+    Total reads failing E-value threshold = 272 (0.27)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_G4_S127.rrna.fq.gz
+    Total reads passing E-value threshold = 60973 (99.93)
+    Total reads failing E-value threshold = 40 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_G5_S135.rrna.fq.gz
+    Total reads passing E-value threshold = 55633 (99.96)
+    Total reads failing E-value threshold = 25 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_G6_S143.rrna.fq.gz
+    Total reads passing E-value threshold = 45312 (99.80)
+    Total reads failing E-value threshold = 90 (0.20)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_G7_S151.rrna.fq.gz
+    Total reads passing E-value threshold = 99413 (99.91)
+    Total reads failing E-value threshold = 90 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_G8_S159.rrna.fq.gz
+    Total reads passing E-value threshold = 58969 (99.94)
+    Total reads failing E-value threshold = 37 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_G9_S167.rrna.fq.gz
+    Total reads passing E-value threshold = 80487 (99.69)
+    Total reads failing E-value threshold = 250 (0.31)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_H10_S176.rrna.fq.gz
+    Total reads passing E-value threshold = 58 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_H11_S184.rrna.fq.gz
+    Total reads passing E-value threshold = 68 (98.55)
+    Total reads failing E-value threshold = 1 (1.45)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_H12_S192.rrna.fq.gz
+    Total reads passing E-value threshold = 53 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_H1_S104.rrna.fq.gz
+    Total reads passing E-value threshold = 75635 (99.89)
+    Total reads failing E-value threshold = 85 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_H2_S112.rrna.fq.gz
+    Total reads passing E-value threshold = 70830 (99.97)
+    Total reads failing E-value threshold = 20 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_H3_S120.rrna.fq.gz
+    Total reads passing E-value threshold = 53360 (99.90)
+    Total reads failing E-value threshold = 52 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_H4_S128.rrna.fq.gz
+    Total reads passing E-value threshold = 118853 (99.87)
+    Total reads failing E-value threshold = 150 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_H5_S136.rrna.fq.gz
+    Total reads passing E-value threshold = 84800 (99.97)
+    Total reads failing E-value threshold = 27 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_H6_S144.rrna.fq.gz
+    Total reads passing E-value threshold = 18872 (99.95)
+    Total reads failing E-value threshold = 10 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_H7_S152.rrna.fq.gz
+    Total reads passing E-value threshold = 17769 (99.85)
+    Total reads failing E-value threshold = 27 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_H8_S160.rrna.fq.gz
+    Total reads passing E-value threshold = 58080 (99.89)
+    Total reads failing E-value threshold = 66 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_2_H9_S168.rrna.fq.gz
+    Total reads passing E-value threshold = 60 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_A10_S265.rrna.fq.gz
+    Total reads passing E-value threshold = 62186 (99.86)
+    Total reads failing E-value threshold = 88 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_A11_S273.rrna.fq.gz
+    Total reads passing E-value threshold = 73151 (99.97)
+    Total reads failing E-value threshold = 22 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_A12_S281.rrna.fq.gz
+    Total reads passing E-value threshold = 28620 (99.73)
+    Total reads failing E-value threshold = 78 (0.27)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_A1_S193.rrna.fq.gz
+    Total reads passing E-value threshold = 54547 (99.95)
+    Total reads failing E-value threshold = 29 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_A2_S201.rrna.fq.gz
+    Total reads passing E-value threshold = 39240 (99.91)
+    Total reads failing E-value threshold = 35 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_A3_S209.rrna.fq.gz
+    Total reads passing E-value threshold = 45782 (99.93)
+    Total reads failing E-value threshold = 34 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_A4_S217.rrna.fq.gz
+    Total reads passing E-value threshold = 39761 (99.89)
+    Total reads failing E-value threshold = 43 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_A5_S225.rrna.fq.gz
+    Total reads passing E-value threshold = 55141 (99.76)
+    Total reads failing E-value threshold = 133 (0.24)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_A6_S233.rrna.fq.gz
+    Total reads passing E-value threshold = 50070 (99.96)
+    Total reads failing E-value threshold = 18 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_A7_S241.rrna.fq.gz
+    Total reads passing E-value threshold = 55516 (99.91)
+    Total reads failing E-value threshold = 48 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_A8_S249.rrna.fq.gz
+    Total reads passing E-value threshold = 38905 (99.79)
+    Total reads failing E-value threshold = 80 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_A9_S257.rrna.fq.gz
+    Total reads passing E-value threshold = 19167 (99.93)
+    Total reads failing E-value threshold = 13 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_B10_S266.rrna.fq.gz
+    Total reads passing E-value threshold = 21041 (99.89)
+    Total reads failing E-value threshold = 24 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_B11_S274.rrna.fq.gz
+    Total reads passing E-value threshold = 38642 (99.94)
+    Total reads failing E-value threshold = 22 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_B12_S282.rrna.fq.gz
+    Total reads passing E-value threshold = 48856 (99.82)
+    Total reads failing E-value threshold = 90 (0.18)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_B1_S194.rrna.fq.gz
+    Total reads passing E-value threshold = 53274 (99.96)
+    Total reads failing E-value threshold = 21 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_B2_S202.rrna.fq.gz
+    Total reads passing E-value threshold = 66850 (99.82)
+    Total reads failing E-value threshold = 123 (0.18)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_B3_S210.rrna.fq.gz
+    Total reads passing E-value threshold = 76793 (99.98)
+    Total reads failing E-value threshold = 19 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_B4_S218.rrna.fq.gz
+    Total reads passing E-value threshold = 107538 (99.90)
+    Total reads failing E-value threshold = 103 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_B5_S226.rrna.fq.gz
+    Total reads passing E-value threshold = 1393 (99.93)
+    Total reads failing E-value threshold = 1 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_B6_S234.rrna.fq.gz
+    Total reads passing E-value threshold = 54228 (99.95)
+    Total reads failing E-value threshold = 27 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_B7_S242.rrna.fq.gz
+    Total reads passing E-value threshold = 25548 (99.88)
+    Total reads failing E-value threshold = 31 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_B8_S250.rrna.fq.gz
+    Total reads passing E-value threshold = 49786 (99.91)
+    Total reads failing E-value threshold = 46 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_B9_S258.rrna.fq.gz
+    Total reads passing E-value threshold = 58206 (99.96)
+    Total reads failing E-value threshold = 25 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_C10_S267.rrna.fq.gz
+    Total reads passing E-value threshold = 37615 (99.89)
+    Total reads failing E-value threshold = 41 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_C11_S275.rrna.fq.gz
+    Total reads passing E-value threshold = 43965 (99.88)
+    Total reads failing E-value threshold = 51 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_C12_S283.rrna.fq.gz
+    Total reads passing E-value threshold = 7034 (99.89)
+    Total reads failing E-value threshold = 8 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_C1_S195.rrna.fq.gz
+    Total reads passing E-value threshold = 35722 (99.97)
+    Total reads failing E-value threshold = 9 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_C2_S203.rrna.fq.gz
+    Total reads passing E-value threshold = 130 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_C3_S211.rrna.fq.gz
+    Total reads passing E-value threshold = 36674 (99.86)
+    Total reads failing E-value threshold = 52 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_C4_S219.rrna.fq.gz
+    Total reads passing E-value threshold = 88174 (99.96)
+    Total reads failing E-value threshold = 39 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_C5_S227.rrna.fq.gz
+    Total reads passing E-value threshold = 73698 (99.90)
+    Total reads failing E-value threshold = 71 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_C6_S235.rrna.fq.gz
+    Total reads passing E-value threshold = 28372 (99.69)
+    Total reads failing E-value threshold = 89 (0.31)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_C7_S243.rrna.fq.gz
+    Total reads passing E-value threshold = 75402 (99.97)
+    Total reads failing E-value threshold = 24 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_C8_S251.rrna.fq.gz
+    Total reads passing E-value threshold = 82592 (99.92)
+    Total reads failing E-value threshold = 64 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_C9_S259.rrna.fq.gz
+    Total reads passing E-value threshold = 13147 (99.95)
+    Total reads failing E-value threshold = 7 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_D10_S268.rrna.fq.gz
+    Total reads passing E-value threshold = 112351 (99.97)
+    Total reads failing E-value threshold = 30 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_D11_S276.rrna.fq.gz
+    Total reads passing E-value threshold = 83304 (99.96)
+    Total reads failing E-value threshold = 33 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_D12_S284.rrna.fq.gz
+    Total reads passing E-value threshold = 27382 (99.95)
+    Total reads failing E-value threshold = 13 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_D1_S196.rrna.fq.gz
+    Total reads passing E-value threshold = 27776 (99.91)
+    Total reads failing E-value threshold = 24 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_D2_S204.rrna.fq.gz
+    Total reads passing E-value threshold = 47971 (99.92)
+    Total reads failing E-value threshold = 37 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_D3_S212.rrna.fq.gz
+    Total reads passing E-value threshold = 82646 (99.93)
+    Total reads failing E-value threshold = 57 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_D4_S220.rrna.fq.gz
+    Total reads passing E-value threshold = 74863 (99.96)
+    Total reads failing E-value threshold = 31 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_D5_S228.rrna.fq.gz
+    Total reads passing E-value threshold = 115690 (99.96)
+    Total reads failing E-value threshold = 50 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_D6_S236.rrna.fq.gz
+    Total reads passing E-value threshold = 50262 (99.91)
+    Total reads failing E-value threshold = 45 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_D7_S244.rrna.fq.gz
+    Total reads passing E-value threshold = 42090 (99.91)
+    Total reads failing E-value threshold = 39 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_D8_S252.rrna.fq.gz
+    Total reads passing E-value threshold = 105973 (99.83)
+    Total reads failing E-value threshold = 177 (0.17)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_D9_S260.rrna.fq.gz
+    Total reads passing E-value threshold = 56514 (99.96)
+    Total reads failing E-value threshold = 21 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_E10_S269.rrna.fq.gz
+    Total reads passing E-value threshold = 91328 (99.93)
+    Total reads failing E-value threshold = 68 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_E11_S277.rrna.fq.gz
+    Total reads passing E-value threshold = 79709 (99.96)
+    Total reads failing E-value threshold = 33 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_E12_S285.rrna.fq.gz
+    Total reads passing E-value threshold = 61472 (99.94)
+    Total reads failing E-value threshold = 34 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_E1_S197.rrna.fq.gz
+    Total reads passing E-value threshold = 112314 (99.98)
+    Total reads failing E-value threshold = 20 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_E2_S205.rrna.fq.gz
+    Total reads passing E-value threshold = 69748 (99.92)
+    Total reads failing E-value threshold = 58 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_E3_S213.rrna.fq.gz
+    Total reads passing E-value threshold = 81534 (99.96)
+    Total reads failing E-value threshold = 35 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_E4_S221.rrna.fq.gz
+    Total reads passing E-value threshold = 53447 (99.69)
+    Total reads failing E-value threshold = 167 (0.31)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_E5_S229.rrna.fq.gz
+    Total reads passing E-value threshold = 75846 (99.85)
+    Total reads failing E-value threshold = 113 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_E6_S237.rrna.fq.gz
+    Total reads passing E-value threshold = 55981 (99.97)
+    Total reads failing E-value threshold = 16 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_E7_S245.rrna.fq.gz
+    Total reads passing E-value threshold = 51242 (99.89)
+    Total reads failing E-value threshold = 55 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_E8_S253.rrna.fq.gz
+    Total reads passing E-value threshold = 125431 (99.98)
+    Total reads failing E-value threshold = 30 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_E9_S261.rrna.fq.gz
+    Total reads passing E-value threshold = 16000 (99.91)
+    Total reads failing E-value threshold = 15 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_F10_S270.rrna.fq.gz
+    Total reads passing E-value threshold = 56122 (99.92)
+    Total reads failing E-value threshold = 45 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_F11_S278.rrna.fq.gz
+    Total reads passing E-value threshold = 71463 (99.94)
+    Total reads failing E-value threshold = 45 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_F12_S286.rrna.fq.gz
+    Total reads passing E-value threshold = 52776 (99.92)
+    Total reads failing E-value threshold = 43 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_F1_S198.rrna.fq.gz
+    Total reads passing E-value threshold = 55770 (99.94)
+    Total reads failing E-value threshold = 35 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_F2_S206.rrna.fq.gz
+    Total reads passing E-value threshold = 86439 (99.89)
+    Total reads failing E-value threshold = 97 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_F3_S214.rrna.fq.gz
+    Total reads passing E-value threshold = 72664 (99.92)
+    Total reads failing E-value threshold = 56 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_F4_S222.rrna.fq.gz
+    Total reads passing E-value threshold = 50201 (99.99)
+    Total reads failing E-value threshold = 4 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_F5_S230.rrna.fq.gz
+    Total reads passing E-value threshold = 14374 (99.61)
+    Total reads failing E-value threshold = 56 (0.39)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_F6_S238.rrna.fq.gz
+    Total reads passing E-value threshold = 36652 (99.91)
+    Total reads failing E-value threshold = 34 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_F7_S246.rrna.fq.gz
+    Total reads passing E-value threshold = 25309 (99.91)
+    Total reads failing E-value threshold = 22 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_F8_S254.rrna.fq.gz
+    Total reads passing E-value threshold = 58217 (99.76)
+    Total reads failing E-value threshold = 141 (0.24)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_F9_S262.rrna.fq.gz
+    Total reads passing E-value threshold = 101010 (99.96)
+    Total reads failing E-value threshold = 38 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_G10_S271.rrna.fq.gz
+    Total reads passing E-value threshold = 97836 (99.91)
+    Total reads failing E-value threshold = 86 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_G11_S279.rrna.fq.gz
+    Total reads passing E-value threshold = 68219 (99.96)
+    Total reads failing E-value threshold = 28 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_G12_S287.rrna.fq.gz
+    Total reads passing E-value threshold = 74329 (99.94)
+    Total reads failing E-value threshold = 44 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_G1_S199.rrna.fq.gz
+    Total reads passing E-value threshold = 125555 (99.70)
+    Total reads failing E-value threshold = 379 (0.30)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_G2_S207.rrna.fq.gz
+    Total reads passing E-value threshold = 25315 (99.72)
+    Total reads failing E-value threshold = 71 (0.28)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_G3_S215.rrna.fq.gz
+    Total reads passing E-value threshold = 84591 (99.87)
+    Total reads failing E-value threshold = 108 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_G4_S223.rrna.fq.gz
+    Total reads passing E-value threshold = 58294 (99.58)
+    Total reads failing E-value threshold = 247 (0.42)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_G5_S231.rrna.fq.gz
+    Total reads passing E-value threshold = 76029 (99.91)
+    Total reads failing E-value threshold = 69 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_G6_S239.rrna.fq.gz
+    Total reads passing E-value threshold = 62661 (99.88)
+    Total reads failing E-value threshold = 74 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_G7_S247.rrna.fq.gz
+    Total reads passing E-value threshold = 91376 (99.93)
+    Total reads failing E-value threshold = 62 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_G8_S255.rrna.fq.gz
+    Total reads passing E-value threshold = 91515 (99.90)
+    Total reads failing E-value threshold = 88 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_G9_S263.rrna.fq.gz
+    Total reads passing E-value threshold = 54841 (99.91)
+    Total reads failing E-value threshold = 49 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_H10_S272.rrna.fq.gz
+    Total reads passing E-value threshold = 68138 (99.91)
+    Total reads failing E-value threshold = 63 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_H11_S280.rrna.fq.gz
+    Total reads passing E-value threshold = 124997 (99.97)
+    Total reads failing E-value threshold = 38 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_H12_S288.rrna.fq.gz
+    Total reads passing E-value threshold = 73105 (99.95)
+    Total reads failing E-value threshold = 35 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_H1_S200.rrna.fq.gz
+    Total reads passing E-value threshold = 102973 (100.00)
+    Total reads failing E-value threshold = 2 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_H2_S208.rrna.fq.gz
+    Total reads passing E-value threshold = 81652 (99.95)
+    Total reads failing E-value threshold = 37 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_H3_S216.rrna.fq.gz
+    Total reads passing E-value threshold = 61091 (99.91)
+    Total reads failing E-value threshold = 57 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_H4_S224.rrna.fq.gz
+    Total reads passing E-value threshold = 98982 (99.95)
+    Total reads failing E-value threshold = 46 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_H5_S232.rrna.fq.gz
+    Total reads passing E-value threshold = 63581 (99.91)
+    Total reads failing E-value threshold = 55 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_H6_S240.rrna.fq.gz
+    Total reads passing E-value threshold = 51226 (99.94)
+    Total reads failing E-value threshold = 31 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_H7_S248.rrna.fq.gz
+    Total reads passing E-value threshold = 45221 (99.98)
+    Total reads failing E-value threshold = 10 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_H8_S256.rrna.fq.gz
+    Total reads passing E-value threshold = 48080 (99.89)
+    Total reads failing E-value threshold = 55 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_3_H9_S264.rrna.fq.gz
+    Total reads passing E-value threshold = 85126 (99.92)
+    Total reads failing E-value threshold = 66 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_A10_S361.rrna.fq.gz
+    Total reads passing E-value threshold = 94705 (99.96)
+    Total reads failing E-value threshold = 41 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_A11_S369.rrna.fq.gz
+    Total reads passing E-value threshold = 62847 (99.89)
+    Total reads failing E-value threshold = 67 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_A12_S377.rrna.fq.gz
+    Total reads passing E-value threshold = 37449 (99.78)
+    Total reads failing E-value threshold = 84 (0.22)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_A1_S289.rrna.fq.gz
+    Total reads passing E-value threshold = 69809 (99.86)
+    Total reads failing E-value threshold = 97 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_A2_S297.rrna.fq.gz
+    Total reads passing E-value threshold = 35316 (99.85)
+    Total reads failing E-value threshold = 54 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_A3_S305.rrna.fq.gz
+    Total reads passing E-value threshold = 28769 (99.66)
+    Total reads failing E-value threshold = 99 (0.34)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_A4_S313.rrna.fq.gz
+    Total reads passing E-value threshold = 37054 (99.96)
+    Total reads failing E-value threshold = 14 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_A5_S321.rrna.fq.gz
+    Total reads passing E-value threshold = 110411 (99.90)
+    Total reads failing E-value threshold = 106 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_A6_S329.rrna.fq.gz
+    Total reads passing E-value threshold = 74348 (99.83)
+    Total reads failing E-value threshold = 126 (0.17)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_A7_S337.rrna.fq.gz
+    Total reads passing E-value threshold = 60980 (99.85)
+    Total reads failing E-value threshold = 94 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_A8_S345.rrna.fq.gz
+    Total reads passing E-value threshold = 61425 (99.97)
+    Total reads failing E-value threshold = 21 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_A9_S353.rrna.fq.gz
+    Total reads passing E-value threshold = 41063 (99.83)
+    Total reads failing E-value threshold = 71 (0.17)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_B10_S362.rrna.fq.gz
+    Total reads passing E-value threshold = 24000 (99.90)
+    Total reads failing E-value threshold = 24 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_B11_S370.rrna.fq.gz
+    Total reads passing E-value threshold = 31515 (99.94)
+    Total reads failing E-value threshold = 20 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_B12_S378.rrna.fq.gz
+    Total reads passing E-value threshold = 69085 (99.92)
+    Total reads failing E-value threshold = 56 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_B1_S290.rrna.fq.gz
+    Total reads passing E-value threshold = 34293 (99.45)
+    Total reads failing E-value threshold = 188 (0.55)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_B2_S298.rrna.fq.gz
+    Total reads passing E-value threshold = 85932 (99.93)
+    Total reads failing E-value threshold = 64 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_B3_S306.rrna.fq.gz
+    Total reads passing E-value threshold = 76238 (99.89)
+    Total reads failing E-value threshold = 81 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_B4_S314.rrna.fq.gz
+    Total reads passing E-value threshold = 69020 (99.87)
+    Total reads failing E-value threshold = 91 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_B5_S322.rrna.fq.gz
+    Total reads passing E-value threshold = 21911 (99.81)
+    Total reads failing E-value threshold = 41 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_B6_S330.rrna.fq.gz
+    Total reads passing E-value threshold = 109486 (99.87)
+    Total reads failing E-value threshold = 146 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_B7_S338.rrna.fq.gz
+    Total reads passing E-value threshold = 27249 (99.47)
+    Total reads failing E-value threshold = 144 (0.53)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_B8_S346.rrna.fq.gz
+    Total reads passing E-value threshold = 76420 (99.93)
+    Total reads failing E-value threshold = 56 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_B9_S354.rrna.fq.gz
+    Total reads passing E-value threshold = 50102 (99.97)
+    Total reads failing E-value threshold = 13 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_C10_S363.rrna.fq.gz
+    Total reads passing E-value threshold = 69159 (99.92)
+    Total reads failing E-value threshold = 56 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_C11_S371.rrna.fq.gz
+    Total reads passing E-value threshold = 49907 (99.86)
+    Total reads failing E-value threshold = 72 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_C12_S379.rrna.fq.gz
+    Total reads passing E-value threshold = 40650 (99.85)
+    Total reads failing E-value threshold = 62 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_C1_S291.rrna.fq.gz
+    Total reads passing E-value threshold = 86496 (99.95)
+    Total reads failing E-value threshold = 41 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_C2_S299.rrna.fq.gz
+    Total reads passing E-value threshold = 44177 (99.81)
+    Total reads failing E-value threshold = 83 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_C3_S307.rrna.fq.gz
+    Total reads passing E-value threshold = 52251 (99.84)
+    Total reads failing E-value threshold = 84 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_C4_S315.rrna.fq.gz
+    Total reads passing E-value threshold = 43833 (99.93)
+    Total reads failing E-value threshold = 32 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_C5_S323.rrna.fq.gz
+    Total reads passing E-value threshold = 69841 (99.90)
+    Total reads failing E-value threshold = 73 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_C6_S331.rrna.fq.gz
+    Total reads passing E-value threshold = 68377 (99.85)
+    Total reads failing E-value threshold = 100 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_C7_S339.rrna.fq.gz
+    Total reads passing E-value threshold = 61933 (99.89)
+    Total reads failing E-value threshold = 66 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_C8_S347.rrna.fq.gz
+    Total reads passing E-value threshold = 105741 (99.89)
+    Total reads failing E-value threshold = 113 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_C9_S355.rrna.fq.gz
+    Total reads passing E-value threshold = 13092 (99.92)
+    Total reads failing E-value threshold = 11 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_D10_S364.rrna.fq.gz
+    Total reads passing E-value threshold = 103218 (99.92)
+    Total reads failing E-value threshold = 87 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_D11_S372.rrna.fq.gz
+    Total reads passing E-value threshold = 78520 (99.95)
+    Total reads failing E-value threshold = 36 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_D12_S380.rrna.fq.gz
+    Total reads passing E-value threshold = 26515 (99.82)
+    Total reads failing E-value threshold = 49 (0.18)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_D1_S292.rrna.fq.gz
+    Total reads passing E-value threshold = 51816 (99.99)
+    Total reads failing E-value threshold = 3 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_D2_S300.rrna.fq.gz
+    Total reads passing E-value threshold = 64643 (99.91)
+    Total reads failing E-value threshold = 58 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_D3_S308.rrna.fq.gz
+    Total reads passing E-value threshold = 102823 (100.00)
+    Total reads failing E-value threshold = 1 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_D4_S316.rrna.fq.gz
+    Total reads passing E-value threshold = 86905 (99.93)
+    Total reads failing E-value threshold = 62 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_D5_S324.rrna.fq.gz
+    Total reads passing E-value threshold = 82885 (99.69)
+    Total reads failing E-value threshold = 260 (0.31)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_D6_S332.rrna.fq.gz
+    Total reads passing E-value threshold = 51825 (99.90)
+    Total reads failing E-value threshold = 54 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_D7_S340.rrna.fq.gz
+    Total reads passing E-value threshold = 55695 (99.92)
+    Total reads failing E-value threshold = 47 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_D8_S348.rrna.fq.gz
+    Total reads passing E-value threshold = 69908 (99.96)
+    Total reads failing E-value threshold = 25 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_D9_S356.rrna.fq.gz
+    Total reads passing E-value threshold = 34048 (99.94)
+    Total reads failing E-value threshold = 21 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_E10_S365.rrna.fq.gz
+    Total reads passing E-value threshold = 42570 (99.76)
+    Total reads failing E-value threshold = 103 (0.24)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_E11_S373.rrna.fq.gz
+    Total reads passing E-value threshold = 61127 (99.81)
+    Total reads failing E-value threshold = 119 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_E12_S381.rrna.fq.gz
+    Total reads passing E-value threshold = 49900 (99.93)
+    Total reads failing E-value threshold = 37 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_E1_S293.rrna.fq.gz
+    Total reads passing E-value threshold = 173522 (99.85)
+    Total reads failing E-value threshold = 252 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_E2_S301.rrna.fq.gz
+    Total reads passing E-value threshold = 46864 (98.99)
+    Total reads failing E-value threshold = 477 (1.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_E3_S309.rrna.fq.gz
+    Total reads passing E-value threshold = 51951 (99.77)
+    Total reads failing E-value threshold = 119 (0.23)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_E4_S317.rrna.fq.gz
+    Total reads passing E-value threshold = 67077 (99.88)
+    Total reads failing E-value threshold = 83 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_E5_S325.rrna.fq.gz
+    Total reads passing E-value threshold = 106448 (99.93)
+    Total reads failing E-value threshold = 74 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_E6_S333.rrna.fq.gz
+    Total reads passing E-value threshold = 87725 (99.87)
+    Total reads failing E-value threshold = 110 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_E7_S341.rrna.fq.gz
+    Total reads passing E-value threshold = 88023 (99.82)
+    Total reads failing E-value threshold = 161 (0.18)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_E8_S349.rrna.fq.gz
+    Total reads passing E-value threshold = 60735 (99.90)
+    Total reads failing E-value threshold = 62 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_E9_S357.rrna.fq.gz
+    Total reads passing E-value threshold = 27569 (99.93)
+    Total reads failing E-value threshold = 19 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_F10_S366.rrna.fq.gz
+    Total reads passing E-value threshold = 44 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_F11_S374.rrna.fq.gz
+    Total reads passing E-value threshold = 59273 (99.88)
+    Total reads failing E-value threshold = 73 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_F12_S382.rrna.fq.gz
+    Total reads passing E-value threshold = 38141 (99.85)
+    Total reads failing E-value threshold = 58 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_F1_S294.rrna.fq.gz
+    Total reads passing E-value threshold = 80630 (99.93)
+    Total reads failing E-value threshold = 55 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_F2_S302.rrna.fq.gz
+    Total reads passing E-value threshold = 69462 (99.81)
+    Total reads failing E-value threshold = 135 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_F3_S310.rrna.fq.gz
+    Total reads passing E-value threshold = 85873 (99.88)
+    Total reads failing E-value threshold = 104 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_F4_S318.rrna.fq.gz
+    Total reads passing E-value threshold = 42576 (99.79)
+    Total reads failing E-value threshold = 90 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_F5_S326.rrna.fq.gz
+    Total reads passing E-value threshold = 23588 (99.89)
+    Total reads failing E-value threshold = 26 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_F6_S334.rrna.fq.gz
+    Total reads passing E-value threshold = 29342 (99.96)
+    Total reads failing E-value threshold = 13 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_F7_S342.rrna.fq.gz
+    Total reads passing E-value threshold = 26627 (99.85)
+    Total reads failing E-value threshold = 40 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_F8_S350.rrna.fq.gz
+    Total reads passing E-value threshold = 59906 (99.43)
+    Total reads failing E-value threshold = 342 (0.57)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_F9_S358.rrna.fq.gz
+    Total reads passing E-value threshold = 52121 (99.89)
+    Total reads failing E-value threshold = 59 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_G10_S367.rrna.fq.gz
+    Total reads passing E-value threshold = 88527 (99.89)
+    Total reads failing E-value threshold = 99 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_G11_S375.rrna.fq.gz
+    Total reads passing E-value threshold = 50210 (99.95)
+    Total reads failing E-value threshold = 25 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_G12_S383.rrna.fq.gz
+    Total reads passing E-value threshold = 65110 (99.89)
+    Total reads failing E-value threshold = 72 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_G1_S295.rrna.fq.gz
+    Total reads passing E-value threshold = 94840 (99.94)
+    Total reads failing E-value threshold = 55 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_G2_S303.rrna.fq.gz
+    Total reads passing E-value threshold = 26301 (99.84)
+    Total reads failing E-value threshold = 41 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_G3_S311.rrna.fq.gz
+    Total reads passing E-value threshold = 81583 (99.94)
+    Total reads failing E-value threshold = 53 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_G4_S319.rrna.fq.gz
+    Total reads passing E-value threshold = 72495 (99.95)
+    Total reads failing E-value threshold = 37 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_G5_S327.rrna.fq.gz
+    Total reads passing E-value threshold = 52058 (99.75)
+    Total reads failing E-value threshold = 130 (0.25)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_G6_S335.rrna.fq.gz
+    Total reads passing E-value threshold = 114 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_G7_S343.rrna.fq.gz
+    Total reads passing E-value threshold = 100876 (99.96)
+    Total reads failing E-value threshold = 38 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_G8_S351.rrna.fq.gz
+    Total reads passing E-value threshold = 73090 (99.86)
+    Total reads failing E-value threshold = 104 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_G9_S359.rrna.fq.gz
+    Total reads passing E-value threshold = 97237 (99.92)
+    Total reads failing E-value threshold = 79 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_H10_S368.rrna.fq.gz
+    Total reads passing E-value threshold = 101489 (99.92)
+    Total reads failing E-value threshold = 77 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_H11_S376.rrna.fq.gz
+    Total reads passing E-value threshold = 59400 (99.89)
+    Total reads failing E-value threshold = 63 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_H12_S384.rrna.fq.gz
+    Total reads passing E-value threshold = 91694 (99.88)
+    Total reads failing E-value threshold = 108 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_H1_S296.rrna.fq.gz
+    Total reads passing E-value threshold = 77724 (99.93)
+    Total reads failing E-value threshold = 52 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_H2_S304.rrna.fq.gz
+    Total reads passing E-value threshold = 72765 (99.97)
+    Total reads failing E-value threshold = 23 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_H3_S312.rrna.fq.gz
+    Total reads passing E-value threshold = 52582 (99.92)
+    Total reads failing E-value threshold = 43 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_H4_S320.rrna.fq.gz
+    Total reads passing E-value threshold = 108907 (99.94)
+    Total reads failing E-value threshold = 69 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_H5_S328.rrna.fq.gz
+    Total reads passing E-value threshold = 93597 (99.95)
+    Total reads failing E-value threshold = 48 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_H6_S336.rrna.fq.gz
+    Total reads passing E-value threshold = 71469 (99.96)
+    Total reads failing E-value threshold = 28 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_H7_S344.rrna.fq.gz
+    Total reads passing E-value threshold = 60467 (99.93)
+    Total reads failing E-value threshold = 45 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_H8_S352.rrna.fq.gz
+    Total reads passing E-value threshold = 51707 (99.82)
+    Total reads failing E-value threshold = 92 (0.18)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_4_H9_S360.rrna.fq.gz
+    Total reads passing E-value threshold = 75306 (99.85)
+    Total reads failing E-value threshold = 112 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_A10_S457.rrna.fq.gz
+    Total reads passing E-value threshold = 47331 (99.94)
+    Total reads failing E-value threshold = 27 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_A11_S465.rrna.fq.gz
+    Total reads passing E-value threshold = 49800 (99.37)
+    Total reads failing E-value threshold = 314 (0.63)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_A12_S473.rrna.fq.gz
+    Total reads passing E-value threshold = 28538 (99.24)
+    Total reads failing E-value threshold = 220 (0.77)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_A1_S385.rrna.fq.gz
+    Total reads passing E-value threshold = 53003 (99.93)
+    Total reads failing E-value threshold = 37 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_A2_S393.rrna.fq.gz
+    Total reads passing E-value threshold = 423428 (99.67)
+    Total reads failing E-value threshold = 1423 (0.33)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_A3_S401.rrna.fq.gz
+    Total reads passing E-value threshold = 26022 (99.87)
+    Total reads failing E-value threshold = 34 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_A4_S409.rrna.fq.gz
+    Total reads passing E-value threshold = 16332 (99.73)
+    Total reads failing E-value threshold = 44 (0.27)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_A5_S417.rrna.fq.gz
+    Total reads passing E-value threshold = 55678 (99.81)
+    Total reads failing E-value threshold = 106 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_A6_S425.rrna.fq.gz
+    Total reads passing E-value threshold = 55853 (99.70)
+    Total reads failing E-value threshold = 167 (0.30)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_A7_S433.rrna.fq.gz
+    Total reads passing E-value threshold = 61713 (99.87)
+    Total reads failing E-value threshold = 83 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_A8_S441.rrna.fq.gz
+    Total reads passing E-value threshold = 50237 (99.96)
+    Total reads failing E-value threshold = 21 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_A9_S449.rrna.fq.gz
+    Total reads passing E-value threshold = 19612 (99.59)
+    Total reads failing E-value threshold = 81 (0.41)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_B10_S458.rrna.fq.gz
+    Total reads passing E-value threshold = 13968 (99.88)
+    Total reads failing E-value threshold = 17 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_B11_S466.rrna.fq.gz
+    Total reads passing E-value threshold = 21352 (99.81)
+    Total reads failing E-value threshold = 40 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_B12_S474.rrna.fq.gz
+    Total reads passing E-value threshold = 44072 (99.95)
+    Total reads failing E-value threshold = 23 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_B1_S386.rrna.fq.gz
+    Total reads passing E-value threshold = 42604 (99.74)
+    Total reads failing E-value threshold = 111 (0.26)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_B2_S394.rrna.fq.gz
+    Total reads passing E-value threshold = 55943 (99.54)
+    Total reads failing E-value threshold = 259 (0.46)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_B3_S402.rrna.fq.gz
+    Total reads passing E-value threshold = 58213 (99.92)
+    Total reads failing E-value threshold = 44 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_B4_S410.rrna.fq.gz
+    Total reads passing E-value threshold = 72955 (99.73)
+    Total reads failing E-value threshold = 200 (0.27)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_B5_S418.rrna.fq.gz
+    Total reads passing E-value threshold = 25689 (99.80)
+    Total reads failing E-value threshold = 51 (0.20)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_B6_S426.rrna.fq.gz
+    Total reads passing E-value threshold = 68681 (99.78)
+    Total reads failing E-value threshold = 150 (0.22)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_B7_S434.rrna.fq.gz
+    Total reads passing E-value threshold = 31431 (99.85)
+    Total reads failing E-value threshold = 46 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_B8_S442.rrna.fq.gz
+    Total reads passing E-value threshold = 37659 (99.96)
+    Total reads failing E-value threshold = 14 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_B9_S450.rrna.fq.gz
+    Total reads passing E-value threshold = 10774 (99.70)
+    Total reads failing E-value threshold = 32 (0.30)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_C10_S459.rrna.fq.gz
+    Total reads passing E-value threshold = 42528 (99.82)
+    Total reads failing E-value threshold = 78 (0.18)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_C11_S467.rrna.fq.gz
+    Total reads passing E-value threshold = 41326 (99.66)
+    Total reads failing E-value threshold = 141 (0.34)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_C12_S475.rrna.fq.gz
+    Total reads passing E-value threshold = 36364 (99.94)
+    Total reads failing E-value threshold = 21 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_C1_S387.rrna.fq.gz
+    Total reads passing E-value threshold = 23609 (99.93)
+    Total reads failing E-value threshold = 17 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_C2_S395.rrna.fq.gz
+    Total reads passing E-value threshold = 63801 (100.00)
+    Total reads failing E-value threshold = 2 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_C3_S403.rrna.fq.gz
+    Total reads passing E-value threshold = 32257 (99.72)
+    Total reads failing E-value threshold = 91 (0.28)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_C4_S411.rrna.fq.gz
+    Total reads passing E-value threshold = 43484 (99.65)
+    Total reads failing E-value threshold = 153 (0.35)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_C5_S419.rrna.fq.gz
+    Total reads passing E-value threshold = 63447 (99.94)
+    Total reads failing E-value threshold = 39 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_C6_S427.rrna.fq.gz
+    Total reads passing E-value threshold = 44435 (99.88)
+    Total reads failing E-value threshold = 54 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_C7_S435.rrna.fq.gz
+    Total reads passing E-value threshold = 41853 (99.62)
+    Total reads failing E-value threshold = 160 (0.38)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_C8_S443.rrna.fq.gz
+    Total reads passing E-value threshold = 47218 (99.50)
+    Total reads failing E-value threshold = 235 (0.50)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_C9_S451.rrna.fq.gz
+    Total reads passing E-value threshold = 8989 (99.55)
+    Total reads failing E-value threshold = 41 (0.45)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_D10_S460.rrna.fq.gz
+    Total reads passing E-value threshold = 41541 (99.40)
+    Total reads failing E-value threshold = 251 (0.60)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_D11_S468.rrna.fq.gz
+    Total reads passing E-value threshold = 53423 (99.93)
+    Total reads failing E-value threshold = 38 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_D12_S476.rrna.fq.gz
+    Total reads passing E-value threshold = 19912 (99.80)
+    Total reads failing E-value threshold = 40 (0.20)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_D1_S388.rrna.fq.gz
+    Total reads passing E-value threshold = 25309 (99.91)
+    Total reads failing E-value threshold = 23 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_D2_S396.rrna.fq.gz
+    Total reads passing E-value threshold = 54833 (99.96)
+    Total reads failing E-value threshold = 20 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_D3_S404.rrna.fq.gz
+    Total reads passing E-value threshold = 63564 (99.93)
+    Total reads failing E-value threshold = 44 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_D4_S412.rrna.fq.gz
+    Total reads passing E-value threshold = 49418 (99.93)
+    Total reads failing E-value threshold = 35 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_D5_S420.rrna.fq.gz
+    Total reads passing E-value threshold = 46798 (99.73)
+    Total reads failing E-value threshold = 126 (0.27)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_D6_S428.rrna.fq.gz
+    Total reads passing E-value threshold = 40389 (99.55)
+    Total reads failing E-value threshold = 181 (0.45)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_D7_S436.rrna.fq.gz
+    Total reads passing E-value threshold = 68600 (99.87)
+    Total reads failing E-value threshold = 92 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_D8_S444.rrna.fq.gz
+    Total reads passing E-value threshold = 67284 (99.89)
+    Total reads failing E-value threshold = 77 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_D9_S452.rrna.fq.gz
+    Total reads passing E-value threshold = 35850 (99.84)
+    Total reads failing E-value threshold = 56 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_E10_S461.rrna.fq.gz
+    Total reads passing E-value threshold = 42710 (99.33)
+    Total reads failing E-value threshold = 286 (0.67)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_E11_S469.rrna.fq.gz
+    Total reads passing E-value threshold = 46713 (99.99)
+    Total reads failing E-value threshold = 4 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_E12_S477.rrna.fq.gz
+    Total reads passing E-value threshold = 52904 (99.94)
+    Total reads failing E-value threshold = 33 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_E1_S389.rrna.fq.gz
+    Total reads passing E-value threshold = 83961 (99.47)
+    Total reads failing E-value threshold = 444 (0.53)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_E2_S397.rrna.fq.gz
+    Total reads passing E-value threshold = 43586 (99.82)
+    Total reads failing E-value threshold = 77 (0.18)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_E3_S405.rrna.fq.gz
+    Total reads passing E-value threshold = 58502 (99.97)
+    Total reads failing E-value threshold = 18 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_E4_S413.rrna.fq.gz
+    Total reads passing E-value threshold = 64365 (99.91)
+    Total reads failing E-value threshold = 57 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_E5_S421.rrna.fq.gz
+    Total reads passing E-value threshold = 75063 (99.95)
+    Total reads failing E-value threshold = 34 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_E6_S429.rrna.fq.gz
+    Total reads passing E-value threshold = 38801 (99.84)
+    Total reads failing E-value threshold = 61 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_E7_S437.rrna.fq.gz
+    Total reads passing E-value threshold = 52935 (99.77)
+    Total reads failing E-value threshold = 123 (0.23)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_E8_S445.rrna.fq.gz
+    Total reads passing E-value threshold = 63250 (99.80)
+    Total reads failing E-value threshold = 124 (0.20)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_E9_S453.rrna.fq.gz
+    Total reads passing E-value threshold = 17585 (99.79)
+    Total reads failing E-value threshold = 37 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_F10_S462.rrna.fq.gz
+    Total reads passing E-value threshold = 35568 (99.65)
+    Total reads failing E-value threshold = 125 (0.35)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_F11_S470.rrna.fq.gz
+    Total reads passing E-value threshold = 56165 (99.92)
+    Total reads failing E-value threshold = 44 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_F12_S478.rrna.fq.gz
+    Total reads passing E-value threshold = 30052 (99.86)
+    Total reads failing E-value threshold = 41 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_F1_S390.rrna.fq.gz
+    Total reads passing E-value threshold = 44081 (99.85)
+    Total reads failing E-value threshold = 67 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_F2_S398.rrna.fq.gz
+    Total reads passing E-value threshold = 75033 (99.98)
+    Total reads failing E-value threshold = 17 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_F3_S406.rrna.fq.gz
+    Total reads passing E-value threshold = 59431 (99.95)
+    Total reads failing E-value threshold = 32 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_F4_S414.rrna.fq.gz
+    Total reads passing E-value threshold = 36128 (99.82)
+    Total reads failing E-value threshold = 64 (0.18)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_F5_S422.rrna.fq.gz
+    Total reads passing E-value threshold = 28880 (99.97)
+    Total reads failing E-value threshold = 10 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_F6_S430.rrna.fq.gz
+    Total reads passing E-value threshold = 27713 (99.58)
+    Total reads failing E-value threshold = 116 (0.42)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_F7_S438.rrna.fq.gz
+    Total reads passing E-value threshold = 17956 (99.86)
+    Total reads failing E-value threshold = 26 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_F8_S446.rrna.fq.gz
+    Total reads passing E-value threshold = 61217 (99.68)
+    Total reads failing E-value threshold = 195 (0.32)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_F9_S454.rrna.fq.gz
+    Total reads passing E-value threshold = 70445 (99.79)
+    Total reads failing E-value threshold = 145 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_G10_S463.rrna.fq.gz
+    Total reads passing E-value threshold = 57277 (99.84)
+    Total reads failing E-value threshold = 94 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_G11_S471.rrna.fq.gz
+    Total reads passing E-value threshold = 68584 (99.99)
+    Total reads failing E-value threshold = 8 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_G12_S479.rrna.fq.gz
+    Total reads passing E-value threshold = 56060 (99.79)
+    Total reads failing E-value threshold = 119 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_G1_S391.rrna.fq.gz
+    Total reads passing E-value threshold = 115831 (99.93)
+    Total reads failing E-value threshold = 84 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_G2_S399.rrna.fq.gz
+    Total reads passing E-value threshold = 30689 (99.94)
+    Total reads failing E-value threshold = 18 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_G3_S407.rrna.fq.gz
+    Total reads passing E-value threshold = 103620 (99.95)
+    Total reads failing E-value threshold = 57 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_G4_S415.rrna.fq.gz
+    Total reads passing E-value threshold = 49875 (99.97)
+    Total reads failing E-value threshold = 15 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_G5_S423.rrna.fq.gz
+    Total reads passing E-value threshold = 53835 (99.91)
+    Total reads failing E-value threshold = 46 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_G6_S431.rrna.fq.gz
+    Total reads passing E-value threshold = 62343 (100.00)
+    Total reads failing E-value threshold = 2 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_G7_S439.rrna.fq.gz
+    Total reads passing E-value threshold = 53043 (99.69)
+    Total reads failing E-value threshold = 163 (0.31)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_G8_S447.rrna.fq.gz
+    Total reads passing E-value threshold = 45862 (99.72)
+    Total reads failing E-value threshold = 130 (0.28)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_G9_S455.rrna.fq.gz
+    Total reads passing E-value threshold = 65366 (99.81)
+    Total reads failing E-value threshold = 124 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_H10_S464.rrna.fq.gz
+    Total reads passing E-value threshold = 55614 (99.76)
+    Total reads failing E-value threshold = 133 (0.24)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_H11_S472.rrna.fq.gz
+    Total reads passing E-value threshold = 53640 (99.87)
+    Total reads failing E-value threshold = 71 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_H12_S480.rrna.fq.gz
+    Total reads passing E-value threshold = 60565 (99.93)
+    Total reads failing E-value threshold = 43 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_H1_S392.rrna.fq.gz
+    Total reads passing E-value threshold = 54848 (99.95)
+    Total reads failing E-value threshold = 25 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_H2_S400.rrna.fq.gz
+    Total reads passing E-value threshold = 66150 (99.99)
+    Total reads failing E-value threshold = 9 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_H3_S408.rrna.fq.gz
+    Total reads passing E-value threshold = 63482 (99.79)
+    Total reads failing E-value threshold = 136 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_H4_S416.rrna.fq.gz
+    Total reads passing E-value threshold = 88300 (99.96)
+    Total reads failing E-value threshold = 32 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_H5_S424.rrna.fq.gz
+    Total reads passing E-value threshold = 44465 (99.86)
+    Total reads failing E-value threshold = 61 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_H6_S432.rrna.fq.gz
+    Total reads passing E-value threshold = 35616 (99.78)
+    Total reads failing E-value threshold = 78 (0.22)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_H7_S440.rrna.fq.gz
+    Total reads passing E-value threshold = 50819 (99.74)
+    Total reads failing E-value threshold = 135 (0.26)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_H8_S448.rrna.fq.gz
+    Total reads passing E-value threshold = 64987 (99.92)
+    Total reads failing E-value threshold = 52 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_5_H9_S456.rrna.fq.gz
+    Total reads passing E-value threshold = 64813 (99.92)
+    Total reads failing E-value threshold = 53 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_A10_S553.rrna.fq.gz
+    Total reads passing E-value threshold = 83813 (99.92)
+    Total reads failing E-value threshold = 66 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_A11_S561.rrna.fq.gz
+    Total reads passing E-value threshold = 52475 (99.80)
+    Total reads failing E-value threshold = 103 (0.20)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_A12_S569.rrna.fq.gz
+    Total reads passing E-value threshold = 23412 (99.81)
+    Total reads failing E-value threshold = 45 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_A1_S481.rrna.fq.gz
+    Total reads passing E-value threshold = 53156 (99.96)
+    Total reads failing E-value threshold = 22 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_A2_S489.rrna.fq.gz
+    Total reads passing E-value threshold = 67675 (100.00)
+    Total reads failing E-value threshold = 2 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_A3_S497.rrna.fq.gz
+    Total reads passing E-value threshold = 4107 (99.71)
+    Total reads failing E-value threshold = 12 (0.29)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_A4_S505.rrna.fq.gz
+    Total reads passing E-value threshold = 31054 (99.86)
+    Total reads failing E-value threshold = 45 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_A5_S513.rrna.fq.gz
+    Total reads passing E-value threshold = 57131 (99.80)
+    Total reads failing E-value threshold = 117 (0.20)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_A6_S521.rrna.fq.gz
+    Total reads passing E-value threshold = 91152 (99.69)
+    Total reads failing E-value threshold = 282 (0.31)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_A7_S529.rrna.fq.gz
+    Total reads passing E-value threshold = 72 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_A8_S537.rrna.fq.gz
+    Total reads passing E-value threshold = 41486 (99.65)
+    Total reads failing E-value threshold = 144 (0.35)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_A9_S545.rrna.fq.gz
+    Total reads passing E-value threshold = 89772 (99.98)
+    Total reads failing E-value threshold = 18 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_B10_S554.rrna.fq.gz
+    Total reads passing E-value threshold = 16271 (99.37)
+    Total reads failing E-value threshold = 103 (0.63)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_B11_S562.rrna.fq.gz
+    Total reads passing E-value threshold = 29029 (99.95)
+    Total reads failing E-value threshold = 14 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_B12_S570.rrna.fq.gz
+    Total reads passing E-value threshold = 51731 (99.97)
+    Total reads failing E-value threshold = 14 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_B1_S482.rrna.fq.gz
+    Total reads passing E-value threshold = 39847 (99.89)
+    Total reads failing E-value threshold = 42 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_B2_S490.rrna.fq.gz
+    Total reads passing E-value threshold = 47503 (99.97)
+    Total reads failing E-value threshold = 15 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_B3_S498.rrna.fq.gz
+    Total reads passing E-value threshold = 33580 (99.91)
+    Total reads failing E-value threshold = 31 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_B4_S506.rrna.fq.gz
+    Total reads passing E-value threshold = 41465 (98.73)
+    Total reads failing E-value threshold = 534 (1.27)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_B5_S514.rrna.fq.gz
+    Total reads passing E-value threshold = 18802 (99.91)
+    Total reads failing E-value threshold = 16 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_B6_S522.rrna.fq.gz
+    Total reads passing E-value threshold = 52158 (99.69)
+    Total reads failing E-value threshold = 163 (0.31)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_B7_S530.rrna.fq.gz
+    Total reads passing E-value threshold = 36658 (99.93)
+    Total reads failing E-value threshold = 24 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_B8_S538.rrna.fq.gz
+    Total reads passing E-value threshold = 66026 (99.97)
+    Total reads failing E-value threshold = 23 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_B9_S546.rrna.fq.gz
+    Total reads passing E-value threshold = 81657 (99.97)
+    Total reads failing E-value threshold = 28 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_C10_S555.rrna.fq.gz
+    Total reads passing E-value threshold = 50575 (99.96)
+    Total reads failing E-value threshold = 22 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_C11_S563.rrna.fq.gz
+    Total reads passing E-value threshold = 37162 (99.97)
+    Total reads failing E-value threshold = 12 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_C12_S571.rrna.fq.gz
+    Total reads passing E-value threshold = 26725 (99.73)
+    Total reads failing E-value threshold = 72 (0.27)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_C1_S483.rrna.fq.gz
+    Total reads passing E-value threshold = 28318 (99.66)
+    Total reads failing E-value threshold = 96 (0.34)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_C2_S491.rrna.fq.gz
+    Total reads passing E-value threshold = 36746 (99.83)
+    Total reads failing E-value threshold = 61 (0.17)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_C3_S499.rrna.fq.gz
+    Total reads passing E-value threshold = 48168 (99.95)
+    Total reads failing E-value threshold = 26 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_C4_S507.rrna.fq.gz
+    Total reads passing E-value threshold = 79034 (99.94)
+    Total reads failing E-value threshold = 44 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_C5_S515.rrna.fq.gz
+    Total reads passing E-value threshold = 76895 (99.88)
+    Total reads failing E-value threshold = 92 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_C6_S523.rrna.fq.gz
+    Total reads passing E-value threshold = 27870 (99.51)
+    Total reads failing E-value threshold = 137 (0.49)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_C7_S531.rrna.fq.gz
+    Total reads passing E-value threshold = 75734 (99.94)
+    Total reads failing E-value threshold = 46 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_C8_S539.rrna.fq.gz
+    Total reads passing E-value threshold = 79433 (99.84)
+    Total reads failing E-value threshold = 124 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_C9_S547.rrna.fq.gz
+    Total reads passing E-value threshold = 16295 (99.87)
+    Total reads failing E-value threshold = 21 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_D10_S556.rrna.fq.gz
+    Total reads passing E-value threshold = 48171 (99.71)
+    Total reads failing E-value threshold = 139 (0.29)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_D11_S564.rrna.fq.gz
+    Total reads passing E-value threshold = 74749 (99.85)
+    Total reads failing E-value threshold = 116 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_D12_S572.rrna.fq.gz
+    Total reads passing E-value threshold = 17130 (99.76)
+    Total reads failing E-value threshold = 42 (0.24)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_D1_S484.rrna.fq.gz
+    Total reads passing E-value threshold = 17874 (99.83)
+    Total reads failing E-value threshold = 30 (0.17)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_D2_S492.rrna.fq.gz
+    Total reads passing E-value threshold = 38495 (99.78)
+    Total reads failing E-value threshold = 85 (0.22)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_D3_S500.rrna.fq.gz
+    Total reads passing E-value threshold = 50547 (99.77)
+    Total reads failing E-value threshold = 114 (0.23)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_D4_S508.rrna.fq.gz
+    Total reads passing E-value threshold = 110972 (99.99)
+    Total reads failing E-value threshold = 6 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_D5_S516.rrna.fq.gz
+    Total reads passing E-value threshold = 57958 (99.94)
+    Total reads failing E-value threshold = 35 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_D6_S524.rrna.fq.gz
+    Total reads passing E-value threshold = 36902 (99.69)
+    Total reads failing E-value threshold = 113 (0.31)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_D7_S532.rrna.fq.gz
+    Total reads passing E-value threshold = 40599 (99.79)
+    Total reads failing E-value threshold = 84 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_D8_S540.rrna.fq.gz
+    Total reads passing E-value threshold = 94062 (99.80)
+    Total reads failing E-value threshold = 184 (0.20)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_D9_S548.rrna.fq.gz
+    Total reads passing E-value threshold = 59350 (99.74)
+    Total reads failing E-value threshold = 156 (0.26)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_E10_S557.rrna.fq.gz
+    Total reads passing E-value threshold = 62498 (99.89)
+    Total reads failing E-value threshold = 71 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_E11_S565.rrna.fq.gz
+    Total reads passing E-value threshold = 64754 (99.79)
+    Total reads failing E-value threshold = 137 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_E12_S573.rrna.fq.gz
+    Total reads passing E-value threshold = 25221 (99.97)
+    Total reads failing E-value threshold = 7 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_E1_S485.rrna.fq.gz
+    Total reads passing E-value threshold = 178588 (99.73)
+    Total reads failing E-value threshold = 476 (0.27)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_E2_S493.rrna.fq.gz
+    Total reads passing E-value threshold = 37719 (99.49)
+    Total reads failing E-value threshold = 195 (0.51)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_E3_S501.rrna.fq.gz
+    Total reads passing E-value threshold = 54461 (99.95)
+    Total reads failing E-value threshold = 25 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_E4_S509.rrna.fq.gz
+    Total reads passing E-value threshold = 45217 (99.88)
+    Total reads failing E-value threshold = 53 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_E5_S517.rrna.fq.gz
+    Total reads passing E-value threshold = 43848 (99.23)
+    Total reads failing E-value threshold = 340 (0.77)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_E6_S525.rrna.fq.gz
+    Total reads passing E-value threshold = 71373 (99.94)
+    Total reads failing E-value threshold = 41 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_E7_S533.rrna.fq.gz
+    Total reads passing E-value threshold = 42796 (99.30)
+    Total reads failing E-value threshold = 302 (0.70)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_E8_S541.rrna.fq.gz
+    Total reads passing E-value threshold = 96278 (99.52)
+    Total reads failing E-value threshold = 469 (0.48)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_E9_S549.rrna.fq.gz
+    Total reads passing E-value threshold = 48204 (99.97)
+    Total reads failing E-value threshold = 16 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_F10_S558.rrna.fq.gz
+    Total reads passing E-value threshold = 170 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_F11_S566.rrna.fq.gz
+    Total reads passing E-value threshold = 55560 (99.90)
+    Total reads failing E-value threshold = 55 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_F12_S574.rrna.fq.gz
+    Total reads passing E-value threshold = 31624 (99.87)
+    Total reads failing E-value threshold = 42 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_F1_S486.rrna.fq.gz
+    Total reads passing E-value threshold = 47193 (99.93)
+    Total reads failing E-value threshold = 34 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_F2_S494.rrna.fq.gz
+    Total reads passing E-value threshold = 54073 (99.89)
+    Total reads failing E-value threshold = 62 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_F3_S502.rrna.fq.gz
+    Total reads passing E-value threshold = 74457 (99.95)
+    Total reads failing E-value threshold = 35 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_F4_S510.rrna.fq.gz
+    Total reads passing E-value threshold = 27593 (99.84)
+    Total reads failing E-value threshold = 45 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_F5_S518.rrna.fq.gz
+    Total reads passing E-value threshold = 29089 (99.96)
+    Total reads failing E-value threshold = 11 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_F6_S526.rrna.fq.gz
+    Total reads passing E-value threshold = 45697 (99.91)
+    Total reads failing E-value threshold = 40 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_F7_S534.rrna.fq.gz
+    Total reads passing E-value threshold = 28816 (99.98)
+    Total reads failing E-value threshold = 6 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_F8_S542.rrna.fq.gz
+    Total reads passing E-value threshold = 71304 (99.93)
+    Total reads failing E-value threshold = 49 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_F9_S550.rrna.fq.gz
+    Total reads passing E-value threshold = 89865 (99.81)
+    Total reads failing E-value threshold = 171 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_G10_S559.rrna.fq.gz
+    Total reads passing E-value threshold = 87425 (99.96)
+    Total reads failing E-value threshold = 31 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_G11_S567.rrna.fq.gz
+    Total reads passing E-value threshold = 79349 (99.97)
+    Total reads failing E-value threshold = 25 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_G12_S575.rrna.fq.gz
+    Total reads passing E-value threshold = 63612 (99.89)
+    Total reads failing E-value threshold = 73 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_G1_S487.rrna.fq.gz
+    Total reads passing E-value threshold = 75672 (99.95)
+    Total reads failing E-value threshold = 36 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_G2_S495.rrna.fq.gz
+    Total reads passing E-value threshold = 19342 (99.79)
+    Total reads failing E-value threshold = 41 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_G3_S503.rrna.fq.gz
+    Total reads passing E-value threshold = 61305 (99.88)
+    Total reads failing E-value threshold = 75 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_G4_S511.rrna.fq.gz
+    Total reads passing E-value threshold = 49296 (99.97)
+    Total reads failing E-value threshold = 15 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_G5_S519.rrna.fq.gz
+    Total reads passing E-value threshold = 54578 (99.78)
+    Total reads failing E-value threshold = 120 (0.22)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_G6_S527.rrna.fq.gz
+    Total reads passing E-value threshold = 51680 (99.98)
+    Total reads failing E-value threshold = 10 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_G7_S535.rrna.fq.gz
+    Total reads passing E-value threshold = 60070 (99.71)
+    Total reads failing E-value threshold = 175 (0.29)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_G8_S543.rrna.fq.gz
+    Total reads passing E-value threshold = 32344 (98.62)
+    Total reads failing E-value threshold = 452 (1.38)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_G9_S551.rrna.fq.gz
+    Total reads passing E-value threshold = 71807 (99.97)
+    Total reads failing E-value threshold = 22 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_H10_S560.rrna.fq.gz
+    Total reads passing E-value threshold = 40220 (98.67)
+    Total reads failing E-value threshold = 542 (1.33)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_H11_S568.rrna.fq.gz
+    Total reads passing E-value threshold = 88379 (99.95)
+    Total reads failing E-value threshold = 40 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_H12_S576.rrna.fq.gz
+    Total reads passing E-value threshold = 39715 (99.81)
+    Total reads failing E-value threshold = 76 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_H1_S488.rrna.fq.gz
+    Total reads passing E-value threshold = 45928 (99.96)
+    Total reads failing E-value threshold = 18 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_H2_S496.rrna.fq.gz
+    Total reads passing E-value threshold = 55571 (99.93)
+    Total reads failing E-value threshold = 37 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_H3_S504.rrna.fq.gz
+    Total reads passing E-value threshold = 84639 (99.94)
+    Total reads failing E-value threshold = 55 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_H4_S512.rrna.fq.gz
+    Total reads passing E-value threshold = 87760 (99.96)
+    Total reads failing E-value threshold = 37 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_H5_S520.rrna.fq.gz
+    Total reads passing E-value threshold = 50902 (99.97)
+    Total reads failing E-value threshold = 17 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_H6_S528.rrna.fq.gz
+    Total reads passing E-value threshold = 45323 (99.95)
+    Total reads failing E-value threshold = 24 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_H7_S536.rrna.fq.gz
+    Total reads passing E-value threshold = 44102 (99.96)
+    Total reads failing E-value threshold = 18 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_H8_S544.rrna.fq.gz
+    Total reads passing E-value threshold = 98207 (99.72)
+    Total reads failing E-value threshold = 273 (0.28)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_6_H9_S552.rrna.fq.gz
+    Total reads passing E-value threshold = 109199 (99.93)
+    Total reads failing E-value threshold = 76 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_A10_S649.rrna.fq.gz
+    Total reads passing E-value threshold = 85488 (99.98)
+    Total reads failing E-value threshold = 15 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_A11_S657.rrna.fq.gz
+    Total reads passing E-value threshold = 64879 (99.79)
+    Total reads failing E-value threshold = 139 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_A12_S665.rrna.fq.gz
+    Total reads passing E-value threshold = 26555 (99.81)
+    Total reads failing E-value threshold = 50 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_A1_S577.rrna.fq.gz
+    Total reads passing E-value threshold = 30739 (99.92)
+    Total reads failing E-value threshold = 24 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_A2_S585.rrna.fq.gz
+    Total reads passing E-value threshold = 25105 (99.91)
+    Total reads failing E-value threshold = 23 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_A3_S593.rrna.fq.gz
+    Total reads passing E-value threshold = 31739 (99.66)
+    Total reads failing E-value threshold = 109 (0.34)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_A4_S601.rrna.fq.gz
+    Total reads passing E-value threshold = 24053 (99.76)
+    Total reads failing E-value threshold = 57 (0.24)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_A5_S609.rrna.fq.gz
+    Total reads passing E-value threshold = 4558 (99.87)
+    Total reads failing E-value threshold = 6 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_A6_S617.rrna.fq.gz
+    Total reads passing E-value threshold = 57459 (99.97)
+    Total reads failing E-value threshold = 18 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_A7_S625.rrna.fq.gz
+    Total reads passing E-value threshold = 50501 (99.97)
+    Total reads failing E-value threshold = 17 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_A8_S633.rrna.fq.gz
+    Total reads passing E-value threshold = 41266 (99.94)
+    Total reads failing E-value threshold = 24 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_A9_S641.rrna.fq.gz
+    Total reads passing E-value threshold = 44033 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_B10_S650.rrna.fq.gz
+    Total reads passing E-value threshold = 13184 (99.77)
+    Total reads failing E-value threshold = 31 (0.23)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_B11_S658.rrna.fq.gz
+    Total reads passing E-value threshold = 30213 (99.96)
+    Total reads failing E-value threshold = 12 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_B12_S666.rrna.fq.gz
+    Total reads passing E-value threshold = 54109 (99.81)
+    Total reads failing E-value threshold = 105 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_B1_S578.rrna.fq.gz
+    Total reads passing E-value threshold = 50337 (99.96)
+    Total reads failing E-value threshold = 20 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_B2_S586.rrna.fq.gz
+    Total reads passing E-value threshold = 46708 (99.80)
+    Total reads failing E-value threshold = 94 (0.20)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_B3_S594.rrna.fq.gz
+    Total reads passing E-value threshold = 68726 (99.66)
+    Total reads failing E-value threshold = 236 (0.34)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_B4_S602.rrna.fq.gz
+    Total reads passing E-value threshold = 48014 (99.90)
+    Total reads failing E-value threshold = 49 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_B5_S610.rrna.fq.gz
+    Total reads passing E-value threshold = 16474 (99.79)
+    Total reads failing E-value threshold = 35 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_B6_S618.rrna.fq.gz
+    Total reads passing E-value threshold = 66295 (99.86)
+    Total reads failing E-value threshold = 95 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_B7_S626.rrna.fq.gz
+    Total reads passing E-value threshold = 39137 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_B8_S634.rrna.fq.gz
+    Total reads passing E-value threshold = 40372 (99.69)
+    Total reads failing E-value threshold = 127 (0.31)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_B9_S642.rrna.fq.gz
+    Total reads passing E-value threshold = 61103 (99.92)
+    Total reads failing E-value threshold = 50 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_C10_S651.rrna.fq.gz
+    Total reads passing E-value threshold = 35331 (99.78)
+    Total reads failing E-value threshold = 78 (0.22)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_C11_S659.rrna.fq.gz
+    Total reads passing E-value threshold = 63814 (99.99)
+    Total reads failing E-value threshold = 7 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_C12_S667.rrna.fq.gz
+    Total reads passing E-value threshold = 29597 (99.77)
+    Total reads failing E-value threshold = 69 (0.23)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_C1_S579.rrna.fq.gz
+    Total reads passing E-value threshold = 40290 (99.95)
+    Total reads failing E-value threshold = 19 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_C2_S587.rrna.fq.gz
+    Total reads passing E-value threshold = 40571 (99.95)
+    Total reads failing E-value threshold = 19 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_C3_S595.rrna.fq.gz
+    Total reads passing E-value threshold = 40827 (99.92)
+    Total reads failing E-value threshold = 32 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_C4_S603.rrna.fq.gz
+    Total reads passing E-value threshold = 27515 (99.67)
+    Total reads failing E-value threshold = 90 (0.33)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_C5_S611.rrna.fq.gz
+    Total reads passing E-value threshold = 30294 (99.90)
+    Total reads failing E-value threshold = 31 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_C6_S619.rrna.fq.gz
+    Total reads passing E-value threshold = 36789 (99.78)
+    Total reads failing E-value threshold = 82 (0.22)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_C7_S627.rrna.fq.gz
+    Total reads passing E-value threshold = 50343 (99.98)
+    Total reads failing E-value threshold = 11 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_C8_S635.rrna.fq.gz
+    Total reads passing E-value threshold = 68222 (99.78)
+    Total reads failing E-value threshold = 150 (0.22)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_C9_S643.rrna.fq.gz
+    Total reads passing E-value threshold = 10855 (99.83)
+    Total reads failing E-value threshold = 18 (0.17)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_D10_S652.rrna.fq.gz
+    Total reads passing E-value threshold = 47636 (99.79)
+    Total reads failing E-value threshold = 99 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_D11_S660.rrna.fq.gz
+    Total reads passing E-value threshold = 66910 (99.84)
+    Total reads failing E-value threshold = 109 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_D12_S668.rrna.fq.gz
+    Total reads passing E-value threshold = 17813 (99.84)
+    Total reads failing E-value threshold = 29 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_D1_S580.rrna.fq.gz
+    Total reads passing E-value threshold = 26838 (99.25)
+    Total reads failing E-value threshold = 203 (0.75)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_D2_S588.rrna.fq.gz
+    Total reads passing E-value threshold = 45418 (99.76)
+    Total reads failing E-value threshold = 111 (0.24)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_D3_S596.rrna.fq.gz
+    Total reads passing E-value threshold = 68810 (99.79)
+    Total reads failing E-value threshold = 146 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_D4_S604.rrna.fq.gz
+    Total reads passing E-value threshold = 49964 (99.96)
+    Total reads failing E-value threshold = 20 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_D5_S612.rrna.fq.gz
+    Total reads passing E-value threshold = 66701 (99.48)
+    Total reads failing E-value threshold = 349 (0.52)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_D6_S620.rrna.fq.gz
+    Total reads passing E-value threshold = 28398 (99.69)
+    Total reads failing E-value threshold = 87 (0.31)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_D7_S628.rrna.fq.gz
+    Total reads passing E-value threshold = 33610 (99.92)
+    Total reads failing E-value threshold = 27 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_D8_S636.rrna.fq.gz
+    Total reads passing E-value threshold = 71975 (99.85)
+    Total reads failing E-value threshold = 109 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_D9_S644.rrna.fq.gz
+    Total reads passing E-value threshold = 276523 (99.79)
+    Total reads failing E-value threshold = 585 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_E10_S653.rrna.fq.gz
+    Total reads passing E-value threshold = 57761 (99.95)
+    Total reads failing E-value threshold = 30 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_E11_S661.rrna.fq.gz
+    Total reads passing E-value threshold = 56735 (99.83)
+    Total reads failing E-value threshold = 96 (0.17)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_E12_S669.rrna.fq.gz
+    Total reads passing E-value threshold = 35036 (99.80)
+    Total reads failing E-value threshold = 69 (0.20)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_E1_S581.rrna.fq.gz
+    Total reads passing E-value threshold = 22056 (98.92)
+    Total reads failing E-value threshold = 240 (1.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_E2_S589.rrna.fq.gz
+    Total reads passing E-value threshold = 55945 (99.53)
+    Total reads failing E-value threshold = 263 (0.47)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_E3_S597.rrna.fq.gz
+    Total reads passing E-value threshold = 28173 (99.15)
+    Total reads failing E-value threshold = 241 (0.85)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_E4_S605.rrna.fq.gz
+    Total reads passing E-value threshold = 51238 (99.98)
+    Total reads failing E-value threshold = 12 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_E5_S613.rrna.fq.gz
+    Total reads passing E-value threshold = 64198 (99.87)
+    Total reads failing E-value threshold = 82 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_E6_S621.rrna.fq.gz
+    Total reads passing E-value threshold = 43501 (99.74)
+    Total reads failing E-value threshold = 113 (0.26)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_E7_S629.rrna.fq.gz
+    Total reads passing E-value threshold = 59646 (99.92)
+    Total reads failing E-value threshold = 45 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_E8_S637.rrna.fq.gz
+    Total reads passing E-value threshold = 86310 (99.77)
+    Total reads failing E-value threshold = 203 (0.23)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_E9_S645.rrna.fq.gz
+    Total reads passing E-value threshold = 35661 (99.80)
+    Total reads failing E-value threshold = 72 (0.20)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_F10_S654.rrna.fq.gz
+    Total reads passing E-value threshold = 33199 (99.86)
+    Total reads failing E-value threshold = 45 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_F11_S662.rrna.fq.gz
+    Total reads passing E-value threshold = 42697 (99.53)
+    Total reads failing E-value threshold = 203 (0.47)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_F12_S670.rrna.fq.gz
+    Total reads passing E-value threshold = 46058 (99.75)
+    Total reads failing E-value threshold = 115 (0.25)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_F1_S582.rrna.fq.gz
+    Total reads passing E-value threshold = 46125 (99.82)
+    Total reads failing E-value threshold = 82 (0.18)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_F2_S590.rrna.fq.gz
+    Total reads passing E-value threshold = 56378 (99.69)
+    Total reads failing E-value threshold = 177 (0.31)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_F3_S598.rrna.fq.gz
+    Total reads passing E-value threshold = 51153 (99.49)
+    Total reads failing E-value threshold = 264 (0.51)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_F4_S606.rrna.fq.gz
+    Total reads passing E-value threshold = 22784 (99.71)
+    Total reads failing E-value threshold = 66 (0.29)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_F5_S614.rrna.fq.gz
+    Total reads passing E-value threshold = 23126 (99.89)
+    Total reads failing E-value threshold = 26 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_F6_S622.rrna.fq.gz
+    Total reads passing E-value threshold = 37022 (99.67)
+    Total reads failing E-value threshold = 123 (0.33)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_F7_S630.rrna.fq.gz
+    Total reads passing E-value threshold = 16506 (99.46)
+    Total reads failing E-value threshold = 89 (0.54)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_F8_S638.rrna.fq.gz
+    Total reads passing E-value threshold = 69803 (99.68)
+    Total reads failing E-value threshold = 227 (0.32)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_F9_S646.rrna.fq.gz
+    Total reads passing E-value threshold = 48225 (99.34)
+    Total reads failing E-value threshold = 319 (0.66)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_G10_S655.rrna.fq.gz
+    Total reads passing E-value threshold = 71936 (99.91)
+    Total reads failing E-value threshold = 66 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_G11_S663.rrna.fq.gz
+    Total reads passing E-value threshold = 73310 (99.95)
+    Total reads failing E-value threshold = 37 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_G12_S671.rrna.fq.gz
+    Total reads passing E-value threshold = 52169 (99.76)
+    Total reads failing E-value threshold = 124 (0.24)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_G1_S583.rrna.fq.gz
+    Total reads passing E-value threshold = 47178 (99.89)
+    Total reads failing E-value threshold = 52 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_G2_S591.rrna.fq.gz
+    Total reads passing E-value threshold = 25017 (99.99)
+    Total reads failing E-value threshold = 2 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_G3_S599.rrna.fq.gz
+    Total reads passing E-value threshold = 65002 (99.75)
+    Total reads failing E-value threshold = 163 (0.25)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_G4_S607.rrna.fq.gz
+    Total reads passing E-value threshold = 50833 (99.85)
+    Total reads failing E-value threshold = 74 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_G5_S615.rrna.fq.gz
+    Total reads passing E-value threshold = 48132 (99.57)
+    Total reads failing E-value threshold = 206 (0.43)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_G6_S623.rrna.fq.gz
+    Total reads passing E-value threshold = 64729 (99.91)
+    Total reads failing E-value threshold = 61 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_G7_S631.rrna.fq.gz
+    Total reads passing E-value threshold = 61446 (99.90)
+    Total reads failing E-value threshold = 62 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_G8_S639.rrna.fq.gz
+    Total reads passing E-value threshold = 53346 (99.99)
+    Total reads failing E-value threshold = 5 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_G9_S647.rrna.fq.gz
+    Total reads passing E-value threshold = 50011 (99.96)
+    Total reads failing E-value threshold = 20 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_H10_S656.rrna.fq.gz
+    Total reads passing E-value threshold = 59018 (99.62)
+    Total reads failing E-value threshold = 227 (0.38)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_H11_S664.rrna.fq.gz
+    Total reads passing E-value threshold = 64500 (99.96)
+    Total reads failing E-value threshold = 27 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_H12_S672.rrna.fq.gz
+    Total reads passing E-value threshold = 43703 (99.61)
+    Total reads failing E-value threshold = 169 (0.39)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_H1_S584.rrna.fq.gz
+    Total reads passing E-value threshold = 26165 (99.89)
+    Total reads failing E-value threshold = 29 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_H2_S592.rrna.fq.gz
+    Total reads passing E-value threshold = 38513 (99.84)
+    Total reads failing E-value threshold = 63 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_H3_S600.rrna.fq.gz
+    Total reads passing E-value threshold = 42324 (99.82)
+    Total reads failing E-value threshold = 78 (0.18)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_H4_S608.rrna.fq.gz
+    Total reads passing E-value threshold = 61750 (99.73)
+    Total reads failing E-value threshold = 169 (0.27)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_H5_S616.rrna.fq.gz
+    Total reads passing E-value threshold = 38157 (99.87)
+    Total reads failing E-value threshold = 51 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_H6_S624.rrna.fq.gz
+    Total reads passing E-value threshold = 43115 (99.95)
+    Total reads failing E-value threshold = 20 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_H7_S632.rrna.fq.gz
+    Total reads passing E-value threshold = 53717 (99.82)
+    Total reads failing E-value threshold = 97 (0.18)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_H8_S640.rrna.fq.gz
+    Total reads passing E-value threshold = 49031 (99.88)
+    Total reads failing E-value threshold = 61 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_7_H9_S648.rrna.fq.gz
+    Total reads passing E-value threshold = 52929 (99.66)
+    Total reads failing E-value threshold = 178 (0.34)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_A10_S745.rrna.fq.gz
+    Total reads passing E-value threshold = 77300 (99.85)
+    Total reads failing E-value threshold = 115 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_A11_S753.rrna.fq.gz
+    Total reads passing E-value threshold = 64090 (99.79)
+    Total reads failing E-value threshold = 136 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_A12_S761.rrna.fq.gz
+    Total reads passing E-value threshold = 5237 (99.85)
+    Total reads failing E-value threshold = 8 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_A1_S673.rrna.fq.gz
+    Total reads passing E-value threshold = 33240 (99.41)
+    Total reads failing E-value threshold = 197 (0.59)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_A2_S681.rrna.fq.gz
+    Total reads passing E-value threshold = 32630 (99.80)
+    Total reads failing E-value threshold = 64 (0.20)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_A3_S689.rrna.fq.gz
+    Total reads passing E-value threshold = 43850 (99.86)
+    Total reads failing E-value threshold = 62 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_A4_S697.rrna.fq.gz
+    Total reads passing E-value threshold = 34816 (99.72)
+    Total reads failing E-value threshold = 98 (0.28)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_A5_S705.rrna.fq.gz
+    Total reads passing E-value threshold = 66890 (99.71)
+    Total reads failing E-value threshold = 194 (0.29)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_A6_S713.rrna.fq.gz
+    Total reads passing E-value threshold = 18475 (99.85)
+    Total reads failing E-value threshold = 27 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_A7_S721.rrna.fq.gz
+    Total reads passing E-value threshold = 83136 (99.97)
+    Total reads failing E-value threshold = 26 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_A8_S729.rrna.fq.gz
+    Total reads passing E-value threshold = 37266 (99.79)
+    Total reads failing E-value threshold = 79 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_A9_S737.rrna.fq.gz
+    Total reads passing E-value threshold = 31250 (99.87)
+    Total reads failing E-value threshold = 41 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_B10_S746.rrna.fq.gz
+    Total reads passing E-value threshold = 22290 (99.90)
+    Total reads failing E-value threshold = 23 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_B11_S754.rrna.fq.gz
+    Total reads passing E-value threshold = 26330 (99.50)
+    Total reads failing E-value threshold = 131 (0.50)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_B12_S762.rrna.fq.gz
+    Total reads passing E-value threshold = 80057 (99.87)
+    Total reads failing E-value threshold = 106 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_B1_S674.rrna.fq.gz
+    Total reads passing E-value threshold = 47120 (99.92)
+    Total reads failing E-value threshold = 36 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_B2_S682.rrna.fq.gz
+    Total reads passing E-value threshold = 54654 (99.75)
+    Total reads failing E-value threshold = 136 (0.25)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_B3_S690.rrna.fq.gz
+    Total reads passing E-value threshold = 50018 (99.91)
+    Total reads failing E-value threshold = 44 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_B4_S698.rrna.fq.gz
+    Total reads passing E-value threshold = 72674 (99.90)
+    Total reads failing E-value threshold = 71 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_B5_S706.rrna.fq.gz
+    Total reads passing E-value threshold = 17557 (99.75)
+    Total reads failing E-value threshold = 44 (0.25)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_B6_S714.rrna.fq.gz
+    Total reads passing E-value threshold = 56805 (99.94)
+    Total reads failing E-value threshold = 34 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_B7_S722.rrna.fq.gz
+    Total reads passing E-value threshold = 27033 (99.97)
+    Total reads failing E-value threshold = 9 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_B8_S730.rrna.fq.gz
+    Total reads passing E-value threshold = 53609 (99.95)
+    Total reads failing E-value threshold = 29 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_B9_S738.rrna.fq.gz
+    Total reads passing E-value threshold = 47144 (99.76)
+    Total reads failing E-value threshold = 113 (0.24)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_C10_S747.rrna.fq.gz
+    Total reads passing E-value threshold = 51799 (99.82)
+    Total reads failing E-value threshold = 95 (0.18)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_C11_S755.rrna.fq.gz
+    Total reads passing E-value threshold = 61289 (99.97)
+    Total reads failing E-value threshold = 16 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_C12_S763.rrna.fq.gz
+    Total reads passing E-value threshold = 43583 (99.48)
+    Total reads failing E-value threshold = 227 (0.52)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_C1_S675.rrna.fq.gz
+    Total reads passing E-value threshold = 95 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_C2_S683.rrna.fq.gz
+    Total reads passing E-value threshold = 38951 (99.74)
+    Total reads failing E-value threshold = 101 (0.26)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_C3_S691.rrna.fq.gz
+    Total reads passing E-value threshold = 34263 (99.87)
+    Total reads failing E-value threshold = 45 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_C4_S699.rrna.fq.gz
+    Total reads passing E-value threshold = 50980 (99.76)
+    Total reads failing E-value threshold = 121 (0.24)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_C5_S707.rrna.fq.gz
+    Total reads passing E-value threshold = 60761 (99.78)
+    Total reads failing E-value threshold = 134 (0.22)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_C6_S715.rrna.fq.gz
+    Total reads passing E-value threshold = 36953 (99.81)
+    Total reads failing E-value threshold = 72 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_C7_S723.rrna.fq.gz
+    Total reads passing E-value threshold = 48234 (99.77)
+    Total reads failing E-value threshold = 109 (0.23)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_C8_S731.rrna.fq.gz
+    Total reads passing E-value threshold = 39636 (99.59)
+    Total reads failing E-value threshold = 165 (0.41)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_C9_S739.rrna.fq.gz
+    Total reads passing E-value threshold = 11116 (99.81)
+    Total reads failing E-value threshold = 21 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_D10_S748.rrna.fq.gz
+    Total reads passing E-value threshold = 41415 (99.80)
+    Total reads failing E-value threshold = 83 (0.20)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_D11_S756.rrna.fq.gz
+    Total reads passing E-value threshold = 72345 (99.85)
+    Total reads failing E-value threshold = 109 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_D12_S764.rrna.fq.gz
+    Total reads passing E-value threshold = 24365 (99.84)
+    Total reads failing E-value threshold = 40 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_D1_S676.rrna.fq.gz
+    Total reads passing E-value threshold = 17510 (99.58)
+    Total reads failing E-value threshold = 73 (0.42)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_D2_S684.rrna.fq.gz
+    Total reads passing E-value threshold = 43521 (99.81)
+    Total reads failing E-value threshold = 83 (0.19)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_D3_S692.rrna.fq.gz
+    Total reads passing E-value threshold = 58452 (99.83)
+    Total reads failing E-value threshold = 98 (0.17)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_D4_S700.rrna.fq.gz
+    Total reads passing E-value threshold = 55904 (99.18)
+    Total reads failing E-value threshold = 463 (0.82)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_D5_S708.rrna.fq.gz
+    Total reads passing E-value threshold = 73401 (99.74)
+    Total reads failing E-value threshold = 189 (0.26)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_D6_S716.rrna.fq.gz
+    Total reads passing E-value threshold = 39793 (99.74)
+    Total reads failing E-value threshold = 104 (0.26)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_D7_S724.rrna.fq.gz
+    Total reads passing E-value threshold = 27946 (99.66)
+    Total reads failing E-value threshold = 96 (0.34)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_D8_S732.rrna.fq.gz
+    Total reads passing E-value threshold = 48444 (99.72)
+    Total reads failing E-value threshold = 138 (0.28)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_D9_S740.rrna.fq.gz
+    Total reads passing E-value threshold = 40490 (99.90)
+    Total reads failing E-value threshold = 41 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_E10_S749.rrna.fq.gz
+    Total reads passing E-value threshold = 80253 (99.80)
+    Total reads failing E-value threshold = 158 (0.20)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_E11_S757.rrna.fq.gz
+    Total reads passing E-value threshold = 56 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_E12_S765.rrna.fq.gz
+    Total reads passing E-value threshold = 47110 (99.76)
+    Total reads failing E-value threshold = 115 (0.24)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_E1_S677.rrna.fq.gz
+    Total reads passing E-value threshold = 104920 (99.56)
+    Total reads failing E-value threshold = 463 (0.44)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_E2_S685.rrna.fq.gz
+    Total reads passing E-value threshold = 25458 (99.78)
+    Total reads failing E-value threshold = 57 (0.22)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_E3_S693.rrna.fq.gz
+    Total reads passing E-value threshold = 63171 (99.55)
+    Total reads failing E-value threshold = 284 (0.45)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_E4_S701.rrna.fq.gz
+    Total reads passing E-value threshold = 43153 (99.94)
+    Total reads failing E-value threshold = 26 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_E5_S709.rrna.fq.gz
+    Total reads passing E-value threshold = 53911 (99.92)
+    Total reads failing E-value threshold = 41 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_E6_S717.rrna.fq.gz
+    Total reads passing E-value threshold = 38617 (98.41)
+    Total reads failing E-value threshold = 625 (1.59)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_E7_S725.rrna.fq.gz
+    Total reads passing E-value threshold = 38885 (99.41)
+    Total reads failing E-value threshold = 229 (0.59)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_E8_S733.rrna.fq.gz
+    Total reads passing E-value threshold = 72714 (99.86)
+    Total reads failing E-value threshold = 99 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_E9_S741.rrna.fq.gz
+    Total reads passing E-value threshold = 22423 (99.61)
+    Total reads failing E-value threshold = 88 (0.39)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_F10_S750.rrna.fq.gz
+    Total reads passing E-value threshold = 24033 (99.61)
+    Total reads failing E-value threshold = 94 (0.39)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_F11_S758.rrna.fq.gz
+    Total reads passing E-value threshold = 48946 (99.54)
+    Total reads failing E-value threshold = 227 (0.46)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_F12_S766.rrna.fq.gz
+    Total reads passing E-value threshold = 48390 (99.40)
+    Total reads failing E-value threshold = 294 (0.60)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_F1_S678.rrna.fq.gz
+    Total reads passing E-value threshold = 123791 (99.97)
+    Total reads failing E-value threshold = 40 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_F2_S686.rrna.fq.gz
+    Total reads passing E-value threshold = 67889 (99.93)
+    Total reads failing E-value threshold = 49 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_F3_S694.rrna.fq.gz
+    Total reads passing E-value threshold = 89623 (100.00)
+    Total reads failing E-value threshold = 2 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_F4_S702.rrna.fq.gz
+    Total reads passing E-value threshold = 18883 (99.66)
+    Total reads failing E-value threshold = 65 (0.34)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_F5_S710.rrna.fq.gz
+    Total reads passing E-value threshold = 32093 (99.99)
+    Total reads failing E-value threshold = 3 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_F6_S718.rrna.fq.gz
+    Total reads passing E-value threshold = 47547 (99.75)
+    Total reads failing E-value threshold = 119 (0.25)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_F7_S726.rrna.fq.gz
+    Total reads passing E-value threshold = 25176 (99.48)
+    Total reads failing E-value threshold = 132 (0.52)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_F8_S734.rrna.fq.gz
+    Total reads passing E-value threshold = 50294 (99.62)
+    Total reads failing E-value threshold = 190 (0.38)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_F9_S742.rrna.fq.gz
+    Total reads passing E-value threshold = 58920 (99.88)
+    Total reads failing E-value threshold = 71 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_G10_S751.rrna.fq.gz
+    Total reads passing E-value threshold = 66742 (99.95)
+    Total reads failing E-value threshold = 36 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_G11_S759.rrna.fq.gz
+    Total reads passing E-value threshold = 81097 (99.97)
+    Total reads failing E-value threshold = 23 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_G12_S767.rrna.fq.gz
+    Total reads passing E-value threshold = 382533 (99.75)
+    Total reads failing E-value threshold = 958 (0.25)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_G1_S679.rrna.fq.gz
+    Total reads passing E-value threshold = 386941 (99.41)
+    Total reads failing E-value threshold = 2306 (0.59)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_G2_S687.rrna.fq.gz
+    Total reads passing E-value threshold = 21348 (99.93)
+    Total reads failing E-value threshold = 16 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_G3_S695.rrna.fq.gz
+    Total reads passing E-value threshold = 69416 (99.82)
+    Total reads failing E-value threshold = 122 (0.18)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_G4_S703.rrna.fq.gz
+    Total reads passing E-value threshold = 60256 (99.63)
+    Total reads failing E-value threshold = 223 (0.37)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_G5_S711.rrna.fq.gz
+    Total reads passing E-value threshold = 68321 (99.78)
+    Total reads failing E-value threshold = 149 (0.22)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_G6_S719.rrna.fq.gz
+    Total reads passing E-value threshold = 52137 (99.60)
+    Total reads failing E-value threshold = 209 (0.40)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_G7_S727.rrna.fq.gz
+    Total reads passing E-value threshold = 46451 (99.89)
+    Total reads failing E-value threshold = 50 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_G8_S735.rrna.fq.gz
+    Total reads passing E-value threshold = 41402 (99.54)
+    Total reads failing E-value threshold = 190 (0.46)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_G9_S743.rrna.fq.gz
+    Total reads passing E-value threshold = 47342 (99.89)
+    Total reads failing E-value threshold = 54 (0.11)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_H10_S752.rrna.fq.gz
+    Total reads passing E-value threshold = 68795 (99.60)
+    Total reads failing E-value threshold = 275 (0.40)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_H11_S760.rrna.fq.gz
+    Total reads passing E-value threshold = 66298 (99.54)
+    Total reads failing E-value threshold = 305 (0.46)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_H12_S768.rrna.fq.gz
+    Total reads passing E-value threshold = 35646 (99.84)
+    Total reads failing E-value threshold = 57 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_H1_S680.rrna.fq.gz
+    Total reads passing E-value threshold = 46183 (99.42)
+    Total reads failing E-value threshold = 268 (0.58)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_H2_S688.rrna.fq.gz
+    Total reads passing E-value threshold = 76 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_H3_S696.rrna.fq.gz
+    Total reads passing E-value threshold = 35399 (99.75)
+    Total reads failing E-value threshold = 88 (0.25)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_H4_S704.rrna.fq.gz
+    Total reads passing E-value threshold = 88403 (99.86)
+    Total reads failing E-value threshold = 122 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_H5_S712.rrna.fq.gz
+    Total reads passing E-value threshold = 45398 (99.69)
+    Total reads failing E-value threshold = 142 (0.31)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_H6_S720.rrna.fq.gz
+    Total reads passing E-value threshold = 35504 (99.79)
+    Total reads failing E-value threshold = 74 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_H7_S728.rrna.fq.gz
+    Total reads passing E-value threshold = 42346 (99.91)
+    Total reads failing E-value threshold = 37 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_H8_S736.rrna.fq.gz
+    Total reads passing E-value threshold = 56162 (99.85)
+    Total reads failing E-value threshold = 82 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_8_H9_S744.rrna.fq.gz
+    Total reads passing E-value threshold = 70201 (99.85)
+    Total reads failing E-value threshold = 105 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_A10_S841.rrna.fq.gz
+    Total reads passing E-value threshold = 108387 (99.95)
+    Total reads failing E-value threshold = 50 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_A11_S849.rrna.fq.gz
+    Total reads passing E-value threshold = 35 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_A12_S857.rrna.fq.gz
+    Total reads passing E-value threshold = 49 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_A1_S769.rrna.fq.gz
+    Total reads passing E-value threshold = 69811 (99.85)
+    Total reads failing E-value threshold = 106 (0.15)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_A2_S777.rrna.fq.gz
+    Total reads passing E-value threshold = 59752 (99.86)
+    Total reads failing E-value threshold = 86 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_A3_S785.rrna.fq.gz
+    Total reads passing E-value threshold = 59108 (99.97)
+    Total reads failing E-value threshold = 16 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_A4_S793.rrna.fq.gz
+    Total reads passing E-value threshold = 37379 (99.96)
+    Total reads failing E-value threshold = 15 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_A5_S801.rrna.fq.gz
+    Total reads passing E-value threshold = 136805 (99.99)
+    Total reads failing E-value threshold = 20 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_A6_S809.rrna.fq.gz
+    Total reads passing E-value threshold = 81123 (99.95)
+    Total reads failing E-value threshold = 44 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_A7_S817.rrna.fq.gz
+    Total reads passing E-value threshold = 86580 (99.93)
+    Total reads failing E-value threshold = 63 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_A8_S825.rrna.fq.gz
+    Total reads passing E-value threshold = 44273 (99.48)
+    Total reads failing E-value threshold = 230 (0.52)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_A9_S833.rrna.fq.gz
+    Total reads passing E-value threshold = 31254 (99.96)
+    Total reads failing E-value threshold = 11 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_B10_S842.rrna.fq.gz
+    Total reads passing E-value threshold = 28170 (99.96)
+    Total reads failing E-value threshold = 12 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_B11_S850.rrna.fq.gz
+    Total reads passing E-value threshold = 20 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_B12_S858.rrna.fq.gz
+    Total reads passing E-value threshold = 31 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_B1_S770.rrna.fq.gz
+    Total reads passing E-value threshold = 107232 (99.91)
+    Total reads failing E-value threshold = 99 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_B2_S778.rrna.fq.gz
+    Total reads passing E-value threshold = 119311 (99.95)
+    Total reads failing E-value threshold = 63 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_B3_S786.rrna.fq.gz
+    Total reads passing E-value threshold = 82666 (99.96)
+    Total reads failing E-value threshold = 33 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_B4_S794.rrna.fq.gz
+    Total reads passing E-value threshold = 105673 (99.94)
+    Total reads failing E-value threshold = 67 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_B5_S802.rrna.fq.gz
+    Total reads passing E-value threshold = 30849 (99.88)
+    Total reads failing E-value threshold = 36 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_B6_S810.rrna.fq.gz
+    Total reads passing E-value threshold = 80010 (99.87)
+    Total reads failing E-value threshold = 102 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_B7_S818.rrna.fq.gz
+    Total reads passing E-value threshold = 37163 (99.97)
+    Total reads failing E-value threshold = 12 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_B8_S826.rrna.fq.gz
+    Total reads passing E-value threshold = 68971 (99.88)
+    Total reads failing E-value threshold = 81 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_B9_S834.rrna.fq.gz
+    Total reads passing E-value threshold = 39336 (99.98)
+    Total reads failing E-value threshold = 9 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_C10_S843.rrna.fq.gz
+    Total reads passing E-value threshold = 106251 (99.99)
+    Total reads failing E-value threshold = 14 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_C11_S851.rrna.fq.gz
+    Total reads passing E-value threshold = 44 (93.62)
+    Total reads failing E-value threshold = 3 (6.38)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_C12_S859.rrna.fq.gz
+    Total reads passing E-value threshold = 24 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_C1_S771.rrna.fq.gz
+    Total reads passing E-value threshold = 51806 (99.98)
+    Total reads failing E-value threshold = 10 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_C2_S779.rrna.fq.gz
+    Total reads passing E-value threshold = 60404 (99.98)
+    Total reads failing E-value threshold = 12 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_C3_S787.rrna.fq.gz
+    Total reads passing E-value threshold = 79414 (99.92)
+    Total reads failing E-value threshold = 61 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_C4_S795.rrna.fq.gz
+    Total reads passing E-value threshold = 55395 (99.84)
+    Total reads failing E-value threshold = 91 (0.16)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_C5_S803.rrna.fq.gz
+    Total reads passing E-value threshold = 89085 (99.97)
+    Total reads failing E-value threshold = 23 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_C6_S811.rrna.fq.gz
+    Total reads passing E-value threshold = 59664 (99.79)
+    Total reads failing E-value threshold = 126 (0.21)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_C7_S819.rrna.fq.gz
+    Total reads passing E-value threshold = 80523 (99.97)
+    Total reads failing E-value threshold = 21 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_C8_S827.rrna.fq.gz
+    Total reads passing E-value threshold = 131595 (99.98)
+    Total reads failing E-value threshold = 28 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_C9_S835.rrna.fq.gz
+    Total reads passing E-value threshold = 16936 (99.91)
+    Total reads failing E-value threshold = 16 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_D10_S844.rrna.fq.gz
+    Total reads passing E-value threshold = 94356 (99.73)
+    Total reads failing E-value threshold = 260 (0.27)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_D11_S852.rrna.fq.gz
+    Total reads passing E-value threshold = 80 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_D12_S860.rrna.fq.gz
+    Total reads passing E-value threshold = 27 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_D1_S772.rrna.fq.gz
+    Total reads passing E-value threshold = 31190 (99.97)
+    Total reads failing E-value threshold = 9 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_D2_S780.rrna.fq.gz
+    Total reads passing E-value threshold = 87208 (99.97)
+    Total reads failing E-value threshold = 23 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_D3_S788.rrna.fq.gz
+    Total reads passing E-value threshold = 145364 (99.98)
+    Total reads failing E-value threshold = 27 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_D4_S796.rrna.fq.gz
+    Total reads passing E-value threshold = 67761 (99.95)
+    Total reads failing E-value threshold = 33 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_D5_S804.rrna.fq.gz
+    Total reads passing E-value threshold = 108350 (99.90)
+    Total reads failing E-value threshold = 109 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_D6_S812.rrna.fq.gz
+    Total reads passing E-value threshold = 68886 (99.98)
+    Total reads failing E-value threshold = 16 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_D7_S820.rrna.fq.gz
+    Total reads passing E-value threshold = 74726 (99.99)
+    Total reads failing E-value threshold = 7 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_D8_S828.rrna.fq.gz
+    Total reads passing E-value threshold = 47197 (99.96)
+    Total reads failing E-value threshold = 21 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_D9_S836.rrna.fq.gz
+    Total reads passing E-value threshold = 45220 (99.97)
+    Total reads failing E-value threshold = 14 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_E10_S845.rrna.fq.gz
+    Total reads passing E-value threshold = 135902 (99.90)
+    Total reads failing E-value threshold = 133 (0.10)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_E11_S853.rrna.fq.gz
+    Total reads passing E-value threshold = 22 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_E12_S861.rrna.fq.gz
+    Total reads passing E-value threshold = 53 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_E1_S773.rrna.fq.gz
+    Total reads passing E-value threshold = 131782 (99.99)
+    Total reads failing E-value threshold = 19 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_E2_S781.rrna.fq.gz
+    Total reads passing E-value threshold = 90343 (99.88)
+    Total reads failing E-value threshold = 113 (0.12)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_E3_S789.rrna.fq.gz
+    Total reads passing E-value threshold = 60619 (99.97)
+    Total reads failing E-value threshold = 19 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_E4_S797.rrna.fq.gz
+    Total reads passing E-value threshold = 113045 (99.92)
+    Total reads failing E-value threshold = 93 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_E5_S805.rrna.fq.gz
+    Total reads passing E-value threshold = 116173 (99.94)
+    Total reads failing E-value threshold = 70 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_E6_S813.rrna.fq.gz
+    Total reads passing E-value threshold = 63271 (99.97)
+    Total reads failing E-value threshold = 19 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_E7_S821.rrna.fq.gz
+    Total reads passing E-value threshold = 57259 (99.98)
+    Total reads failing E-value threshold = 13 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_E8_S829.rrna.fq.gz
+    Total reads passing E-value threshold = 90658 (99.98)
+    Total reads failing E-value threshold = 22 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_E9_S837.rrna.fq.gz
+    Total reads passing E-value threshold = 45510 (99.94)
+    Total reads failing E-value threshold = 29 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_F10_S846.rrna.fq.gz
+    Total reads passing E-value threshold = 79391 (99.83)
+    Total reads failing E-value threshold = 133 (0.17)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_F11_S854.rrna.fq.gz
+    Total reads passing E-value threshold = 34 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_F12_S862.rrna.fq.gz
+    Total reads passing E-value threshold = 27 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_F1_S774.rrna.fq.gz
+    Total reads passing E-value threshold = 77929 (99.92)
+    Total reads failing E-value threshold = 66 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_F2_S782.rrna.fq.gz
+    Total reads passing E-value threshold = 131057 (99.97)
+    Total reads failing E-value threshold = 43 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_F3_S790.rrna.fq.gz
+    Total reads passing E-value threshold = 125288 (99.99)
+    Total reads failing E-value threshold = 18 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_F4_S798.rrna.fq.gz
+    Total reads passing E-value threshold = 34192 (99.99)
+    Total reads failing E-value threshold = 5 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_F5_S806.rrna.fq.gz
+    Total reads passing E-value threshold = 24652 (99.87)
+    Total reads failing E-value threshold = 32 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_F6_S814.rrna.fq.gz
+    Total reads passing E-value threshold = 34010 (99.87)
+    Total reads failing E-value threshold = 44 (0.13)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_F7_S822.rrna.fq.gz
+    Total reads passing E-value threshold = 16616 (99.93)
+    Total reads failing E-value threshold = 11 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_F8_S830.rrna.fq.gz
+    Total reads passing E-value threshold = 156179 (99.86)
+    Total reads failing E-value threshold = 217 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_F9_S838.rrna.fq.gz
+    Total reads passing E-value threshold = 138665 (99.93)
+    Total reads failing E-value threshold = 98 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_G10_S847.rrna.fq.gz
+    Total reads passing E-value threshold = 131381 (99.94)
+    Total reads failing E-value threshold = 85 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_G11_S855.rrna.fq.gz
+    Total reads passing E-value threshold = 27 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_G12_S863.rrna.fq.gz
+    Total reads passing E-value threshold = 86 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_G1_S775.rrna.fq.gz
+    Total reads passing E-value threshold = 149620 (99.98)
+    Total reads failing E-value threshold = 36 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_G2_S783.rrna.fq.gz
+    Total reads passing E-value threshold = 44528 (99.98)
+    Total reads failing E-value threshold = 8 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_G3_S791.rrna.fq.gz
+    Total reads passing E-value threshold = 149544 (99.92)
+    Total reads failing E-value threshold = 115 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_G4_S799.rrna.fq.gz
+    Total reads passing E-value threshold = 68952 (99.97)
+    Total reads failing E-value threshold = 19 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_G5_S807.rrna.fq.gz
+    Total reads passing E-value threshold = 96362 (99.77)
+    Total reads failing E-value threshold = 220 (0.23)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_G6_S815.rrna.fq.gz
+    Total reads passing E-value threshold = 93805 (99.98)
+    Total reads failing E-value threshold = 22 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_G7_S823.rrna.fq.gz
+    Total reads passing E-value threshold = 94718 (99.91)
+    Total reads failing E-value threshold = 85 (0.09)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_G8_S831.rrna.fq.gz
+    Total reads passing E-value threshold = 106463 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_G9_S839.rrna.fq.gz
+    Total reads passing E-value threshold = 121923 (99.95)
+    Total reads failing E-value threshold = 59 (0.05)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_H10_S848.rrna.fq.gz
+    Total reads passing E-value threshold = 116767 (99.92)
+    Total reads failing E-value threshold = 91 (0.08)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_H11_S856.rrna.fq.gz
+    Total reads passing E-value threshold = 74 (100.00)
+    Total reads failing E-value threshold = 0 (0.00)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_H12_S864.rrna.fq.gz
+    Total reads passing E-value threshold = 59 (98.33)
+    Total reads failing E-value threshold = 1 (1.67)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_H1_S776.rrna.fq.gz
+    Total reads passing E-value threshold = 49632 (99.97)
+    Total reads failing E-value threshold = 16 (0.03)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_H2_S784.rrna.fq.gz
+    Total reads passing E-value threshold = 80047 (99.98)
+    Total reads failing E-value threshold = 13 (0.02)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_H3_S792.rrna.fq.gz
+    Total reads passing E-value threshold = 73860 (99.99)
+    Total reads failing E-value threshold = 7 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_H4_S800.rrna.fq.gz
+    Total reads passing E-value threshold = 62718 (99.96)
+    Total reads failing E-value threshold = 22 (0.04)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_H5_S808.rrna.fq.gz
+    Total reads passing E-value threshold = 81396 (99.99)
+    Total reads failing E-value threshold = 9 (0.01)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_H6_S816.rrna.fq.gz
+    Total reads passing E-value threshold = 66627 (99.94)
+    Total reads failing E-value threshold = 42 (0.06)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_H7_S824.rrna.fq.gz
+    Total reads passing E-value threshold = 60808 (99.93)
+    Total reads failing E-value threshold = 44 (0.07)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_H8_S832.rrna.fq.gz
+    Total reads passing E-value threshold = 40779 (99.86)
+    Total reads failing E-value threshold = 56 (0.14)
+    Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/plate_9_H9_S840.rrna.fq.gz
+    Total reads passing E-value threshold = 117407 (99.98)
+    Total reads failing E-value threshold = 22 (0.02)

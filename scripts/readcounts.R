@@ -3,34 +3,48 @@ library(readr)
 library(splitstackshape)
 library(readxl)
 library(dplyr)
+library(tidyverse)
+library(data.table)
 
 
 source_data = "/Users/12705859/metapigs_base/source_data/" # git 
 middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
-out_dir = "/Users/12705859/Desktop/metapigs_base/reads_counts_distribution/" # local 
+out_dir = "/Users/12705859/metapigs_base/out/" # git
+out_dir_local = "/Users/12705859/Desktop/metapigs_base/reads_counts_distribution/" # local 
+
+
+sink(file = paste0(out_dir,"read_counts_stats.txt"), 
+     append = FALSE, type = c("output"))
+paste0("########### READ COUNT STATS ###########")
+sink()
 
 ###########################################################################################
 
 # raw read counts (only R1)
 readcounts_samples <- read_csv(paste0(source_data,"readcounts_samples.csv"),
                                col_names = FALSE)
-tail(readcounts_samples)
+head(readcounts_samples)
+
 
 ######################################################################
+
 
 # clean paired reads 
 lib <- read_delim(paste0(middle_dir,"clean_paired_lib_sizes_final.tsv"),
                   "\t", escape_double = FALSE, col_names = FALSE,trim_ws = TRUE)
 
-hist(lib$X2, breaks=100)
-
-summary(lib$X2)
-head(lib)
-sum(lib$X2)
-NROW(lib)
-# this includes all piglet samples 
-tail(lib)
-
+sink(file = paste0(out_dir,"read_counts_stats.txt"), 
+     append = TRUE, type = c("output"))
+paste0("##################################") 
+paste0("Summary of read counts from clean paired libraries ",
+       summary(as.data.frame(lib$X2)))
+paste0("##################################")
+paste0("Sum of read counts from clean paired libraries : ",
+       sum(as.data.frame(lib$X2)))
+paste0("##################################")
+paste0("number of samples included (only piglet samples) : ", NROW(lib))     
+paste0("##################################") 
+sink()
 
 ######################################################################
 
@@ -44,20 +58,6 @@ mdat <- read_excel(paste0(source_data,"Metagenome.environmental_20190308_2.xlsx"
                                  "text","text", "text", "text", "text", "text","text", "text"),
                    skip = 12)
 
-mdat$`*collection_date` <- as.character(mdat$`*collection_date`)
-mdat$Cohort <- gsub("Sows","Sows",mdat$Cohort)
-mdat$Cohort <- gsub("D-scour","D-Scour", mdat$Cohort)
-
-
-colnames(mdat)
-
-colnames(mdat)[colnames(mdat) == '*collection_date'] <- 'collection_date'
-
-mdat <- mdat %>%
-  dplyr::select(DNA_plate,DNA_well,Cohort,collection_date,isolation_source)
-
-mdat$DNA_plate_well <- paste0(mdat$DNA_plate,"_",mdat$DNA_well)
-head(mdat)
 
 ######################################################################
 
@@ -86,11 +86,11 @@ histogram <- hist(readcounts_samples$X3, breaks = 200,
                   xlab = "read counts",
                   ylab = "Frequency")
 
-pdf(paste0(out_dir, "readcounts_distribution.pdf"), onefile = TRUE)
+pdf(paste0(out_dir_local, "readcounts_distribution.pdf"), onefile = TRUE)
 histogram
 dev.off()
 
-pdf("/Users/12705859/Desktop/metapigs_base/readcounts_distribution_all_and_low.pdf", onefile = TRUE)
+pdf(paste0(out_dir_local, "readcounts_distribution_all_and_low.pdf"),onefile = TRUE)
 par(mfrow=c(1,1))
 hist(readcounts_samples$X3, breaks = 200, cex.axis=1,cex.lab=1.5, cex.main=2,
      main = "Read count distribution across samples",
@@ -106,130 +106,70 @@ hist(readcounts_samples$X3[
   main= NULL)
 dev.off()
 
-
 ######################################################################
 
-# merge read counts to metadata
+# parse metadata to merge to read count info 
 
+mdat$`*collection_date` <- as.character(mdat$`*collection_date`)
+mdat$Cohort <- gsub("Sows","Sows",mdat$Cohort)
+mdat$Cohort <- gsub("D-scour","D-Scour", mdat$Cohort)
+
+colnames(mdat)[colnames(mdat) == '*collection_date'] <- 'collection_date'
+
+mdat <- mdat %>%
+  dplyr::select(DNA_plate,DNA_well,Cohort,collection_date,isolation_source)
+
+mdat$DNA_plate_well <- paste0(mdat$DNA_plate,"_",mdat$DNA_well)
 head(mdat)
+
+
+# merge read counts to metadata
 
 colnames(reads) <- c("counts","DNA_plate_well")
 
 df <- merge(mdat, reads)
 head(df)
-NROW(df)
-
-summary(df$counts*2) # median=32,688,566  mean=35,118,723
-sd(df$counts*2) # sd=20333765
-sum(df$counts*2) # sum=31,993,156,356
 
 
-unique(df$Cohort)
-
+# function to get stats per cohort: 
 get_me_stats <- function(DF) {
   out <- DF %>% 
     dplyr::summarise(min=min(counts*2),
-                  median=median(counts*2),
-                  mean=mean(counts*2),
-                  sd=sd(counts*2),
-                  max=max(counts*2),
-                  n=n(),
-                  sum=sum(counts*2))
+                     median=median(counts*2),
+                     mean=mean(counts*2),
+                     sd=sd(counts*2),
+                     max=max(counts*2),
+                     samples=n(),
+                     sum=sum(counts*2))
   return(out)
 }
 
-# neg controls
-neg <- df %>% dplyr::filter(Cohort=="NegativeControl") #%>% dplyr::summarise(sum=sum(counts*2))
+z <- df %>% 
+  group_by(Cohort) %>% 
+  get_me_stats()
 
-# pos controls
-pos <- df %>% dplyr::filter(Cohort=="MockCommunity"|
-                       Cohort=="PosControl_D-Scour"|
-                       Cohort=="PosControl_ColiGuard")
-# mothers alone
-moms <- df %>% dplyr::filter(Cohort=="Mothers")  
-
-# piggies alone
-piggies <- df %>% dplyr::filter(!Cohort=="NegativeControl" & !Cohort=="MockCommunity"
-                                & !Cohort=="PosControl_D-Scour" & !Cohort=="PosControl_ColiGuard"
-                                & !Cohort=="Mothers")
-
-
-get_me_stats(df)
-get_me_stats(neg)
-get_me_stats(pos)
-get_me_stats(moms)
-get_me_stats(piggies)
-
-
-
-######################################################################
-
-# log of reads extracted with sortmerna:
-
-sortmerna_log <- read_csv(paste0(source_data,"sortmerna_log"), 
-                          col_names = FALSE)
-
-head(sortmerna_log)
-
-sortmerna_log$X2 <- rep(c("file","passed","failed"),1,nrow(sortmerna_log))
-  
-sortmerna_log <- as.data.frame(sortmerna_log)
-
-grouped <- sortmerna_log %>% 
-  group_by(group = as.integer(gl(n(), 3, n())))
-
-grouped2 <- grouped %>%
-  pivot_wider(names_from = X2, values_from=X1)
-
-grouped2 <- cSplit(grouped2, "passed", " ")
-grouped2 <- cSplit(grouped2, "failed", " ")
-grouped2$file <- gsub("Reads file: /shared/homes/s1/pig_microbiome/sortmerna_16S/","",grouped2$file)
-grouped2$file <- gsub("(_S).*","",grouped2$file)
-
-grouped2$passed_8 <- as.numeric(gsub("[^0-9.]","",grouped2$passed_8))
-grouped2$failed_8 <- as.numeric(gsub("[^0-9.]","",grouped2$failed_8))
-
-grouped2 <- grouped2 %>%
-  dplyr::select(file, passed_7, passed_8, failed_7, failed_8)
-
-colnames(grouped2) <- c("DNA_plate_well","passed_count","passed_perc","failed_count","failed_perc")
+sink(file = paste0(out_dir,"read_counts_stats.txt"), 
+     append = TRUE, type = c("output"))
+paste0("##################################") 
+paste0("Summary of read counts (R1*2) ",
+       summary(as.data.frame(df$counts*2)))
+paste0("##################################")
+paste0("Standard deviation of read counts : ",
+       sd(df$counts*2))
+paste0("##################################")
+paste0("Sum of read counts (R1*2): ",
+       sum(as.data.frame(df$counts*2)))
+paste0("##################################")
+paste0("number of samples included (these are all - true - samples): ", NROW(df))    
+paste0("##################################")
+paste0("Included cohorts : ",
+       unique(df$Cohort))
+paste0("##################################")
+paste0("Reads counts summary per cohort (R1*2) : ")
+as.data.frame(z)
+paste0("##################################")   
+sink()
 
 
-sortmerna_filtering_stats <- grouped2
-
-summary(sortmerna_filtering_stats)
-
-
-sortme <- sortmerna_filtering_stats 
-
-merged <- merge(df,sortme) %>%
-  dplyr::mutate(perc_16S = (passed_count/counts)*100) 
-
-head(merged)
-NROW(merged)
-
-hist(merged$perc_16S)
-summary(merged$perc_16S)
-sum(merged$counts*2) # tot umber of reads
-sum(merged$passed_count) # tot number of 16S genes that passed E-value threshold 
-sum(merged$failed_count) # tot number of 16S genes that failed E-value threshold 
-head(merged)
-
-# 95% confidence interval 
-t.test(merged$perc_16S)
-
-# 
-# cat all_plates.tsv | cut -f 23 > perc_conf.tsv
-# 
-# awk '$1>0.1{c++} END{print c+0}' perc_conf.tsv
-# 46885952/60586929*100-100
-# 
-# awk '$1>0.3{c++} END{print c+0}' perc_conf.tsv
-# 32959839/60586929*100
-# 
-# awk '$1>0.9{c++} END{print c+0}' perc_conf.tsv
-# 10852863/60586929*100
-# 
-# awk '$1>0.99{c++} END{print c+0}' perc_conf.tsv
-# 4183468/60586929*100
+fwrite(x=df, file=paste0(middle_dir,"readcounts.csv"), sep = ",")
 

@@ -1,0 +1,45 @@
+[1] "########### READ COUNT STATS ###########"
+[1] "##################################"
+[1] "Summary of read counts from clean paired libraries Min.   :     9518  "
+[2] "Summary of read counts from clean paired libraries 1st Qu.: 27088336  "
+[3] "Summary of read counts from clean paired libraries Median : 32949208  "
+[4] "Summary of read counts from clean paired libraries Mean   : 35557149  "
+[5] "Summary of read counts from clean paired libraries 3rd Qu.: 39320130  "
+[6] "Summary of read counts from clean paired libraries Max.   :330272072  "
+[1] "##################################"
+[1] "Sum of read counts from clean paired libraries : 29334647772"
+[1] "##################################"
+[1] "number of samples included (only piglet samples) : 825"
+[1] "##################################"
+[1] "##################################"
+[1] "Summary of read counts (R1*2) Min.   :     9614  " "Summary of read counts (R1*2) 1st Qu.: 26898529  "
+[3] "Summary of read counts (R1*2) Median : 32688566  " "Summary of read counts (R1*2) Mean   : 35118723  "
+[5] "Summary of read counts (R1*2) 3rd Qu.: 39191333  " "Summary of read counts (R1*2) Max.   :330583594  "
+[1] "##################################"
+[1] "Standard deviation of read counts : 20333765.4726685"
+[1] "##################################"
+[1] "Sum of read counts (R1*2): 31993156356"
+[1] "##################################"
+[1] "number of samples included (these are all - true - samples): 911"
+[1] "##################################"
+ [1] "Included cohorts : Neomycin+D-Scour"     "Included cohorts : Control"             
+ [3] "Included cohorts : Neomycin+ColiGuard"   "Included cohorts : D-Scour"             
+ [5] "Included cohorts : ColiGuard"            "Included cohorts : Neomycin"            
+ [7] "Included cohorts : NegativeControl"      "Included cohorts : MockCommunity"       
+ [9] "Included cohorts : Mothers"              "Included cohorts : PosControl_ColiGuard"
+[11] "Included cohorts : PosControl_D-Scour"  
+[1] "##################################"
+[1] "Reads counts summary per cohort (R1*2) : "
+                 Cohort      min   median     mean       sd       max samples        sum
+1             ColiGuard    12378 32936018 34719836 16541739 129852730     131 4548298580
+2               Control  3919322 32468343 34081361 12740546 104821070     142 4839553284
+3               D-Scour 13290892 33505220 35662848 14420526 106861772     133 4743158774
+4         MockCommunity 17305530 31576514 53161112 60739394 209187138       9  478450010
+5               Mothers 16313270 34808096 34509096  8360969  52034408      42 1449382022
+6       NegativeControl    20794  6896434 11754086 12513813  36405210      19  223327632
+7              Neomycin    12406 32968166 39173397 35788753 330583594     150 5876009476
+8    Neomycin+ColiGuard  1575602 33692385 35814558 14305275 114315610     130 4655892534
+9      Neomycin+D-Scour     9614 32198172 33783751 12259266 103277626     139 4695941454
+10 PosControl_ColiGuard 19299960 27730154 26944492  4571666  32970786       8  215555932
+11   PosControl_D-Scour 26204610 33044629 33448332  4615675  40221006       8  267586658
+[1] "##################################"

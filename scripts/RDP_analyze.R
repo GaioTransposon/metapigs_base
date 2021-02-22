@@ -1,4 +1,6 @@
 
+# run on HPC
+# R: /shared/homes/12705859/miniconda3/envs/R36/bin/R
 
 library(readr)
 library(data.table)
@@ -9,22 +11,20 @@ library(tidyverse)
 
 
 
-source_data = "/Users/12705859/metapigs_base/source_data/" # git 
-middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
-out_dir = "/Users/12705859/metapigs_base/out/" # git
+HPC_dir = "/shared/homes/12705859/sortmerna_aligned/all_aligned_fq/filtered_fq/classified_out/" # HPC 
+
 
 ######################################################################
 
-# load RDP classifications 
-#classifications_all <- read.delim(paste0(middle_dir,"classifications_all.tsv"), header=FALSE)
-classifications_all <- read.delim("~/Desktop/classifications_all.tsv", header=FALSE)
+# load RDP classifications (file is 7.73Gb so this is run directly on HPC)
+classifications_all <- read.delim(paste0(HPC_dir, "classifications_all.tsv"), header=FALSE)
 head(classifications_all)
 
 ######################################################################
 
 
 # load metadata 
-mdat <- read_excel(paste0(source_data,"Metagenome.environmental_20190308_2.xlsx"),
+mdat <- read_excel(paste0(HPC_dir,"Metagenome.environmental_20190308_2.xlsx"),
                    col_types = c("text", "numeric", "numeric", "text", "text",
                                  "text", "date", "text","text", "text", "numeric",
                                  "numeric", "numeric", "numeric", "numeric", "numeric",
@@ -78,14 +78,16 @@ head(df)
 
 
 
-sink(file = paste0(out_dir,"RDP_analysis.txt"), 
+sink(file = paste0(HPC_dir,"RDP_analysis.txt"), 
      append = FALSE, type = c("output"))
 paste0("########### RDP analysis ###########")
 paste0("##################################")
-paste0("Confidence of genus classification (scale 0-1)")
-summary(df$V23) 
-paste0("NA classifications (%)")
-NROW(which(is.na(df$V23)))/NROW(df)*100
+paste0("Confidence of phylum classification (scale 0-1)")
+summary(df$V11) 
+paste0("Distribution by domain (remember sortmerna reference used was bacterial 16S)")
+df %>% 
+  group_by(V6) %>% #phylum
+  get_me_stats()
 paste0("##################################")
 paste0("Most common phyla (%)")
 df %>% 
@@ -120,3 +122,5 @@ df %>%
   get_me_stats()
 paste0("##################################")
 sink()
+
+

@@ -14,6 +14,7 @@
 ##### readcounts.R
 ##### sortmerna_counts.R
 ##### RDP_analyze.R
+##### sortmerna_diversity_giga.R
 
 ### For Krona plot of mothers [click here](https://htmlpreview.github.io/?https://github.com/GaioTransposon/metapigs_base/blob/master/out/moms_krona.html)
 ### For Krona plot of piglets [click here](https://htmlpreview.github.io/?https://github.com/GaioTransposon/metapigs_base/blob/master/out/piggies_krona.html)

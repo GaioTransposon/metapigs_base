@@ -84,7 +84,7 @@ lowreads_samples <- hist(head(reads$X3)[
 histogram <- hist(readcounts_samples$X3, breaks = 200,
                   main = "Read count distribution across samples",
                   xlab = "read counts",
-                  ylab = "Frequency")
+                  ylab = "Frequency (sample counts)")
 
 pdf(paste0(out_dir_local, "readcounts_distribution.pdf"), onefile = TRUE)
 histogram
@@ -92,19 +92,24 @@ dev.off()
 
 pdf(paste0(out_dir_local, "readcounts_distribution_all_and_low.pdf"),onefile = TRUE)
 par(mfrow=c(1,1))
-hist(readcounts_samples$X3, breaks = 200, cex.axis=1,cex.lab=1.5, cex.main=2,
+hist(readcounts_samples$X3[
+  readcounts_samples$X3<=165291790], 
+     breaks = seq(from=1, to=165291790, by=1000000), #165291790/1 000 000 -> 200 bins! 
+     cex.axis=1,cex.lab=1.5, cex.main=2,
      main = "Read count distribution across samples",
      xlab = "read counts",
-     ylab = "Frequency")
+     ylab = "Frequency (N samples)")
 par(fig=c(0.45, 0.99, 0.2, 1), new = T) 
 hist(readcounts_samples$X3[
   readcounts_samples$X3<=30000], 
-  breaks=20, 
+  breaks = seq(from=0, to=30000, by=1500), #30000/1500 -> 20 bins
   xlim=c(0,30000),
   xlab = NULL,
   ylab = NULL,
   main= NULL)
 dev.off()
+
+
 
 ######################################################################
 

@@ -1,0 +1,25 @@
+Names of scripts and descriptions: 
+
+robot_pooling.py
+Programs Ot-One (Opentrons) robot to run the automated library pooling prior to sequencing. 
+
+initial.nf
+Processes sequencing data: adapter sequences removal, quality trimming, removal of PhiX contamination. 
+
+readcounts.R
+Obtains a summary of the samples read counts and plots the read count distribution. 
+
+sortmerna.sh
+Extracts 16S rRNA genes from metagenomic sequencing data. 
+
+sortmerna_filter.sh
+Filters sortmerna output based on E-value cutoff, sequence identity, and alignment length. 
+
+RDP_Krona.sh
+Feeds filtered reads to RDP classifier (version 2.13) and plots the data with Krona. 
+
+RDP_analyze.R
+Obtains a summary of the analysis with RDP classifier. 
+
+sortmerna_diversity_giga.R
+Computes diversity metrics from sortmerna filtered data, using PhyloSeq (version 1.28.0). 

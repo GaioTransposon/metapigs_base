@@ -1,8 +1,8 @@
 
 # CONTENT WARNING
 
-# This is the longest chunk of code I have ever written
-# re-factoring it now would take too much time. 
+# This is the longest chunk of code I have ever written (also my first script)
+# please please do not ask me to refactor it 
 # Anticipated apologies to those who will attempt reading it 
 
 ######################################################
@@ -104,6 +104,54 @@ mdat <- read_excel(paste0(source_data,"Metagenome.environmental_20190308_2.xlsx"
 mdat$Cohort <- gsub("Sows","Sows",mdat$Cohort)
 mdat$Cohort <- gsub("D-scour","D-Scour", mdat$Cohort)
 
+# formatting metadata column names 
+mdat$`*collection_date` <- as.character(mdat$`*collection_date`)
+colnames(mdat)[colnames(mdat) == '*collection_date'] <- 'collection_date'
+colnames(mdat)[colnames(mdat) == '*sample_name'] <- 'sample_name'
+
+mdat <- mdat %>%
+  dplyr::select(isolation_source,collection_date,Cohort,DNA_plate,DNA_well,PigPen)
+
+
+####
+# date formatting: 
+from = c("2017-01-30",
+         "2017-01-31","2017-02-01",
+         "2017-02-03",
+         "2017-02-06","2017-02-07","2017-02-08",
+         "2017-02-10",
+         "2017-02-14",
+         "2017-02-16","2017-02-17",
+         "2017-02-21",
+         "2017-02-24", 
+         "2017-02-28",
+         "2017-03-03",
+         "2017-03-06","2017-03-07","2017-03-08","2017-03-09","2017-03-10",
+         "2017-08-14", #mock community
+         "2018-01-24",  #probiotics - pos controls
+         NA) # neg controls
+
+to = c("tM",
+       "t0","t0",
+       "t1",
+       "t2","t2","t2",
+       "t3",
+       "t4",
+       "t5","t5",
+       "t6",
+       "t7", 
+       "t8",
+       "t9",
+       "t10","t10","t10","t10","t10",
+       "tNONE", #mock community
+       "tNONE", #probiotics - pos controls
+       "tNONE") #neg controls
+
+# replace collection dates (date format) with groups of collection dates (character format)
+mdat$collection_date <- plyr::mapvalues(as.character(mdat$collection_date), from, to)
+unique(mdat$collection_date)
+####
+
 
 # load details (cross_breed, line, bday, Sows)
 details <- read_excel(paste0(source_data, "pigTrial_GrowthWtsGE.hlsx.xlsx"),
@@ -120,15 +168,6 @@ details$pig <- gsub("T","",details$pig)
 details <- details %>%
   dplyr::select(pig,BIRTH_DAY,LINE,cross_breed,maternal_sow,nurse_sow)
 unique(details$cross_breed)
-
-
-# formatting metadata column names 
-mdat$`*collection_date` <- as.character(mdat$`*collection_date`)
-colnames(mdat)[colnames(mdat) == '*collection_date'] <- 'collection_date'
-colnames(mdat)[colnames(mdat) == '*sample_name'] <- 'sample_name'
-
-mdat <- mdat %>%
-  dplyr::select(isolation_source,collection_date,Cohort,DNA_plate,DNA_well,PigPen)
 
 # load alpha pd
 fpddat<-read.table(paste0(middle_dir,"fpdalpha_div.tsv"),header=T,stringsAsFactors=F)
@@ -662,7 +701,6 @@ ggarrange(
 dev.off()
 
 
-
 ###############
 
 # distribution of subjects across cohorts, birth days, and breeds
@@ -766,7 +804,7 @@ boggo1 <- boggo %>%
   dplyr::filter(!isolation_source=="29665"|isolation_source=="29865"|isolation_source=="29702")
 
 pigs_1 <- boggo1 %>%
-  dplyr::filter(collection_date == "2017-01-31"|collection_date == "2017-02-01") %>%
+  dplyr::filter(collection_date == "t0") %>%
   dplyr::select(isolation_source,Cohort,collection_date,unrooted_pd,bwpd)
 NROW(pigs_1)
 
@@ -783,7 +821,7 @@ pigs_1 <- pigs_1 %>%
 ###########################
 
 pigs_2 <- boggo1 %>%
-  dplyr::filter(collection_date == "2017-02-06"|collection_date == "2017-02-07") %>%
+  dplyr::filter(collection_date == "t2") %>%
   dplyr::select(isolation_source,Cohort,collection_date,unrooted_pd,bwpd)
 NROW(pigs_2)
 
@@ -799,7 +837,7 @@ pigs_2 <- pigs_2 %>%
 ###########################
 
 pigs_3 <- boggo1 %>%
-  dplyr::filter(collection_date == "2017-02-14") %>%
+  dplyr::filter(collection_date == "t4") %>%
   dplyr::select(isolation_source,Cohort,collection_date,unrooted_pd,bwpd)
 NROW(pigs_3)
 
@@ -809,7 +847,7 @@ NROW(pigs_3)
 ###########################
 
 pigs_4 <- boggo1 %>%
-  dplyr::filter(collection_date == "2017-02-21") %>%
+  dplyr::filter(collection_date == "t6") %>%
   dplyr::select(isolation_source,Cohort,collection_date,unrooted_pd,bwpd)
 NROW(pigs_4)
 
@@ -825,7 +863,7 @@ pigs_4 <- pigs_4 %>%
 ###########################
 
 pigs_5 <- boggo1 %>%
-  dplyr::filter(collection_date == "2017-02-28") %>%
+  dplyr::filter(collection_date == "t8") %>%
   dplyr::select(isolation_source,Cohort,collection_date,unrooted_pd,bwpd)
 NROW(pigs_5)
 
@@ -835,7 +873,7 @@ NROW(pigs_5)
 ###########################
 
 pigs_6 <- boggo1 %>%
-  dplyr::filter(collection_date == "2017-03-03") %>%
+  dplyr::filter(collection_date == "t9") %>%
   dplyr::select(isolation_source,Cohort,collection_date,unrooted_pd,bwpd)
 NROW(pigs_6)
 
@@ -863,7 +901,7 @@ theme_4diffs = theme(
 
 ##############################################################################
 
-# Ja31 vs Fe7
+# Ja31 vs Fe7 - t0 vs t2
 
 df1 <- merge(pigs_1,pigs_2, by=c("isolation_source"))
 NROW(df1)
@@ -912,9 +950,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Ja31_vs_Fe7"
+res1$time_delta <- "t0_vs_t2"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Ja31_vs_Fe7"
+res2$time_delta <- "t0_vs_t2"
 res2$type <- "bwpd"
 A_B <- rbind(res1,res2)
 
@@ -930,9 +968,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Ja31_vs_Fe7"
+res1$time_delta <- "t0_vs_t2"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Ja31_vs_Fe7"
+res2$time_delta <- "t0_vs_t2"
 res2$type <- "bwpd"
 A_B_adj <- rbind(res1,res2)
 
@@ -957,7 +995,7 @@ A_B_delta$time_delta <- "A_B"
 
 ##############################################################################
 
-# Fe7 vs Fe14
+# Fe7 vs Fe14 - t2 vs t4
 
 df1 <- merge(pigs_2,pigs_3, by=c("isolation_source"))
 NROW(df1)
@@ -1005,9 +1043,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Fe7_vs_Fe14"
+res1$time_delta <- "t2_vs_t4"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Fe7_vs_Fe14"
+res2$time_delta <- "t2_vs_t4"
 res2$type <- "bwpd"
 B_C <- rbind(res1,res2)
 
@@ -1023,9 +1061,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Fe7_vs_Fe14"
+res1$time_delta <- "t2_vs_t4"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Fe7_vs_Fe14"
+res2$time_delta <- "t2_vs_t4"
 res2$type <- "bwpd"
 B_C_adj <- rbind(res1,res2)
 
@@ -1053,7 +1091,7 @@ B_C_delta$time_delta <- "B_C"
 ##############################################################################
 
 
-# Fe14 vs Fe21
+# Fe14 vs Fe21 - t4 vs t6
 
 df1 <- merge(pigs_3,pigs_4, by=c("isolation_source"))
 NROW(df1)
@@ -1101,9 +1139,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Fe14_vs_Fe21"
+res1$time_delta <- "t4_vs_t6"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Fe14_vs_Fe21"
+res2$time_delta <- "t4_vs_t6"
 res2$type <- "bwpd"
 C_D <- rbind(res1,res2)
 
@@ -1119,9 +1157,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Fe14_vs_Fe21"
+res1$time_delta <- "t4_vs_t6"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Fe14_vs_Fe21"
+res2$time_delta <- "t4_vs_t6"
 res2$type <- "bwpd"
 C_D_adj <- rbind(res1,res2)
 
@@ -1146,7 +1184,7 @@ C_D_delta$time_delta <- "C_D"
 
 ##############################################################################
 
-# Fe21 vs Fe28
+# Fe21 vs Fe28 - t6 vs t8
 
 df1 <- merge(pigs_4,pigs_5, by=c("isolation_source"))
 NROW(df1)
@@ -1193,9 +1231,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Fe21_vs_Fe28"
+res1$time_delta <- "t6 vs t8"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Fe21_vs_Fe28"
+res2$time_delta <- "t6 vs t8"
 res2$type <- "bwpd"
 D_E <- rbind(res1,res2)
 
@@ -1211,9 +1249,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Fe21_vs_Fe28"
+res1$time_delta <- "t6 vs t8"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Fe21_vs_Fe28"
+res2$time_delta <- "t6 vs t8"
 res2$type <- "bwpd"
 D_E_adj <- rbind(res1,res2)
 
@@ -1239,7 +1277,7 @@ D_E_delta$time_delta <- "D_E"
 
 ##############################################################################
 
-# Fe28 vs Ma3
+# Fe28 vs Ma3 - t8 vs t9
 
 df1 <- merge(pigs_5,pigs_6, by=c("isolation_source"))
 NROW(df1)
@@ -1286,9 +1324,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Fe28_vs_Ma3"
+res1$time_delta <- "t8_vs_t9"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Fe28_vs_Ma3"
+res2$time_delta <- "t8_vs_t9"
 res2$type <- "bwpd"
 E_F <- rbind(res1,res2)
 
@@ -1304,9 +1342,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Fe28_vs_Ma3"
+res1$time_delta <- "t8_vs_t9"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Fe28_vs_Ma3"
+res2$time_delta <- "t8_vs_t9"
 res2$type <- "bwpd"
 E_F_adj <- rbind(res1,res2)
 
@@ -1332,7 +1370,7 @@ E_F_delta$time_delta <- "E_F"
 
 ##############################################################################
 
-# Ja31 vs Fe14
+# Ja31 vs Fe14 - t0 vs t4
 
 df1 <- merge(pigs_1,pigs_3, by=c("isolation_source"))
 NROW(df1)
@@ -1379,9 +1417,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Ja31_vs_Fe14"
+res1$time_delta <- "t0_vs_t4"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Ja31_vs_Fe14"
+res2$time_delta <- "t0_vs_t4"
 res2$type <- "bwpd"
 A_C <- rbind(res1,res2)
 
@@ -1397,9 +1435,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Ja31_vs_Fe14"
+res1$time_delta <- "t0_vs_t4"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Ja31_vs_Fe14"
+res2$time_delta <- "t0_vs_t4"
 res2$type <- "bwpd"
 A_C_adj <- rbind(res1,res2)
 
@@ -1426,7 +1464,7 @@ A_C_delta$time_delta <- "A_C"
 
 ##############################################################################
 
-# Fe7 vs Fe21
+# Fe7 vs Fe21 - t2 vs t6
 
 df1 <- merge(pigs_2,pigs_4, by=c("isolation_source"))
 NROW(df1)
@@ -1474,9 +1512,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Fe7_vs_Fe21"
+res1$time_delta <- "t2_vs_t6"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Fe7_vs_Fe21"
+res2$time_delta <- "t2_vs_t6"
 res2$type <- "bwpd"
 B_D <- rbind(res1,res2)
 
@@ -1492,9 +1530,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Fe7_vs_Fe21"
+res1$time_delta <- "t2_vs_t6"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Fe7_vs_Fe21"
+res2$time_delta <- "t2_vs_t6"
 res2$type <- "bwpd"
 B_D_adj <- rbind(res1,res2)
 
@@ -1520,7 +1558,7 @@ B_D_delta$time_delta <- "B_D"
 
 ##############################################################################
 
-# Fe14 vs Fe28
+# Fe14 vs Fe28 - t4 vs t8
 
 df1 <- merge(pigs_3,pigs_5, by=c("isolation_source"))
 NROW(df1)
@@ -1568,9 +1606,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Fe14_vs_Fe28"
+res1$time_delta <- "t4_vs_t8"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Fe14_vs_Fe28"
+res2$time_delta <- "t4_vs_t8"
 res2$type <- "bwpd"
 C_E <- rbind(res1,res2)
 
@@ -1586,9 +1624,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Fe14_vs_Fe28"
+res1$time_delta <- "t4_vs_t8"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Fe14_vs_Fe28"
+res2$time_delta <- "t4_vs_t8"
 res2$type <- "bwpd"
 C_E_adj <- rbind(res1,res2)
 
@@ -1615,7 +1653,7 @@ C_E_delta$time_delta <- "C_E"
 
 ##############################################################################
 
-# Ja31 vs Fe28
+# Ja31 vs Fe28 - t0 vs t8
 
 df1 <- merge(pigs_4,pigs_6, by=c("isolation_source"))
 NROW(df1)
@@ -1663,9 +1701,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Fe21_vs_Fe28"
+res1$time_delta <- "t0_vs_t8"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Fe21_vs_Fe28"
+res2$time_delta <- "t0_vs_t8"
 res2$type <- "bwpd"
 D_F <- rbind(res1,res2)
 
@@ -1681,9 +1719,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Fe21_vs_Fe28"
+res1$time_delta <- "t0_vs_t8"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Fe21_vs_Fe28"
+res2$time_delta <- "t0_vs_t8"
 res2$type <- "bwpd"
 D_F_adj <- rbind(res1,res2)
 
@@ -1710,7 +1748,7 @@ D_F_delta$time_delta <- "D_F"
 
 ##############################################################################
 
-# Ja31 vs Fe21
+# Ja31 vs Fe21 - t0 vs t6
 
 df1 <- merge(pigs_1,pigs_4, by=c("isolation_source"))
 NROW(df1)
@@ -1758,9 +1796,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Ja31_vs_Fe21"
+res1$time_delta <- "t0_vs_t6"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Ja31_vs_Fe21"
+res2$time_delta <- "t0_vs_t6"
 res2$type <- "bwpd"
 A_D <- rbind(res1,res2)
 
@@ -1776,9 +1814,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Ja31_vs_Fe21"
+res1$time_delta <- "t0_vs_t6"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Ja31_vs_Fe21"
+res2$time_delta <- "t0_vs_t6"
 res2$type <- "bwpd"
 A_D_adj <- rbind(res1,res2)
 
@@ -1786,7 +1824,7 @@ A_D_adj <- rbind(res1,res2)
 ##############################################################################
 
 
-# Fe14 vs Ma3
+# Fe14 vs Ma3 - t4 vs t9
 
 df1 <- merge(pigs_3,pigs_6, by=c("isolation_source"))
 NROW(df1)
@@ -1834,9 +1872,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Fe14_vs_Ma3"
+res1$time_delta <- "t4_vs_t9"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Fe14_vs_Ma3"
+res2$time_delta <- "t4_vs_t9"
 res2$type <- "bwpd"
 C_F <- rbind(res1,res2)
 
@@ -1852,9 +1890,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Fe14_vs_Ma3"
+res1$time_delta <- "t4_vs_t9"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Fe14_vs_Ma3"
+res2$time_delta <- "t4_vs_t9"
 res2$type <- "bwpd"
 C_F_adj <- rbind(res1,res2)
 
@@ -1880,7 +1918,7 @@ C_F_delta$time_delta <- "C_F"
 
 ##############################################################################
 
-# Ja31 vs Ma3
+# Ja31 vs Ma3 - t0 vs t9
 
 df1 <- merge(pigs_1,pigs_6, by=c("isolation_source"))
 NROW(df1)
@@ -1928,9 +1966,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Ja31_vs_Ma3"
+res1$time_delta <- "t0_vs_t9"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Ja31_vs_Ma3"
+res2$time_delta <- "t0_vs_t9"
 res2$type <- "bwpd"
 A_F <- rbind(res1,res2)
 
@@ -1946,9 +1984,9 @@ res1 <- na.omit(as.data.frame(matrix(res1, dimnames=list(
   t(outer(colnames(res1), rownames(res1), FUN=paste)), NULL))))
 res2 <- na.omit(as.data.frame(matrix(res2, dimnames=list(
   t(outer(colnames(res2), rownames(res2), FUN=paste)), NULL))))
-res1$time_delta <- "Ja31_vs_Ma3"
+res1$time_delta <- "t0_vs_t9"
 res1$type <- "unrooted_pd"
-res2$time_delta <- "Ja31_vs_Ma3"
+res2$time_delta <- "t0_vs_t9"
 res2$type <- "bwpd"
 A_F_adj <- rbind(res1,res2)
 
@@ -2104,7 +2142,7 @@ theme_4diffs = theme(
 
 ##############################################################################
 
-# Ja31 vs Fe7
+# Ja31 vs Fe7 - t0 vs t2
 
 df1 <- merge(pigs_1,pigs_2, by=c("isolation_source"))
 NROW(df1)
@@ -2121,12 +2159,12 @@ df1$diff_bw = ((df1$bwpd.y-df1$bwpd.x)/df1$bwpd.y)*100
 df1 <- df1 %>%
   dplyr::select(isolation_source,diff_unroo,diff_bw,Cohort.x)
 df_a_b <- df1
-df_a_b$interval <- "Ja31-Fe7"
+df_a_b$interval <- "t0-t2"
 
 
 ##############################################################################
 
-# Fe7 vs Fe14
+# Fe7 vs Fe14 - t2 vs t4
 
 df1 <- merge(pigs_2,pigs_3, by=c("isolation_source"))
 NROW(df1)
@@ -2143,12 +2181,12 @@ df1$diff_bw = ((df1$bwpd.y-df1$bwpd.x)/df1$bwpd.y)*100
 df1 <- df1 %>%
   dplyr::select(isolation_source,diff_unroo,diff_bw,Cohort.x)
 df_b_c <- df1
-df_b_c$interval <- "Fe7-Fe14"
+df_b_c$interval <- "t2-t4"
 
 
 ##############################################################################
 
-# Fe14 vs Fe21
+# Fe14 vs Fe21 - t4 vs t6
 
 df1 <- merge(pigs_3,pigs_4, by=c("isolation_source"))
 NROW(df1)
@@ -2165,11 +2203,11 @@ df1$diff_bw = ((df1$bwpd.y-df1$bwpd.x)/df1$bwpd.y)*100
 df1 <- df1 %>%
   dplyr::select(isolation_source,diff_unroo,diff_bw,Cohort.x)
 df_c_d <- df1
-df_c_d$interval <- "Fe14-Fe21"
+df_c_d$interval <- "t4-t6"
 
 ##############################################################################
 
-# Fe21 vs Fe28
+# Fe21 vs Fe28 - t6 vs t8
 
 df1 <- merge(pigs_4,pigs_5, by=c("isolation_source"))
 NROW(df1)
@@ -2186,11 +2224,11 @@ df1$diff_bw = ((df1$bwpd.y-df1$bwpd.x)/df1$bwpd.y)*100
 df1 <- df1 %>%
   dplyr::select(isolation_source,diff_unroo,diff_bw,Cohort.x)
 df_d_e <- df1
-df_d_e$interval <- "Fe21-Fe28"
+df_d_e$interval <- "t6-t8"
 
 ##############################################################################
 
-# Ja31 vs Fe14
+# Ja31 vs Fe14 - t0 vs t4
 
 df1 <- merge(pigs_1,pigs_3, by=c("isolation_source"))
 NROW(df1)
@@ -2207,12 +2245,12 @@ df1$diff_bw = ((df1$bwpd.y-df1$bwpd.x)/df1$bwpd.y)*100
 df1 <- df1 %>%
   dplyr::select(isolation_source,diff_unroo,diff_bw,Cohort.x)
 df_a_c <- df1
-df_a_c$interval <- "Ja31-Fe14"
+df_a_c$interval <- "t0-t4"
 
 ##############################################################################
 
 
-# Fe7 vs Fe21
+# Fe7 vs Fe21 - t2 vs t6
 
 df1 <- merge(pigs_2,pigs_4, by=c("isolation_source"))
 NROW(df1)
@@ -2229,7 +2267,7 @@ df1$diff_bw = ((df1$bwpd.y-df1$bwpd.x)/df1$bwpd.y)*100
 df1 <- df1 %>%
   dplyr::select(isolation_source,diff_unroo,diff_bw,Cohort.x)
 df_b_d <- df1
-df_b_d$interval <- "Fe7-Fe21"
+df_b_d$interval <- "t2-t6"
 
 
 ##############################################################################
@@ -2241,37 +2279,37 @@ all <- rbind(df_a_b,df_b_c, df_c_d, df_d_e,
 all[5] <- lapply(
   all[5], 
   gsub, 
-  pattern = "Ja31-Fe7", 
+  pattern = "t0-t2", 
   replacement = "A-B", 
   fixed = TRUE)
 all[5] <- lapply(
   all[5], 
   gsub, 
-  pattern = "Fe7-Fe14", 
+  pattern = "t2-t4", 
   replacement = "B-C", 
   fixed = TRUE)
 all[5] <- lapply(
   all[5], 
   gsub, 
-  pattern = "Fe14-Fe21", 
+  pattern = "t4-t6", 
   replacement = "C-D", 
   fixed = TRUE)
 all[5] <- lapply(
   all[5], 
   gsub, 
-  pattern = "Fe21-Fe28", 
+  pattern = "t6-t8", 
   replacement = "D-E", 
   fixed = TRUE)
 all[5] <- lapply(
   all[5], 
   gsub, 
-  pattern = "Ja31-Fe14", 
+  pattern = "t0-t4", 
   replacement = "A-C", 
   fixed = TRUE)
 all[5] <- lapply(
   all[5], 
   gsub, 
-  pattern = "Fe7-Fe21", 
+  pattern = "t2-t6", 
   replacement = "B-D", 
   fixed = TRUE)
 
@@ -2503,37 +2541,37 @@ numbers$dates <- numbers$interval
 numbers[12] <- lapply(
   numbers[12], 
   gsub, 
-  replacement = "Ja31-Fe7", 
+  replacement = "t0-t2", 
   pattern = "A-B", 
   fixed = TRUE)
 numbers[12] <- lapply(
   numbers[12], 
   gsub, 
-  replacement = "Fe7-Fe14", 
+  replacement = "t2-t4", 
   pattern = "B-C", 
   fixed = TRUE)
 numbers[12] <- lapply(
   numbers[12], 
   gsub, 
-  replacement = "Fe14-Fe21", 
+  replacement = "t4-t6", 
   pattern = "C-D", 
   fixed = TRUE)
 numbers[12] <- lapply(
   numbers[12], 
   gsub, 
-  replacement = "Fe21-Fe28", 
+  replacement = "t6-t8", 
   pattern = "D-E", 
   fixed = TRUE)
 numbers[12] <- lapply(
   numbers[12], 
   gsub, 
-  replacement = "Ja31-Fe14", 
+  replacement = "t0-t4", 
   pattern = "A-C", 
   fixed = TRUE)
 numbers[12] <- lapply(
   numbers[12], 
   gsub, 
-  replacement = "Fe7-Fe21", 
+  replacement = "t2-t6", 
   pattern = "B-D", 
   fixed = TRUE)
 
@@ -2715,12 +2753,12 @@ means$collection_date = "all"
 doggo <- boggo
 doggo$collection_date <- as.character(doggo$collection_date)
 
-doggo <- doggo %>% dplyr::filter(collection_date == "2017-01-31" |
-                            collection_date == "2017-02-07" |
-                            collection_date == "2017-02-14" |
-                            collection_date == "2017-02-21" |
-                            collection_date == "2017-02-28" |
-                            collection_date == "2017-03-03") 
+doggo <- doggo %>% dplyr::filter(collection_date == "t0" |
+                            collection_date == "t2" |
+                            collection_date == "t4" |
+                            collection_date == "t6" |
+                            collection_date == "t8" |
+                            collection_date == "t9") 
 
 # filter out heavy outliers
 
@@ -2748,20 +2786,20 @@ doggo$Cohort <- factor(doggo$Cohort,
 
 # reordering
 doggo$collection_date <- factor(doggo$collection_date,
-                                levels=c("2017-01-31",
-                                         "2017-02-07",
-                                         "2017-02-14",
-                                         "2017-02-21",
-                                         "2017-02-28",
-                                         "2017-03-03"))
+                                levels=c("t0" ,
+                                         "t2",
+                                         "t4",
+                                         "t6",
+                                         "t8",
+                                         "t9"))
 
-my_comparisons = list( c("2017-01-31", "2017-02-07"), 
-                       c("2017-02-07", "2017-02-14"), 
-                       c("2017-02-14", "2017-02-21"),
-                       c("2017-02-07", "2017-02-21"),
-                       c("2017-02-21", "2017-02-28"),
-                       c("2017-02-14", "2017-02-28"),
-                       c("2017-02-28", "2017-03-03"))
+my_comparisons = list( c("t0", "t2"), 
+                       c("t2", "t4"), 
+                       c("t4", "t6"),
+                       c("t2", "t6"),
+                       c("t6", "t8"),
+                       c("t4", "t8"),
+                       c("t8", "t9"))
 
 # general time change - unrooted
 summs_unroo <- doggo %>% group_by(collection_date,Cohort) %>% 
@@ -2814,7 +2852,7 @@ gen_bwpd <- ggplot(summs_bw, aes(x=collection_date, y=mean, group=Cohort, color=
 
 tosave <- ggarrange(gen_unrooted, gen_bwpd, ncol = 2, labels=c("A","B"), common.legend = TRUE)
 
-pdf(paste0(out_dir,"time_alpha.pdf",width = 9,height=6))
+pdf(paste0(out_dir,"time_alpha.pdf"),width = 9,height=6)
 tosave
 dev.off()
 
@@ -2946,10 +2984,10 @@ dev.off()
 doggo <- boggo
 doggo$collection_date <- as.character(doggo$collection_date)
 
-doggo <- doggo %>% dplyr::filter(collection_date == "2017-01-31" |
-                            collection_date == "2017-02-07" |
-                            collection_date == "2017-02-14" |
-                            collection_date == "2017-02-21" ) 
+doggo <- doggo %>% dplyr::filter(collection_date == "t0" |
+                            collection_date == "t2" |
+                            collection_date == "t4" |
+                            collection_date == "t6" ) 
 
 
 doggo[,3] <- lapply(
@@ -2992,14 +3030,14 @@ doggo$Cohort <- factor(doggo$Cohort,
 
 # reordering
 doggo$collection_date <- factor(doggo$collection_date,
-                                levels=c("2017-01-31",
-                                         "2017-02-07",
-                                         "2017-02-14",
-                                         "2017-02-21"))
+                                levels=c("t0",
+                                         "t2",
+                                         "t4",
+                                         "t6"))
 
-my_comparisons = list( c("2017-01-31", "2017-02-07"), 
-                       c("2017-02-07", "2017-02-14"), 
-                       c("2017-02-14", "2017-02-21"))
+my_comparisons = list( c("t0", "t2"), 
+                       c("t2", "t4"), 
+                       c("t4", "t6"))
 
 
 stat.test_unroo <- doggo %>%
@@ -3090,8 +3128,7 @@ writeData(wb, sheet = "alpha_time", both, rowNames = FALSE)
 startDF <- boggo 
 
 startDF <- startDF %>% filter(
-  collection_date == "2017-01-31" |
-    collection_date == "2017-02-01")  %>%
+  collection_date == "t0")  %>%
   dplyr::select(phylo_entropy,quadratic,unrooted_pd,rooted_pd,bwpd,isolation_source)
 
 # as we have 160 samples for 126 piglets at the startof the trial. this is because we have duplicates
@@ -3369,8 +3406,7 @@ dev.off()
 # BETA diversity in piglets at the start of the trial 
 
 startDF <- coggo %>% filter(
-  collection_date == "2017-01-31" |
-    collection_date == "2017-02-01")  %>%
+  collection_date == "t0" )  %>%
   dplyr::select(pc1,pc2,pc3,pc4,pc5,isolation_source)
 
 startDF1 <- merge(startDF,details, by="isolation_source")
@@ -3835,152 +3871,9 @@ dev.off()
 
 df <- merge(finalDF,details, by="isolation_source")
 head(df)
-class(df$collection_date)
 
 unique(df$collection_date)
-# rename collection dates to time intervals 
-# iM <- "2017-01-30"
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-01-30", 
-  replacement = "iM", 
-  fixed = TRUE)
-# i0 <- "2017-01-31" "2017-02-01" 
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-01-31", 
-  replacement = "i1", 
-  fixed = TRUE)
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-02-01", 
-  replacement = "i1", 
-  fixed = TRUE)
 
-# i1 <- "2017-02-03" 
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-02-03", 
-  replacement = "i2.1", 
-  fixed = TRUE)
-
-# i2 <- "2017-02-06" "2017-02-07" "2017-02-08"
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-02-06", 
-  replacement = "i2.2", 
-  fixed = TRUE)
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-02-07", 
-  replacement = "i2.2", 
-  fixed = TRUE)
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-02-08", 
-  replacement = "i2.2", 
-  fixed = TRUE)
-
-# i3 <- "2017-02-10" 
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-02-10", 
-  replacement = "i3.1", 
-  fixed = TRUE)
-
-# i4 <- "2017-02-14"
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-02-14", 
-  replacement = "i3.2", 
-  fixed = TRUE)
-
-# i4 <- "2017-02-16" "2017-02-17" 
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-02-16", 
-  replacement = "i4.1", 
-  fixed = TRUE)
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-02-17", 
-  replacement = "i4.1", 
-  fixed = TRUE)
-
-# i6 <- "2017-02-21" 
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-02-21", 
-  replacement = "i4.2", 
-  fixed = TRUE)
-
-# i7 <- "2017-02-24" 
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-02-24", 
-  replacement = "i5", 
-  fixed = TRUE)
-
-# i8 <- "2017-02-28" 
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-02-28", 
-  replacement = "i5", 
-  fixed = TRUE)
-
-# i9 <- "2017-03-03" 
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-03-03", 
-  replacement = "i6", 
-  fixed = TRUE)
-
-# i10 <- "2017-03-06" "2017-03-07" "2017-03-08" "2017-03-09" "2017-03-10"
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-03-06", 
-  replacement = "i6", 
-  fixed = TRUE)
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-03-07", 
-  replacement = "i6", 
-  fixed = TRUE)
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-03-08", 
-  replacement = "i6", 
-  fixed = TRUE)
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-03-09", 
-  replacement = "i6", 
-  fixed = TRUE)
-df[,2] <- lapply(
-  df[,2], 
-  gsub, 
-  pattern = "2017-03-10", 
-  replacement = "i6",  
-  fixed = TRUE)
 
 NROW(df)
 df <- na.omit(df, cols = c("Cohort","collection_date"))
@@ -4840,9 +4733,9 @@ by_Cohort <- rbind(aov.out1,
 by_Cohort$group = "Cohort"
 
 
-# by Cohort i1
+# by Cohort t0
 
-df1_sub <- df1[df1$collection_date=="i1",]
+df1_sub <- df1[df1$collection_date=="t0",]
 
 aov.out = aov(unrooted_pd ~ Cohort, data=df1_sub)   
 res <- TukeyHSD(aov.out)
@@ -4886,19 +4779,19 @@ aov.out <- as.data.frame(res$Cohort)
 aov.out7 <- tibble::rownames_to_column(aov.out, "comparison")
 aov.out7$type="pc5"
 
-by_Cohort_i1 <- rbind(aov.out1,
+by_Cohort_t0 <- rbind(aov.out1,
                       aov.out2,
                       aov.out3,
                       aov.out4,
                       aov.out5,
                       aov.out6,
                       aov.out7)
-by_Cohort_i1$group = "Cohort_i1"
+by_Cohort_t0$group = "Cohort_t0"
 
 
-# by Cohort i2.1
+# by Cohort t1
 
-df1_sub <- df1[df1$collection_date=="i2.1",]
+df1_sub <- df1[df1$collection_date=="t1",]
 
 aov.out = aov(unrooted_pd ~ Cohort, data=df1_sub)   
 res <- TukeyHSD(aov.out)
@@ -4942,20 +4835,20 @@ aov.out <- as.data.frame(res$Cohort)
 aov.out7 <- tibble::rownames_to_column(aov.out, "comparison")
 aov.out7$type="pc5"
 
-by_Cohort_i2.1 <- rbind(aov.out1,
+by_Cohort_t1 <- rbind(aov.out1,
                         aov.out2,
                         aov.out3,
                         aov.out4,
                         aov.out5,
                         aov.out6,
                         aov.out7)
-by_Cohort_i2.1$group = "Cohort_i2.1"
+by_Cohort_t1$group = "Cohort_t1"
 
 
 
-# by Cohort i2.2
+# by Cohort t2
 
-df1_sub <- df1[df1$collection_date=="i2.2",]
+df1_sub <- df1[df1$collection_date=="t2",]
 
 aov.out = aov(unrooted_pd ~ Cohort, data=df1_sub)   
 res <- TukeyHSD(aov.out)
@@ -4999,20 +4892,20 @@ aov.out <- as.data.frame(res$Cohort)
 aov.out7 <- tibble::rownames_to_column(aov.out, "comparison")
 aov.out7$type="pc5"
 
-by_Cohort_i2.2 <- rbind(aov.out1,
+by_Cohort_t2 <- rbind(aov.out1,
                         aov.out2,
                         aov.out3,
                         aov.out4,
                         aov.out5,
                         aov.out6,
                         aov.out7)
-by_Cohort_i2.2$group = "Cohort_i2.2"
+by_Cohort_t2$group = "Cohort_t2"
 
 
 
-# by Cohort i3.1
+# by Cohort t3
 
-df1_sub <- df1[df1$collection_date=="i3.1",]
+df1_sub <- df1[df1$collection_date=="t3",]
 
 aov.out = aov(unrooted_pd ~ Cohort, data=df1_sub)   
 res <- TukeyHSD(aov.out)
@@ -5056,20 +4949,20 @@ aov.out <- as.data.frame(res$Cohort)
 aov.out7 <- tibble::rownames_to_column(aov.out, "comparison")
 aov.out7$type="pc5"
 
-by_Cohort_i3.1 <- rbind(aov.out1,
+by_Cohort_t3 <- rbind(aov.out1,
                         aov.out2,
                         aov.out3,
                         aov.out4,
                         aov.out5,
                         aov.out6,
                         aov.out7)
-by_Cohort_i3.1$group = "Cohort_i3.1"
+by_Cohort_t3$group = "Cohort_t3"
 
 
 
-# by Cohort i3.2
+# by Cohort t4
 
-df1_sub <- df1[df1$collection_date=="i3.2",]
+df1_sub <- df1[df1$collection_date=="t4",]
 
 aov.out = aov(unrooted_pd ~ Cohort, data=df1_sub)   
 res <- TukeyHSD(aov.out)
@@ -5113,20 +5006,20 @@ aov.out <- as.data.frame(res$Cohort)
 aov.out7 <- tibble::rownames_to_column(aov.out, "comparison")
 aov.out7$type="pc5"
 
-by_Cohort_i3.2 <- rbind(aov.out1,
+by_Cohort_t4 <- rbind(aov.out1,
                         aov.out2,
                         aov.out3,
                         aov.out4,
                         aov.out5,
                         aov.out6,
                         aov.out7)
-by_Cohort_i3.2$group = "Cohort_i3.2"
+by_Cohort_t4$group = "Cohort_t4"
 
 
 
-# by Cohort i4.1
+# by Cohort t5
 
-df1_sub <- df1[df1$collection_date=="i4.1",]
+df1_sub <- df1[df1$collection_date=="t5",]
 
 aov.out = aov(unrooted_pd ~ Cohort, data=df1_sub)   
 res <- TukeyHSD(aov.out)
@@ -5170,20 +5063,20 @@ aov.out <- as.data.frame(res$Cohort)
 aov.out7 <- tibble::rownames_to_column(aov.out, "comparison")
 aov.out7$type="pc5"
 
-by_Cohort_i4.1 <- rbind(aov.out1,
+by_Cohort_t5 <- rbind(aov.out1,
                         aov.out2,
                         aov.out3,
                         aov.out4,
                         aov.out5,
                         aov.out6,
                         aov.out7)
-by_Cohort_i4.1$group = "Cohort_i4.1"
+by_Cohort_t5$group = "Cohort_t5"
 
 
 
-# by Cohort i4.2
+# by Cohort t6
 
-df1_sub <- df1[df1$collection_date=="i4.2",]
+df1_sub <- df1[df1$collection_date=="t6",]
 
 aov.out = aov(unrooted_pd ~ Cohort, data=df1_sub)   
 res <- TukeyHSD(aov.out)
@@ -5227,20 +5120,20 @@ aov.out <- as.data.frame(res$Cohort)
 aov.out7 <- tibble::rownames_to_column(aov.out, "comparison")
 aov.out7$type="pc5"
 
-by_Cohort_i4.2 <- rbind(aov.out1,
+by_Cohort_t6 <- rbind(aov.out1,
                         aov.out2,
                         aov.out3,
                         aov.out4,
                         aov.out5,
                         aov.out6,
                         aov.out7)
-by_Cohort_i4.2$group = "Cohort_i4.2"
+by_Cohort_t6$group = "Cohort_t6"
 
 
 
-# by Cohort i5
+# by Cohort t7
 
-df1_sub <- df1[df1$collection_date=="i5",]
+df1_sub <- df1[df1$collection_date=="t7",]
 
 aov.out = aov(unrooted_pd ~ Cohort, data=df1_sub)   
 res <- TukeyHSD(aov.out)
@@ -5284,20 +5177,20 @@ aov.out <- as.data.frame(res$Cohort)
 aov.out7 <- tibble::rownames_to_column(aov.out, "comparison")
 aov.out7$type="pc5"
 
-by_Cohort_i5 <- rbind(aov.out1,
+by_Cohort_t7 <- rbind(aov.out1,
                       aov.out2,
                       aov.out3,
                       aov.out4,
                       aov.out5,
                       aov.out6,
                       aov.out7)
-by_Cohort_i5$group = "Cohort_i5"
+by_Cohort_t7$group = "Cohort_t7"
 
 
 
 # by Cohort i6
 
-df1_sub <- df1[df1$collection_date=="i6",]
+df1_sub <- df1[df1$collection_date=="t8",]
 
 aov.out = aov(unrooted_pd ~ Cohort, data=df1_sub)   
 res <- TukeyHSD(aov.out)
@@ -5341,14 +5234,14 @@ aov.out <- as.data.frame(res$Cohort)
 aov.out7 <- tibble::rownames_to_column(aov.out, "comparison")
 aov.out7$type="pc5"
 
-by_Cohort_i6 <- rbind(aov.out1,
+by_Cohort_t8 <- rbind(aov.out1,
                       aov.out2,
                       aov.out3,
                       aov.out4,
                       aov.out5,
                       aov.out6,
                       aov.out7)
-by_Cohort_i6$group = "Cohort_i6"
+by_Cohort_t8$group = "Cohort_t8"
 
 all_padj_Tukey <- rbind(by_cross_breed,
                         by_LINE, 
@@ -5359,15 +5252,15 @@ all_padj_Tukey <- rbind(by_cross_breed,
                         by_nurse_sow,
                         by_maternal_sow,
                         by_Cohort, 
-                        by_Cohort_i1,
-                        by_Cohort_i2.1,
-                        by_Cohort_i2.2,
-                        by_Cohort_i3.1,
-                        by_Cohort_i3.2,
-                        by_Cohort_i4.1,
-                        by_Cohort_i4.2,
-                        by_Cohort_i5,
-                        by_Cohort_i6
+                        by_Cohort_t0,
+                        by_Cohort_t1,
+                        by_Cohort_t2,
+                        by_Cohort_t3,
+                        by_Cohort_t4,
+                        by_Cohort_t5,
+                        by_Cohort_t6,
+                        by_Cohort_t7,
+                        by_Cohort_t8
 )
 
 all_padj_Tukey$test <- "anova"
@@ -5438,6 +5331,9 @@ df$grouping <- gsub(" - ","\n",df$grouping)
 df2$grouping <- gsub(" - ","\n",df2$grouping)
 df$grouping <- gsub("_","\n",df$grouping)
 df2$grouping <- gsub("_","\n",df2$grouping)
+# re-order dates
+df2$collection_date <- factor(df2$collection_date, 
+                           levels=c("t0","t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"))
 alpha_plot <- ggplot(df, aes(x=collection_date,y=value)) + 
   ylim(0,0.06)+
   labs(y="alpha diversity - p-value",
@@ -5466,6 +5362,9 @@ df$grouping <- gsub(" - ","\n",df$grouping)
 df2$grouping <- gsub(" - ","\n",df2$grouping)
 df$grouping <- gsub("_","\n",df$grouping)
 df2$grouping <- gsub("_","\n",df2$grouping)
+# re-order dates
+df2$collection_date <- factor(df2$collection_date, 
+                              levels=c("t0","t1","t2","t3","t4","t5","t6","t7","t8","t9","t10"))
 beta_plot <- ggplot(df, aes(x=collection_date,y=value)) + 
   ylim(0,0.06)+
   labs(y="beta diversity - p-value",
@@ -5524,7 +5423,7 @@ out <- all_padj_Hommel %>%
 head(out)
 
 out$grouping <- gsub(pattern = "line","LINE", out$grouping)
-out$grouping <- gsub(pattern = "line","LINE", out$grouping)
+out$grouping <- gsub(pattern = "birth day","BIRTH_DAY", out$grouping)
 
 
 head(df1)
@@ -5599,11 +5498,10 @@ out2 <- all_padj_Hommel %>%
   dplyr::filter(value <= 0.05) %>%
   dplyr::filter(grouping=="birth day - Duroc x Landrace")
 head(out2)
-head(sel)
 
 p8<-df1 %>%
   dplyr::filter(cross_breed=="Duroc x Landrace") %>%
-  dplyr::filter(collection_date=="i2.2") %>%
+  dplyr::filter(collection_date=="t2") %>%
   dplyr::select(isolation_source,pc2,BIRTH_DAY,collection_date,cross_breed) %>%
   ggplot(., aes(x=BIRTH_DAY,y=pc2))+
   geom_boxplot(lwd=0.2, outlier.size = 0.5)+
@@ -5620,7 +5518,9 @@ p8<-df1 %>%
 # put them together:
 
 sign_plots <- ggarrange(p1,p2,p3,p4,
-                        p5,p6,p7,p8,
+                        p5,
+                        #p6,p7, # these are the mothers (already plotted in other plots)
+                        p8,
                         ncol = 4, nrow=2)
 
 pdf(paste0(out_dir,"start_factors_pvalues_boxplots.pdf"))

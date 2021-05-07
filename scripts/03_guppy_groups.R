@@ -42,6 +42,44 @@ mdat$`*collection_date` <- as.character(mdat$`*collection_date`)
 colnames(mdat)[colnames(mdat) == '*collection_date'] <- 'collection_date'
 colnames(mdat)[colnames(mdat) == '*sample_name'] <- 'sample_name'
 
+####
+# date formatting: 
+from = c("2017-01-30",
+         "2017-01-31","2017-02-01",
+         "2017-02-03",
+         "2017-02-06","2017-02-07","2017-02-08",
+         "2017-02-10",
+         "2017-02-14",
+         "2017-02-16","2017-02-17",
+         "2017-02-21",
+         "2017-02-24", 
+         "2017-02-28",
+         "2017-03-03",
+         "2017-03-06","2017-03-07","2017-03-08","2017-03-09","2017-03-10",
+         "2017-08-14", #mock community
+         "2018-01-24",  #probiotics - pos controls
+         NA) # neg controls
+
+to = c("tM",
+       "t0","t0",
+       "t1",
+       "t2","t2","t2",
+       "t3",
+       "t4",
+       "t5","t5",
+       "t6",
+       "t7", 
+       "t8",
+       "t9",
+       "t10","t10","t10","t10","t10",
+       "tNONE", #mock community
+       "tNONE", #probiotics - pos controls
+       "tNONE") #neg controls
+
+# replace collection dates (date format) with groups of collection dates (character format)
+mdat$collection_date <- plyr::mapvalues(as.character(mdat$collection_date), from, to)
+unique(mdat$collection_date)
+####
 
 # load breed and bday data 
 details <- read_excel(paste0(source_data, "pigTrial_GrowthWtsGE.hlsx.xlsx"),
@@ -123,37 +161,37 @@ mdat_sel$ID <- paste0(mdat_sel$DNA_plate,"_",mdat_sel$DNA_well,"_*")
 
 # groups by date 
 
-mdat_Ja31 <- mdat_sel %>% 
-  filter(collection_date == "2017-01-31"|collection_date == "2017-02-01")
+mdat_t0 <- mdat_sel %>% 
+  filter(collection_date == "t0")
 
-mdat_Fe7 <- mdat_sel %>% 
-  filter(collection_date == "2017-02-06"|collection_date == "2017-02-07")
+mdat_t2 <- mdat_sel %>% 
+  filter(collection_date == "t2")
 
-mdat_Fe14 <- mdat_sel %>% 
-  filter(collection_date == "2017-02-14")
+mdat_t4 <- mdat_sel %>% 
+  filter(collection_date == "t4")
 
-mdat_Fe21 <- mdat_sel %>% 
-  filter(collection_date == "2017-02-21")
+mdat_t6 <- mdat_sel %>% 
+  filter(collection_date == "t6")
 
-mdat_Fe28 <- mdat_sel %>% 
-  filter(collection_date == "2017-02-28")
+mdat_t8 <- mdat_sel %>% 
+  filter(collection_date == "t8")
 
-mdat_Ma3 <- mdat_sel %>% 
-  filter(collection_date == "2017-03-03")
+mdat_t9 <- mdat_sel %>% 
+  filter(collection_date == "t9")
 
-a <- as.character(mdat_Ja31$ID)
-b <- as.character(mdat_Fe7$ID)
-c <- as.character(mdat_Fe14$ID)
-d <- as.character(mdat_Fe21$ID)
-e <- as.character(mdat_Fe28$ID)
-f <- as.character(mdat_Ma3$ID)
+a <- as.character(mdat_t0$ID)
+b <- as.character(mdat_t2$ID)
+c <- as.character(mdat_t4$ID)
+d <- as.character(mdat_t6$ID)
+e <- as.character(mdat_t8$ID)
+f <- as.character(mdat_t9$ID)
 
-writeLines(unlist(a), paste0(out_dir,"guppy_input/piggies_Ja31_sel.txt"), sep = " ")
-writeLines(unlist(b), paste0(out_dir,"guppy_input/piggies_Fe7_sel.txt"), sep = " ")
-writeLines(unlist(c), paste0(out_dir,"guppy_input/piggies_Fe14_sel.txt"), sep = " ")
-writeLines(unlist(d), paste0(out_dir,"guppy_input/piggies_Fe21_sel.txt"), sep = " ")
-writeLines(unlist(e), paste0(out_dir,"guppy_input/piggies_Fe28_sel.txt"), sep = " ")
-writeLines(unlist(f), paste0(out_dir,"guppy_input/piggies_Ma3_sel.txt"), sep = " ")
+writeLines(unlist(a), paste0(out_dir,"guppy_input/piggies_t0_sel.txt"), sep = " ")
+writeLines(unlist(b), paste0(out_dir,"guppy_input/piggies_t2_sel.txt"), sep = " ")
+writeLines(unlist(c), paste0(out_dir,"guppy_input/piggies_t4_sel.txt"), sep = " ")
+writeLines(unlist(d), paste0(out_dir,"guppy_input/piggies_t6_sel.txt"), sep = " ")
+writeLines(unlist(e), paste0(out_dir,"guppy_input/piggies_t8_sel.txt"), sep = " ")
+writeLines(unlist(f), paste0(out_dir,"guppy_input/piggies_t9_sel.txt"), sep = " ")
 
 
 ###########################################################################################
@@ -215,73 +253,73 @@ group_B <- mdat_sel %>%
 
 # dates selection for group A: 
 
-group_A_Ja31 <- group_A %>% 
-  dplyr::filter(collection_date == "2017-01-31"|collection_date == "2017-02-01")
+group_A_t0 <- group_A %>% 
+  dplyr::filter(collection_date == "t0")
 
-group_A_Fe7 <- group_A %>% 
-  dplyr::filter(collection_date == "2017-02-06"|collection_date == "2017-02-07")
+group_A_t2 <- group_A %>% 
+  dplyr::filter(collection_date == "t2")
 
-group_A_Fe14 <- group_A %>% 
-  dplyr::filter(collection_date == "2017-02-14")
+group_A_t4 <- group_A %>% 
+  dplyr::filter(collection_date == "t4")
 
-group_A_Fe21 <- group_A %>% 
-  dplyr::filter(collection_date == "2017-02-21")
+group_A_t6 <- group_A %>% 
+  dplyr::filter(collection_date == "t6")
 
-group_A_Fe28 <- group_A %>% 
-  dplyr::filter(collection_date == "2017-02-28")
+group_A_t8 <- group_A %>% 
+  dplyr::filter(collection_date == "t8")
 
-group_A_Ma3 <- group_A %>% 
-  dplyr::filter(collection_date == "2017-03-03")
+group_A_t9 <- group_A %>% 
+  dplyr::filter(collection_date == "t9")
 
-A_a <- as.character(group_A_Ja31$ID)
-A_b <- as.character(group_A_Fe7$ID)
-A_c <- as.character(group_A_Fe14$ID)
-A_d <- as.character(group_A_Fe21$ID)
-A_e <- as.character(group_A_Fe28$ID)
-A_f <- as.character(group_A_Ma3$ID)
+A_a <- as.character(group_A_t0$ID)
+A_b <- as.character(group_A_t2$ID)
+A_c <- as.character(group_A_t4$ID)
+A_d <- as.character(group_A_t6$ID)
+A_e <- as.character(group_A_t8$ID)
+A_f <- as.character(group_A_t9$ID)
 
-writeLines(unlist(A_a), paste0(out_dir,"guppy_input/piggies_group_A_Ja31_sel.txt"), sep = " ")
-writeLines(unlist(A_b), paste0(out_dir,"guppy_input/piggies_group_A_Fe7_sel.txt"), sep = " ")
-writeLines(unlist(A_c), paste0(out_dir,"guppy_input/piggies_group_A_Fe14_sel.txt"), sep = " ")
-writeLines(unlist(A_d), paste0(out_dir,"guppy_input/piggies_group_A_Fe21_sel.txt"), sep = " ")
-writeLines(unlist(A_e), paste0(out_dir,"guppy_input/piggies_group_A_Fe28_sel.txt"), sep = " ")
-writeLines(unlist(A_f), paste0(out_dir,"guppy_input/piggies_group_A_Ma3_sel.txt"), sep = " ")
+writeLines(unlist(A_a), paste0(out_dir,"guppy_input/piggies_group_A_t0_sel.txt"), sep = " ")
+writeLines(unlist(A_b), paste0(out_dir,"guppy_input/piggies_group_A_t2_sel.txt"), sep = " ")
+writeLines(unlist(A_c), paste0(out_dir,"guppy_input/piggies_group_A_t4_sel.txt"), sep = " ")
+writeLines(unlist(A_d), paste0(out_dir,"guppy_input/piggies_group_A_t6_sel.txt"), sep = " ")
+writeLines(unlist(A_e), paste0(out_dir,"guppy_input/piggies_group_A_t8_sel.txt"), sep = " ")
+writeLines(unlist(A_f), paste0(out_dir,"guppy_input/piggies_group_A_t9_sel.txt"), sep = " ")
 
 # dates selection for group A: 
 
-group_B_Ja31 <- group_B %>% 
-  dplyr::filter(collection_date == "2017-01-31"|collection_date == "2017-02-01")
+group_B_t0 <- group_B %>% 
+  dplyr::filter(collection_date == "t0")
 
-group_B_Fe7 <- group_B %>% 
-  dplyr::filter(collection_date == "2017-02-06"|collection_date == "2017-02-07")
+group_B_t2 <- group_B %>% 
+  dplyr::filter(collection_date == "t2")
 
-group_B_Fe14 <- group_B %>% 
-  dplyr::filter(collection_date == "2017-02-14")
+group_B_t4 <- group_B %>% 
+  dplyr::filter(collection_date == "t4")
 
-group_B_Fe21 <- group_B %>% 
-  dplyr::filter(collection_date == "2017-02-21")
+group_B_t6 <- group_B %>% 
+  dplyr::filter(collection_date == "t6")
 
-group_B_Fe28 <- group_B %>% 
-  dplyr::filter(collection_date == "2017-02-28")
+group_B_t8 <- group_B %>% 
+  dplyr::filter(collection_date == "t8")
 
-group_B_Ma3 <- group_B %>% 
-  dplyr::filter(collection_date == "2017-03-03")
-
-
-B_a <- as.character(group_B_Ja31$ID)
-B_b <- as.character(group_B_Fe7$ID)
-B_c <- as.character(group_B_Fe14$ID)
-B_d <- as.character(group_B_Fe21$ID)
-B_e <- as.character(group_B_Fe28$ID)
-B_f <- as.character(group_B_Ma3$ID)
+group_B_t9 <- group_B %>% 
+  dplyr::filter(collection_date == "t9")
 
 
-writeLines(unlist(B_a), paste0(out_dir,"guppy_input/piggies_group_B_Ja31_sel.txt"), sep = " ")
-writeLines(unlist(B_b), paste0(out_dir,"guppy_input/piggies_group_B_Fe7_sel.txt"), sep = " ")
-writeLines(unlist(B_c), paste0(out_dir,"guppy_input/piggies_group_B_Fe14_sel.txt"), sep = " ")
-writeLines(unlist(B_d), paste0(out_dir,"guppy_input/piggies_group_B_Fe21_sel.txt"), sep = " ")
-writeLines(unlist(B_e), paste0(out_dir,"guppy_input/piggies_group_B_Fe28_sel.txt"), sep = " ")
-writeLines(unlist(B_f), paste0(out_dir,"guppy_input/piggies_group_B_Ma3_sel.txt"), sep = " ")
+B_a <- as.character(group_B_t0$ID)
+B_b <- as.character(group_B_t2$ID)
+B_c <- as.character(group_B_t4$ID)
+B_d <- as.character(group_B_t6$ID)
+B_e <- as.character(group_B_t8$ID)
+B_f <- as.character(group_B_t9$ID)
+
+
+writeLines(unlist(B_a), paste0(out_dir,"guppy_input/piggies_group_B_t0_sel.txt"), sep = " ")
+writeLines(unlist(B_b), paste0(out_dir,"guppy_input/piggies_group_B_t2_sel.txt"), sep = " ")
+writeLines(unlist(B_c), paste0(out_dir,"guppy_input/piggies_group_B_t4_sel.txt"), sep = " ")
+writeLines(unlist(B_d), paste0(out_dir,"guppy_input/piggies_group_B_t6_sel.txt"), sep = " ")
+writeLines(unlist(B_e), paste0(out_dir,"guppy_input/piggies_group_B_t8_sel.txt"), sep = " ")
+writeLines(unlist(B_f), paste0(out_dir,"guppy_input/piggies_group_B_t9_sel.txt"), sep = " ")
 
 
 ###########################################################################################
@@ -299,37 +337,37 @@ mdat_sel$ID <- paste0(mdat_sel$DNA_plate,"_",mdat_sel$DNA_well,"_*")
 
 # groups by date 
 
-mdat_Ja31 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-01-31"|collection_date == "2017-02-01")
+mdat_t0 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t0")
 
-mdat_Fe7 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-06"|collection_date == "2017-02-07")
+mdat_t2 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t2")
 
-mdat_Fe14 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-14")
+mdat_t4 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t4")
 
-mdat_Fe21 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-21")
+mdat_t6 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t6")
 
-mdat_Fe28 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-28")
+mdat_t8 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t8")
 
-mdat_Ma3 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-03-03")
+mdat_t9 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t9")
 
-a <- as.character(mdat_Ja31$ID)
-b <- as.character(mdat_Fe7$ID)
-c <- as.character(mdat_Fe14$ID)
-d <- as.character(mdat_Fe21$ID)
-e <- as.character(mdat_Fe28$ID)
-f <- as.character(mdat_Ma3$ID)
+a <- as.character(mdat_t0$ID)
+b <- as.character(mdat_t2$ID)
+c <- as.character(mdat_t4$ID)
+d <- as.character(mdat_t6$ID)
+e <- as.character(mdat_t8$ID)
+f <- as.character(mdat_t9$ID)
 
-writeLines(unlist(a), paste0(out_dir,"guppy_input/piggies_CTRLNEO_Ja31_sel.txt"), sep = " ")
-writeLines(unlist(b), paste0(out_dir,"guppy_input/piggies_CTRLNEO_Fe7_sel.txt"), sep = " ")
-writeLines(unlist(c), paste0(out_dir,"guppy_input/piggies_CTRLNEO_Fe14_sel.txt"), sep = " ")
-writeLines(unlist(d), paste0(out_dir,"guppy_input/piggies_CTRLNEO_Fe21_sel.txt"), sep = " ")
-writeLines(unlist(e), paste0(out_dir,"guppy_input/piggies_CTRLNEO_Fe28_sel.txt"), sep = " ")
-writeLines(unlist(f), paste0(out_dir,"guppy_input/piggies_CTRLNEO_Ma3_sel.txt"), sep = " ")
+writeLines(unlist(a), paste0(out_dir,"guppy_input/piggies_CTRLNEO_t0_sel.txt"), sep = " ")
+writeLines(unlist(b), paste0(out_dir,"guppy_input/piggies_CTRLNEO_t2_sel.txt"), sep = " ")
+writeLines(unlist(c), paste0(out_dir,"guppy_input/piggies_CTRLNEO_t4_sel.txt"), sep = " ")
+writeLines(unlist(d), paste0(out_dir,"guppy_input/piggies_CTRLNEO_t6_sel.txt"), sep = " ")
+writeLines(unlist(e), paste0(out_dir,"guppy_input/piggies_CTRLNEO_t8_sel.txt"), sep = " ")
+writeLines(unlist(f), paste0(out_dir,"guppy_input/piggies_CTRLNEO_t9_sel.txt"), sep = " ")
 
 
 ###########################################################################################
@@ -347,37 +385,37 @@ mdat_sel$ID <- paste0(mdat_sel$DNA_plate,"_",mdat_sel$DNA_well,"_*")
 
 # groups by date 
 
-mdat_Ja31 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-01-31"|collection_date == "2017-02-01")
+mdat_t0 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t0")
 
-mdat_Fe7 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-06"|collection_date == "2017-02-07")
+mdat_t2 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t2")
 
-mdat_Fe14 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-14")
+mdat_t4 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t4")
 
-mdat_Fe21 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-21")
+mdat_t6 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t6")
 
-mdat_Fe28 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-28")
+mdat_t8 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t8")
 
-mdat_Ma3 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-03-03")
+mdat_t9 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t9")
 
-a <- as.character(mdat_Ja31$ID)
-b <- as.character(mdat_Fe7$ID)
-c <- as.character(mdat_Fe14$ID)
-d <- as.character(mdat_Fe21$ID)
-e <- as.character(mdat_Fe28$ID)
-f <- as.character(mdat_Ma3$ID)
+a <- as.character(mdat_t0$ID)
+b <- as.character(mdat_t2$ID)
+c <- as.character(mdat_t4$ID)
+d <- as.character(mdat_t6$ID)
+e <- as.character(mdat_t8$ID)
+f <- as.character(mdat_t9$ID)
 
-writeLines(unlist(a), paste0(out_dir,"guppy_input/piggies_NEONEOD_Ja31_sel.txt"), sep = " ")
-writeLines(unlist(b), paste0(out_dir,"guppy_input/piggies_NEONEOD_Fe7_sel.txt"), sep = " ")
-writeLines(unlist(c), paste0(out_dir,"guppy_input/piggies_NEONEOD_Fe14_sel.txt"), sep = " ")
-writeLines(unlist(d), paste0(out_dir,"guppy_input/piggies_NEONEOD_Fe21_sel.txt"), sep = " ")
-writeLines(unlist(e), paste0(out_dir,"guppy_input/piggies_NEONEOD_Fe28_sel.txt"), sep = " ")
-writeLines(unlist(f), paste0(out_dir,"guppy_input/piggies_NEONEOD_Ma3_sel.txt"), sep = " ")
+writeLines(unlist(a), paste0(out_dir,"guppy_input/piggies_NEONEOD_t0_sel.txt"), sep = " ")
+writeLines(unlist(b), paste0(out_dir,"guppy_input/piggies_NEONEOD_t2_sel.txt"), sep = " ")
+writeLines(unlist(c), paste0(out_dir,"guppy_input/piggies_NEONEOD_t4_sel.txt"), sep = " ")
+writeLines(unlist(d), paste0(out_dir,"guppy_input/piggies_NEONEOD_t6_sel.txt"), sep = " ")
+writeLines(unlist(e), paste0(out_dir,"guppy_input/piggies_NEONEOD_t8_sel.txt"), sep = " ")
+writeLines(unlist(f), paste0(out_dir,"guppy_input/piggies_NEONEOD_t9_sel.txt"), sep = " ")
 
 
 ###########################################################################################
@@ -395,37 +433,37 @@ mdat_sel$ID <- paste0(mdat_sel$DNA_plate,"_",mdat_sel$DNA_well,"_*")
 
 # groups by date 
 
-mdat_Ja31 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-01-31"|collection_date == "2017-02-01")
+mdat_t0 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t0")
 
-mdat_Fe7 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-06"|collection_date == "2017-02-07")
+mdat_t2 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t2")
 
-mdat_Fe14 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-14")
+mdat_t4 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t4")
 
-mdat_Fe21 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-21")
+mdat_t6 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t6")
 
-mdat_Fe28 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-28")
+mdat_t8 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t8")
 
-mdat_Ma3 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-03-03")
+mdat_t9 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t9")
 
-a <- as.character(mdat_Ja31$ID)
-b <- as.character(mdat_Fe7$ID)
-c <- as.character(mdat_Fe14$ID)
-d <- as.character(mdat_Fe21$ID)
-e <- as.character(mdat_Fe28$ID)
-f <- as.character(mdat_Ma3$ID)
+a <- as.character(mdat_t0$ID)
+b <- as.character(mdat_t2$ID)
+c <- as.character(mdat_t4$ID)
+d <- as.character(mdat_t6$ID)
+e <- as.character(mdat_t8$ID)
+f <- as.character(mdat_t9$ID)
 
-writeLines(unlist(a), paste0(out_dir,"guppy_input/piggies_NEONEOC_Ja31_sel.txt"), sep = " ")
-writeLines(unlist(b), paste0(out_dir,"guppy_input/piggies_NEONEOC_Fe7_sel.txt"), sep = " ")
-writeLines(unlist(c), paste0(out_dir,"guppy_input/piggies_NEONEOC_Fe14_sel.txt"), sep = " ")
-writeLines(unlist(d), paste0(out_dir,"guppy_input/piggies_NEONEOC_Fe21_sel.txt"), sep = " ")
-writeLines(unlist(e), paste0(out_dir,"guppy_input/piggies_NEONEOC_Fe28_sel.txt"), sep = " ")
-writeLines(unlist(f), paste0(out_dir,"guppy_input/piggies_NEONEOC_Ma3_sel.txt"), sep = " ")
+writeLines(unlist(a), paste0(out_dir,"guppy_input/piggies_NEONEOC_t0_sel.txt"), sep = " ")
+writeLines(unlist(b), paste0(out_dir,"guppy_input/piggies_NEONEOC_t2_sel.txt"), sep = " ")
+writeLines(unlist(c), paste0(out_dir,"guppy_input/piggies_NEONEOC_t4_sel.txt"), sep = " ")
+writeLines(unlist(d), paste0(out_dir,"guppy_input/piggies_NEONEOC_t6_sel.txt"), sep = " ")
+writeLines(unlist(e), paste0(out_dir,"guppy_input/piggies_NEONEOC_t8_sel.txt"), sep = " ")
+writeLines(unlist(f), paste0(out_dir,"guppy_input/piggies_NEONEOC_t9_sel.txt"), sep = " ")
 
 
 ###########################################################################################
@@ -443,37 +481,37 @@ mdat_sel$ID <- paste0(mdat_sel$DNA_plate,"_",mdat_sel$DNA_well,"_*")
 
 # groups by date 
 
-mdat_Ja31 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-01-31"|collection_date == "2017-02-01")
+mdat_t0 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t0")
 
-mdat_Fe7 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-06"|collection_date == "2017-02-07")
+mdat_t2 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t2")
 
-mdat_Fe14 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-14")
+mdat_t4 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t4")
 
-mdat_Fe21 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-21")
+mdat_t6 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t6")
 
-mdat_Fe28 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-28")
+mdat_t8 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t8")
 
-mdat_Ma3 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-03-03")
+mdat_t9 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t9")
 
-a <- as.character(mdat_Ja31$ID)
-b <- as.character(mdat_Fe7$ID)
-c <- as.character(mdat_Fe14$ID)
-d <- as.character(mdat_Fe21$ID)
-e <- as.character(mdat_Fe28$ID)
-f <- as.character(mdat_Ma3$ID)
+a <- as.character(mdat_t0$ID)
+b <- as.character(mdat_t2$ID)
+c <- as.character(mdat_t4$ID)
+d <- as.character(mdat_t6$ID)
+e <- as.character(mdat_t8$ID)
+f <- as.character(mdat_t9$ID)
 
-writeLines(unlist(a), paste0(out_dir,"guppy_input/piggies_CTRLDs_Ja31_sel.txt"), sep = " ")
-writeLines(unlist(b), paste0(out_dir,"guppy_input/piggies_CTRLDs_Fe7_sel.txt"), sep = " ")
-writeLines(unlist(c), paste0(out_dir,"guppy_input/piggies_CTRLDs_Fe14_sel.txt"), sep = " ")
-writeLines(unlist(d), paste0(out_dir,"guppy_input/piggies_CTRLDs_Fe21_sel.txt"), sep = " ")
-writeLines(unlist(e), paste0(out_dir,"guppy_input/piggies_CTRLDs_Fe28_sel.txt"), sep = " ")
-writeLines(unlist(f), paste0(out_dir,"guppy_input/piggies_CTRLDs_Ma3_sel.txt"), sep = " ")
+writeLines(unlist(a), paste0(out_dir,"guppy_input/piggies_CTRLDs_t0_sel.txt"), sep = " ")
+writeLines(unlist(b), paste0(out_dir,"guppy_input/piggies_CTRLDs_t2_sel.txt"), sep = " ")
+writeLines(unlist(c), paste0(out_dir,"guppy_input/piggies_CTRLDs_t4_sel.txt"), sep = " ")
+writeLines(unlist(d), paste0(out_dir,"guppy_input/piggies_CTRLDs_t6_sel.txt"), sep = " ")
+writeLines(unlist(e), paste0(out_dir,"guppy_input/piggies_CTRLDs_t8_sel.txt"), sep = " ")
+writeLines(unlist(f), paste0(out_dir,"guppy_input/piggies_CTRLDs_t9_sel.txt"), sep = " ")
 
 
 ###########################################################################################
@@ -491,37 +529,37 @@ mdat_sel$ID <- paste0(mdat_sel$DNA_plate,"_",mdat_sel$DNA_well,"_*")
 
 # groups by date 
 
-mdat_Ja31 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-01-31"|collection_date == "2017-02-01")
+mdat_t0 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t0")
 
-mdat_Fe7 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-06"|collection_date == "2017-02-07")
+mdat_t2 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t2")
 
-mdat_Fe14 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-14")
+mdat_t4 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t4")
 
-mdat_Fe21 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-21")
+mdat_t6 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t6")
 
-mdat_Fe28 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-02-28")
+mdat_t8 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t8")
 
-mdat_Ma3 <- mdat_sel %>% 
-  dplyr::filter(collection_date == "2017-03-03")
+mdat_t9 <- mdat_sel %>% 
+  dplyr::filter(collection_date == "t9")
 
-a <- as.character(mdat_Ja31$ID)
-b <- as.character(mdat_Fe7$ID)
-c <- as.character(mdat_Fe14$ID)
-d <- as.character(mdat_Fe21$ID)
-e <- as.character(mdat_Fe28$ID)
-f <- as.character(mdat_Ma3$ID)
+a <- as.character(mdat_t0$ID)
+b <- as.character(mdat_t2$ID)
+c <- as.character(mdat_t4$ID)
+d <- as.character(mdat_t6$ID)
+e <- as.character(mdat_t8$ID)
+f <- as.character(mdat_t9$ID)
 
-writeLines(unlist(a), paste0(out_dir,"guppy_input/piggies_CTRLC_Ja31_sel.txt"), sep = " ")
-writeLines(unlist(b), paste0(out_dir,"guppy_input/piggies_CTRLC_Fe7_sel.txt"), sep = " ")
-writeLines(unlist(c), paste0(out_dir,"guppy_input/piggies_CTRLC_Fe14_sel.txt"), sep = " ")
-writeLines(unlist(d), paste0(out_dir,"guppy_input/piggies_CTRLC_Fe21_sel.txt"), sep = " ")
-writeLines(unlist(e), paste0(out_dir,"guppy_input/piggies_CTRLC_Fe28_sel.txt"), sep = " ")
-writeLines(unlist(f), paste0(out_dir,"guppy_input/piggies_CTRLC_Ma3_sel.txt"), sep = " ")
+writeLines(unlist(a), paste0(out_dir,"guppy_input/piggies_CTRLC_t0_sel.txt"), sep = " ")
+writeLines(unlist(b), paste0(out_dir,"guppy_input/piggies_CTRLC_t2_sel.txt"), sep = " ")
+writeLines(unlist(c), paste0(out_dir,"guppy_input/piggies_CTRLC_t4_sel.txt"), sep = " ")
+writeLines(unlist(d), paste0(out_dir,"guppy_input/piggies_CTRLC_t6_sel.txt"), sep = " ")
+writeLines(unlist(e), paste0(out_dir,"guppy_input/piggies_CTRLC_t8_sel.txt"), sep = " ")
+writeLines(unlist(f), paste0(out_dir,"guppy_input/piggies_CTRLC_t9_sel.txt"), sep = " ")
 
 
 ###########################################################################################
@@ -557,7 +595,7 @@ writeLines(unlist(f), paste0(out_dir,"guppy_input/piggies_CTRLC_Ma3_sel.txt"), s
 
 # script to run: 
 
-# nano guppy_epca.sh
+# nano run_guppy.sh
 
 # ```
 #!/bin/bash

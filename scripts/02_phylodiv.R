@@ -170,9 +170,9 @@ details <- details %>%
 unique(details$cross_breed)
 
 # load alpha pd
-fpddat<-read.table(paste0(middle_dir,"fpdalpha_div.tsv"),header=T,stringsAsFactors=F)
+fpddat<-read.table(paste0(middle_dir,"all.alphadiv"),header=T,stringsAsFactors=F) # old file: fpdalpha_div.tsv
 # load beta div
-pcadat<-read_csv(paste0(middle_dir,"piggies_sel.txt.proj"),col_names = FALSE)
+pcadat<-read_csv(paste0(middle_dir,"pca_piggies_sel.txt.proj"),col_names = FALSE) # olf file: piggies_sel.txt.proj
 
 pcadat <- cSplit(pcadat, "X1","_")
 
@@ -197,6 +197,14 @@ wb <- createWorkbook()
 # 1   # batch effect
 
 # Plots the batch effect (both alpha and beta div)
+
+fpddat <- cSplit(fpddat, "placerun","_")
+fpddat$DNA_plate <- paste0(fpddat$placerun_1,"_",fpddat$placerun_2)
+fpddat$DNA_plate <- gsub("plate_","P",fpddat$DNA_plate)
+fpddat$DNA_well <- fpddat$placerun_3
+fpddat <- fpddat %>%
+  dplyr::select(DNA_plate,DNA_well, phylo_entropy, quadratic, unrooted_pd, rooted_pd, bwpd)
+
 
 fpddat$sid <- NULL
 

@@ -43,7 +43,7 @@ guppyout_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/guppy_outp
 
 
 my.files = list.files(guppyout_dir,pattern=".gz.xml.txt")
-
+# extract fat ones
 # construct an empty dataframe to build on 
 complete.df <- data.frame(
   taxa = character(),

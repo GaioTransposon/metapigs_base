@@ -4,7 +4,7 @@
 
 ##### previous steps: 
 
-# 1 # groups for guppy are made in guppy_group.R 
+# 1 # groups for guppy are made in guppy_groups.R 
 
 # 2 # guppy is run 
 
@@ -15,12 +15,9 @@
 # java -cp /Users/12705859/Downloads/forester_1050.jar 
 # org.forester.application.phyloxml_converter -f=dummy file.xml file.txt
 # in a loop: 
-# for fpath in /Users/12705859/Desktop/metapigs_base/phylosift/guppy/guppy_output/*.xml; 
-# do java -cp /Users/12705859/Downloads/forester_1050.jar 
-# org.forester.application.phyloxml_converter -f=dummy "$fpath" 
-# "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/guppy_output/$(basename "$fpath").txt"; 
-# done
-
+#for fpath in /Users/12705859/Desktop/metapigs_base/phylosift/guppy/guppy_output/*.xml
+#do java -cp /Users/12705859/Downloads/forester_1050.jar org.forester.application.phyloxml_converter -f=dummy "$fpath" "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/guppy_output/$(basename "$fpath").txt"
+#done
 ##### HERE : 
 
 # 1 # .xml files are read in and parsed
@@ -63,6 +60,7 @@ complete.df <- data.frame(
   )
 
 my.files = list.files(guppyout_dir,pattern=".txt.xml.txt")
+# extract pca ones
 my.files <- my.files[-17] # removing problematic file (won't parse - it's Ja31 anyway)
 my.files <- my.files[-26] # removing problematic file (won't parse - it's Ja31 anyway)
 

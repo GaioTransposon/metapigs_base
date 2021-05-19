@@ -598,13 +598,26 @@ writeLines(unlist(f), paste0(out_dir,"guppy_input/piggies_CTRLC_t9_sel.txt"), se
 # nano run_guppy.sh
 
 # ```
-#!/bin/bash
-#PBS -l ncpus=4
-#PBS -l walltime=48:00:00
-#PBS -l mem=24g
-# export OMP_NUM_THREADS=4
-# cd $PBS_O_WORKDIR
-# for f in /shared/homes/12705859/phylosift_metapigs_20200225/*.txt; do N=$(basename $f); /shared/homes/12705859/phylosift_v1.0.1/bin/guppy epca --prefix $N `cat $N`; done# ```
+# #!/bin/bash
+# #PBS -l ncpus=10
+# #PBS -l walltime=120:00:00
+# #PBS -l mem=70g
+# #PBS -N run_guppy.sh
+# #PBS -M daniela.gaio@student.uts.edu.au
+# 
+# cd /shared/homes/s1/pig_microbiome/phy_10M/PS_temp
+# 
+# # compute per-sample alpha diversity with various diversity metrics
+# /shared/homes/s1/pig_microbiome/phylosift_v1.0.1/bin/guppy fpd plate_7_*1.fastq.gz/* > all.alphadiv
+# 
+# # cluster the samples: performs squash clustering - NOT RUN
+# # /shared/homes/s1/pig_microbiome/phylosift_v1.0.1/bin/guppy squash plate_*.fastq.gz/*jplace
+# 
+# # edge PCA to explore variation in community composition among samples: performs edge principal components
+# /shared/homes/s1/pig_microbiome/phylosift_v1.0.1/bin/guppy epca --prefix pca_all plate_*.fastq.gz/*jplace
+# 
+# # run guppy fat: makes trees with edges fattened in proportion to the number of reads
+# /shared/homes/s1/pig_microbiome/phylosift_v1.0.1/bin/guppy fat --prefix fat_ plate_*.fastq.gz/*jplace
 # ```
 # works! 
 
@@ -612,7 +625,7 @@ writeLines(unlist(f), paste0(out_dir,"guppy_input/piggies_CTRLC_t9_sel.txt"), se
 
 # output files are: (extensions .xml, .edgediff, .trans, .jplace)
 # move all the *_sel.txt.jplace and all the *_sel.txt.xml files to local machine /Users/12705859/Desktop/metapigs_base/phylosift/guppy/guppy_output
-# .xml and .jplace files will be processed  with guppy_output_process.R 
+# .xml and .jplace files will be processed  with guppy_XML_process.R 
 
 ###########################################################################################
 ###########################################################################################

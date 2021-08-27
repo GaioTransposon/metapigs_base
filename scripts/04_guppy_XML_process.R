@@ -38,10 +38,10 @@ library(grid)
 library(data.table)
 
 
-source_data = "/Users/12705859/metapigs_base/source_data/" # git 
-middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
-guppyout_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/guppy_output" # local 
-out_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/" # local 
+source_data = "/Users/danielagaio/Gaio/github/metapigs_base/source_data/" # git 
+middle_dir = "/Users/danielagaio/Gaio/github/metapigs_base/middle_dir/" # git 
+guppyout_dir = "/Users/danielagaio/Desktop/metapigs_base/phylosift/guppy/guppy_output" # local 
+out_dir = "/Users/danielagaio/Desktop/metapigs_base/phylosift/guppy/" # local 
 
 ###########################################################################################
 
@@ -60,9 +60,10 @@ complete.df <- data.frame(
   )
 
 my.files = list.files(guppyout_dir,pattern=".txt.xml.txt")
+
 # extract pca ones
-my.files <- my.files[-17] # removing problematic file (won't parse - it's Ja31 anyway)
-my.files <- my.files[-26] # removing problematic file (won't parse - it's Ja31 anyway)
+#my.files <- my.files[-17] # removing problematic file (won't parse - it's Ja31 anyway) # not an issue anymore 20210812
+#my.files <- my.files[-26] # removing problematic file (won't parse - it's Ja31 anyway) # not an issue anymore 20210812
 
 for (textfile in my.files) {
   
@@ -93,34 +94,36 @@ for (textfile in my.files) {
   PC5$var_explained <- as.character(z$`5`[2,])
   
   my.df <- rbind(PC1,PC2,PC3,PC4,PC5)
-  
+
   # start the grepping of useful tree info 
   mylist <- grep("blue", my.df$X1)
   myend <- lapply(mylist, print)
   
   df <- data.frame(matrix(unlist(myend), nrow=length(myend), byrow=T))
   colnames(df) <- "G"
+
   mysel <- df %>%
-    mutate(FF=G-1) %>%
-    mutate(E=FF-1) %>%
-    mutate(D=E-1) %>%
-    mutate(C=D-1) %>%
-    mutate(B=C-1) %>%
-    mutate(A=B-1) %>%
-    mutate(placeholder="placeholder")%>%
+    dplyr::mutate(FF=G-1) %>% # FF is green
+    dplyr::mutate(E=FF-1) %>% # E is red
+    dplyr::mutate(D=E-1) %>% # D is "color"
+    dplyr::mutate(C=D-1) %>% # C is width
+    dplyr::mutate(B=C-1) %>% # B is length
+    dplyr::mutate(A=B-1) %>% # A is taxa
+    dplyr::mutate(placeholder="placeholder")%>%
     pivot_longer(cols=A:G)
   
   mysel <- as.data.frame(mysel)
   row.names(mysel) <- mysel$value
   
-  almostthere <- my.df[match(rownames(mysel), rownames(my.df), nomatch=0),]
+  almostthere <- my.df[match(rownames(mysel), rownames(my.df)),] #my.df[match(rownames(mysel), rownames(my.df), nomatch=0),]
   almostthere <- cSplit(almostthere, "X1","</")
   almostthere$X1_2 <- NULL
   
   myprecious <- almostthere %>% 
-    filter(X1_1 != '') %>%    # drop empty rows
-    mutate(key = rep(c('taxa', 'branch_length', 'branch_width', 'color','red','green','blue'), n() / 7), 
-           id = cumsum(key == 'taxa')) %>% 
+    #dplyr::filter(X1_1 != '') %>%    # drop empty rows
+    dplyr::mutate(key = rep(c('taxa', 'branch_length', 'branch_width', 'color','red','green','blue'), 
+                            n() / 7), 
+                  id = cumsum(key == 'taxa')) %>% 
     spread(key, X1_1) %>%
     dplyr::select(var_explained,branch_length,branch_width,blue,green,red,taxa,component)
   
@@ -154,14 +157,20 @@ unique(complete$file)
 
 # clean file name & parse file name 
 complete$file <- gsub('_sel.txt.xml.txt', '', complete$file)
-complete$file <- gsub('piggies_group_A', 'groupA', complete$file)
-complete$file <- gsub('piggies_group_B', 'groupB', complete$file)
-complete$file <- gsub('piggies_CTRLNEO', 'groupC', complete$file)
-complete$file <- gsub('piggies_NEONEOD', 'groupD', complete$file)
-complete$file <- gsub('piggies_NEONEOC', 'groupE', complete$file)
-complete$file <- gsub('piggies_CTRLDs', 'groupF', complete$file)
-complete$file <- gsub('piggies_CTRLC', 'groupG', complete$file)
-complete$file <- gsub('^piggies$', 'piggies_all', complete$file)
+complete$file <- gsub('pca_piggies_group_A', 'groupA', complete$file)
+complete$file <- gsub('pca_piggies_group_B', 'groupB', complete$file)
+complete$file <- gsub('pca_piggies_CTRLNEO', 'groupC', complete$file)
+complete$file <- gsub('pca_piggies_NEONEOD', 'groupD', complete$file)
+complete$file <- gsub('pca_piggies_NEONEOC', 'groupE', complete$file)
+complete$file <- gsub('pca_piggies_CTRLDs', 'groupF', complete$file)
+complete$file <- gsub('pca_piggies_CTRLC', 'groupG', complete$file)
+complete$file <- gsub('pca_piggies', 'all', complete$file)
+complete$file <- gsub('pca_pos_controls', 'pos_tNONE', complete$file)
+complete$file <- gsub('^all$', 'all_tALL', complete$file)
+
+
+unique(complete$file)
+
 complete <- cSplit(complete, "file","_")
 
 colnames(complete)[colnames(complete) == 'file_1'] <- 'sample_type'
@@ -169,11 +178,11 @@ colnames(complete)[colnames(complete) == 'file_2'] <- 'guppied_date'
 
 NROW(complete)
 unique(complete$sample_type)
+unique(complete$guppied_date)
 
 ###############
 
 # simplify taxa
-
 
 complete$taxa_simple <- complete$taxa %<>%
   gsub('\\{|\\}', '', .) %>% # removes curly brackets
@@ -184,7 +193,21 @@ complete$taxa_simple <- complete$taxa %<>%
 
 sort(unique(complete$taxa_simple))
 
+
 ###############
+
+
+
+# Here we keep for each PC component, each side (up vs down), the taxon with the shortest branch length (more specific, species level, when present) and largest branch width (more weight on branch)
+a <- complete %>%
+  group_by(var_explained,PC_position,taxa) %>%
+  top_n(desc(branch_length), n = 1) %>%
+  group_by(var_explained,PC_position,taxa) %>%
+  top_n(branch_width, n = 1)
+
+complete <- a
+
+
 
 
 colnames(complete)
@@ -195,6 +218,8 @@ simplified <- complete %>%
   select(sample_type, guppied_date,var_explained,
          component,PC_position,taxa_simple) %>%
   distinct()
+
+unique(simplified$guppied_date)
 
 # save both complete and simplified dataframes 
 fwrite(x = complete, file = paste0(middle_dir,"guppy_xml_complete.df"))

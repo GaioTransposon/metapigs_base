@@ -1,11 +1,16 @@
 
+#library(magick)
+
+
 # new weight measurements
 
 
-source_data = "/Users/12705859/metapigs_base/source_data/" # git 
-middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
-out_dir_git =  "/Users/12705859/metapigs_base/out/" # git 
-out_dir = "/Users/12705859/Desktop/metapigs_base/" # local 
+source_data = "/Users/danielagaio/Gaio/github/metapigs_base/source_data/" # git 
+middle_dir = "/Users/danielagaio/Gaio/github/metapigs_base/middle_dir/" # git 
+stats_dir = "/Users/danielagaio/Gaio/github/metapigs_base/middle_dir/stats/" # git 
+out_dir = "/Users/danielagaio/Desktop/metapigs_base/" # local 
+out_dir_git =  "/Users/danielagaio/Gaio/github/metapigs_base/out/" # git 
+
 
 ###########################################################################################
 
@@ -13,30 +18,6 @@ out_dir = "/Users/12705859/Desktop/metapigs_base/" # local
 timeline_deltas_weight <- image_read(paste0(out_dir,"Slide13.tiff"))
 
 
-weights_final <- read_csv(paste0(source_data,"weights_final.csv"), 
-                          col_types = cols(Pig = col_character(), 
-                                           Room = col_character()))
-
-weights_final <- pivot_wider(weights_final, id_cols=Pig,values_from=euth_wt,names_from =euth_day)
-# get rid of rows after row 60 as they miss the value (no weights available for March 10th)
-weights_final <- weights_final[1:60,]
-
-weights <- read_csv(paste0(source_data,"weights.csv"), 
-                    col_types = cols(Pig = col_character(), 
-                                     Room = col_character()))
-
-
-all_weights <- full_join(weights,weights_final)
-
-colnames(all_weights)[colnames(all_weights) == 'Pig'] <- 'isolation_source'
-
-all_weights <- all_weights[,3:12]
-
-all_weights <- all_weights %>%
-  pivot_longer(-isolation_source,
-               names_to="date", 
-               values_to="value",
-               values_drop_na = TRUE)
 
 # load metadata 
 mdat <- read_excel(paste0(source_data,"Metagenome.environmental_20190308_2.xlsx"),
@@ -46,12 +27,43 @@ mdat <- read_excel(paste0(source_data,"Metagenome.environmental_20190308_2.xlsx"
                                  "numeric", "text", "text","text", "text", "text", "text",
                                  "text","text", "text", "text", "text", "text","text", "text"),
                    skip = 12)
-
+mdat$Cohort <- gsub("Sows","Sows",mdat$Cohort)
+mdat$Cohort <- gsub("D-scour","D-Scour", mdat$Cohort)
+colnames(mdat)[colnames(mdat) == '*collection_date'] <- 'collection_date'
+colnames(mdat)[colnames(mdat) == 'isolation_source'] <- 'pig'
 mdat <- mdat %>%
-  dplyr::select(isolation_source, Cohort) %>%
+  dplyr::select(Cohort,pig) %>%
   distinct()
 
-mdat$Cohort <- gsub("D-scour","D-Scour", mdat$Cohort)
+
+# upload weight info 
+
+weights <- read.csv(paste0(source_data,"weights.csv"))
+colnames(weights) <- c("room","pen","pig","t0","t2","t4","t6","t8")
+
+weights_final <- read.csv(paste0(source_data,"weights_final.csv"))
+colnames(weights_final) <- c("room","pen","pig","date","weight")
+weights_final$date <- gsub("6-Mar","t10",weights_final$date)
+weights_final$date <- gsub("7-Mar","t10",weights_final$date)
+weights_final$date <- gsub("8-Mar","t10",weights_final$date)
+weights_final$date <- gsub("9-Mar","t10",weights_final$date)
+weights_final <- weights_final %>%
+  dplyr::select(pig,date,weight) %>%
+  filter(!date=="10-Mar") # as it's NA
+
+weights <- weights %>%
+  dplyr::select(pig,t0,t2,t4,t6,t8) %>%
+  pivot_longer(., cols = c(t0,t2,t4,t6,t8), names_to = "date", values_to = "weight")
+weights <- as.data.frame(weights)
+head(weights)
+head(weights_final)
+
+weights <- rbind(weights,weights_final)
+NROW(weights)
+weights <- weights %>% distinct()
+NROW(weights)
+
+weights$sample <- paste0(weights$date,"_",weights$pig)
 
 
 # load details (breed, line, bday, mothers)
@@ -65,349 +77,322 @@ colnames(details)[colnames(details) == 'STIGDAM'] <- 'stig'
 colnames(details)[colnames(details) == '...8'] <- 'breed'
 details$pig <- gsub("G","",details$pig)
 details$pig <- gsub("T","",details$pig)
-colnames(details)[colnames(details) == 'pig'] <- 'isolation_source'
-
 details$BIRTH_DAY <- as.character(details$BIRTH_DAY)
 details$LINE <- as.character(details$LINE)
 details <- details %>%
-  dplyr::select(isolation_source,BIRTH_DAY,LINE,breed,stig,nurse)
+  dplyr::select(pig,BIRTH_DAY,LINE,breed,stig,nurse)
 
-df <- inner_join(all_weights,mdat)
+
+weights$pig <- as.character(weights$pig)
+
+df <- inner_join(weights,mdat)
 df <- inner_join(df,details)
 df
 
-
-a <- aov(value ~ breed + date, df)
-tidy(a)
-
-a <- aov(value ~ BIRTH_DAY + date, df)
-tidy(a)
-
-a <- aov(value ~ BIRTH_DAY*breed + date, df)
-tidy(a)
-
-a <- aov(value ~ Cohort + date, df)
-tidy(a)
-
-a <- aov(value ~ Cohort*date, df)
-tidy(a)
+df_weight <- df
 
 
-all_timepoints_cohorts_plot <- ggboxplot(df, x="date", y="value", fill = "Cohort", 
-                                         ylab="weight (kg)")
 
+############
 
-all_timepoints_breed_plot <- ggboxplot(df, x="date", y="value", fill = "breed", 
-                                       ylab="weight (kg)")
-
-
-all_timepoints_bday_plot <- ggboxplot(df, x="date", y="value", fill = "BIRTH_DAY", 
-                                      ylab="weight (kg)")
-
-
-all_timepoints_line_plot <- ggboxplot(df, x="date", y="value", fill = "LINE", 
-                                      ylab="weight (kg)")
-
-
-######################################################################################################
-
-# DELTAS 
-
-
-# filtering out piglets that had dysentery
-df1 <- df %>%
-  dplyr::filter(!isolation_source=="29665"|isolation_source=="29865"|isolation_source=="29702")
-
-pigs_1 <- df1 %>%
-  dplyr::filter(date == "31-Jan") %>%
-  dplyr::select(isolation_source,Cohort,value,breed,BIRTH_DAY)
-NROW(pigs_1)
-
-###########################
-
-pigs_2 <- df1 %>%
-  dplyr::filter(date == "7-Feb") %>%
-  dplyr::select(isolation_source,Cohort,value,breed,BIRTH_DAY)
-NROW(pigs_2)
-
-###########################
-
-
-pigs_3 <- df1 %>%
-  dplyr::filter(date == "14-Feb") %>%
-  dplyr::select(isolation_source,Cohort,value,breed,BIRTH_DAY)
-NROW(pigs_3)
-
-###########################
-
-
-pigs_4 <- df1 %>%
-  dplyr::filter(date == "21-Feb") %>%
-  dplyr::select(isolation_source,Cohort,value,breed,BIRTH_DAY)
-NROW(pigs_4)
-
-###########################
-
-pigs_5 <- df1 %>%
-  dplyr::filter(date == "28-Feb") %>%
-  dplyr::select(isolation_source,Cohort,value,breed,BIRTH_DAY)
-NROW(pigs_5)
-
+# DELTAS of weight
 
 ##############################################################################
 
+# functions for stats
+
+myfun_weight_cohort_stats <- function(my_df, my_dates) {
+  
+  x <- my_df
+  
+  # calculate change
+  x$diff = ((x$weight.y-x$weight.x)/x$weight.y)*100
+  
+  # remove crazy outliers 
+  x <- x %>% dplyr::filter(diff<100) %>% dplyr::filter(diff>-100)
+  
+  # reorder
+  x$Cohort.x <- factor(x$Cohort.x, 
+                       levels=c("Control", 
+                                "D-Scour", 
+                                "ColiGuard",
+                                "Neomycin",
+                                "Neomycin+D-Scour",
+                                "Neomycin+ColiGuard"))
+  
+  res1 <- aov(diff ~ Cohort.x, data=x)
+  res <- TukeyHSD(res1)
+  aov.out <- as.data.frame(res$Cohort.x)
+  aov.out <- tibble::rownames_to_column(aov.out, "comparison")
+  aov.out$time_delta=as.character(my_dates)
+  aov.out$test <- "anova"
+  aov.out$padj_method <- "TukeyHSD"
+  
+  return(aov.out)
+}
+
+myfun_weight_breed_stats <- function(my_df, my_dates) {
+  
+  x <- my_df
+  
+  # calculate change
+  x$diff = ((x$weight.y-x$weight.x)/x$weight.y)*100
+  
+  # remove crazy outliers 
+  x <- x %>% dplyr::filter(diff<100) %>% dplyr::filter(diff>-100)
+  
+  res1 <- aov(diff ~ breed.x, data=x)
+  res <- TukeyHSD(res1)
+  aov.out <- as.data.frame(res$breed.x)
+  aov.out <- tibble::rownames_to_column(aov.out, "comparison")
+  aov.out$time_delta=as.character(my_dates)
+  aov.out$test <- "anova"
+  aov.out$padj_method <- "TukeyHSD"
+  
+  return(aov.out)
+}
+
+myfun_weight_BIRTH_stats <- function(my_df, my_dates) {
+  
+  x <- my_df
+  
+  # calculate change
+  x$diff = ((x$weight.y-x$weight.x)/x$weight.y)*100
+  
+  # remove crazy outliers 
+  x <- x %>% dplyr::filter(diff<100) %>% dplyr::filter(diff>-100)
+  
+  res1 <- aov(diff ~ BIRTH_DAY.x, data=x)
+  res <- TukeyHSD(res1)
+  aov.out <- as.data.frame(res$BIRTH_DAY.x)
+  aov.out <- tibble::rownames_to_column(aov.out, "comparison")
+  aov.out$time_delta=as.character(my_dates)
+  aov.out$test <- "anova"
+  aov.out$padj_method <- "TukeyHSD"
+  
+  return(aov.out)
+}
+
+##############################################################################
+round(2.00648E-05,5)
 # settings for plots: 
-
-#font size for pvalues 
 your_font_size <- 2 
-
 My_Theme = theme(
   axis.title.x = element_blank(),
   axis.text.x = element_blank(), 
   axis.title.y = element_text(size = 8),
   axis.text.y = element_text(size = 8)) 
 
+# functions for plots
+
+
+myfun_weight_cohort_plot <- function(my_df) {
+  
+  x <- my_df
+  
+  # calculate change
+  x$diff = ((x$weight.y-x$weight.x)/x$weight.y)*100
+  
+  # remove crazy outliers 
+  x <- x %>% dplyr::filter(diff<100) %>% dplyr::filter(diff>-100)
+  
+  # reorder
+  x$Cohort.x <- factor(x$Cohort.x, 
+                       levels=c("Control", 
+                                "D-Scour", 
+                                "ColiGuard",
+                                "Neomycin",
+                                "Neomycin+D-Scour",
+                                "Neomycin+ColiGuard"))
+  
+  cw_summary <- x %>% 
+    distinct() %>%
+    group_by(Cohort.x) %>% 
+    tally()
+  
+  my_plot <- ggboxplot(x, x="Cohort.x", y="diff", fill = "Cohort.x", 
+                       ylab="weight change (%)", legend = "none")+
+    My_Theme+
+    geom_text(data = cw_summary,
+              aes(Cohort.x, Inf, label = n), vjust="inward", size = your_font_size)+
+    stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
+  
+  return(my_plot)
+}
+
+myfun_weight_breed_plot <- function(my_df) {
+  
+  x <- my_df
+  
+  # calculate change
+  x$diff = ((x$weight.y-x$weight.x)/x$weight.y)*100
+  
+  # remove crazy outliers 
+  x <- x %>% dplyr::filter(diff<100) %>% dplyr::filter(diff>-100)
+  
+  cw_summary <- x %>% 
+    distinct() %>%
+    group_by(breed.x) %>% 
+    tally()
+  
+  my_plot <- ggboxplot(x, x="breed.x", y="diff", fill = "breed.x", 
+                       ylab="weight change (%)", legend = "none")+
+    My_Theme+
+    geom_text(data = cw_summary,
+              aes(breed.x, Inf, label = n), vjust="inward", size = your_font_size)+
+    stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
+  my_plot <- set_palette(my_plot, "jco")
+  
+  return(my_plot)
+}
+
+myfun_weight_BIRTH_plot <- function(my_df) {
+  
+  x <- my_df
+  
+  # calculate change
+  x$diff = ((x$weight.y-x$weight.x)/x$weight.y)*100
+  
+  # remove crazy outliers 
+  x <- x %>% dplyr::filter(diff<100) %>% dplyr::filter(diff>-100)
+  
+  cw_summary <- x %>% 
+    distinct() %>%
+    group_by(BIRTH_DAY.x) %>% 
+    tally()
+  
+  my_plot <- ggboxplot(x, x="BIRTH_DAY.x", y="diff", fill = "BIRTH_DAY.x", 
+                       ylab="weight change (%)", legend = "none")+
+    My_Theme+
+    geom_text(data = cw_summary,
+              aes(BIRTH_DAY.x, Inf, label = n), vjust="inward", size = your_font_size)+
+    stat_compare_means(method = "anova", label.x=1.5, size = your_font_size)
+  my_plot <- set_palette(my_plot, "jco")
+  return(my_plot)
+}
+
+
 ##############################################################################
 
+# subsetting
+piggies_t0 <- df_weight %>% dplyr::filter(date == "t0") 
+piggies_t2 <- df_weight %>% dplyr::filter(date == "t2") 
+piggies_t4 <- df_weight %>% dplyr::filter(date == "t4") 
+piggies_t6 <- df_weight %>% dplyr::filter(date == "t6") 
+piggies_t8 <- df_weight %>% dplyr::filter(date == "t8") 
 
-df <- merge(pigs_1,pigs_2, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
+###########################
 
-# reorder
-df$Cohort.x <- factor(df$Cohort.x, 
-                      levels=c("Control", 
-                               "D-Scour", 
-                               "ColiGuard",
-                               "Neomycin",
-                               "Neomycin+D-Scour",
-                               "Neomycin+ColiGuard"))
+df_t0_t2 <- merge(piggies_t0,piggies_t2, by=c("pig"))
+df_t2_t4 <- merge(piggies_t2,piggies_t4, by=c("pig"))
+df_t4_t6 <- merge(piggies_t4,piggies_t6, by=c("pig"))
+df_t6_t8 <- merge(piggies_t6,piggies_t8, by=c("pig"))
+df_t2_t6 <- merge(piggies_t2,piggies_t6, by=c("pig"))
+df_t4_t8 <- merge(piggies_t4,piggies_t8, by=c("pig"))
+df_t0_t8 <- merge(piggies_t0,piggies_t8, by=c("pig"))
 
-res1 <- aov(diff ~ Cohort.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$Cohort.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Ja31_Fe7"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-cohort_stats <- aov.out
+###########################
 
-cw_summary <- df %>% 
-  group_by(Cohort.x) %>% 
-  tally()
+# plot: 
 
-plot_A_B <- ggboxplot(df, x="Cohort.x", y="diff", fill = "Cohort.x", 
-                      ylab="weight gain (%)", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(Cohort.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
+myfun_weight_cohort_plot(df_t0_t2)
+myfun_weight_cohort_plot(df_t2_t4)
+myfun_weight_cohort_plot(df_t4_t6)
+myfun_weight_cohort_plot(df_t6_t8)
+myfun_weight_cohort_plot(df_t2_t6)
+myfun_weight_cohort_plot(df_t4_t8)
+myfun_weight_cohort_plot(df_t0_t8)
+#
+myfun_weight_breed_plot(df_t0_t2)
+myfun_weight_breed_plot(df_t2_t4)
+myfun_weight_breed_plot(df_t4_t6)
+myfun_weight_breed_plot(df_t6_t8)
+myfun_weight_breed_plot(df_t2_t6)
+myfun_weight_breed_plot(df_t4_t8)
+myfun_weight_breed_plot(df_t0_t8)
+#
+myfun_weight_BIRTH_plot(df_t0_t2)
+myfun_weight_BIRTH_plot(df_t2_t4)
+myfun_weight_BIRTH_plot(df_t4_t6)
+myfun_weight_BIRTH_plot(df_t6_t8)
+myfun_weight_BIRTH_plot(df_t2_t6)
+myfun_weight_BIRTH_plot(df_t4_t8)
+myfun_weight_BIRTH_plot(df_t0_t8)
 
-############
+###########################
 
-df <- merge(pigs_2,pigs_3, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
+# get and gather all stats: 
+weight_cohort_stats <- rbind(myfun_weight_cohort_stats(df_t0_t2,"t0_t2"), 
+                            myfun_weight_cohort_stats(df_t2_t4,"t2_t4"), 
+                            myfun_weight_cohort_stats(df_t4_t6,"t4_t6"), 
+                            myfun_weight_cohort_stats(df_t6_t8,"t6_t8"), 
+                            myfun_weight_cohort_stats(df_t2_t6,"t2_t6"), 
+                            myfun_weight_cohort_stats(df_t4_t8,"t4_t8"), 
+                            myfun_weight_cohort_stats(df_t0_t8,"t0_t8")
+)
 
-# reorder
-df$Cohort.x <- factor(df$Cohort.x, 
-                      levels=c("Control", 
-                               "D-Scour", 
-                               "ColiGuard",
-                               "Neomycin",
-                               "Neomycin+D-Scour",
-                               "Neomycin+ColiGuard"))
+weight_breed_stats <- rbind(myfun_weight_breed_stats(df_t0_t2,"t0_t2"), 
+                             myfun_weight_breed_stats(df_t2_t4,"t2_t4"), 
+                             myfun_weight_breed_stats(df_t4_t6,"t4_t6"), 
+                             myfun_weight_breed_stats(df_t6_t8,"t6_t8"), 
+                             myfun_weight_breed_stats(df_t2_t6,"t2_t6"), 
+                             myfun_weight_breed_stats(df_t4_t8,"t4_t8"), 
+                             myfun_weight_breed_stats(df_t0_t8,"t0_t8")
+)
 
-res1 <- aov(diff ~ Cohort.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$Cohort.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Fe7_Fe14"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-cohort_stats <- rbind(cohort_stats,aov.out)
-
-cw_summary <- df %>% 
-  group_by(Cohort.x) %>% 
-  tally()
-
-plot_B_C <- ggboxplot(df, x="Cohort.x", y="diff", fill = "Cohort.x", 
-                      ylab="weight gain (%)", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(Cohort.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-############
-
-df <- merge(pigs_3,pigs_4, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
-
-# reorder
-df$Cohort.x <- factor(df$Cohort.x, 
-                      levels=c("Control", 
-                               "D-Scour", 
-                               "ColiGuard",
-                               "Neomycin",
-                               "Neomycin+D-Scour",
-                               "Neomycin+ColiGuard"))
-
-res1 <- aov(diff ~ Cohort.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$Cohort.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Fe14_Fe21"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-cohort_stats <- rbind(cohort_stats,aov.out)
-
-cw_summary <- df %>% 
-  group_by(Cohort.x) %>% 
-  tally()
-
-plot_C_D <- ggboxplot(df, x="Cohort.x", y="diff", fill = "Cohort.x", 
-                      ylab="weight gain (%)", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(Cohort.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
+weight_BIRTH_stats <- rbind(myfun_weight_BIRTH_stats(df_t0_t2,"t0_t2"), 
+                             myfun_weight_BIRTH_stats(df_t2_t4,"t2_t4"), 
+                             myfun_weight_BIRTH_stats(df_t4_t6,"t4_t6"), 
+                             myfun_weight_BIRTH_stats(df_t6_t8,"t6_t8"), 
+                             myfun_weight_BIRTH_stats(df_t2_t6,"t2_t6"), 
+                             myfun_weight_BIRTH_stats(df_t4_t8,"t4_t8"), 
+                             myfun_weight_BIRTH_stats(df_t0_t8,"t0_t8")
+)
 
 ############
 
-df <- merge(pigs_4,pigs_5, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
+# convert rownames to first column
+weight_cohort_stats <- setDT(weight_cohort_stats, keep.rownames = TRUE)[]
+# add data to workbook 
+# addWorksheet(wb, "weight_cohort_stats")
+# writeData(wb, sheet = "weight_cohort_stats", weight_cohort_stats, rowNames = FALSE)
+fwrite(x=weight_cohort_stats, file=paste0(stats_dir,"weight_cohort_stats.csv"))
 
-# reorder
-df$Cohort.x <- factor(df$Cohort.x, 
-                      levels=c("Control", 
-                               "D-Scour", 
-                               "ColiGuard",
-                               "Neomycin",
-                               "Neomycin+D-Scour",
-                               "Neomycin+ColiGuard"))
 
-res1 <- aov(diff ~ Cohort.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$Cohort.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Fe21_Fe28"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-cohort_stats <- rbind(cohort_stats,aov.out)
+# convert rownames to first column
+weight_breed_stats <- setDT(weight_breed_stats, keep.rownames = TRUE)[]
+# add data to workbook 
+# addWorksheet(wb, "weight_breed_stats")
+# writeData(wb, sheet = "weight_breed_stats", weight_breed_stats, rowNames = FALSE)
 
-cw_summary <- df %>% 
-  group_by(Cohort.x) %>% 
-  tally()
-
-plot_D_E <- ggboxplot(df, x="Cohort.x", y="diff", fill = "Cohort.x", 
-                      ylab="weight gain (%)", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(Cohort.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
+# convert rownames to first column
+weight_BIRTH_stats <- setDT(weight_BIRTH_stats, keep.rownames = TRUE)[]
+# add data to workbook 
+# addWorksheet(wb, "weight_BIRTH_stats")
+# writeData(wb, sheet = "weight_BIRTH_stats", weight_BIRTH_stats, rowNames = FALSE)
 
 ############
 
-df <- merge(pigs_2,pigs_4, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
+stats_filtered_output <- weight_cohort_stats %>% dplyr::filter(`p adj` <= 0.05) %>%
+  dplyr::filter(comparison=="Neomycin+D-Scour-Neomycin"| 
+                  comparison=="Neomycin+ColiGuard-Neomycin"|
+                  comparison=="Control-Neomycin"|
+                  comparison=="Control-D-Scour"|
+                  comparison=="Control-ColiGuard")
 
-# reorder
-df$Cohort.x <- factor(df$Cohort.x, 
-                      levels=c("Control", 
-                               "D-Scour", 
-                               "ColiGuard",
-                               "Neomycin",
-                               "Neomycin+D-Scour",
-                               "Neomycin+ColiGuard"))
+###########################
 
-res1 <- aov(diff ~ Cohort.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$Cohort.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Fe7_Fe21"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-cohort_stats <- rbind(cohort_stats,aov.out)
-
-cw_summary <- df %>% 
-  group_by(Cohort.x) %>% 
-  tally()
-
-plot_B_D <- ggboxplot(df, x="Cohort.x", y="diff", fill = "Cohort.x", 
-                      ylab="weight gain (%)", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(Cohort.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-############
-
-df <- merge(pigs_3,pigs_5, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
-
-# reorder
-df$Cohort.x <- factor(df$Cohort.x, 
-                      levels=c("Control", 
-                               "D-Scour", 
-                               "ColiGuard",
-                               "Neomycin",
-                               "Neomycin+D-Scour",
-                               "Neomycin+ColiGuard"))
-
-res1 <- aov(diff ~ Cohort.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$Cohort.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Fe14_Fe28"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-cohort_stats <- rbind(cohort_stats,aov.out)
-
-cw_summary <- df %>% 
-  group_by(Cohort.x) %>% 
-  tally()
-
-plot_C_E <- ggboxplot(df, x="Cohort.x", y="diff", fill = "Cohort.x", 
-                      ylab="weight gain (%)", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(Cohort.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-############
-
-df <- merge(pigs_1,pigs_5, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
-
-# reorder
-df$Cohort.x <- factor(df$Cohort.x, 
-                      levels=c("Control", 
-                               "D-Scour", 
-                               "ColiGuard",
-                               "Neomycin",
-                               "Neomycin+D-Scour",
-                               "Neomycin+ColiGuard"))
-
-res1 <- aov(diff ~ Cohort.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$Cohort.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Ja31_Fe28"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-cohort_stats <- rbind(cohort_stats,aov.out)
-
-cw_summary <- df %>% 
-  group_by(Cohort.x) %>% 
-  tally()
-
-plot_A_E <- ggboxplot(df, x="Cohort.x", y="diff", fill = "Cohort.x", 
-                      ylab="weight gain (%)", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(Cohort.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-# this is for extracting the legend 
-for_legend_only <- ggboxplot(df, x = "Cohort.x", y = "diff", fill = "Cohort.x", 
+# this is for extracting the legend only
+df_t0_t2 <- merge(piggies_t0,piggies_t2, by=c("pig"))
+df_t0_t2$diff = ((df_t0_t2$weight.y-df_t0_t2$weight.x)/df_t0_t2$weight.y)*100
+df_t0_t2$Cohort.x <- factor(df_t0_t2$Cohort.x, 
+                            levels=c("Control", 
+                                     "D-Scour", 
+                                     "ColiGuard",
+                                     "Neomycin",
+                                     "Neomycin+D-Scour",
+                                     "Neomycin+ColiGuard"))
+for_legend_only <- ggboxplot(df_t0_t2, x = "Cohort.x", y = "diff", fill = "Cohort.x", 
                              legend = "right")+
   scale_color_manual(labels = c("Control", 
                                 "D-Scour",
@@ -423,18 +408,39 @@ for_legend_only <- ggboxplot(df, x = "Cohort.x", y = "diff", fill = "Cohort.x",
                                 "#F564E3")) +
   guides(fill=guide_legend("Cohort")) +
   My_Theme
+addSmallLegend <- function(myPlot, pointSize = 10, textSize = 8, spaceLegend = 0.6) {
+  myPlot +
+    guides(shape = guide_legend(override.aes = list(size = pointSize)),
+           color = guide_legend(override.aes = list(size = pointSize))) +
+    theme(legend.title = element_text(size = textSize), 
+          legend.text  = element_text(size = textSize),
+          legend.key.size = unit(spaceLegend, "lines"))
+}
+# Apply on original plot
+for_legend_only <- addSmallLegend(for_legend_only)
 leg <- get_legend(for_legend_only)
 
+###########################
+
+# final plot: 
+
 empty_space = plot_grid(NULL, NULL, NULL, NULL, ncol=4)
-top_row = plot_grid(plot_A_B,plot_B_C,plot_C_D,plot_D_E, ncol=4, 
+top_row = plot_grid(myfun_weight_cohort_plot(df_t0_t2),
+                    myfun_weight_cohort_plot(df_t2_t4),
+                    myfun_weight_cohort_plot(df_t4_t6),
+                    myfun_weight_cohort_plot(df_t6_t8),
+                    ncol=4, 
                     rel_widths=c(0.25,0.25,0.25,0.25),
-                    labels=c("A-B","B-C","C-D","D-E"),
+                    labels=c("t0-t2","t2-t4","t4-t6","t6-t8"),
                     label_size = 10)
-bottom_row = plot_grid(plot_B_D,plot_C_E,plot_A_E,leg, ncol=4, 
+bottom_row = plot_grid(myfun_weight_cohort_plot(df_t2_t6),
+                       myfun_weight_cohort_plot(df_t4_t8),
+                       myfun_weight_cohort_plot(df_t0_t8),
+                       leg, ncol=4, 
                        rel_widths=c(0.25,0.25,0.25,0.25),
-                       labels=c("B-D","C-E","A-E",""),
+                       labels=c("t2-t6","t4-t8","t0-t8",""),
                        label_size = 10)
-all_plots <- plot_grid(empty_space,
+weight_cohort_plots <- plot_grid(empty_space,
                        top_row,
                        bottom_row,
                        nrow=3)
@@ -442,614 +448,140 @@ all_plots <- plot_grid(empty_space,
 pdf(paste0(out_dir,"weight_deltas_by_cohort.pdf"))
 ggdraw() +
   draw_image(timeline_deltas_weight, x = 0, y = 0.16) +
-  draw_plot(all_plots)
+  draw_plot(weight_cohort_plots)
 dev.off()
 
-# DELTA p-values - Cohort
-
-# convert rownames to first column
-weight_delta_cohorts <- setDT(cohort_stats, keep.rownames = TRUE)[]
-# add data to workbook 
-addWorksheet(wb, "weight_delta_cohorts")
-writeData(wb, sheet = "weight_delta_cohorts", weight_delta_cohorts, rowNames = FALSE)
-
-################################################################################################
-
-# does the breed have anything to do with it??
-
+##############################################################################
 ##############################################################################
 
-# breed
-
-##############################################################################
+# BREED
 
 
-df <- merge(pigs_1,pigs_2, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
+###########################
 
-# reorder
-df$breed.x <- factor(df$breed.x, 
-                      levels=c("Landrace x Cross bred (LW x D)", 
-                               "Duroc x Landrace", 
-                               "Duroc x Large white",
-                               "Large white x Duroc"))
+# this is for extracting the legend only
+df_t0_t2 <- merge(piggies_t0,piggies_t2, by=c("pig"))
+df_t0_t2$diff = ((df_t0_t2$weight.y-df_t0_t2$weight.x)/df_t0_t2$weight.y)*100
 
-res1 <- aov(diff ~ breed.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$breed.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Ja31_Fe7"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-breed_stats <- aov.out
-
-cw_summary <- df %>% 
-  group_by(breed.x) %>% 
-  tally()
-
-plot_A_B <- ggboxplot(df, x="breed.x", y="diff", fill = "breed.x", 
-                      ylab="weight gain (%)", palette = "jco", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(breed.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-plot_A_B
-
-############
-
-df <- merge(pigs_2,pigs_3, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
-
-# reorder
-df$breed.x <- factor(df$breed.x, 
-                     levels=c("Landrace x Cross bred (LW x D)", 
-                              "Duroc x Landrace", 
-                              "Duroc x Large white",
-                              "Large white x Duroc"))
-
-res1 <- aov(diff ~ breed.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$breed.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Fe7_Fe14"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-breed_stats <- aov.out
-breed_stats <- rbind(breed_stats,aov.out)
-
-cw_summary <- df %>% 
-  group_by(breed.x) %>% 
-  tally()
-
-plot_B_C <- ggboxplot(df, x="breed.x", y="diff", fill = "breed.x", 
-                      ylab="weight gain (%)", palette = "jco", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(breed.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-plot_B_C
-
-############
-
-df <- merge(pigs_3,pigs_4, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
-
-# reorder
-df$breed.x <- factor(df$breed.x, 
-                     levels=c("Landrace x Cross bred (LW x D)", 
-                              "Duroc x Landrace", 
-                              "Duroc x Large white",
-                              "Large white x Duroc"))
-
-
-res1 <- aov(diff ~ breed.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$breed.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Fe14_Fe21"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-breed_stats <- aov.out
-breed_stats <- rbind(breed_stats,aov.out)
-
-cw_summary <- df %>% 
-  group_by(breed.x) %>% 
-  tally()
-
-plot_C_D <- ggboxplot(df, x="breed.x", y="diff", fill = "breed.x", 
-                      ylab="weight gain (%)", palette = "jco", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(breed.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-plot_C_D
-
-
-############
-
-df <- merge(pigs_4,pigs_5, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
-
-# reorder
-df$breed.x <- factor(df$breed.x, 
-                     levels=c("Landrace x Cross bred (LW x D)", 
-                              "Duroc x Landrace", 
-                              "Duroc x Large white",
-                              "Large white x Duroc"))
-
-res1 <- aov(diff ~ breed.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$breed.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Fe21_Fe28"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-breed_stats <- aov.out
-breed_stats <- rbind(breed_stats,aov.out)
-
-cw_summary <- df %>% 
-  group_by(breed.x) %>% 
-  tally()
-
-plot_D_E <- ggboxplot(df, x="breed.x", y="diff", fill = "breed.x", 
-                      ylab="weight gain (%)", palette = "jco", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(breed.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-plot_D_E
-
-############
-
-df <- merge(pigs_2,pigs_4, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
-
-# reorder
-df$breed.x <- factor(df$breed.x, 
-                     levels=c("Landrace x Cross bred (LW x D)", 
-                              "Duroc x Landrace", 
-                              "Duroc x Large white",
-                              "Large white x Duroc"))
-
-res1 <- aov(diff ~ breed.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$breed.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Fe7_Fe21"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-breed_stats <- aov.out
-breed_stats <- rbind(breed_stats,aov.out)
-
-cw_summary <- df %>% 
-  group_by(breed.x) %>% 
-  tally()
-
-plot_B_D <- ggboxplot(df, x="breed.x", y="diff", fill = "breed.x", 
-                      ylab="weight gain (%)", palette = "jco", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(breed.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-plot_B_D
-
-############
-
-df <- merge(pigs_3,pigs_5, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
-
-# reorder
-df$breed.x <- factor(df$breed.x, 
-                     levels=c("Landrace x Cross bred (LW x D)", 
-                              "Duroc x Landrace", 
-                              "Duroc x Large white",
-                              "Large white x Duroc"))
-
-res1 <- aov(diff ~ breed.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$breed.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Fe14_Fe28"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-breed_stats <- aov.out
-breed_stats <- rbind(breed_stats,aov.out)
-
-
-cw_summary <- df %>% 
-  group_by(breed.x) %>% 
-  tally()
-
-plot_C_E <- ggboxplot(df, x="breed.x", y="diff", fill = "breed.x", 
-                      ylab="weight gain (%)", palette = "jco", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(breed.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-plot_C_E
-
-
-# this is for extracting the legend 
-for_legend_only <- ggboxplot(df, x = "breed.x", y = "diff", fill = "breed.x", 
+for_legend_only <- ggboxplot(df_t0_t2, x = "breed.x", y = "diff", fill = "breed.x", 
                              legend = "right")+
-  scale_fill_manual(labels = c("Landrace x Cross bred (LW x D)", 
-                                "Duroc x Landrace",
-                                "Large white x Duroc",
-                                "Duroc x Large white"
-                                ), 
-                     values = c("#0073C2FF",   # first 4 colors of jco palette
-                                "#EFC000FF",
-                                "#868686FF",
-                                "#CD534CFF"
-                                )) +
-  guides(fill=guide_legend("breed")) +
+  guides(fill=guide_legend("Cohort")) +
   My_Theme
-
+for_legend_only <- set_palette(for_legend_only, "jco")
+addSmallLegend <- function(myPlot, pointSize = 10, textSize = 8, spaceLegend = 0.6) {
+  myPlot +
+    guides(shape = guide_legend(override.aes = list(size = pointSize)),
+           color = guide_legend(override.aes = list(size = pointSize))) +
+    theme(legend.title = element_text(size = textSize), 
+          legend.text  = element_text(size = textSize),
+          legend.key.size = unit(spaceLegend, "lines"))
+}
+# Apply on original plot
+for_legend_only <- addSmallLegend(for_legend_only)
 leg <- get_legend(for_legend_only)
 
+###########################
+
+# final plot: 
 
 empty_space = plot_grid(NULL, NULL, NULL, NULL, ncol=4)
-top_row = plot_grid(plot_A_B,plot_B_C,plot_C_D,plot_D_E, ncol=4, 
+top_row = plot_grid(myfun_weight_breed_plot(df_t0_t2),
+                    myfun_weight_breed_plot(df_t2_t4),
+                    myfun_weight_breed_plot(df_t4_t6),
+                    myfun_weight_breed_plot(df_t6_t8),
+                    ncol=4, 
                     rel_widths=c(0.25,0.25,0.25,0.25),
-                    labels=c("A-B","B-C","C-D","D-E"),
+                    labels=c("t0-t2","t2-t4","t4-t6","t6-t8"),
                     label_size = 10)
-bottom_row = plot_grid(plot_B_D,plot_C_E, leg, ncol=3, 
-                       rel_widths=c(0.25,0.25,0.50),
-                       labels=c("B-D","C-E",""),
+bottom_row = plot_grid(myfun_weight_breed_plot(df_t2_t6),
+                       myfun_weight_breed_plot(df_t4_t8),
+                       myfun_weight_breed_plot(df_t0_t8),
+                       leg, ncol=4, 
+                       rel_widths=c(0.25,0.25,0.25,0.25),
+                       labels=c("t2-t6","t4-t8","t0-t8",""),
                        label_size = 10)
-all_plots <- plot_grid(empty_space,
-                       top_row,
-                       bottom_row,
-                       nrow=3)
-
-# pdf("weight_deltas_by_breed.pdf")
-# ggdraw() +
-#   draw_image(timeline_deltas, x = 0, y = 0.16) +
-#   draw_plot(all_plots)
-# dev.off()
-
-
-# DELTA p-values - Breed
-
-# convert rownames to first column
-weight_delta_breed <- setDT(breed_stats, keep.rownames = TRUE)[]
-# add data to workbook 
-addWorksheet(wb, "weight_delta_breed")
-writeData(wb, sheet = "weight_delta_breed", weight_delta_breed, rowNames = FALSE)
-
-##############################################################################
-
-# bday 
-
-##############################################################################
-
-
-df <- merge(pigs_1,pigs_2, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
-
-# reorder
-df$BIRTH_DAY.x <- factor(df$BIRTH_DAY.x, 
-                      levels=c("2017-01-06",
-                               "2017-01-07",
-                               "2017-01-08",
-                               "2017-01-09",
-                               "2017-01-10",
-                               "2017-01-11"))
-
-res1 <- aov(diff ~ BIRTH_DAY.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$BIRTH_DAY.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Ja31_Fe7"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-bday_stats <- aov.out
-
-cw_summary <- df %>% 
-  group_by(BIRTH_DAY.x) %>% 
-  tally()
-
-plot_A_B <- ggboxplot(df, x="BIRTH_DAY.x", y="diff", fill = "BIRTH_DAY.x", 
-                      ylab="weight gain (%)", palette = "jco", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(BIRTH_DAY.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-plot_A_B
-
-############
-
-df <- merge(pigs_2,pigs_3, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
-
-# reorder
-df$BIRTH_DAY.x <- factor(df$BIRTH_DAY.x, 
-                         levels=c("2017-01-06",
-                                  "2017-01-07",
-                                  "2017-01-08",
-                                  "2017-01-09",
-                                  "2017-01-10",
-                                  "2017-01-11"))
-
-res1 <- aov(diff ~ BIRTH_DAY.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$BIRTH_DAY.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Fe7_Fe14"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-bday_stats <- rbind(bday_stats,aov.out)
-
-cw_summary <- df %>% 
-  group_by(BIRTH_DAY.x) %>% 
-  tally()
-
-plot_B_C <- ggboxplot(df, x="BIRTH_DAY.x", y="diff", fill = "BIRTH_DAY.x", 
-                      ylab="weight gain (%)", palette = "jco", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(BIRTH_DAY.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-plot_B_C
-
-############
-
-df <- merge(pigs_3,pigs_4, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
-
-# reorder
-df$BIRTH_DAY.x <- factor(df$BIRTH_DAY.x, 
-                         levels=c("2017-01-06",
-                                  "2017-01-07",
-                                  "2017-01-08",
-                                  "2017-01-09",
-                                  "2017-01-10",
-                                  "2017-01-11"))
-
-res1 <- aov(diff ~ BIRTH_DAY.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$BIRTH_DAY.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Fe14_Fe21"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-bday_stats <- rbind(bday_stats,aov.out)
-
-cw_summary <- df %>% 
-  group_by(BIRTH_DAY.x) %>% 
-  tally()
-
-plot_C_D <- ggboxplot(df, x="BIRTH_DAY.x", y="diff", fill = "BIRTH_DAY.x", 
-                      ylab="weight gain (%)", palette = "jco", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(BIRTH_DAY.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-plot_C_D
-
-############
-
-df <- merge(pigs_4,pigs_5, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
-
-# reorder
-df$BIRTH_DAY.x <- factor(df$BIRTH_DAY.x, 
-                         levels=c("2017-01-06",
-                                  "2017-01-07",
-                                  "2017-01-08",
-                                  "2017-01-09",
-                                  "2017-01-10",
-                                  "2017-01-11"))
-
-res1 <- aov(diff ~ BIRTH_DAY.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$BIRTH_DAY.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Fe21_Fe28"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-bday_stats <- rbind(bday_stats,aov.out)
-
-cw_summary <- df %>% 
-  group_by(BIRTH_DAY.x) %>% 
-  tally()
-
-plot_D_E <- ggboxplot(df, x="BIRTH_DAY.x", y="diff", fill = "BIRTH_DAY.x", 
-                      ylab="weight gain (%)", palette = "jco", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(BIRTH_DAY.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-plot_D_E
-
-############
-
-df <- merge(pigs_2,pigs_4, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
-
-# reorder
-df$BIRTH_DAY.x <- factor(df$BIRTH_DAY.x, 
-                         levels=c("2017-01-06",
-                                  "2017-01-07",
-                                  "2017-01-08",
-                                  "2017-01-09",
-                                  "2017-01-10",
-                                  "2017-01-11"))
-
-res1 <- aov(diff ~ BIRTH_DAY.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$BIRTH_DAY.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Fe7_Fe21"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-bday_stats <- rbind(bday_stats,aov.out)
-
-cw_summary <- df %>% 
-  group_by(BIRTH_DAY.x) %>% 
-  tally()
-
-plot_B_D <- ggboxplot(df, x="BIRTH_DAY.x", y="diff", fill = "BIRTH_DAY.x", 
-                      ylab="weight gain (%)", palette = "jco", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(BIRTH_DAY.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-plot_B_D
-
-############
-
-df <- merge(pigs_3,pigs_5, by=c("isolation_source"))
-df$diff = ((df$value.y-df$value.x)/df$value.y)*100
-
-# reorder
-df$BIRTH_DAY.x <- factor(df$BIRTH_DAY.x, 
-                         levels=c("2017-01-06",
-                                  "2017-01-07",
-                                  "2017-01-08",
-                                  "2017-01-09",
-                                  "2017-01-10",
-                                  "2017-01-11"))
-
-res1 <- aov(diff ~ BIRTH_DAY.x, data=df)
-res <- TukeyHSD(res1)
-aov.out <- as.data.frame(res$BIRTH_DAY.x)
-aov.out <- tibble::rownames_to_column(aov.out, "comparison")
-aov.out$time_delta="Fe14_Fe28"
-aov.out$test <- "anova"
-aov.out$padj_method <- "TukeyHSD"
-bday_stats <- rbind(bday_stats,aov.out)
-
-cw_summary <- df %>% 
-  group_by(BIRTH_DAY.x) %>% 
-  tally()
-
-plot_C_E <- ggboxplot(df, x="BIRTH_DAY.x", y="diff", fill = "BIRTH_DAY.x", 
-                      ylab="weight gain (%)", palette = "jco", legend = "none")+
-  My_Theme+
-  geom_text(data = cw_summary,
-            aes(BIRTH_DAY.x, Inf, label = n), vjust="inward", size = your_font_size)+
-  stat_compare_means(method = "anova", label.x=1.5, size = your_font_size) 
-
-plot_C_E
-
-# this is for extracting the legend 
-for_legend_only <- ggboxplot(df, x = "BIRTH_DAY.x", y = "diff", fill = "BIRTH_DAY.x", 
-                             legend = "right")+
-  scale_fill_manual(labels = c("2017-01-06", 
-                               "2017-01-07",
-                               "2017-01-08",
-                               "2017-01-09",
-                               "2017-01-10",
-                               "2017-01-11"
-                               ), 
-                    values = c("#0073C2FF",   # first 6 colors of jco palette
-                               "#EFC000FF",
-                               "#868686FF",
-                               "#CD534CFF",
-                               "#7AA6DCFF",
-                               "#003C67FF"
-                    ))+
-  guides(fill=guide_legend("birth day")) +
-  My_Theme
-
-leg <- get_legend(for_legend_only)
-
-empty_space = plot_grid(NULL, NULL, NULL, NULL, ncol=4)
-top_row = plot_grid(plot_A_B,plot_B_C,plot_C_D,plot_D_E, ncol=4, 
-                    rel_widths=c(0.25,0.25,0.25,0.25),
-                    labels=c("A-B","B-C","C-D","D-E"),
-                    label_size = 10)
-bottom_row = plot_grid(plot_B_D,plot_C_E, leg, ncol=3, 
-                       rel_widths=c(0.25,0.25,0.50),
-                       labels=c("B-D","C-E",""),
-                       label_size = 10)
-all_plots <- plot_grid(empty_space,
-                       top_row,
-                       bottom_row,
-                       nrow=3)
-
-# pdf("weight_deltas_by_bday.pdf")
-# ggdraw() +
-#   draw_image(timeline_deltas, x = 0, y = 0.16) +
-#   draw_plot(all_plots)
-# dev.off()
-
-
-# DELTA p-values - bday
-
-# convert rownames to first column
-weight_delta_bday <- setDT(bday_stats, keep.rownames = TRUE)[]
-# add data to workbook 
-addWorksheet(wb, "weight_delta_bday")
-writeData(wb, sheet = "weight_delta_bday", weight_delta_bday, rowNames = FALSE)
-
-
-
-##################################################################################
-##################################################################################
-
-
-# save stats in existing workbook
-saveWorkbook(wb, paste0(out_dir_git,"stats.xlsx"), overwrite=TRUE)
-
-
-##################################################################################
-##################################################################################
-
-# let's look at weight changing over time
-head(all_weights)
-
-# reorder
-all_weights$date <- factor(all_weights$date, 
-                           levels=c("31-Jan", 
-                                    "7-Feb", 
-                                    "14-Feb",
-                                    "21-Feb",
-                                    "28-Feb",
-                                    "6-Mar",
-                                    "7-Mar",
-                                    "8-Mar",
-                                    "9-Mar",
-                                    "10-Mar"))
-
-
-# weight percentage change 
-z <- all_weights %>%
-  filter(date=="31-Jan"|date=="7-Feb"|date=="14-Feb"|date=="21-Feb"|date=="28-Feb") %>%
-  group_by(isolation_source) %>% 
-  dplyr::arrange(date, .by_group = TRUE) %>%
-  dplyr::mutate(value = (value/lag(value) - 1) * 100) # I checked this formula and it's right https://www.nafwa.org/percentchange.php
-
-pdf(paste0(out_dir,"weight_percentage_change.pdf"))
-ggplot(all_weights, aes(x=date,y=value))+
-  geom_point()+
-  geom_smooth(method = "loess", se=TRUE, aes(group=1))+
-  labs(y="weight measurements across time")
-ggplot(z, aes(x=date,y=value))+
-  geom_point()+
-  labs(y="weight percentage change")+
-  geom_smooth(method = "loess", se=TRUE, aes(group=1))
+weight_breed_plots <- plot_grid(empty_space,
+                                 top_row,
+                                 bottom_row,
+                                 nrow=3)
+
+pdf(paste0(out_dir,"weight_deltas_by_breed.pdf"))
+ggdraw() +
+  draw_image(timeline_deltas_weight, x = 0, y = 0.16) +
+  draw_plot(weight_breed_plots)
 dev.off()
 
-sink(paste0(out_dir,"weight_percentage_change.txt"))
-z %>%
-  group_by(date) %>%
-  dplyr::summarise()
-tapply(z$value, z$date, summary)
-sink()
+##############################################################################
+##############################################################################
+
+
+# BIRTH
+
+
+###########################
+
+# this is for extracting the legend only
+df_t0_t2 <- merge(piggies_t0,piggies_t2, by=c("pig"))
+df_t0_t2$diff = ((df_t0_t2$weight.y-df_t0_t2$weight.x)/df_t0_t2$weight.y)*100
+for_legend_only <- ggboxplot(df_t0_t2, x = "BIRTH_DAY.x", y = "diff", fill = "BIRTH_DAY.x", 
+                             legend = "right")+
+  guides(fill=guide_legend("BIRTH")) +
+  My_Theme
+for_legend_only <- set_palette(for_legend_only, "jco")
+addSmallLegend <- function(myPlot, pointSize = 10, textSize = 8, spaceLegend = 0.6) {
+  myPlot +
+    guides(shape = guide_legend(override.aes = list(size = pointSize)),
+           color = guide_legend(override.aes = list(size = pointSize))) +
+    theme(legend.title = element_text(size = textSize), 
+          legend.text  = element_text(size = textSize),
+          legend.key.size = unit(spaceLegend, "lines"))
+}
+# Apply on original plot
+for_legend_only <- addSmallLegend(for_legend_only)
+leg <- get_legend(for_legend_only)
+
+###########################
+
+# final plot: 
+
+empty_space = plot_grid(NULL, NULL, NULL, NULL, ncol=4)
+top_row = plot_grid(myfun_weight_BIRTH_plot(df_t0_t2),
+                    myfun_weight_BIRTH_plot(df_t2_t4),
+                    myfun_weight_BIRTH_plot(df_t4_t6),
+                    myfun_weight_BIRTH_plot(df_t6_t8),
+                    ncol=4, 
+                    rel_widths=c(0.25,0.25,0.25,0.25),
+                    labels=c("t0-t2","t2-t4","t4-t6","t6-t8"),
+                    label_size = 10)
+bottom_row = plot_grid(myfun_weight_BIRTH_plot(df_t2_t6),
+                       myfun_weight_BIRTH_plot(df_t4_t8),
+                       myfun_weight_BIRTH_plot(df_t0_t8),
+                       leg, ncol=4, 
+                       rel_widths=c(0.25,0.25,0.25,0.25),
+                       labels=c("t2-t6","t4-t8","t0-t8",""),
+                       label_size = 10)
+weight_BIRTH_plots <- plot_grid(empty_space,
+                                top_row,
+                                bottom_row,
+                                nrow=3)
+
+pdf(paste0(out_dir,"weight_deltas_by_BIRTH.pdf"))
+ggdraw() +
+  draw_image(timeline_deltas_weight, x = 0, y = 0.16) +
+  draw_plot(weight_BIRTH_plots)
+dev.off()
+
 
 ##################################################################################
 ##################################################################################
+
+
+# # save stats in existing workbook
+# saveWorkbook(wb, paste0(out_dir_git,"stats.xlsx"), overwrite=TRUE)
+
+##################################################################################
+##################################################################################
+##################################################################################
+##################################################################################
+
 

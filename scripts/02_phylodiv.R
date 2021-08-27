@@ -42,47 +42,86 @@
 
 ###########################################################################################
 
-#BiocManager::install("sva")
-#BiocManager::install("genefilter")
+
+
+
+
 
 # load libraries
 
+#install.packages("BiocManager")
+#BiocManager::install("sva")
+library(sva)
 
-library(magick)
-library(tiff)
+#install.packages("tiff")
+library(tiff) # non-zero status
+
+#install.packages("rstatix")
 library(rstatix)
+
+#install.packages("devtools")
+library(devtools)
+#install_github("vqv/ggbiplot")
 library(ggbiplot) # ggbiplot_0.55 
+
+#install.packages("ggpubr")
 library(ggpubr) # ggpubr_0.2.4 
-library(sva) # sva_3.32.1  
+
+#install.packages("tidyverse")
 library(tidyverse) # tidyverse_1.3.0 
+
 library(broom) # broom_0.5.2
 library(cowplot) # cowplot_1.0.0
 library(data.table) # data.table_1.12.8  
+
+#install.packages("dunn.test")
 library(dunn.test) # dunn.test_1.3.5 
+
 library(plyr) # plyr_1.8.5 
 library(dplyr) # dplyr_0.8.3 
 library(forcats) # forcats_0.4.0 
 library(ggplot2) # ggplot2_3.2.1
 library(gridExtra) # gridExtra_2.3     
+
+#install.packages("plotrix")
 library(plotrix) # plotrix_3.7-7
+
 library(readr) # readr_1.3.1
 library(readxl) # readxl_1.3.1
 library(tidyr) # tidyr_1.0.0
+
+#install.packages("varhandle")
 library(varhandle) # varhandle_2.0.4
+
 library(tibble) # tibble_2.1.3 
 library(purrr) # purrr_0.3.3
 library(openxlsx)
-#library(genefilter)
-#library(compareGroups)
+
+library(genefilter)
+
+#install.packages("compareGroups")
+library(compareGroups)
+
+#install.packages("splitstackshape")
 library(splitstackshape)
+
+#install.packages("pheatmap")
 library(pheatmap) # used in pos_controls_reads.R
+
 library(magrittr)
+#install.packages("EnvStats")
 library(EnvStats)
 
-source_data = "/Users/12705859/metapigs_base/source_data/" # git 
-middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
-out_dir_git = "/Users/12705859/metapigs_base/out/" # git 
-out_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/out/" # local 
+#install.packages("magick")
+# install.packages("~/Downloads/magick_2.7.2.tar.gz", repos = NULL, type = "source")
+library(magick)
+
+source_data = "/Users/danielagaio/Gaio/github/metapigs_base/source_data/" # git 
+middle_dir = "/Users/danielagaio/Gaio/github/metapigs_base/middle_dir/" # git 
+stats_dir = "/Users/danielagaio/Gaio/github/metapigs_base/middle_dir/stats/" # git 
+out_dir_git = "/Users/danielagaio/Gaio/github/metapigs_base/out/" # git 
+out_dir = "/Users/danielagaio/Desktop/metapigs_base/phylosift/out/" # local 
+
 
 ###########################################################################################
 
@@ -101,7 +140,7 @@ mdat <- read_excel(paste0(source_data,"Metagenome.environmental_20190308_2.xlsx"
                                  "text","text", "text", "text", "text", "text","text", "text"),
                    skip = 12)
 
-mdat$Cohort <- gsub("Sows","Sows",mdat$Cohort)
+mdat$Cohort <- gsub("Mothers","Sows",mdat$Cohort)
 mdat$Cohort <- gsub("D-scour","D-Scour", mdat$Cohort)
 
 # formatting metadata column names 
@@ -111,7 +150,6 @@ colnames(mdat)[colnames(mdat) == '*sample_name'] <- 'sample_name'
 
 mdat <- mdat %>%
   dplyr::select(isolation_source,collection_date,Cohort,DNA_plate,DNA_well,PigPen)
-
 
 ####
 # date formatting: 
@@ -189,7 +227,7 @@ pcadat$DNA_plate <- gsub("plate_","P",pcadat$DNA_plate)
 
 # create workbook to add stats 
 
-wb <- createWorkbook()
+#wb <- createWorkbook()
 
 ###########################################################################################
 
@@ -204,7 +242,6 @@ fpddat$DNA_plate <- gsub("plate_","P",fpddat$DNA_plate)
 fpddat$DNA_well <- fpddat$placerun_3
 fpddat <- fpddat %>%
   dplyr::select(DNA_plate,DNA_well, phylo_entropy, quadratic, unrooted_pd, rooted_pd, bwpd)
-
 
 fpddat$sid <- NULL
 
@@ -410,8 +447,7 @@ all <- rbind(aov.out1,
              aov.out7)
 all$padj_method <- "TukeyHSD"
 
-addWorksheet(wb, "batch_pre_process")
-writeData(wb, sheet = "batch_pre_process", all, rowNames = FALSE)
+fwrite(x=all, file=paste0(stats_dir,"batch_pre_process.csv"))
 
 ###########################################################################################
 
@@ -609,16 +645,13 @@ all <- rbind(aov.out1,
              aov.out7)
 all$padj_method <- "TukeyHSD"
 
-addWorksheet(wb, "batch_post_process")
-writeData(wb, sheet = "batch_post_process", all, rowNames = FALSE)
+fwrite(x=all, file=paste0(stats_dir,"batch_post_process.csv"))
 
 pdf(paste0(out_dir,"NO_batch_alpha_beta.pdf"))
 annotate_figure(figure,
                 top = text_grob("Batch effect after batch effect removal", color = "black", size = 14)
 )
 dev.off()
-
-
 
 ######################################################################################################
 
@@ -720,7 +753,7 @@ df <- left_join(mdat_small, details)
 
 df1 <- df %>% 
   dplyr::select(isolation_source,Cohort,BIRTH_DAY,cross_breed) 
-df2 <- as.data.frame(na.omit(df1)) # removing mothers 
+df2 <- as.data.frame(na.omit(df1)) # removing Sows 
 
 df3 <- df2 %>% group_by(Cohort,cross_breed,BIRTH_DAY) %>% tally()
 df3 <- as.data.frame(df3)
@@ -764,7 +797,7 @@ cols <- 1:5
 boggo <- setDT(boggo)[, lapply(.SD, mean), by=c(names(boggo)[6:8]), .SDcols=cols]
 # unite controls and samples 
 boggo <- rbind(boggo, controls)
-
+unique(boggo$Cohort)
 boggo$Cohort <- factor(boggo$Cohort, 
                        levels=c("Control", 
                                 "D-Scour", 
@@ -2095,11 +2128,8 @@ deltas_stats <- deltas_stats[deltas_stats$comparison %in% meaningfulcomparisons,
 
 
 # add data to workbook 
-addWorksheet(wb, "deltas_stats")
-writeData(wb, sheet = "deltas_stats", deltas_stats, rowNames = FALSE)
-
-
-
+# addWorksheet(wb, "deltas_stats")
+# writeData(wb, sheet = "deltas_stats", deltas_stats, rowNames = FALSE)
 
 
 ##############################################################################
@@ -2117,8 +2147,8 @@ deltas_padj_w_model$test <- "pairwise t-test"
 deltas_padj_w_model$padj_method <- "Tukey"
 deltas_padj_w_model$model <- "value~Cohort+cross_breed+BIRTH_DAY"
 # add data to workbook 
-addWorksheet(wb, "deltas_padj_w_model")
-writeData(wb, sheet = "deltas_padj_w_model", deltas_padj_w_model, rowNames = FALSE)
+# addWorksheet(wb, "deltas_padj_w_model")
+# writeData(wb, sheet = "deltas_padj_w_model", deltas_padj_w_model, rowNames = FALSE)
 
 ##############################################################################
 
@@ -2327,7 +2357,6 @@ all$interval <- factor(all$interval,levels=c("A-B",
                                              "D-E",
                                              "A-C",
                                              "B-D"))
-
 
 
 ################################################################
@@ -2587,9 +2616,10 @@ numbers[12] <- lapply(
 deltas_percent_change <- numbers 
 
 # add data to workbook 
-addWorksheet(wb, "deltas_percent_change")
-writeData(wb, sheet = "deltas_percent_change", deltas_percent_change, rowNames = FALSE)
+# addWorksheet(wb, "deltas_percent_change")
+# writeData(wb, sheet = "deltas_percent_change", deltas_percent_change, rowNames = FALSE)
 
+fwrite(x=deltas_percent_change, file=paste0(stats_dir,"deltas_percent_change.csv"))
 
 ######################################################################################################
 
@@ -2925,9 +2955,9 @@ bw_all <- as.data.frame(bw_all)
 unroo <- as.data.frame(unroo)
 unroo_all <- as.data.frame(unroo_all)
 both <- rbind(bw,unroo,bw_all,unroo_all,means)
-addWorksheet(wb, "alpha_means")
-writeData(wb, sheet = "alpha_means", both, rowNames = FALSE)
-
+# addWorksheet(wb, "alpha_means")
+# writeData(wb, sheet = "alpha_means", both, rowNames = FALSE)
+fwrite(x=both, file=paste0(stats_dir,"alpha_means.csv"))
 
 
 ######################################################################################################
@@ -3102,8 +3132,8 @@ both <- rbind(stat.test_bwpd,
               stat.test_unroo)
 both$padj_method <- "bonferroni"
 
-addWorksheet(wb, "alpha_cohorts")
-writeData(wb, sheet = "alpha_cohorts", both, rowNames = FALSE)
+# addWorksheet(wb, "alpha_cohorts")
+# writeData(wb, sheet = "alpha_cohorts", both, rowNames = FALSE)
 
 
 #######################
@@ -3123,8 +3153,9 @@ both <- rbind(stat.test_bwpd_all,
               stat.test_unroo_all)
 both$padj_method <- "bonferroni"
 
-addWorksheet(wb, "alpha_time")
-writeData(wb, sheet = "alpha_time", both, rowNames = FALSE)
+# addWorksheet(wb, "alpha_time")
+# writeData(wb, sheet = "alpha_time", both, rowNames = FALSE)
+fwrite(x=both, file=paste0(stats_dir,"alpha_time.csv"))
 
 ######################################################################################################
 ######################################################################################################
@@ -3218,7 +3249,7 @@ d <- ggplot(startDF1, aes(x=maternal_sow, y=unrooted_pd, group=maternal_sow)) +
 
 ##################
 
-# nurse_sows and maternal sows on the same plot, dividing BWPD from unrooted
+# nurse_Sows and maternal Sows on the same plot, dividing BWPD from unrooted
 pdf(paste0(out_dir,"nursesow_maternalsow_BWPD.pdf"))
 ggarrange(c, a, 
           labels = c("A", "B"),
@@ -3437,7 +3468,7 @@ theme<-theme(panel.background = element_blank(),
              legend.title=element_text(size=8),
              plot.margin=unit(c(0.3,0.3,0.3,0.3),"line"))
 
-# nurse_sows
+# nurse_Sows
 
 startDF1_unique <- startDF1 %>% group_by(isolation_source) %>% slice(1)
 
@@ -3450,7 +3481,7 @@ startDF1_unique <- startDF1_unique[order(startDF1_unique$nurse_sow),]
 rownames(startDF1_unique) <- 1:nrow(startDF1_unique)
 length(unique(startDF1_unique$nurse_sow))
 
-# subsetting to have 5 nurse_sows in each 
+# subsetting to have 5 nurse_Sows in each 
 startDF11 <- startDF1_unique[1:27,]
 startDF12 <- startDF1_unique[28:47,]
 startDF13 <- startDF1_unique[48:63,]
@@ -3490,7 +3521,7 @@ dev.off()
 
 ######################
 
-# maternal sows 
+# maternal Sows
 
 startDF1_unique <- startDF1 %>% group_by(isolation_source) %>% slice(1)
 
@@ -3502,7 +3533,7 @@ startDF1_unique <- startDF1_unique[order(startDF1_unique$maternal_sow),]
 rownames(startDF1_unique) <- 1:nrow(startDF1_unique)
 length(unique(startDF1_unique$maternal_sow))
 
-# subsetting to have 5 maternal sows in each 
+# subsetting to have 5 maternal Sows in each 
 startDF11 <- startDF1_unique[1:30,]
 startDF12 <- startDF1_unique[31:58,]
 startDF13 <- startDF1_unique[59:72,]
@@ -4159,8 +4190,9 @@ all_pvalues$test <- "Kruskal-Wallis"
 
 
 # write out in workbook
-addWorksheet(wb, "all_pvalues")
-writeData(wb, sheet = "all_pvalues", all_pvalues, rowNames = FALSE)
+# addWorksheet(wb, "all_pvalues")
+# writeData(wb, sheet = "all_pvalues", all_pvalues, rowNames = FALSE)
+fwrite(x=all_pvalues, file=paste0(stats_dir,"all_pvalues.csv"))
 
 padj_function <- function(x, na.rm = FALSE) (p.adjust(x,method="hommel"))
 
@@ -4199,9 +4231,9 @@ all_padj_Hommel$test <- "Kruskal-Wallis"
 all_padj_Hommel$padj_method <- "Hommel"
 
 # write out in workbook
-addWorksheet(wb, "all_padj_Hommel")
-writeData(wb, sheet = "all_padj_Hommel", all_padj_Hommel, rowNames = FALSE)
-
+# addWorksheet(wb, "all_padj_Hommel")
+# writeData(wb, sheet = "all_padj_Hommel", all_padj_Hommel, rowNames = FALSE)
+fwrite(x=all_padj_Hommel, file=paste0(stats_dir,"all_padj_Hommel.csv"))
 
 
 # adjusted pvalues
@@ -5275,8 +5307,8 @@ all_padj_Tukey$test <- "anova"
 all_padj_Tukey$padj_method <- "TukeyHSD"
 
 # write out in workbook
-addWorksheet(wb, "all_padj_Tukey")
-writeData(wb, sheet = "all_padj_Tukey", all_padj_Tukey, rowNames = FALSE)
+# addWorksheet(wb, "all_padj_Tukey")
+# writeData(wb, sheet = "all_padj_Tukey", all_padj_Tukey, rowNames = FALSE)
 
 
 
@@ -5530,7 +5562,7 @@ p8<-df1 %>%
 
 sign_plots <- ggarrange(p1,p2,p3,p4,
                         p5,
-                        #p6,p7, # these are the mothers (already plotted in other plots)
+                        #p6,p7, # these are the Sows (already plotted in other plots)
                         p8,
                         ncol = 4, nrow=2)
 
@@ -5582,8 +5614,8 @@ CIs <- rbind(as.data.frame(CI_me(df_final %>% dplyr::filter(id=="set_1"))),
       
 
 # write out in workbook
-addWorksheet(wb, "confidence_intervals")
-writeData(wb, sheet = "confidence_intervals", CIs, rowNames = FALSE)
+# addWorksheet(wb, "confidence_intervals")
+# writeData(wb, sheet = "confidence_intervals", CIs, rowNames = FALSE)
 
 
 ######################################################################################################
@@ -5592,7 +5624,7 @@ writeData(wb, sheet = "confidence_intervals", CIs, rowNames = FALSE)
 
 
 # save stats in workbook
-saveWorkbook(wb, paste0(out_dir_git,"stats.xlsx"), overwrite=TRUE)
+#saveWorkbook(wb, paste0(out_dir_git,"stats.xlsx"), overwrite=TRUE)
 
 
 ###########################################################################################

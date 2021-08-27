@@ -9,9 +9,10 @@ library(readxl)
 library(dplyr)
 library(readr)
 
-source_data = "/Users/12705859/metapigs_base/source_data/" # git 
-middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
-out_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/" # local 
+source_data = "/Users/danielagaio/Gaio/github/metapigs_base/source_data/" # git 
+middle_dir = "/Users/danielagaio/Gaio/github/metapigs_base/middle_dir/" # git 
+out_dir = "/Users/danielagaio/Desktop/metapigs_base/phylosift/guppy/" # local 
+
 
 ###########################################################################################
 

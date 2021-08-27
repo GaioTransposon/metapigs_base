@@ -36,24 +36,24 @@ library(tidyr)
 
 ######################################################################################################
 
-middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
-guppyout_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/guppy_output" # local 
+middle_dir = "/Users/danielagaio/Gaio/github/metapigs_base/middle_dir/" # git 
+guppyout_dir = "/Users/danielagaio/Desktop/metapigs_base/phylosift/guppy/guppy_output" # local 
 
 ######################################################################################################
 
 
 my.files = list.files(guppyout_dir,pattern=".gz.xml.txt")
-# extract fat ones
+my.files <- my.files[grep("fat_plate", my.files)]  
+
+
 # construct an empty dataframe to build on 
 complete.df <- data.frame(
   taxa = character(),
   branch_length = character(),
   branch_width = character(),
-  red = character(),
-  green = character(),
-  blue = character(),
   file = character()
 )
+
 
 for (textfile in my.files) {
   
@@ -62,83 +62,57 @@ for (textfile in my.files) {
   
   # extract file name 
   myfilename <- basename(textfile)
-  
-  # even though in this case we only have one element, we grep "<phylogeny rooted"
-  # as this will discard the unnecessary first rows of the file 
-  startOFnewPC <- grep("<phylogeny rooted", my.df$X1)
-  z <- split(my.df, cumsum(1:nrow(my.df) %in% startOFnewPC))
-  my.df <- as.data.frame(z$`1`)
+  myfilename <- gsub("_R1_001.fastq.gz.xml.txt","",myfilename)
+
+  my.df  <- my.df %>% dplyr::filter(!grepl("clade", X1))
+  my.df  <- my.df %>% dplyr::filter(!grepl("color", X1))
+  my.df  <- my.df %>% dplyr::filter(!grepl("red", X1))
+  my.df  <- my.df %>% dplyr::filter(!grepl("green", X1))
+  my.df  <- my.df %>% dplyr::filter(!grepl("blue", X1))
   
   # start the grepping of useful tree info(we only care about the hits containing "width")
-  my_width_ref <- grep("width", my.df$X1)
-  my_width_ref <- lapply(my_width_ref, print)
+  w <- grep("width", my.df$X1)
+  widths <- my.df[w,]
+  # length and name (row numbers)
+  l <- w-1
+  lengths <- my.df[l,]
+  n <- w-2
+  names <- my.df[n,]
   
-  # starting from "width" we retrieve all the useful info that belong to each node
-  df <- data.frame(matrix(unlist(my_width_ref), nrow=length(my_width_ref), byrow=T))
-  colnames(df) <- "C"
+  new_df <- cbind(names,lengths,widths)
+  colnames(new_df) <- c("n","l","w")
   
-  mysel <- df %>%
-    mutate(B=C-1) %>%
-    mutate(A=B-1) %>%
-    mutate(D=C+1) %>%
-    mutate(E=D+1) %>%
-    mutate(FF=E+1) %>%
-    mutate(G=FF+1) %>%
-    mutate(placeholder="placeholder") %>%
-    select(A,B,C,D,E,FF,G) %>%
-    pivot_longer(cols=A:G)
-  
-  mysel <- as.data.frame(mysel)
-  row.names(mysel) <- mysel$value
+  # clean
+  new_df$n <- sub("<name>","",new_df$n)
+  new_df$n <- sub("</name>","",new_df$n)
+  new_df$l <- sub("<branch_length>","",new_df$l)
+  new_df$l <- sub("</branch_length>","",new_df$l)
+  new_df$w <- sub("<width>","",new_df$w)
+  new_df$w <- sub("</width>","",new_df$w)
 
-  almostthere <- my.df[match(rownames(mysel), rownames(my.df), nomatch=0),]
-  almostthere <- as.data.frame(almostthere)
-
-  almostthere <- cSplit(almostthere, "almostthere","</")
-
-  almostthere <- almostthere %>% 
-  filter(almostthere_2 != '') # drop empty rows
-
-  #almostthere$index <- rownames(almostthere)
-  almostthere$almostthere_2 <- NULL
-
-  # transpose this single columned df every 6 elements 
-  tmp <- data.frame(
-    X=almostthere$almostthere_1,
-    ind=rep(1:6, nrow(almostthere)/6)
-  )
-  
-  # unstack 
-  myprecious <- unstack(tmp, X~ind)
-  
-  # in this case we won't need the colors as there's only one color possible combo possible 
-  myprecious <- myprecious[,1:3]
-  
-  # rename cols
-  colnames(myprecious) <- c('name', 'branch_length', 'branch_width')
-  
-  # remove all the symbols derived from the xml format
-  myprecious <- as.data.frame(lapply(myprecious, function(y) gsub("<[^>]+>", "", y)))
-  
   # save file name as an extra column
-  myprecious$file <- myfilename
+  new_df$file <- myfilename
+  
+  colnames(new_df) <- c("taxa","branch_length","branch_width","file")
   
   # bind all dfs from all files 
   complete.df <- rbind(
     complete.df, 
-    myprecious
+    new_df
   )
   
 }
-  
+
+
 
 complete.df <- cSplit(complete.df, "file","_")
-complete.df$DNA_plate <- paste0(complete.df$file_1,"_",complete.df$file_2)
-complete.df$DNA_well <- complete.df$file_3
+complete.df$DNA_plate <- paste0(complete.df$file_2,"_",complete.df$file_3)
+complete.df$DNA_well <- complete.df$file_4
+complete.df$name <- complete.df$taxa
+
 
 complete.df <- complete.df %>%
   dplyr::select(name,branch_length,branch_width,DNA_plate,DNA_well)
-
 
 simplified.df <- complete.df
 length(unique(simplified.df$name))
@@ -159,8 +133,7 @@ fwrite(x = simplified.df, file = paste0(middle_dir,"guppyfat_simplified"))
 fwrite(x = complete.df, file = paste0(middle_dir,"guppyfat_complete"))
 
 
-unique(simplified.df$name)
-which(is.na(simplified.df$name))
+
 
 
 

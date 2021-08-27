@@ -36,6 +36,87 @@
 
 ######################################################################################################
 
+######################################################################################################
+######################################################################################################
+
+# functions to find PC of interest
+
+
+find_PC1 <- function(x) {
+  PC <- x[[1]] %>%
+    group_by(taxa_simple) %>%
+    filter(n()==1) %>% # keep only taxa that appear once either up or down in PC, not both
+    arrange(PC_position,taxa_simple)
+  return(PC)
+}
+find_PC2 <- function(x) {
+  PC <- x[[2]] %>%
+    group_by(taxa_simple) %>%
+    filter(n()==1) %>% # keep only taxa that appear once either up or down in PC, not both
+    arrange(PC_position,taxa_simple)
+  return(PC)
+}
+find_PC3 <- function(x) {
+  PC <- x[[3]] %>%
+    group_by(taxa_simple) %>%
+    filter(n()==1) %>% # keep only taxa that appear once either up or down in PC, not both
+    arrange(PC_position,taxa_simple)
+  return(PC)
+}
+find_PC4 <- function(x) {
+  PC <- x[[4]] %>%
+    group_by(taxa_simple) %>%
+    filter(n()==1) %>% # keep only taxa that appear once either up or down in PC, not both
+    arrange(PC_position,taxa_simple)
+  return(PC)
+}
+find_PC5 <- function(x) {
+  PC <- x[[5]] %>%
+    group_by(taxa_simple) %>%
+    filter(n()==1) %>% # keep only taxa that appear once either up or down in PC, not both
+    arrange(PC_position,taxa_simple)
+  return(PC)
+}
+
+######################################################################################################
+######################################################################################################
+
+# functions to get taxa going up or down the PC
+
+PC_down <- function(x) {
+  down <- paste(as.list((x$taxa_simple[x$PC_position=="down"]),"\n"),collapse="\n")
+  return(down)
+}
+
+
+PC_up <- function(x) {
+  up <- paste(as.list((x$taxa_simple[x$PC_position=="up"]),"\n"),collapse="\n")
+  return(up)
+}
+
+# interrogate the function by typing 
+# PC_up(anydataframeyouwant)
+
+
+######################################################################################################
+######################################################################################################
+
+# functions to get taxa going up or down the PC
+
+get_var <- function(x) {
+  var <- paste(as.list((x$var_explained)[1]))   # first item only 
+  return(var)
+}
+
+# interrogate the function by typing 
+# get_var(anydataframeyouwant)
+
+
+######################################################################################################
+######################################################################################################
+
+######################################################################################################
+######################################################################################################
 
 
 library(vcd)
@@ -48,21 +129,27 @@ library(ggplot2)
 library(ggpubr)
 library(tidyr)
 library(data.table)
-library(sva)   # this is combat , careful not to install COMBAT instead which is another thing
+library(sva)   # this is ComBat , careful not to install COMBAT instead which is another thing
 library(openxlsx)
 library(gridExtra)
+#install.packages("wordspace")
 library(wordspace)
+
 library(pheatmap)
+
+#install.packages("taxize")
 library(taxize)
+
 library(ggplot2)
 library(plotrix)
 
+source_data = "/Users/danielagaio/Gaio/github/metapigs_base/source_data/" # git 
+middle_dir = "/Users/danielagaio/Gaio/github/metapigs_base/middle_dir/" # git 
+stats_dir = "/Users/danielagaio/Gaio/github/metapigs_base/middle_dir/stats/" # git 
+guppyout_dir = "/Users/danielagaio/Desktop/metapigs_base/phylosift/guppy/guppy_output" # local 
+out_dir = "/Users/danielagaio/Desktop/metapigs_base/phylosift/guppy/" # local 
+out_dir_git = "/Users/danielagaio/Gaio/github/metapigs_base/out/" # git 
 
-source_data = "/Users/12705859/metapigs_base/source_data/" # git 
-middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
-out_dir_git = "/Users/12705859/metapigs_base/out/" # git 
-guppyout_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/guppy_output" # local 
-out_dir = "/Users/12705859/Desktop/metapigs_base/phylosift/guppy/" # local 
 
 ###########################################################################################
 
@@ -199,7 +286,8 @@ jplace_df <- jplace_df %>%
   mutate_at('PC5',as.numeric) 
 
 # clean the file names
-jplace_df$file <- gsub('_sel.txt.proj', '', jplace_df$file)
+jplace_df$file <- gsub('.proj', '', jplace_df$file)
+jplace_df$file <- gsub('_sel.txt', '', jplace_df$file)
 
 
 ##############################
@@ -233,7 +321,7 @@ checkbatch_before <- jplace_df %>%
 
 # picking of groups is based on (adj) p-value of batch effect being <0.05
 batch_affected <- checkbatch_before %>%
-  filter(PC1<0.05|PC2<0.05|PC3<0.05|PC4<0.05|PC5<0.05) %>%
+  dplyr::filter(PC1<0.05|PC2<0.05|PC3<0.05|PC4<0.05|PC5<0.05) %>%
   dplyr::select(file)
 
 to_remove_batch <- jplace_df[jplace_df$file %in% batch_affected$file,]
@@ -266,15 +354,15 @@ if (removebatcheffect_allowed=="yes") {
     DNA_well <- single_DF$DNA_well
     file <- single_DF$file
 
-    single_DF<- data.matrix(single_DF[,4:8], rownames.force = NA)
-
+    single_DF<- data.matrix(single_DF[,3:7], rownames.force = NA)
+     
     single_DF<-ComBat(dat=t(as.matrix(single_DF)),DNA_plate,mod=NULL)
-
+     
     single_DF <- t(single_DF)
     single_DF <- as.data.frame(single_DF)
     #single_DF <- unfactor(single_DF[])
     single_DF <- cbind(DNA_plate,DNA_well,file,single_DF)
-
+    
     unbatched <- rbind(
     unbatched,
     single_DF
@@ -300,7 +388,7 @@ checkbatch_unbatched <- unbatched %>%
       batch_removal=paste0("after"),
       stringsAsFactors=FALSE)
   }) %>%
-  mutate_at(c("PC1","PC2","PC3","PC4","PC5"),padj_function) 
+  dplyr::mutate_at(c("PC1","PC2","PC3","PC4","PC5"),padj_function) 
 
 
 ##############################
@@ -350,19 +438,26 @@ rbow <- rainbow(40, end=0.7, alpha=0.7)
 # add one level of grouping (e.g.: all group_A* files, all timepoints, belong together)
 
 jplace_df_final$group <- jplace_df_final$file
-jplace_df_final$group <- gsub('piggies_group_A', 'groupA', jplace_df_final$group)
-jplace_df_final$group <- gsub('piggies_group_B', 'groupB', jplace_df_final$group)
-jplace_df_final$group <- gsub('piggies_CTRLNEO', 'groupC', jplace_df_final$group)
-jplace_df_final$group <- gsub('piggies_NEONEOD', 'groupD', jplace_df_final$group)
-jplace_df_final$group <- gsub('piggies_NEONEOC', 'groupE', jplace_df_final$group)
-jplace_df_final$group <- gsub('piggies_CTRLDs', 'groupF', jplace_df_final$group)
-jplace_df_final$group <- gsub('piggies_CTRLC', 'groupG', jplace_df_final$group)
-jplace_df_final$group <- gsub('^piggies$', 'piggies_all', jplace_df_final$group)
-# note to self: ^ and $ for the exact (and entire) string match 
+
+
+unique(jplace_df_final$group)
+
+jplace_df_final$group <- gsub('pca_piggies_group_A', 'groupA', jplace_df_final$group)
+jplace_df_final$group <- gsub('pca_piggies_group_B', 'groupB', jplace_df_final$group)
+jplace_df_final$group <- gsub('pca_piggies_CTRLNEO', 'groupC', jplace_df_final$group)
+jplace_df_final$group <- gsub('pca_piggies_NEONEOD', 'groupD', jplace_df_final$group)
+jplace_df_final$group <- gsub('pca_piggies_NEONEOC', 'groupE', jplace_df_final$group)
+jplace_df_final$group <- gsub('pca_piggies_CTRLDs', 'groupF', jplace_df_final$group)
+jplace_df_final$group <- gsub('pca_piggies_CTRLC', 'groupG', jplace_df_final$group)
+jplace_df_final$group <- gsub('pca_piggies', 'all', jplace_df_final$group)
+jplace_df_final$group <- gsub('pca_all$', 'all_tALL', jplace_df_final$group)
+jplace_df_final$group <- gsub('pca_pos_controls', 'pos_tNONE', jplace_df_final$group)
+
+
+unique(jplace_df_final$group)
 
 jplace_df_final <- cSplit(jplace_df_final, "group","_")
-jplace_df_final$group_1 <- gsub('pos', 'positive_controls', jplace_df_final$group_1)
-jplace_df_final$group_2 <- gsub('controls', 'all_replicates', jplace_df_final$group_2)
+unique(jplace_df_final$group_2)
 jplace_df_final <- setnames(jplace_df_final, old = c('group_1','group_2'), new = c('sample_type','guppied_date'))
 
 head(jplace_df_final)
@@ -383,21 +478,22 @@ multi_coggo <- multi_coggo %>%
 ##############################
 
 # give some order to the variables 
-
 multi_coggo$sample_type <- factor(multi_coggo$sample_type, 
-                      levels=c("positive_controls","piggies","groupA","groupB",
+                      levels=c("pos","all","groupA","groupB",
                                "groupC","groupD","groupE","groupF","groupG"))
 
+unique(multi_coggo$guppied_date)
 multi_coggo$guppied_date <- factor(multi_coggo$guppied_date, 
-                                      levels=c("all_replicates",
-                                               "all",
+                                      levels=c("tALL",
                                                "t0",
                                                "t2",
                                                "t4",
                                                "t6",
                                                "t8",
-                                               "t9"))
+                                               "t9",
+                                               "tNONE"))
 
+unique(multi_coggo$guppied_date)
 multi_coggo$BIRTH_DAY <- factor(multi_coggo$BIRTH_DAY, 
                        levels=c("2017-01-06", 
                                 "2017-01-07", 
@@ -409,6 +505,7 @@ multi_coggo$BIRTH_DAY <- factor(multi_coggo$BIRTH_DAY,
 ##############################
 
 # splitting into multiple dataframes (by sample_type name)
+unique(multi_coggo$sample_type)
 
 multi_coggo <- split( multi_coggo , f = multi_coggo$sample_type )
 
@@ -422,37 +519,40 @@ multi_coggo <- split( multi_coggo , f = multi_coggo$sample_type )
 ##############################
 ##############################
 
-DF_positive_controls <- as.data.frame(multi_coggo$positive_controls)
+DF_positive_controls <- as.data.frame(multi_coggo$pos)
 
 ##############################
 ##############################
 
-DF_piggies <- as.data.frame(multi_coggo$piggies)
+DF_piggies <- as.data.frame(multi_coggo$all)
+
+unique(DF_piggies$sample_type)
+unique(DF_piggies$guppied_date)
+
 DF_piggies <- DF_piggies %>%
-  filter(sample_type=="piggies") %>%
-  filter(guppied_date=="all")
+  filter(sample_type=="all") 
 
 ##############################
 ##############################
 
-DF_piggies_time <- as.data.frame(multi_coggo$piggies)
+DF_piggies_time <- as.data.frame(multi_coggo$all)
 DF_piggies_time_t0 <- DF_piggies_time %>%
-  filter(sample_type=="piggies") %>%
+  filter(sample_type=="all") %>%
   filter(guppied_date=="t0")
 DF_piggies_time_t2 <- DF_piggies_time %>%
-  filter(sample_type=="piggies") %>%
+  filter(sample_type=="all") %>%
   filter(guppied_date=="t2")
 DF_piggies_time_t4 <- DF_piggies_time %>%
-  filter(sample_type=="piggies") %>%
+  filter(sample_type=="all") %>%
   filter(guppied_date=="t4")
 DF_piggies_time_t6 <- DF_piggies_time %>%
-  filter(sample_type=="piggies") %>%
+  filter(sample_type=="all") %>%
   filter(guppied_date=="t6")
 DF_piggies_time_t8 <- DF_piggies_time %>%
-  filter(sample_type=="piggies") %>%
+  filter(sample_type=="all") %>%
   filter(guppied_date=="t8")
 DF_piggies_time_t9 <- DF_piggies_time %>%
-  filter(sample_type=="piggies") %>%
+  filter(sample_type=="all") %>%
   filter(guppied_date=="t9")
 DF_piggies_time <- rbind(
   DF_piggies_time_t0,
@@ -649,6 +749,7 @@ DF_positive_controls$Cohort <- factor(DF_positive_controls$Cohort,
                                 "PosControl_D-Scour",
                                 "PosControl_ColiGuard"))
 
+unique(simplified$sample_type)
 xmldata <- simplified %>%
   filter(sample_type=="pos") %>%
   group_split(component) 
@@ -736,22 +837,24 @@ grid.text(PC_up(find_PC5(xmldata)), x = unit(0.1, "npc"),
           gp = gpar(fontsize = 6, fontface = "bold"))
 dev.off()
 
-
 ##############################
 ##############################
 
 
 # piggies (all time points)
 
-a <- "piggies"
+a <- "all"
 
 # df for plots
 DF_piggies 
 
+unique(simplified$sample_type)
+unique(simplified$guppied_date)
+
 # df for xml data 
 xmldata <- simplified %>%
   filter(sample_type==a) %>%
-  filter(guppied_date=="all") %>%
+  filter(guppied_date=="tALL") %>%
   group_split(component)
 
 
@@ -871,13 +974,14 @@ mytheme <- theme(legend.position="none",
                  axis.text.y=element_text(size=4),
                  axis.title.y=element_text(size=5))
 
+unique(DF_piggies$collection_date)
 p1 <- DF_piggies %>%
-  filter(collection_date=="t0"|
-           collection_date=="t2"|
-           collection_date=="t4"|
-           collection_date=="t6"|
-           collection_date=="t8"|
-           collection_date=="t9") %>%
+  # filter(collection_date=="t0"|
+  #          collection_date=="t2"|
+  #          collection_date=="t4"|
+  #          collection_date=="t6"|
+  #          collection_date=="t8"|
+  #          collection_date=="t9") %>%
   ggplot(., aes(x = PC1, fill = as.character(collection_date))) + 
   geom_density(alpha = 0.5) +
   xlim(min(DF_piggies$PC1),max(DF_piggies$PC1))  +
@@ -888,12 +992,12 @@ g1.1 <- text_grob(paste0(PC_down(find_PC1(xmldata))),size=4,lineheight = 1)
 g1.2 <- text_grob(paste0(PC_up(find_PC1(xmldata))),size=4,lineheight = 1)
 
 p2 <- DF_piggies %>%
-  filter(collection_date=="t0"|
-           collection_date=="t2"|
-           collection_date=="t4"|
-           collection_date=="t6"|
-           collection_date=="t8"|
-           collection_date=="t9") %>%
+  # filter(collection_date=="t0"|
+  #          collection_date=="t2"|
+  #          collection_date=="t4"|
+  #          collection_date=="t6"|
+  #          collection_date=="t8"|
+  #          collection_date=="t9") %>%
   ggplot(., aes(x = PC2, fill = as.character(collection_date))) + 
   geom_density(alpha = 0.5) +
   xlim(min(DF_piggies$PC2),max(DF_piggies$PC2))  +
@@ -904,12 +1008,12 @@ g2.1 <- text_grob(paste0(PC_down(find_PC2(xmldata))),size=4,lineheight = 1)
 g2.2 <- text_grob(paste0(PC_up(find_PC2(xmldata))),size=4,lineheight = 1)
 
 p3 <- DF_piggies %>%
-  filter(collection_date=="t0"|
-           collection_date=="t2"|
-           collection_date=="t4"|
-           collection_date=="t6"|
-           collection_date=="t8"|
-           collection_date=="t9") %>%
+  # filter(collection_date=="t0"|
+  #          collection_date=="t2"|
+  #          collection_date=="t4"|
+  #          collection_date=="t6"|
+  #          collection_date=="t8"|
+  #          collection_date=="t9") %>%
   ggplot(., aes(x = PC3, fill = as.character(collection_date))) + 
   geom_density(alpha = 0.5) +
   xlim(min(DF_piggies$PC3),max(DF_piggies$PC3))  +
@@ -920,12 +1024,12 @@ g3.1 <- text_grob(paste0(PC_down(find_PC3(xmldata))),size=4,lineheight = 1)
 g3.2 <- text_grob(paste0(PC_up(find_PC3(xmldata))),size=4,lineheight = 1)
 
 p4 <- DF_piggies %>%
-  filter(collection_date=="t0"|
-           collection_date=="t2"|
-           collection_date=="t4"|
-           collection_date=="t6"|
-           collection_date=="t8"|
-           collection_date=="t9") %>%
+  # filter(collection_date=="t0"|
+  #          collection_date=="t2"|
+  #          collection_date=="t4"|
+  #          collection_date=="t6"|
+  #          collection_date=="t8"|
+  #          collection_date=="t9") %>%
   ggplot(., aes(x = PC4, fill = as.character(collection_date))) + 
   geom_density(alpha = 0.5) +
   xlim(min(DF_piggies$PC4),max(DF_piggies$PC4))  +
@@ -936,12 +1040,12 @@ g4.1 <- text_grob(paste0(PC_down(find_PC4(xmldata))),size=4,lineheight = 1)
 g4.2 <- text_grob(paste0(PC_up(find_PC4(xmldata))),size=4,lineheight = 1)
 
 p5 <- DF_piggies %>%
-  filter(collection_date=="t0"|
-           collection_date=="t2"|
-           collection_date=="t4"|
-           collection_date=="t6"|
-           collection_date=="t8"|
-           collection_date=="t9") %>%
+  # filter(collection_date=="t0"|
+  #          collection_date=="t2"|
+  #          collection_date=="t4"|
+  #          collection_date=="t6"|
+  #          collection_date=="t8"|
+  #          collection_date=="t9") %>%
   ggplot(., aes(x = PC5, fill = as.character(collection_date))) + 
   geom_density(alpha = 0.5) +
   xlim(min(DF_piggies$PC5),max(DF_piggies$PC5)) +
@@ -953,12 +1057,12 @@ g5.2 <- text_grob(paste0(PC_up(find_PC5(xmldata))),size=4,lineheight = 1)
 
 
 for_legend_only <- DF_piggies %>%
-  filter(collection_date=="t0"|
-           collection_date=="t2"|
-           collection_date=="t4"|
-           collection_date=="t6"|
-           collection_date=="t8"|
-           collection_date=="t9") %>%
+  # filter(collection_date=="t0"|
+  #          collection_date=="t2"|
+  #          collection_date=="t4"|
+  #          collection_date=="t6"|
+  #          collection_date=="t8"|
+  #          collection_date=="t9") %>%
   ggplot(., aes(x = PC5, fill = as.character(collection_date))) + 
   geom_density(alpha = 0.5) +
   xlim(min(DF_piggies$PC5),max(DF_piggies$PC5)) +
@@ -995,10 +1099,8 @@ dev.off()
 
 # piggies (guppied by time point)
 
-
-
 df <- DF_piggies_time # dataframe for plots to be used 
-a <- "piggies" # setting for xml data extraction (only sample_type necessary) 
+a <- "all" # setting for xml data extraction (only sample_type necessary) 
 
 
 # re-order cohort 
@@ -3730,13 +3832,6 @@ dev.off()
 
 ###########################################################################################
 
-# create workbook to add stats 
-
-#wb <- createWorkbook()
-
-###########################################################################################
-
-
 ###################################
 ###################################
 
@@ -3914,8 +4009,9 @@ for (singl_DF in multi_DFs) {
 
 significant$test <- "pairwise.t.test"
 # save stats
-addWorksheet(wb, "guppy_pvalues")
-writeData(wb, sheet = "guppy_pvalues", significant, rowNames = FALSE)
+# addWorksheet(wb, "guppy_pvalues")
+# writeData(wb, sheet = "guppy_pvalues", significant, rowNames = FALSE)
+fwrite(x=significant, file=paste0(stats_dir,"guppy_pvalues.csv"))
 
 significant$test <- NULL
 ###################################
@@ -3938,10 +4034,10 @@ final
 final$padj_method <- "Bonferroni"
 
 # save stats
-addWorksheet(wb, "guppy_padj")
-writeData(wb, sheet = "guppy_padj", final, rowNames = FALSE)
+# addWorksheet(wb, "guppy_padj")
+# writeData(wb, sheet = "guppy_padj", final, rowNames = FALSE)
+fwrite(x=final, file=paste0(stats_dir,"guppy_padj.csv"))
 
-final$padj_method <- NULL
 ###################################
 ###################################
 
@@ -3955,10 +4051,10 @@ dummy <- data.frame(guppied_date = as.character(c("t0","t2","t4","t6","t8","t9")
                     collection_date = as.character(c("t0","t2","t4","t6","t8","t9")))
 
 
-
+unique(final$guppied_date)
 # adding collection_date to dataframe
 df <- inner_join(final,dummy) 
-
+unique(df$collection_date)
 
 
 # string replacement (as we haven't included DF_piggies (single guppy run), 
@@ -3972,10 +4068,16 @@ df$dataframe <- gsub("piggies","DF_piggies_time",df$dataframe)
 # XML data extract
 
 # taking all along except the guppy run with all the samples from all time points 
+unique(simplified$guppied_date)
 simplified2 <- simplified %>%
-  filter(!guppied_date == "all")  
+  filter(!guppied_date == "tALL")  
+simplified2 <- simplified2 %>%
+  filter(!guppied_date == "tNONE") 
 # now the only piggies are from the DF_piggies_time guppy runs
-simplified2$sample_type <- gsub("piggies","DF_piggies_time",simplified2$sample_type)
+unique(simplified2$sample_type)
+#simplified2$sample_type <- gsub("piggies","DF_piggies_time",simplified2$sample_type)
+unique(simplified2$guppied_date)
+unique(df$guppied_date)
 
 
 ###################################
@@ -3993,14 +4095,25 @@ mytheme <- theme(legend.position = "none",
 # Plots only statistically significant observations,
 # reporting xml data and dataframe (guppy run) it comes from
 
+unique(df$collection_date)
+
 mygrobs <- vector('list', nrow(df))
 pdf(paste0(out_dir,"guppy_sign_cohorts.pdf"), onefile = TRUE)
 for (A in rownames(df)) {
   A <- as.numeric(A) # dataframes rownames must be taken as numeric
-  
+
+  kk <- eval(as.name(paste(df$dataframe)))
+  kk$collection_date <- gsub("2017-01-31","t0",kk$collection_date)
+  kk$collection_date <- gsub("2017-02-07","t2",kk$collection_date)
+  kk$collection_date <- gsub("2017-02-14","t4",kk$collection_date)
+  kk$collection_date <- gsub("2017-02-21","t6",kk$collection_date)
+  kk$collection_date <- gsub("2017-02-28","t8",kk$collection_date)
+  kk$collection_date <- gsub("2017-03-03","t9",kk$collection_date)
+
   # subsetting of original dataframe based on what is statistically significant (rows of df)
-  pp <- eval(as.name(paste(df$dataframe[A])))  %>%
+  pp <- kk %>%
     filter(collection_date==as.character(df$collection_date[A])) %>%
+    filter(sample_type==as.character(df$dataframe[A])) %>%
     filter(Cohort==as.character(df$group_1[A])|Cohort==as.character(df$group_2[A])) %>%
     select(PC1,PC2,PC3,PC4,PC5,Cohort,collection_date,guppied_date,sample_type) %>%
     pivot_longer(
@@ -4010,6 +4123,7 @@ for (A in rownames(df)) {
       values_drop_na = FALSE
     ) %>%
     filter(component==as.name(paste(df$which_PC[A])))
+  
   
   pp$Cohort <- factor(pp$Cohort, 
                       levels=c("Control", 
@@ -4064,6 +4178,9 @@ DF_piggies$Cohort <- factor(DF_piggies$Cohort,
                                 "Neomycin",
                                 "Neomycin+D-Scour",
                                 "Neomycin+ColiGuard"))
+DF_piggies <- DF_piggies[!is.na(DF_piggies$Cohort),]
+
+
 
 # for legend only 
 pp <- ggplot(DF_piggies, aes(x=PC1, fill=Cohort)) +
@@ -4071,8 +4188,8 @@ pp <- ggplot(DF_piggies, aes(x=PC1, fill=Cohort)) +
   theme_bw()+
   mytheme+
   theme(legend.position="right",
-        legend.title = element_text(size = 8),
-        legend.text = element_text(size = 6))+
+        legend.title = element_text(size = 6),
+        legend.text = element_text(size = 4))+
   scale_fill_discrete(drop=FALSE)
 leg <- get_legend(pp)
 
@@ -4082,13 +4199,13 @@ lay <- rbind(c(1,2),
              c(3,4),
              c(5,6),
              c(7,8))
-grid.arrange(mygrobs[[1]]
-             ,mygrobs[[4]],
-             mygrobs[[5]],
-             mygrobs[[6]],
-             mygrobs[[7]],
-             mygrobs[[8]],
-             mygrobs[[9]],
+grid.arrange(mygrobs[[10]] 
+             ,mygrobs[[2]],
+             mygrobs[[6]], 
+             mygrobs[[8]], 
+             mygrobs[[3]], 
+             mygrobs[[4]], 
+             mygrobs[[9]], 
              leg,
              layout_matrix = lay)
 dev.off()
@@ -4101,23 +4218,24 @@ dev.off()
 ##########################################################################################
 ##########################################################################################
 
-
+complete <- read_csv(file = paste0(middle_dir,"guppy_xml_complete.df"))
 
 ############ VARIATION BEST EXPLAINED BY - DURING TIME - IN PIGGIES: 
 
 # "complete" comes from guppy_XML_process.R
 simplified2 <- complete %>%
-  select(sample_type, guppied_date,branch_width,var_explained,component,PC_position,taxa_simple) %>%
+  dplyr::select(sample_type, guppied_date,branch_width,var_explained,component,PC_position,taxa_simple) %>%
   # taking all along except the guppy run with all the samples from all time points
-  filter(!guppied_date == "all")  
+  filter(!guppied_date == "tALL")  
 
 # now the only piggies are from the DF_piggies_time guppy runs
 simplified2$sample_type <- gsub("piggies","DF_piggies_time",simplified2$sample_type)
 
 # branch_width * var_explained = importance
+unique(simplified2$sample_type)
 simplified2 <- simplified2 %>%
   dplyr::mutate(importance = as.numeric(branch_width)*var_explained) %>%
-  filter(sample_type=="DF_piggies_time"|sample_type=="groupA"|sample_type=="groupB") %>% # eventual selection of only one guppy run 
+  filter(sample_type=="all"|sample_type=="groupA"|sample_type=="groupB") %>% # eventual selection of only one guppy run 
   select(guppied_date,taxa_simple,importance) 
 
 both <- simplified2 %>% 
@@ -4125,6 +4243,9 @@ both <- simplified2 %>%
   dplyr::summarize(Sum_importance = sum(importance))
 
 unique(both$taxa_simple) # 61 taxa
+NROW(both)
+
+both <- both[complete.cases(both), ] # remove NAs - necessary! 
 
 # normalize by date: 
 both <- both %>%
@@ -4132,6 +4253,7 @@ both <- both %>%
   dplyr::mutate(Sum_importance=Sum_importance/sum(Sum_importance))
 
 tail(both)
+head(both)
 
 both_wide <- both %>%
   pivot_wider(names_from = guppied_date, values_from = Sum_importance) %>%
@@ -4222,5 +4344,5 @@ dev.off()
 ##########################################################################################
 ##########################################################################################
 
-#save stats in workbook
-saveWorkbook(wb, paste0(out_dir_git,"stats.xlsx"), overwrite=TRUE)
+# #save stats in workbook
+# saveWorkbook(wb, paste0(out_dir_git,"stats.xlsx"), overwrite=TRUE)

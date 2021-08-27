@@ -1,0 +1,12 @@
+p_value,which_colldate,which_PC,comparison,group_1,group_2,groupsplit,n,threshold,padj_method
+6.45480333626566e-05,t0,PC5,Control_vs_Neomycin,Control,Neomycin,all_t0,25,0.002,Bonferroni
+0.00171726377456927,t6,PC2,Control_vs_D-Scour,Control,D-Scour,all_t6,25,0.002,Bonferroni
+0.0018064242484533,t8,PC3,Control_vs_D-Scour,Control,D-Scour,all_t8,25,0.002,Bonferroni
+0.00167859591382738,t8,PC3,Neomycin_vs_Neomycin+ColiGuard,Neomycin,Neomycin+ColiGuard,all_t8,25,0.002,Bonferroni
+6.40731347686732e-05,t0,PC3,Neomycin_vs_Neomycin+ColiGuard,Neomycin,Neomycin+ColiGuard,groupB_t0,25,0.002,Bonferroni
+0.00244730627232192,t6,PC4,Control_vs_Neomycin,Control,Neomycin,groupB_t6,20,0.0025,Bonferroni
+2.60515081486329e-05,t0,PC4,Control_vs_Neomycin,Control,Neomycin,groupC_t0,5,0.01,Bonferroni
+0.00115294593864117,t6,PC2,Neomycin_vs_Neomycin+D-Scour,Neomycin,Neomycin+D-Scour,groupD_t6,5,0.01,Bonferroni
+0.000989104227478121,t9,PC5,Neomycin_vs_Neomycin+D-Scour,Neomycin,Neomycin+D-Scour,groupD_t9,5,0.01,Bonferroni
+0.00893201436588516,t2,PC5,ColiGuard_vs_Control,ColiGuard,Control,groupG_t2,5,0.01,Bonferroni
+0.00797666138153124,t8,PC3,ColiGuard_vs_Control,ColiGuard,Control,groupG_t8,5,0.01,Bonferroni

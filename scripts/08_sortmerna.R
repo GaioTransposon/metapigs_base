@@ -4,26 +4,40 @@ library(dplyr)
 library(readxl)
 library(splitstackshape)
 library(data.table)
-library(robCompositions)
+
+#install.packages("robCompositions")
+#library(robCompositions)
+
 library(tidyr)
 library(tidyverse)
 library(ggbiplot)
 library(magrittr)
 library(ggpubr)
 library(grDevices)
+
+#install.packages("colorRamps")
 library(colorRamps)
+
 library(EnvStats)
+
+#install.packages("corrplot")
 library(corrplot)
+
 library(grid)
 library(cowplot)
+
+#install.packages("factoextra")
 library(factoextra)
+
 library(broom)
 library(openxlsx)
 
 
-source_data = "/Users/12705859/metapigs_base/source_data/" # git 
-middle_dir = "/Users/12705859/metapigs_base/middle_dir/" # git 
-out_dir = "/Users/12705859/Desktop/metapigs_base/sortmerna/" # local 
+source_data = "/Users/danielagaio/Gaio/github/metapigs_base/source_data/" # git 
+middle_dir = "/Users/danielagaio/Gaio/github/metapigs_base/middle_dir/" # git 
+stats_dir = "/Users/danielagaio/Gaio/github/metapigs_base/middle_dir/stats/" # git 
+out_dir = "/Users/danielagaio/Desktop/metapigs_base/sortmerna/" # local 
+
 
 ###########################################################################################
 
@@ -81,15 +95,10 @@ silva <- read_table2(paste0(out_dir,"silva-bac-16s-id90_accession_taxonomy.txt")
 
 # upload weight info 
 
-weights <- read_csv(paste0(source_data,"weights.csv"), 
-                    col_types = cols(Pig = col_character(), 
-                                     Room = col_character()))
+weights <- read.csv(paste0(source_data,"weights.csv"))
 colnames(weights) <- c("room","pen","pig","t0","t2","t4","t6","t8")
 
-
-weights_final <- read_csv(paste0(source_data,"weights_final.csv"), 
-                          col_types = cols(Pig = col_character(), 
-                                           Room = col_character()))
+weights_final <- read.csv(paste0(source_data,"weights_final.csv"))
 colnames(weights_final) <- c("room","pen","pig","date","weight")
 weights_final$date <- gsub("6-Mar","t10",weights_final$date)
 weights_final$date <- gsub("7-Mar","t10",weights_final$date)
@@ -266,6 +275,7 @@ df[,6] <- lapply(
   pattern = "2017-03-06",
   replacement = "t10",
   fixed = TRUE)
+
 df[,6] <- lapply(
   df[,6],
   gsub,
@@ -345,6 +355,7 @@ new$rRNA16S_full <- paste0(new$rRNA16S,"_",new$Species)
 
 ###########
 
+
 # normalization for library size 
 df1 <- new %>%
   dplyr::select(sample,rRNA16S_full,count) %>%
@@ -384,13 +395,14 @@ colnames(z) <- c("weight","last_count","species","date","pig")
 head(z)
 NROW(z)
 
+unique(z$date)
 
 # Spearman: 
 
 # correlation weight with species abundance: stats:
 myfun_findcorr <- function(df,timepoint) {
   
-  df <- df %>% filter(date==timepoint)
+  df <- df %>% dplyr::filter(date==timepoint)
   
   # empty df
   all_rho <- data.frame(estimate=character(),
@@ -442,8 +454,14 @@ all_corr <- rbind(myfun_findcorr(z,"t0"),
 # save the results
 all_corr$taxa_origin <- "SortMeRNA"
 
-addWorksheet(wb, "weight_taxa")
-writeData(wb, sheet = "weight_taxa", all_corr, rowNames = FALSE)
+# apply various p-adj methods 
+all_corr$padj_hommel <- round(p.adjust(all_corr$p.value, "BH"), 4)
+all_corr$padj_BY <- round(p.adjust(all_corr$p.value, "BY"), 4)
+all_corr$padj_bonferroni <- round(p.adjust(all_corr$p.value, "bonferroni"), 4)
+
+# addWorksheet(wb, "weight_taxa")
+# writeData(wb, sheet = "weight_taxa", all_corr, rowNames = FALSE)
+fwrite(x=all_corr, file=paste0(stats_dir,"weight_taxa.csv"))
 
 #####
 

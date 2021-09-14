@@ -1,5 +1,5 @@
 
-##### Scripts for the production of all figures and stats, in order:
+## Scripts for the production of all figures and stats, in order:
 #### 01_pos_controls_reads.R
 #### 02_phylodiv_alpha_cohorts.R
 #### 02_phylodiv.R

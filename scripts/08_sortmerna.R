@@ -355,12 +355,11 @@ new$rRNA16S_full <- paste0(new$rRNA16S,"_",new$Species)
 
 ###########
 
-
-# normalization for library size 
+# normalization for library size
 df1 <- new %>%
   dplyr::select(sample,rRNA16S_full,count) %>%
   dplyr::group_by(sample) %>%
-  dplyr::mutate(norm_count=count/sum(count)) 
+  dplyr::mutate(norm_count=count/sum(count))
 NROW(df1)
 head(df1)
 
@@ -386,16 +385,16 @@ head(df4)
 
 df4 <- as.data.frame(df4)
 
-z <- left_join(df4,weights)
+final <- left_join(df4,weights)
 # omit where observations where no weight value is present
-z <- na.omit(z)
-z <- z %>% dplyr::select(sample,weight,last_count,rRNA16S_full_2)
-z <- cSplit(z,splitCols = "sample",sep = "_") 
-colnames(z) <- c("weight","last_count","species","date","pig")
-head(z)
-NROW(z)
+final <- na.omit(final)
+final <- final %>% dplyr::select(sample,weight,last_count,rRNA16S_full_2)
+final <- cSplit(final,splitCols = "sample",sep = "_") 
+colnames(final) <- c("weight","last_count","species","date","pig")
+head(final)
+NROW(final)
 
-unique(z$date)
+unique(final$date)
 
 # Spearman: 
 
@@ -443,12 +442,12 @@ myfun_findcorr <- function(df,timepoint) {
 
 
 # rbind all the results 
-all_corr <- rbind(myfun_findcorr(z,"t0"),
-                  myfun_findcorr(z,"t2"),
-                  myfun_findcorr(z,"t4"),
-                  myfun_findcorr(z,"t6"),
-                  myfun_findcorr(z,"t8"),
-                  myfun_findcorr(z,"t10"))
+all_corr <- rbind(myfun_findcorr(final,"t0"),
+                  myfun_findcorr(final,"t2"),
+                  myfun_findcorr(final,"t4"),
+                  myfun_findcorr(final,"t6"),
+                  myfun_findcorr(final,"t8"),
+                  myfun_findcorr(final,"t10"))
 
 #####
 # save the results
@@ -476,7 +475,7 @@ mylist_t10 <- all_corr %>% dplyr::filter(date=="t10") %>% dplyr::select(species)
 
 
 
-# function to make barplots
+# function to make boxplots
 make_plot <- function(df,species_list,date) {
   
   timepoint <- as.character(date)
@@ -503,30 +502,30 @@ chunk <- 13
 n <- nrow(mylist_t0)
 r  <- rep(1:ceiling(n/chunk),each=chunk)[1:n]
 d <- split(mylist_t0,r)
-plot_t0_1 <- make_plot(z,d$`1`,"t0")
-plot_t0_2 <- make_plot(z,d$`2`,"t0")
+plot_t0_1 <- make_plot(final,d$`1`,"t0")
+plot_t0_2 <- make_plot(final,d$`2`,"t0")
 plot_t0 <- ggarrange(plot_t0_1,plot_t0_2,nrow=2)
 
 
-plot_t2 <- make_plot(z,mylist_t2,"t2")
+plot_t2 <- make_plot(final,mylist_t2,"t2")
 
 
 n <- nrow(mylist_t4)
 chunk <- 10
 r  <- rep(1:ceiling(n/chunk),each=chunk)[1:n]
 d <- split(mylist_t4,r)
-plot_t4_1 <- make_plot(z,d$`1`,"t4")
-plot_t4_2 <- make_plot(z,d$`2`,"t4")
+plot_t4_1 <- make_plot(final,d$`1`,"t4")
+plot_t4_2 <- make_plot(final,d$`2`,"t4")
 plot_t4 <- ggarrange(plot_t4_1,plot_t4_2,nrow=2)
 
 
-plot_t6 <- make_plot(z,mylist_t6,"t6")
+plot_t6 <- make_plot(final,mylist_t6,"t6")
 
 
-plot_t8 <- make_plot(z,mylist_t8,"t8")
+plot_t8 <- make_plot(final,mylist_t8,"t8")
 
 
-plot_t10 <- make_plot(z,mylist_t10,"t10")
+plot_t10 <- make_plot(final,mylist_t10,"t10")
 
 
 pdf(paste0(out_dir,"sortmerna_weight.pdf"))
@@ -644,6 +643,13 @@ these <- z[z$species %in% n_occur$Var1[n_occur$Freq > 1],]
 these %>% arrange(species)
 
 
+# have a look at the one species still significantly correlating after Bonferroni correction. 
+final %>%
+  dplyr::filter(species=="Coprothermobacter") %>%
+  dplyr::filter(date=="t0") %>%
+  ggplot(., aes(x=weight,y=log(last_count)))+
+  geom_point()+
+  geom_smooth(method="lm")
 
 ##########################
 

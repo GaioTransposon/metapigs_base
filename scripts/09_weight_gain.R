@@ -15,7 +15,7 @@ out_dir_git =  "/Users/danielagaio/Gaio/github/metapigs_base/out/" # git
 ###########################################################################################
 
 # tiffs (timelines)
-timeline_deltas_weight <- image_read(paste0(out_dir,"Slide13.tiff"))
+timeline<- image_read(paste0(out_dir,"timeline.tiff"))
 
 
 
@@ -447,7 +447,7 @@ weight_cohort_plots <- plot_grid(empty_space,
 
 pdf(paste0(out_dir,"weight_deltas_by_cohort.pdf"))
 ggdraw() +
-  draw_image(timeline_deltas_weight, x = 0, y = 0.16) +
+  draw_image(timeline, x = 0, y = 0.33) +
   draw_plot(weight_cohort_plots)
 dev.off()
 
@@ -507,7 +507,7 @@ weight_breed_plots <- plot_grid(empty_space,
 
 pdf(paste0(out_dir,"weight_deltas_by_breed.pdf"))
 ggdraw() +
-  draw_image(timeline_deltas_weight, x = 0, y = 0.16) +
+  draw_image(timeline, x = 0, y = 0.33) +
   draw_plot(weight_breed_plots)
 dev.off()
 
@@ -567,7 +567,7 @@ weight_BIRTH_plots <- plot_grid(empty_space,
 
 pdf(paste0(out_dir,"weight_deltas_by_BIRTH.pdf"))
 ggdraw() +
-  draw_image(timeline_deltas_weight, x = 0, y = 0.16) +
+  draw_image(timeline, x = 0, y = 0.33) +
   draw_plot(weight_BIRTH_plots)
 dev.off()
 

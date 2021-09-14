@@ -128,8 +128,7 @@ out_dir = "/Users/danielagaio/Desktop/metapigs_base/phylosift/out/" # local
 # 0   # loading input data
 
 # tiffs (timelines)
-timeline_deltas_unroo <- image_read(paste0(out_dir,"Slide11.tiff"))
-timeline_deltas_bw <- image_read(paste0(out_dir,"Slide12.tiff"))
+timeline <- image_read(paste0(out_dir,"timeline.tiff"))
 
 # load metadata 
 mdat <- read_excel(paste0(source_data,"Metagenome.environmental_20190308_2.xlsx"),
@@ -2473,7 +2472,7 @@ all_plots <- plot_grid(empty_space,
 
 pdf(paste0(out_dir,"cohorts_deltas_bwpd.pdf"))
 ggdraw() +
-  draw_image(timeline_deltas_bw, x = 0.01, y = 0.13) +
+  draw_image(timeline, x = 0, y = 0.33) +
   draw_plot(all_plots)
 dev.off()
 
@@ -2493,7 +2492,7 @@ all_plots <- plot_grid(empty_space,
 
 pdf(paste0(out_dir,"cohorts_deltas_unroo.pdf"))
 ggdraw() +
-  draw_image(timeline_deltas_unroo, x = 0.01, y = 0.13) +
+  draw_image(timeline, x = 0, y = 0.33) +
   draw_plot(all_plots)
 dev.off()
 

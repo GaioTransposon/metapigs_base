@@ -6,6 +6,9 @@ out_dir_git = "/Users/danielagaio/Gaio/github/metapigs_base/out/" # git
 out_dir = "/Users/danielagaio/Desktop/metapigs_base/phylosift/out/" # local 
 
 
+# tiffs (timelines)
+timeline <- image_read(paste0(out_dir,"timeline.tiff"))
+
 ############
 
 # DELTAS of alpha diversity
@@ -214,9 +217,11 @@ alpha_deltas_cohorts <- rbind(myfun_unrooted_stats(df_t0_t2,"t0_t2"),
                             myfun_bwpd_stats(df_t0_t8,"t0_t8")
                             )
 
-# add data to workbook 
-addWorksheet(wb, "alpha_deltas_cohorts")
-writeData(wb, sheet = "alpha_deltas_cohorts", alpha_deltas_cohorts, rowNames = FALSE)
+# # add data to workbook 
+# addWorksheet(wb, "alpha_deltas_cohorts")
+# writeData(wb, sheet = "alpha_deltas_cohorts", alpha_deltas_cohorts, rowNames = FALSE)
+
+fwrite(x=alpha_deltas_cohorts, file=paste0(stats_dir,"alpha_deltas_cohorts.csv"))
 
 ############
 NROW(stats_filtered_output)
@@ -271,6 +276,7 @@ leg <- get_legend(for_legend_only)
 
 # final plot: 
 
+#unrooted pd
 empty_space = plot_grid(NULL, NULL, NULL, NULL, ncol=4)
 top_row = plot_grid(myfun_unrooted_plot(df_t0_t2),
                     myfun_unrooted_plot(df_t2_t4),
@@ -287,16 +293,41 @@ bottom_row = plot_grid(myfun_unrooted_plot(df_t2_t6),
                        rel_widths=c(0.25,0.25,0.25,0.25),
                        labels=c("t2-t6","t4-t8","t0-t8",""),
                        label_size = 10)
-all_plots <- plot_grid(empty_space,
+all_plots_unroo <- plot_grid(empty_space,
                        top_row,
                        bottom_row,
                        nrow=3)
 
+
+#BWPD
+empty_space = plot_grid(NULL, NULL, NULL, NULL, ncol=4)
+top_row = plot_grid(myfun_bwpd_plot(df_t0_t2),
+                    myfun_bwpd_plot(df_t2_t4),
+                    myfun_bwpd_plot(df_t4_t6),
+                    myfun_bwpd_plot(df_t6_t8),
+                    ncol=4, 
+                    rel_widths=c(0.25,0.25,0.25,0.25),
+                    labels=c("t0-t2","t2-t4","t4-t6","t6-t8"),
+                    label_size = 10)
+bottom_row = plot_grid(myfun_bwpd_plot(df_t2_t6),
+                       myfun_bwpd_plot(df_t4_t8),
+                       myfun_bwpd_plot(df_t0_t8),
+                       leg, ncol=4, 
+                       rel_widths=c(0.25,0.25,0.25,0.25),
+                       labels=c("t2-t6","t4-t8","t0-t8",""),
+                       label_size = 10)
+all_plots_bwpd <- plot_grid(empty_space,
+                             top_row,
+                             bottom_row,
+                             nrow=3)
+
 pdf(paste0(out_dir,"alpha_deltas_by_cohort.pdf"))
 ggdraw() +
-  draw_image(timeline_deltas_weight, x = 0, y = 0.16) +
-  draw_plot(all_plots)
+  draw_image(timeline, x = 0, y = 0.33) +
+  draw_plot(all_plots_unroo)
+ggdraw() +
+  draw_image(timeline, x = 0, y = 0.33) +
+  draw_plot(all_plots_bwpd)
 dev.off()
                     
-stats_filtered_output
-  
+

@@ -40,14 +40,15 @@ process phylosift {
     """
     /shared/homes/s1/pig_microbiome/phylosift_v1.0.1/bin/phylosift all \
       --debug --config /shared/homes/s1/pig_microbiome/phylosift_v1.0.1/phylosiftrc_dany \
-      --threads 1 --disable_updates --chunks 1 --chunk_size 10000 \
+      --threads 1 --disable_updates --chunks 1 --chunk_size 1000000 \
       --paired ${r1} ${r2} 2> ps.err > ps.out
     """
 }
 
 
 ##running as follows : 
-#nextflow -C fred.config run phylosift_ad.nf --run_table=complete_table.tsv --resume
+#nextflow -C fred.config run phylosift_ad.nf --run_table=complete_table.tsv
+
 
 
 
